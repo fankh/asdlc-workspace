@@ -1,0 +1,16 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo 'TODO: coder agent will replace this with the framework dev server' && exit 1",
+    "build": "echo 'TODO: coder agent will fill this in' && exit 1",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.9.0",
+    "@playwright/test": "^1.48.0",
+    "typescript": "^5.5.0"
+  }
+}

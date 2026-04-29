@@ -1,0 +1,36 @@
+project:
+  name: "my-local-agent-app"
+  version: "0.1.0"
+  # Item 2 — must match one of the six in 03-PROJECT_TYPE_UI_PATTERNS.md
+  # website | sns | ide | appliance | b2b_console | secops_console
+  type: "b2b_console"
+  mode: "new"   # new | maintenance — auto-detected if 04_source/ already has code
+
+agents:
+  ingestion:    { enabled: true,  ocr_engine: "tesseract" }
+  product:      { enabled: true,  story_format: "gherkin" }
+  design:       { enabled: true,  design_system: "ant" }   # Option A: established system
+  architect:    { enabled: true,  database: "postgresql", api_style: "rest" }
+  coder:
+    frontend:   { enabled: true,  framework: "react", language: "typescript" }
+    backend:    { enabled: true,  framework: "spring-boot", language: "java" }
+  validator:    { enabled: true,  strict_mode: true }
+  secops:       { enabled: true,  sast: true, dependency_check: true }
+  qa:
+    unit_tests:        true
+    integration_tests: true
+    e2e_tests:         true
+    ai_vision_tests:   true   # uses ../ui-test-agent/ + scenarios/
+    visual_regression: false  # flip on once Percy/pixelmatch is wired
+  docs:         { enabled: true,  formats: ["md"] }
+  i18n:         { enabled: false, languages: ["en", "ko"] }
+  release:      { enabled: false }   # manual for local dev
+  marketing:    { enabled: false }
+
+# Item 6 — circuit breaker
+refinement:
+  max_loops: 5
+  on_overflow: "HUMAN_INTERVENTION_REQUIRED"
+
+phases:
+  stop_after: null   # null = run all; or "architecture" | "code" | "test"
