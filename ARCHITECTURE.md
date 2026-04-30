@@ -343,9 +343,11 @@ The asymmetry to keep in mind: cheap mistakes (one ticket missed) vs. expensive 
 
 ## 10. What's NOT here yet
 
-Honest accounting of stubs:
+Honest accounting of stubs. The roadmap to close each gap lives in [`PLAN.md`](PLAN.md) — phase number in parentheses below.
 
-- **No actual orchestrator script.** `.pipeline/config.yaml` is the *contract* the orchestrator would read; `run-pipeline.py` is referenced in `../01-PIPELINE_ARCHITECTURE.md` but not implemented in this workspace. You drive the loop manually for now (run discovery → review tickets → run coder agent → run QA).
-- **No backend yet.** `04_source/backend/` doesn't exist — only the frontend test scaffolding is wired. Add when the Architect agent generates `openapi.yaml`.
-- **No deployment.** Phase 5 (Release) is intentionally disabled in `.pipeline/config.yaml`. Local dev only until you decide to ship.
+- **No actual orchestrator script** (Phase 1). `.pipeline/config.yaml` is the *contract* the orchestrator would read; `run-pipeline.py` is referenced in `../01-PIPELINE_ARCHITECTURE.md` but not implemented in this workspace. You drive the loop manually for now (run discovery → review tickets → run coder agent → run QA).
+- **No backend yet** (Phase 2). `04_source/backend/` doesn't exist — only the frontend test scaffolding is wired. Add when the Architect agent generates `openapi.yaml`.
+- **No deployment** (Phase 4). Phase 5 (Release) is intentionally disabled in `.pipeline/config.yaml`. Local dev only until you decide to ship.
 - **No memory store.** The agents don't remember prior runs. If you want long-running agentic workflows, see `../ai-sdlc-research/` and the Managed Agents path.
+
+For the full sequencing (which gap to close first, what proves it's done), open [`PLAN.md`](PLAN.md).

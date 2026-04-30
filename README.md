@@ -40,6 +40,10 @@ chmod +x .githooks/pre-commit
 
 If step 3 goes red on the right assertion (page not reachable / heading missing), the feedback loop is sound and you can let the coding agent loose on `04_source/`.
 
+## What to build next
+
+See [`PLAN.md`](PLAN.md) for the solo-scoped 5-phase implementation roadmap. Each phase has a concrete build checklist, validate command, and exit criterion. Phase 1 (Foundation) is where you start once bootstrap is verified.
+
 ## State machine
 
 Phases advance when a `.status_done` marker appears in the corresponding directory:
