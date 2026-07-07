@@ -2,5 +2,6 @@
   "e2e/story-001.spec.ts": "STORY-001",
   "e2e/story-002.spec.ts": "STORY-002",
   "e2e/story-003.spec.ts": "STORY-003",
-  "e2e/home.spec.ts": "STORY-001"
+  "e2e/home.spec.ts": "STORY-001",
+  "e2e/story-004.spec.ts": "STORY-004"
 }
