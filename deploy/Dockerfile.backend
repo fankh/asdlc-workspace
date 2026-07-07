@@ -1,0 +1,11 @@
+FROM node:20-alpine
+WORKDIR /app
+COPY 04_source/backend/package.json 04_source/backend/package-lock.json* ./
+RUN npm install
+COPY 04_source/backend/ ./
+ENV DATABASE_URL="file:/data/app.db"
+ENV PORT=3001
+RUN npx prisma generate
+EXPOSE 3001
+# push schema + seed on boot so a fresh volume comes up usable
+CMD ["sh", "-c", "npx prisma db push --accept-data-loss && npm run db:seed && npm run start"]

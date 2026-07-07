@@ -1,0 +1,4 @@
+04_source/backend/dev.db
+04_source/backend/dist/
+05_test_reports/ui/*.png
+tools/ui-test-agent/node_modules/

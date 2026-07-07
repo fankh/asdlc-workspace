@@ -12,7 +12,10 @@ import json
 import logging
 import shutil
 import subprocess
+import time
 from pathlib import Path
+
+import requests
 
 from . import register
 from .base import Agent, AgentResult
@@ -20,6 +23,36 @@ from .base import Agent, AgentResult
 log = logging.getLogger("pipeline")
 
 STEP_TIMEOUT = 900  # seconds per step; e2e with two dev servers is the slowest
+SERVER_BOOT_TIMEOUT = 120
+
+
+class DevServer:
+    """Starts `npm run dev` and kills the whole process tree on stop (Windows:
+    npm spawns node children, so plain terminate() would leak the server)."""
+
+    def __init__(self, cwd: Path, health_url: str, name: str):
+        npm = shutil.which("npm") or "npm"
+        self.name = name
+        self.proc = subprocess.Popen(
+            [npm, "run", "dev"], cwd=cwd,
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+        deadline = time.monotonic() + SERVER_BOOT_TIMEOUT
+        while time.monotonic() < deadline:
+            try:
+                if requests.get(health_url, timeout=2).status_code < 500:
+                    log.info("  qa: %s up at %s", name, health_url)
+                    return
+            except requests.RequestException:
+                pass
+            if self.proc.poll() is not None:
+                raise RuntimeError(f"{name} dev server exited early")
+            time.sleep(1)
+        raise RuntimeError(f"{name} dev server not reachable at {health_url}")
+
+    def stop(self) -> None:
+        subprocess.run(["taskkill", "/F", "/T", "/PID", str(self.proc.pid)],
+                       capture_output=True)
 
 
 @register("qa")
@@ -62,7 +95,25 @@ class QAAgent(Agent):
             ok &= step("prisma db push", [npx, "prisma", "db", "push",
                                           "--force-reset", "--accept-data-loss"], backend)
             ok &= step("db seed", [npm, "run", "db:seed"], backend)
-        ok &= step("playwright e2e", [npx, "playwright", "test"], frontend)
+
+        servers: list[DevServer] = []
+        try:
+            try:
+                if backend.exists():
+                    servers.append(DevServer(backend, "http://localhost:3001/api/health", "backend"))
+                servers.append(DevServer(frontend, "http://localhost:3000", "frontend"))
+            except RuntimeError as exc:
+                steps.append({"name": "dev servers", "passed": False, "output": str(exc)})
+                ok = False
+            else:
+                ok &= step("playwright e2e", [npx, "playwright", "test"], frontend)
+                ui_agent = root / "tools" / "ui-test-agent"
+                if (self.ctx.config.agents.get("qa", {}).get("ai_vision_tests")
+                        and (ui_agent / "node_modules").exists()):
+                    ok &= step("ai vision scenarios", [npm, "run", "test"], ui_agent)
+        finally:
+            for server in servers:
+                server.stop()
 
         report = self._build_report(steps)
         self.write_file("05_test_reports/report.json", json.dumps(report, indent=2) + "\n")
