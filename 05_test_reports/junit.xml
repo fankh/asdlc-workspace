@@ -1,352 +1,90 @@
-<testsuites id="" name="" tests="34" failures="0" skipped="0" errors="4" time="141.92812">
-<testsuite name="home.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.4" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.373">
+<testsuites id="" name="" tests="34" failures="0" skipped="0" errors="0" time="21.266968000000002">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.349" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.361">
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.419">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.398">
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.608">
-</testcase>
-</testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.376" errors="0">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.335">
-</testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.405">
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.636">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.59">
 </testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.118" errors="0">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.369">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.3" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.313">
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.539">
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.39">
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.563">
-</testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.647">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.597">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="chromium" tests="4" failures="0" skipped="0" time="1.988" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.438">
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.051" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.336">
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.468">
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.557">
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.452">
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.514">
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.63">
-</testcase>
-</testsuite>
-<testsuite name="story-004.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="chromium" tests="3" failures="0" skipped="0" time="62.388" errors="2">
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="30.78">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [chromium] › story-004.spec.ts:18:7 › STORY-004: Status Filter Dropdown & Client-Side Filtering › renders status filter dropdown with required options 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('combobox', { name: /status/i })
-        - locator resolved to <input readonly value="" type="search" role="combobox" id="rc_select_1" unselectable="on" autocomplete="off" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-owns="rc_select_1_list" aria-label="Filter by status" aria-controls="rc_select_1_list" class="ant-select-selection-search-input"/>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        58 × waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-
-
-       at pages\AgentsListPage.ts:20
-
-      18 |   async openFilterDropdown() {
-      19 |     await expect(this.filterDropdown).toBeVisible();
-    > 20 |     await this.filterDropdown.click();
-         |                               ^
-      21 |   }
-      22 |
-      23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {
-        at AgentsListPage.openFilterDropdown (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentsListPage.ts:20:31)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-004.spec.ts:26:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\error-context.md
-]]>
-</error>
-</testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="30.819">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [chromium] › story-004.spec.ts:30:7 › STORY-004: Status Filter Dropdown & Client-Side Filtering › filters agent list by selected status without page reload 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('combobox', { name: /status/i })
-        - locator resolved to <input readonly value="" type="search" role="combobox" id="rc_select_1" unselectable="on" autocomplete="off" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-owns="rc_select_1_list" aria-label="Filter by status" aria-controls="rc_select_1_list" class="ant-select-selection-search-input"/>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        58 × waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-
-
-       at pages\AgentsListPage.ts:20
-
-      18 |   async openFilterDropdown() {
-      19 |     await expect(this.filterDropdown).toBeVisible();
-    > 20 |     await this.filterDropdown.click();
-         |                               ^
-      21 |   }
-      22 |
-      23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {
-        at AgentsListPage.openFilterDropdown (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentsListPage.ts:20:31)
-        at AgentsListPage.selectFilterStatus (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentsListPage.ts:32:5)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-004.spec.ts:34:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\error-context.md
-]]>
-</error>
-</testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.789">
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.644">
 </testcase>
 </testsuite>
-<testsuite name="home.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.571" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.429">
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="4" failures="0" skipped="0" time="1.975" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.43">
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.477">
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.459">
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.665">
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.441">
 </testcase>
-</testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.509" errors="0">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.388">
-</testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.443">
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.678">
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.645">
 </testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.237" errors="0">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.42">
+<testsuite name="story-004.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="3" failures="0" skipped="0" time="2.874" errors="0">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0.462">
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.565">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="1.704">
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.582">
-</testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.67">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.708">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.165" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.496">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.52" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.417">
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.492">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.456">
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.494">
-</testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.683">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.647">
 </testcase>
 </testsuite>
-<testsuite name="story-004.spec.ts" timestamp="2026-07-07T11:54:27.361Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="62.15" errors="2">
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="30.676">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [mobile-chrome] › story-004.spec.ts:18:7 › STORY-004: Status Filter Dropdown & Client-Side Filtering › renders status filter dropdown with required options 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('combobox', { name: /status/i })
-        - locator resolved to <input readonly value="" type="search" role="combobox" id="rc_select_1" unselectable="on" autocomplete="off" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-owns="rc_select_1_list" aria-label="Filter by status" aria-controls="rc_select_1_list" class="ant-select-selection-search-input"/>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        58 × waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-
-
-       at pages\AgentsListPage.ts:20
-
-      18 |   async openFilterDropdown() {
-      19 |     await expect(this.filterDropdown).toBeVisible();
-    > 20 |     await this.filterDropdown.click();
-         |                               ^
-      21 |   }
-      22 |
-      23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {
-        at AgentsListPage.openFilterDropdown (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentsListPage.ts:20:31)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-004.spec.ts:26:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\error-context.md
-]]>
-</error>
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.529" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.404">
 </testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="30.685">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [mobile-chrome] › story-004.spec.ts:30:7 › STORY-004: Status Filter Dropdown & Client-Side Filtering › filters agent list by selected status without page reload 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('combobox', { name: /status/i })
-        - locator resolved to <input readonly value="" type="search" role="combobox" id="rc_select_1" unselectable="on" autocomplete="off" aria-expanded="false" aria-haspopup="listbox" aria-autocomplete="list" aria-owns="rc_select_1_list" aria-label="Filter by status" aria-controls="rc_select_1_list" class="ant-select-selection-search-input"/>
-      - attempting click action
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-        - waiting 20ms
-        2 × waiting for element to be visible, enabled and stable
-          - element is visible, enabled and stable
-          - scrolling into view if needed
-          - done scrolling
-          - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-        - retrying click action
-          - waiting 100ms
-        58 × waiting for element to be visible, enabled and stable
-           - element is visible, enabled and stable
-           - scrolling into view if needed
-           - done scrolling
-           - <span title="All" class="ant-select-selection-item">All</span> intercepts pointer events
-         - retrying click action
-           - waiting 500ms
-
-
-       at pages\AgentsListPage.ts:20
-
-      18 |   async openFilterDropdown() {
-      19 |     await expect(this.filterDropdown).toBeVisible();
-    > 20 |     await this.filterDropdown.click();
-         |                               ^
-      21 |   }
-      22 |
-      23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {
-        at AgentsListPage.openFilterDropdown (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentsListPage.ts:20:31)
-        at AgentsListPage.selectFilterStatus (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentsListPage.ts:32:5)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-004.spec.ts:34:5
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\error-context.md
-]]>
-</error>
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.469">
 </testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.789">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.656">
+</testcase>
+</testsuite>
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.25" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.423">
+</testcase>
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.549">
+</testcase>
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.589">
+</testcase>
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.689">
+</testcase>
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.191" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.489">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.536">
+</testcase>
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.511">
+</testcase>
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.655">
+</testcase>
+</testsuite>
+<testsuite name="story-004.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="3.031" errors="0">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0.529">
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="1.772">
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.73">
 </testcase>
 </testsuite>
 </testsuites>

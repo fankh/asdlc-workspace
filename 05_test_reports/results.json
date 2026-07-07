@@ -122,12 +122,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 373,
+                      "duration": 361,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:27.650Z",
+                      "startTime": "2026-07-07T12:02:07.007Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -156,12 +156,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 419,
+                      "duration": 398,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:28.119Z",
+                      "startTime": "2026-07-07T12:02:07.444Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -190,12 +190,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 608,
+                      "duration": 590,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:28.544Z",
+                      "startTime": "2026-07-07T12:02:07.848Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -221,15 +221,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 429,
+                      "duration": 417,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:38.375Z",
+                      "startTime": "2026-07-07T12:02:17.127Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -255,15 +255,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 477,
+                      "duration": 456,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:38.880Z",
+                      "startTime": "2026-07-07T12:02:17.619Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -289,15 +289,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 665,
+                      "duration": 647,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:39.364Z",
+                      "startTime": "2026-07-07T12:02:18.082Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -343,12 +343,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 335,
+                      "duration": 313,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:29.160Z",
+                      "startTime": "2026-07-07T12:02:08.449Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -377,12 +377,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 405,
+                      "duration": 390,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:29.500Z",
+                      "startTime": "2026-07-07T12:02:08.768Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -411,12 +411,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 636,
+                      "duration": 597,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:29.912Z",
+                      "startTime": "2026-07-07T12:02:09.163Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -442,15 +442,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 388,
+                      "duration": 404,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:40.038Z",
+                      "startTime": "2026-07-07T12:02:18.738Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -476,15 +476,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 443,
+                      "duration": 469,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:40.431Z",
+                      "startTime": "2026-07-07T12:02:19.147Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -510,15 +510,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 678,
+                      "duration": 656,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:40.879Z",
+                      "startTime": "2026-07-07T12:02:19.621Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -564,12 +564,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 369,
+                      "duration": 336,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:30.560Z",
+                      "startTime": "2026-07-07T12:02:09.770Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -598,12 +598,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 539,
+                      "duration": 557,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:30.936Z",
+                      "startTime": "2026-07-07T12:02:10.113Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -632,12 +632,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 563,
+                      "duration": 514,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:31.481Z",
+                      "startTime": "2026-07-07T12:02:10.677Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -666,12 +666,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 647,
+                      "duration": 644,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:32.052Z",
+                      "startTime": "2026-07-07T12:02:11.198Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -697,15 +697,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 420,
+                      "duration": 423,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:41.569Z",
+                      "startTime": "2026-07-07T12:02:20.289Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -731,15 +731,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 565,
+                      "duration": 549,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:41.996Z",
+                      "startTime": "2026-07-07T12:02:20.719Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -765,15 +765,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 582,
+                      "duration": 589,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:42.567Z",
+                      "startTime": "2026-07-07T12:02:21.276Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -799,15 +799,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 670,
+                      "duration": 689,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:43.156Z",
+                      "startTime": "2026-07-07T12:02:21.872Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -853,12 +853,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 438,
+                      "duration": 430,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:32.715Z",
+                      "startTime": "2026-07-07T12:02:11.858Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -887,12 +887,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 468,
+                      "duration": 459,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:33.160Z",
+                      "startTime": "2026-07-07T12:02:12.295Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -921,12 +921,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 452,
+                      "duration": 441,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:33.633Z",
+                      "startTime": "2026-07-07T12:02:12.759Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -955,12 +955,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 630,
+                      "duration": 645,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:34.092Z",
+                      "startTime": "2026-07-07T12:02:13.205Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -986,15 +986,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 496,
+                      "duration": 489,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:43.845Z",
+                      "startTime": "2026-07-07T12:02:22.570Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1020,15 +1020,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 492,
+                      "duration": 536,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:44.347Z",
+                      "startTime": "2026-07-07T12:02:23.065Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1054,15 +1054,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 494,
+                      "duration": 511,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:44.845Z",
+                      "startTime": "2026-07-07T12:02:23.606Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1088,15 +1088,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 683,
+                      "duration": 655,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:45.344Z",
+                      "startTime": "2026-07-07T12:02:24.123Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1128,7 +1128,7 @@
           "specs": [
             {
               "title": "renders status filter dropdown with required options",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1141,50 +1141,18 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "timedOut",
-                      "duration": 30780,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts",
-                            "column": 31,
-                            "line": 20
-                          },
-                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: /status/i })\u001b[22m\n\u001b[2m    - locator resolved to <input readonly value=\"\" type=\"search\" role=\"combobox\" id=\"rc_select_1\" unselectable=\"on\" autocomplete=\"off\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-autocomplete=\"list\" aria-owns=\"rc_select_1_list\" aria-label=\"Filter by status\" aria-controls=\"rc_select_1_list\" class=\"ant-select-selection-search-input\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n   at pages\\AgentsListPage.ts:20\n\n  18 |   async openFilterDropdown() {\n  19 |     await expect(this.filterDropdown).toBeVisible();\n> 20 |     await this.filterDropdown.click();\n     |                               ^\n  21 |   }\n  22 |\n  23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {\n    at AgentsListPage.openFilterDropdown (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts:20:31)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-004.spec.ts:26:5"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 462,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:54:34.730Z",
+                      "startTime": "2026-07-07T12:02:13.859Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\\error-context.md"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "68c5893ac7e542a9b8a6-45325342e7b60d6116e1",
@@ -1194,7 +1162,7 @@
             },
             {
               "title": "filters agent list by selected status without page reload",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1205,52 +1173,20 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "timedOut",
-                      "duration": 30819,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts",
-                            "column": 31,
-                            "line": 20
-                          },
-                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: /status/i })\u001b[22m\n\u001b[2m    - locator resolved to <input readonly value=\"\" type=\"search\" role=\"combobox\" id=\"rc_select_1\" unselectable=\"on\" autocomplete=\"off\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-autocomplete=\"list\" aria-owns=\"rc_select_1_list\" aria-label=\"Filter by status\" aria-controls=\"rc_select_1_list\" class=\"ant-select-selection-search-input\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n   at pages\\AgentsListPage.ts:20\n\n  18 |   async openFilterDropdown() {\n  19 |     await expect(this.filterDropdown).toBeVisible();\n> 20 |     await this.filterDropdown.click();\n     |                               ^\n  21 |   }\n  22 |\n  23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {\n    at AgentsListPage.openFilterDropdown (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts:20:31)\n    at AgentsListPage.selectFilterStatus (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts:32:5)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-004.spec.ts:34:5"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 1704,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:05.901Z",
+                      "startTime": "2026-07-07T12:02:14.328Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-b0455--status-without-page-reload-chromium\\error-context.md"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "68c5893ac7e542a9b8a6-7c996d49eec3a1fae3d6",
@@ -1271,15 +1207,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 789,
+                      "duration": 708,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:37.161Z",
+                      "startTime": "2026-07-07T12:02:16.039Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1294,7 +1230,7 @@
             },
             {
               "title": "renders status filter dropdown with required options",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1305,52 +1241,20 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
-                      "status": "timedOut",
-                      "duration": 30676,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts",
-                            "column": 31,
-                            "line": 20
-                          },
-                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: /status/i })\u001b[22m\n\u001b[2m    - locator resolved to <input readonly value=\"\" type=\"search\" role=\"combobox\" id=\"rc_select_1\" unselectable=\"on\" autocomplete=\"off\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-autocomplete=\"list\" aria-owns=\"rc_select_1_list\" aria-label=\"Filter by status\" aria-controls=\"rc_select_1_list\" class=\"ant-select-selection-search-input\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n   at pages\\AgentsListPage.ts:20\n\n  18 |   async openFilterDropdown() {\n  19 |     await expect(this.filterDropdown).toBeVisible();\n> 20 |     await this.filterDropdown.click();\n     |                               ^\n  21 |   }\n  22 |\n  23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {\n    at AgentsListPage.openFilterDropdown (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts:20:31)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-004.spec.ts:26:5"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 529,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:55:46.041Z",
+                      "startTime": "2026-07-07T12:02:24.790Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\\error-context.md"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "68c5893ac7e542a9b8a6-bbc7a0f661ad87631c13",
@@ -1360,7 +1264,7 @@
             },
             {
               "title": "filters agent list by selected status without page reload",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1371,52 +1275,20 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
-                      "status": "timedOut",
-                      "duration": 30685,
-                      "error": {
-                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
-                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                      },
-                      "errors": [
-                        {
-                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
-                        },
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts",
-                            "column": 31,
-                            "line": 20
-                          },
-                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: /status/i })\u001b[22m\n\u001b[2m    - locator resolved to <input readonly value=\"\" type=\"search\" role=\"combobox\" id=\"rc_select_1\" unselectable=\"on\" autocomplete=\"off\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-autocomplete=\"list\" aria-owns=\"rc_select_1_list\" aria-label=\"Filter by status\" aria-controls=\"rc_select_1_list\" class=\"ant-select-selection-search-input\"/>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <span title=\"All\" class=\"ant-select-selection-item\">All</span> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n   at pages\\AgentsListPage.ts:20\n\n  18 |   async openFilterDropdown() {\n  19 |     await expect(this.filterDropdown).toBeVisible();\n> 20 |     await this.filterDropdown.click();\n     |                               ^\n  21 |   }\n  22 |\n  23 |   async assertDropdownOptionsContains(...expectedOptions: string[]) {\n    at AgentsListPage.openFilterDropdown (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts:20:31)\n    at AgentsListPage.selectFilterStatus (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentsListPage.ts:32:5)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-004.spec.ts:34:5"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 1772,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:56:17.109Z",
+                      "startTime": "2026-07-07T12:02:25.327Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-004-STORY-004-Status-b0455--status-without-page-reload-mobile-chrome\\error-context.md"
-                        }
-                      ]
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "68c5893ac7e542a9b8a6-982087c0bf8726784f64",
@@ -1437,15 +1309,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 5,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 789,
+                      "duration": 730,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:56:48.223Z",
+                      "startTime": "2026-07-07T12:02:27.106Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1465,11 +1337,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-07T11:54:27.223Z",
-    "duration": 141928.12,
-    "expected": 30,
+    "startTime": "2026-07-07T12:02:06.658Z",
+    "duration": 21266.968,
+    "expected": 34,
     "skipped": 0,
-    "unexpected": 4,
+    "unexpected": 0,
     "flaky": 0
   }
 }
