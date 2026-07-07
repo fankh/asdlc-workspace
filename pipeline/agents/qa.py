@@ -83,12 +83,10 @@ class QAAgent(Agent):
         npm = shutil.which("npm") or "npm"
         npx = shutil.which("npx") or "npx"
 
-        if not (frontend / "node_modules").exists():
-            step("frontend npm install", [npm, "install"], frontend)
-        if backend.exists() and not (backend / "node_modules").exists():
-            step("backend npm install", [npm, "install"], backend)
-
         ok = True
+        ok &= step("frontend npm install", [npm, "install"], frontend)
+        if backend.exists():
+            ok &= step("backend npm install", [npm, "install"], backend)
         ok &= step("frontend typecheck", [npx, "tsc", "--noEmit"], frontend)
         if backend.exists():
             ok &= step("backend typecheck", [npx, "tsc", "--noEmit"], backend)

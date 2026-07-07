@@ -40,9 +40,26 @@ chmod +x .githooks/pre-commit
 
 If step 3 goes red on the right assertion (page not reachable / heading missing), the feedback loop is sound and you can let the coding agent loose on `04_source/`.
 
-## What to build next
+## Running the implemented pipeline
 
-See [`PLAN.md`](PLAN.md) for the solo-scoped 5-phase implementation roadmap. Each phase has a concrete build checklist, validate command, and exit criterion. Phase 1 (Foundation) is where you start once bootstrap is verified.
+The orchestrator and agents from [`PLAN.md`](PLAN.md) are implemented in this
+repo (`run-pipeline.py` + `pipeline/`, `tools/ui-test-agent/`). Quick start:
+
+```bash
+python -m venv .venv
+.venv/Scripts/pip install anthropic pyyaml python-dotenv pdfplumber python-docx jsonschema pytest requests openapi-spec-validator
+
+# drop an RFP/brief (PDF/DOCX/MD/TXT/HWP) into 00_input/, then:
+.venv/Scripts/python run-pipeline.py run                # full pipeline
+.venv/Scripts/python run-pipeline.py run --stop-after specs
+.venv/Scripts/python run-pipeline.py status             # stage/marker/cost table
+.venv/Scripts/python run-pipeline.py run --stage discover  # crawl a live app into tickets
+
+docker compose up --build    # deploy the generated app at http://localhost:8080
+scripts/smoke.sh             # or scripts\smoke.ps1 on Windows
+```
+
+Full setup, failure playbook, and cost expectations: [`06_docs/RUNBOOK.md`](06_docs/RUNBOOK.md).
 
 ## State machine
 
