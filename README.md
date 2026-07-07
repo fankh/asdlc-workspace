@@ -59,7 +59,8 @@ docker compose up --build    # deploy the generated app at http://localhost:8088
 scripts/smoke.sh             # or scripts\smoke.ps1 on Windows
 ```
 
-Full setup, failure playbook, and cost expectations: [`06_docs/RUNBOOK.md`](06_docs/RUNBOOK.md).
+**User manual (start here):** [`06_docs/MANUAL.md`](06_docs/MANUAL.md) — workflows for building, iterating, discovery, verification.
+Setup details, failure playbook, and cost expectations: [`06_docs/RUNBOOK.md`](06_docs/RUNBOOK.md).
 
 ## State machine
 
