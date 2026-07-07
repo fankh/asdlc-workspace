@@ -1,9 +1,59 @@
 {
-  "ok": true,
+  "ok": false,
   "tools": [
     "npm-audit:frontend",
     "npm-audit:backend",
     "regex-secret-scan"
   ],
-  "findings": []
+  "findings": [
+    {
+      "tool": "npm-audit",
+      "target": "frontend",
+      "package": "esbuild",
+      "severity": "moderate",
+      "detail": "esbuild enables any website to send any requests to the development server and read the response"
+    },
+    {
+      "tool": "npm-audit",
+      "target": "frontend",
+      "package": "vite",
+      "severity": "high",
+      "detail": "Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling, launch-editor: NTLMv2 hash disclosure via UNC path handling on Windows, vite: `server.fs.deny` bypass on Windows alternate paths"
+    },
+    {
+      "tool": "npm-audit",
+      "target": "backend",
+      "package": "@vitest/mocker",
+      "severity": "moderate",
+      "detail": ""
+    },
+    {
+      "tool": "npm-audit",
+      "target": "backend",
+      "package": "esbuild",
+      "severity": "moderate",
+      "detail": "esbuild enables any website to send any requests to the development server and read the response"
+    },
+    {
+      "tool": "npm-audit",
+      "target": "backend",
+      "package": "vite",
+      "severity": "high",
+      "detail": "Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling, launch-editor: NTLMv2 hash disclosure via UNC path handling on Windows, vite: `server.fs.deny` bypass on Windows alternate paths"
+    },
+    {
+      "tool": "npm-audit",
+      "target": "backend",
+      "package": "vite-node",
+      "severity": "moderate",
+      "detail": ""
+    },
+    {
+      "tool": "npm-audit",
+      "target": "backend",
+      "package": "vitest",
+      "severity": "critical",
+      "detail": "When Vitest UI server is listening, arbitrary file can be read and executed"
+    }
+  ]
 }

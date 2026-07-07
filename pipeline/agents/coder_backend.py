@@ -66,7 +66,7 @@ PACKAGE_JSON = {
         "prisma": "^5.20.0",
         "tsx": "^4.19.0",
         "typescript": "^5.5.0",
-        "vitest": "^2.1.0",
+        "vitest": "^4.1.10",
     },
 }
 
