@@ -130,3 +130,38 @@ Feature: Agent List Page & Management
 `PENDING` — awaiting implementation.
 
 ---
+
+## STORY-004 — Status Filter Dropdown & Client-Side Filtering
+
+**As a** user managing their agent roster
+**I want** to filter the table by status using a dropdown above it
+**So that** I can quickly isolate agents in a specific state without reloading or refetching data.
+
+### Acceptance criteria
+
+```gherkin
+Feature: Status Filter on Agents List Page
+
+  Scenario: Render status filter dropdown with required options
+    Given I am viewing the URL '/agents'
+    When the table and controls are rendered
+    Then a dropdown control is visible above the agent table
+    And the dropdown contains options with visible text 'All', 'idle', 'active', and 'paused'
+
+  Scenario: Filter agent list by selected status without page reload
+    Given I am viewing the URL '/agents' with multiple agents in different statuses
+    When I select 'active' from the status dropdown
+    Then only agents with status 'active' remain visible in the table body
+    And browser navigation history records no new page load event
+
+  Scenario: Accessibility compliance on agents list filter control
+    Given I am viewing the URL '/agents'
+    When an axe-core accessibility scan executes against the DOM
+    Then zero violations with severity 'serious' or higher are reported
+```
+
+### Status
+
+`PENDING` — awaiting implementation.
+
+---
