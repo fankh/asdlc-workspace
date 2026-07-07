@@ -6,6 +6,7 @@
   "description": "AI-vision test oracle: runs scenarios/*.yaml with Playwright + axe-core + Claude vision verdicts.",
   "scripts": {
     "test": "tsx src/index.ts",
+    "audit": "tsx src/audit.ts",
     "install:browsers": "playwright install chromium"
   },
   "dependencies": {

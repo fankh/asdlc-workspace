@@ -82,6 +82,22 @@ class Agent:
         return target
 
 
+def dump_workspace_files(root: Path, patterns: list[str],
+                         max_files: int = 40) -> str:
+    """Concatenate matching workspace files into a fenced markdown dump for
+    LLM context (used by refinement and maintenance-mode coders)."""
+    paths: list[Path] = []
+    for pattern in patterns:
+        paths += sorted(root.glob(pattern))
+    chunks = []
+    for path in paths[:max_files]:
+        rel = path.relative_to(root).as_posix()
+        chunks.append(f"## {rel}\n```\n{path.read_text(encoding='utf-8')}\n```")
+    if len(paths) > max_files:
+        chunks.append(f"(... {len(paths) - max_files} more files omitted)")
+    return "\n\n".join(chunks)
+
+
 # Shared output protocol for code-writing agents: schema-validated file list,
 # never freeform text with fenced blocks.
 FILES_SCHEMA = {

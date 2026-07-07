@@ -85,3 +85,14 @@ def test_state_json_shape(workspace: Config):
 def test_unknown_stage_raises():
     with pytest.raises(KeyError):
         stage_by_name("nope")
+
+
+def test_mode_autodetects_maintenance(workspace: Config):
+    assert workspace.mode == "new"
+    app = workspace.root / "04_source" / "frontend" / "src" / "App.tsx"
+    app.parent.mkdir(parents=True)
+    app.write_text("export default function App() {}\n", encoding="utf-8")
+    assert workspace.mode == "maintenance"
+    # explicit declaration always wins
+    workspace.project["mode"] = "new_forced"  # any non-"new" value passes through
+    assert workspace.mode == "new_forced"

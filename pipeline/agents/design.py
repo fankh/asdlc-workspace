@@ -63,10 +63,30 @@ class DesignAgent(Agent):
         backlog_path = self.ctx.root / "02_specs" / "PRODUCT_BACKLOG.md"
         if not backlog_path.exists():
             return AgentResult(ok=False, summary="02_specs/PRODUCT_BACKLOG.md missing")
+        backlog = backlog_path.read_text(encoding="utf-8")
+        maintenance = self.ctx.config.mode == "maintenance"
+
+        user = f"Product backlog:\n\n{backlog}"
+        if maintenance:
+            covered = sorted(
+                p.stem for p in (self.ctx.root / "03_architecture" / "ui").glob("STORY-*.md")
+            )
+            new_stories = [s for s in re.findall(r"## (STORY-\d+)", backlog)
+                           if s not in covered]
+            if not new_stories:
+                return AgentResult(ok=True, summary="maintenance: no new stories — "
+                                   "existing UI specs and design tokens unchanged")
+            user += (
+                "\n\nMAINTENANCE MODE — design tokens are FROZEN (return the "
+                "current CODING_PATTERNS sections verbatim in coding_patterns; "
+                "they will not be written). Produce ui_specs ONLY for these "
+                f"stories: {', '.join(new_stories)}. Reuse established "
+                "components and tokens."
+            )
 
         result = self.ctx.llm.complete(
             system=self.system_blocks(PROMPT),
-            user=f"Product backlog:\n\n{backlog_path.read_text(encoding='utf-8')}",
+            user=user,
             schema=SCHEMA,
             max_tokens=16000,
         )
@@ -76,11 +96,12 @@ class DesignAgent(Agent):
             self.write_file(f"03_architecture/ui/{spec['story_id']}.md",
                             spec["markdown"].strip() + "\n")
 
-        self._fill_patterns(data["coding_patterns"])
-        return AgentResult(
-            ok=True, usage=result.usage,
-            summary=f"{len(data['ui_specs'])} UI spec(s); CODING_PATTERNS sections 2-4 established",
-        )
+        if not maintenance:
+            self._fill_patterns(data["coding_patterns"])
+        summary = f"{len(data['ui_specs'])} UI spec(s)"
+        summary += ("; CODING_PATTERNS frozen (maintenance)" if maintenance
+                    else "; CODING_PATTERNS sections 2-4 established")
+        return AgentResult(ok=True, usage=result.usage, summary=summary)
 
     def _fill_patterns(self, tokens: dict) -> None:
         path = self.ctx.root / "CODING_PATTERNS.md"

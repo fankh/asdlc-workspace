@@ -67,9 +67,27 @@ class ArchitectAgent(Agent):
             for p in sorted((root / "03_architecture" / "ui").glob("*.md"))
         ) or "(no UI specs found)"
 
+        user = f"Product backlog:\n\n{backlog}\n\nUI specs:\n\n{ui_specs}"
+        maintenance = self.ctx.config.mode == "maintenance"
+        existing_spec = root / "03_architecture" / "openapi.yaml"
+        if maintenance and existing_spec.exists():
+            existing_adrs = sorted(
+                p.stem for p in (root / "03_architecture" / "adr").glob("ADR-*.md"))
+            user += (
+                "\n\nMAINTENANCE MODE — the API below is LIVE. Return the "
+                "complete updated openapi_yaml preserving every existing path, "
+                "schema, and status code unchanged (breaking changes forbidden); "
+                "add only what new stories require. Existing spec:\n\n"
+                f"```yaml\n{existing_spec.read_text(encoding='utf-8')}\n```\n\n"
+                f"Existing ADRs: {', '.join(existing_adrs) or 'none'} — return "
+                "adrs ONLY for genuinely new decisions, numbered after the "
+                "existing ones. Return error_handling verbatim-empty ('') — "
+                "the pattern is frozen."
+            )
+
         result = self.ctx.llm.complete(
             system=self.system_blocks(PROMPT),
-            user=f"Product backlog:\n\n{backlog}\n\nUI specs:\n\n{ui_specs}",
+            user=user,
             schema=SCHEMA,
             max_tokens=16000,
         )
@@ -85,12 +103,14 @@ class ArchitectAgent(Agent):
         for adr in data["adrs"]:
             self.write_file(f"03_architecture/adr/{adr['id']}-{_slug(adr['title'])}.md",
                             adr["markdown"].strip() + "\n")
-        self._fill_error_handling(data["error_handling"])
+        if not maintenance and data["error_handling"].strip():
+            self._fill_error_handling(data["error_handling"])
 
         return AgentResult(
             ok=True, usage=result.usage,
-            summary=f"openapi.yaml + {len(data['adrs'])} ADR(s) + data model; "
-                    "CODING_PATTERNS section 6 established",
+            summary=f"openapi.yaml + {len(data['adrs'])} ADR(s) + data model"
+                    + ("; error-handling pattern frozen (maintenance)" if maintenance
+                       else "; CODING_PATTERNS section 6 established"),
         )
 
     def _validate_openapi(self, text: str) -> str | None:

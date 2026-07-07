@@ -29,3 +29,9 @@ register and monitor local automation agents running on their machines.
 ## Out of scope for v1
 
 - Authentication, multi-tenancy, agent log streaming, notifications.
+
+## Change request (2026-07-07)
+
+5. Users can filter the agent list by status using a dropdown ("All",
+   "idle", "active", "paused") above the table; selecting a status shows
+   only matching agents without a full page reload.

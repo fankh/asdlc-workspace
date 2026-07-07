@@ -1,0 +1,29 @@
+{
+  "base_url": "http://localhost:8088",
+  "findings": [
+    {
+      "kind": "axe",
+      "route": "/agents",
+      "severity": "serious",
+      "detail": "color-contrast: Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds (3 node(s))"
+    },
+    {
+      "kind": "axe",
+      "route": "/agents",
+      "severity": "minor",
+      "detail": "empty-table-header: Ensure table headers have discernible text (1 node(s))"
+    },
+    {
+      "kind": "axe",
+      "route": "/agents",
+      "severity": "moderate",
+      "detail": "page-has-heading-one: Ensure that the page, or at least one of its frames contains a level-one heading (1 node(s))"
+    },
+    {
+      "kind": "axe",
+      "route": "/onboarding",
+      "severity": "moderate",
+      "detail": "page-has-heading-one: Ensure that the page, or at least one of its frames contains a level-one heading (1 node(s))"
+    }
+  ]
+}

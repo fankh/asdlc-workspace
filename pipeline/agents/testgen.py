@@ -8,10 +8,13 @@ The shipped e2e/home.spec.ts + pages/HomePage.ts define the house style.
 from __future__ import annotations
 
 import json
+import logging
 import re
 
 from . import register
 from .base import FILES_SCHEMA, Agent, AgentResult
+
+log = logging.getLogger("pipeline")
 
 E2E = "04_source/frontend/e2e"
 
@@ -54,10 +57,30 @@ class TestgenAgent(Agent):
             for p in sorted((root / "04_source/frontend/src").rglob("*.tsx"))
         )
 
+        user = (f"# Backlog\n\n{backlog}\n\n{house_style}\n\n"
+                f"# Frontend source files (for selector context)\n{app_files}")
+
+        maintenance = self.ctx.config.mode == "maintenance"
+        if maintenance:
+            existing_specs = sorted(
+                p.name for p in (root / E2E).glob("*.spec.ts"))
+            covered = {m.group(1).upper() for name in existing_specs
+                       if (m := re.match(r"(story-\d+)\.spec\.ts", name))}
+            uncovered = [s for s in re.findall(r"## (STORY-\d+)", backlog)
+                         if s not in covered]
+            if not uncovered:
+                return AgentResult(ok=True, summary="maintenance: every story already "
+                                   "has a spec — existing tests untouched")
+            user += (
+                "\n\nMAINTENANCE MODE — existing specs "
+                f"({', '.join(existing_specs)}) are the shipped contract and "
+                "must NOT be regenerated. Return spec/page-object files ONLY "
+                f"for: {', '.join(uncovered)}."
+            )
+
         result = self.ctx.llm.complete(
             system=self.system_blocks(PROMPT),
-            user=f"# Backlog\n\n{backlog}\n\n{house_style}\n\n"
-                 f"# Frontend source files (for selector context)\n{app_files}",
+            user=user,
             schema=FILES_SCHEMA,
             max_tokens=32000,
         )
@@ -65,12 +88,20 @@ class TestgenAgent(Agent):
         if not files:
             return AgentResult(ok=False, usage=result.usage, summary="no tests generated")
 
-        test_map: dict[str, str] = {}
+        map_path = root / "05_test_reports" / "test-map.json"
+        test_map: dict[str, str] = (
+            json.loads(map_path.read_text(encoding="utf-8"))
+            if maintenance and map_path.exists() else {}
+        )
         for entry in files:
             rel = entry["path"].lstrip("/")
             rel = rel.removeprefix("04_source/frontend/")
             if not rel.startswith("e2e/"):
                 rel = f"e2e/{rel}"
+            if (maintenance and rel.endswith(".spec.ts")
+                    and (root / "04_source/frontend" / rel).exists()):
+                log.warning("testgen: refused overwrite of shipped spec %s", rel)
+                continue
             self.write_file(f"04_source/frontend/{rel}", entry["content"].rstrip() + "\n")
             story = re.match(r"e2e/(story-\d+)\.spec\.ts", rel)
             if story:

@@ -40,6 +40,7 @@ STAGES: list[Stage] = [
 
 ON_DEMAND_STAGES: list[Stage] = [
     Stage("discover", "discovery", "01_requirements", False, "ingestion"),
+    Stage("audit",    "audit",     "05_test_reports", False, "qa"),
 ]
 
 MARKER = ".status_done"

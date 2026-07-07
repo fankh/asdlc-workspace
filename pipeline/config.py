@@ -29,6 +29,17 @@ class Config:
         return self.env.get("LLM_PROVIDER", "anthropic")
 
     @property
+    def mode(self) -> str:
+        """'new' or 'maintenance'. Auto-detects maintenance when 04_source/
+        already holds generated app code (per the config.yaml contract)."""
+        declared = self.project.get("mode", "new")
+        if declared == "new" and (
+            self.root / "04_source" / "frontend" / "src" / "App.tsx"
+        ).exists():
+            return "maintenance"
+        return declared
+
+    @property
     def max_refinement_loops(self) -> int:
         env_val = self.env.get("PIPELINE_MAX_REFINEMENT_LOOPS")
         if env_val:

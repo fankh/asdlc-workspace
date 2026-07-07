@@ -90,11 +90,24 @@ class ProductAgent(Agent):
             for p in docs + discovered
         )
 
+        user = f"Normalized requirements:\n\n{corpus}"
+        backlog_path = self.ctx.root / "02_specs" / "PRODUCT_BACKLOG.md"
+        if self.ctx.config.mode == "maintenance" and backlog_path.exists():
+            user += (
+                "\n\n---\n\nMAINTENANCE MODE — an application already exists. "
+                "Current backlog (shipped stories are the contract):\n\n"
+                f"{backlog_path.read_text(encoding='utf-8')}\n\n"
+                "Return the FULL backlog: keep every existing story verbatim "
+                "(same IDs, titles, scenarios) unless a requirement explicitly "
+                "changed it, and APPEND new stories (next sequential IDs) for "
+                "requirements or discovered tickets not yet covered."
+            )
+
         result = self.ctx.llm.complete(
             system=self.system_blocks(PROMPT),
-            user=f"Normalized requirements:\n\n{corpus}",
+            user=user,
             schema=SCHEMA,
-            max_tokens=12000,
+            max_tokens=16000,
         )
         backlog = result.parsed
         scenario_count = sum(len(s["scenarios"]) for s in backlog["stories"])

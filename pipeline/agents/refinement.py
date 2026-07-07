@@ -12,7 +12,7 @@ import json
 import logging
 
 from . import register
-from .base import FILES_SCHEMA, Agent, AgentResult
+from .base import FILES_SCHEMA, Agent, AgentResult, dump_workspace_files
 
 log = logging.getLogger("pipeline")
 
@@ -95,21 +95,10 @@ class RefinementAgent(Agent):
         return "\n\n".join(chunks) or "(spec sources unavailable — see report)"
 
     def _source_dump(self) -> str:
-        root = self.ctx.root
-        patterns = [
+        return dump_workspace_files(self.ctx.root, [
             "04_source/frontend/src/**/*.ts*",
             "04_source/frontend/vite.config.ts",
             "04_source/backend/src/**/*.ts",
             "04_source/backend/prisma/*.prisma",
             "04_source/backend/prisma/seed.ts",
-        ]
-        paths = []
-        for pattern in patterns:
-            paths += sorted(root.glob(pattern))
-        chunks = []
-        for path in paths[:MAX_CONTEXT_FILES]:
-            rel = path.relative_to(root).as_posix()
-            chunks.append(f"## {rel}\n```\n{path.read_text(encoding='utf-8')}\n```")
-        if len(paths) > MAX_CONTEXT_FILES:
-            chunks.append(f"(... {len(paths) - MAX_CONTEXT_FILES} more files omitted)")
-        return "\n\n".join(chunks)
+        ], MAX_CONTEXT_FILES)

@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 
 from . import register
-from .base import FILES_SCHEMA, Agent, AgentResult
+from .base import FILES_SCHEMA, Agent, AgentResult, dump_workspace_files
 
 BACKEND = "04_source/backend"
 DEV_PORT = 3001
@@ -112,6 +112,25 @@ class BackendCoderAgent(Agent):
         if data_model.exists():
             user += f"\n\n# Data model\n\n{data_model.read_text(encoding='utf-8')}"
 
+        maintenance = self.ctx.config.mode == "maintenance"
+        if maintenance and (root / BACKEND / "src" / "app.ts").exists():
+            user += (
+                "\n\n---\n\nMAINTENANCE MODE — the service below is live and "
+                "its tests pass. Implement ONLY OpenAPI paths/fields not yet "
+                "covered by this code. Return ONLY files that must change or "
+                "be added (complete content). Never break existing endpoints "
+                "or drop columns with data; Prisma changes must be additive. "
+                "If nothing is missing, return an empty files list and say so "
+                "in notes.\n\n# Current source\n\n"
+                + dump_workspace_files(root, [
+                    "04_source/backend/src/**/*.ts",
+                    "04_source/backend/prisma/*.prisma",
+                    "04_source/backend/prisma/seed.ts",
+                ])
+            )
+        else:
+            maintenance = False
+
         result = self.ctx.llm.complete(
             system=self.system_blocks(EXPRESS_PROMPT),
             user=user,
@@ -119,22 +138,25 @@ class BackendCoderAgent(Agent):
             max_tokens=32000,
         )
         files = result.parsed["files"]
-        required = ("schema.prisma", "app.ts", "index.ts")
-        missing = [name for name in required
-                   if not any(f["path"].endswith(name) for f in files)]
-        if missing:
-            return AgentResult(ok=False, usage=result.usage,
-                               summary=f"LLM output missing required file(s): {missing}")
+        if not maintenance:
+            required = ("schema.prisma", "app.ts", "index.ts")
+            missing = [name for name in required
+                       if not any(f["path"].endswith(name) for f in files)]
+            if missing:
+                return AgentResult(ok=False, usage=result.usage,
+                                   summary=f"LLM output missing required file(s): {missing}")
+            self.write_file(f"{BACKEND}/package.json",
+                            json.dumps(PACKAGE_JSON, indent=2) + "\n")
+            self.write_file(f"{BACKEND}/tsconfig.json", TSCONFIG)
+            self.write_file(f"{BACKEND}/.env", ENV_FILE)
 
-        self.write_file(f"{BACKEND}/package.json", json.dumps(PACKAGE_JSON, indent=2) + "\n")
-        self.write_file(f"{BACKEND}/tsconfig.json", TSCONFIG)
-        self.write_file(f"{BACKEND}/.env", ENV_FILE)
         for entry in files:
             rel = entry["path"].lstrip("/").removeprefix("04_source/backend/")
             self.write_file(f"{BACKEND}/{rel}", entry["content"].rstrip() + "\n")
 
+        label = "maintenance delta" if maintenance else "scaffold +"
         return AgentResult(
             ok=True, usage=result.usage,
-            summary=f"scaffold + {len(files)} generated file(s) (express)",
+            summary=f"{label} {len(files)} file(s) (express)",
             details={"notes": result.parsed["notes"]},
         )

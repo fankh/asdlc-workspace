@@ -11,7 +11,7 @@ from __future__ import annotations
 import json
 
 from . import register
-from .base import FILES_SCHEMA, Agent, AgentResult
+from .base import FILES_SCHEMA, Agent, AgentResult, dump_workspace_files
 
 FRONTEND = "04_source/frontend"
 BACKEND_DEV_PORT = 3001
@@ -197,6 +197,23 @@ class FrontendCoderAgent(Agent):
         if not user_parts:
             return AgentResult(ok=False, summary="no backlog/specs to implement")
 
+        maintenance = self.ctx.config.mode == "maintenance"
+        if maintenance:
+            user_parts.append(
+                "MAINTENANCE MODE — the application below is live and its "
+                "tests pass. Implement ONLY backlog stories not yet covered "
+                "by this code (or contract changes). Return ONLY files that "
+                "must change or be added, each as complete content. Do not "
+                "return unchanged files, do not remove working features, do "
+                "not touch the scaffold (main.tsx/theme.ts/configs) unless a "
+                "story requires it. If nothing is missing, return an empty "
+                "files list and say so in notes.\n\n# Current source\n\n"
+                + dump_workspace_files(self.ctx.root, [
+                    "04_source/frontend/src/**/*.ts*",
+                    "04_source/frontend/src/**/*.css",
+                ])
+            )
+
         result = self.ctx.llm.complete(
             system=self.system_blocks(PROMPT),
             user="\n\n---\n\n".join(user_parts),
@@ -204,18 +221,20 @@ class FrontendCoderAgent(Agent):
             max_tokens=32000,
         )
         files = result.parsed["files"]
-        if not any(f["path"].endswith("App.tsx") for f in files):
+        if not maintenance and not any(f["path"].endswith("App.tsx") for f in files):
             return AgentResult(ok=False, usage=result.usage,
                                summary="LLM output missing src/App.tsx")
 
-        self._write_scaffold()
+        if not maintenance:
+            self._write_scaffold()
         for entry in files:
             rel = entry["path"].lstrip("/").removeprefix("04_source/frontend/")
             self.write_file(f"{FRONTEND}/{rel}", entry["content"].rstrip() + "\n")
 
+        label = "maintenance delta" if maintenance else "scaffold +"
         return AgentResult(
             ok=True, usage=result.usage,
-            summary=f"scaffold + {len(files)} generated file(s)",
+            summary=f"{label} {len(files)} file(s)",
             details={"notes": result.parsed["notes"]},
         )
 

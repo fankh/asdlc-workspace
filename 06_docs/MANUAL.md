@@ -120,26 +120,64 @@ Reviewing the backlog after `--stop-after specs` is the highest-leverage
 checkpoint: everything downstream is built and tested against it. Edit the
 Gherkin there if the stories miss the point, then continue.
 
-### 3.2 Change or extend the application
+### 3.2 Change or extend the application (maintenance mode)
 
-The contract drives everything, so changes enter through the specs:
+Once `04_source/` contains generated code, the pipeline **auto-detects
+maintenance mode** (`.pipeline/config.yaml` `mode: new` + existing app →
+maintenance). Every agent switches from "generate" to "evolve":
 
-1. **Change the input** — edit/add documents in `00_input/`, or
-   **change the contract directly** — edit `02_specs/PRODUCT_BACKLOG.md`.
-2. Clear the markers from the first affected stage onward, e.g. for a spec
-   change:
+| Agent | New mode | Maintenance mode |
+|---|---|---|
+| Product | writes fresh backlog | keeps existing stories/IDs verbatim, **appends** new ones |
+| Design | establishes CODING_PATTERNS tokens | tokens **frozen**; UI specs only for new stories (skips cleanly if none) |
+| Architect | full OpenAPI + ADRs | preserves every live path/schema (no breaking changes), additive ADRs |
+| Coders | full app + scaffold | **delta only** — returns just changed/new files, scaffold untouched |
+| Testgen | specs for all stories | specs only for uncovered stories; refuses to overwrite shipped specs; merges test-map |
+
+The change workflow:
+
+1. **Change the input** — add/edit documents in `00_input/`, run
+   `--stage discover` or `--stage audit` to generate tickets, or edit
+   `02_specs/PRODUCT_BACKLOG.md` directly.
+2. Clear markers from the first affected stage onward, e.g. for a spec change:
 
    ```powershell
-   del 02_specs\.status_done 03_architecture\.status_done 04_source\.status_done 05_test_reports\.status_done 06_docs\.status_done
+   del 02_specs\.status_done, 03_architecture\.status_done, 04_source\.status_done, 05_test_reports\.status_done, 06_docs\.status_done
    ```
 
-   (Or `run-pipeline.py reset` to redo everything from ingestion.)
-3. `run-pipeline.py run` — downstream stages regenerate and the QA gate
-   re-verifies the full contract.
+3. `run-pipeline.py run` — stages re-run in maintenance mode and the QA gate
+   re-verifies the **whole** contract (old stories + new), so regressions
+   can't slip through.
 
-> Current limitation: the coder agents regenerate from specs rather than
-> patching incrementally. Small manual code edits are often faster for tiny
-> tweaks — the QA gate (`run --stage qa`) still protects you either way.
+Small manual code edits remain fine too — `run --stage qa` protects you.
+
+### 3.2b Hunt for problems (audit mode)
+
+Beyond the contract, the audit stage actively probes a running app for
+defects the tests never asserted:
+
+```powershell
+# against the deployed container:
+$env:AUDIT_URL="http://localhost:8088"; .venv\Scripts\python run-pipeline.py run --stage audit
+# or with no AUDIT_URL it boots the dev servers itself
+```
+
+What it checks:
+- **UI probe** (real browser, every route from `App.tsx`): console/page
+  errors, failed network requests, **all** axe-core violations at any impact
+  (incl. best-practice rules), broken internal links.
+- **API probe** (driven by `03_architecture/openapi.yaml`): invalid payloads
+  must return 4xx with the error envelope (never 500), unknown resource ids
+  and routes must 404 cleanly.
+
+Raw findings land in `05_test_reports/audit/findings.json`; the LLM triages
+them (dedupes, drops noise) into `01_requirements/discovered/tickets/PROBLEM-*.md`
+with Gherkin reproduction scenarios, plus a human summary in
+`05_test_reports/audit/AUDIT.md`. Delete `02_specs/.status_done` and `run`
+to fold the tickets into the backlog — audit → tickets → maintenance run →
+green QA is the full self-improvement loop.
+
+The audit stage never fails on findings — finding problems is its job.
 
 ### 3.3 Mine an existing app for requirements (discovery)
 
@@ -225,7 +263,7 @@ The full failure table (ports, Prisma, Ollama quirks) is in
 ```
 run-pipeline.py run                     advance through all remaining stages
 run-pipeline.py run --stop-after X     halt after stage/alias (specs|architecture|code|test)
-run-pipeline.py run --stage X          run exactly one stage (incl. discover)
+run-pipeline.py run --stage X          run exactly one stage (incl. discover, audit)
 run-pipeline.py run --dry-run          walk stages as no-ops (exercises markers)
 run-pipeline.py status                 stage table + refinement loops + cost
 run-pipeline.py reset                  clear all markers and state — full redo
