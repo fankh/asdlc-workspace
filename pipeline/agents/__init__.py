@@ -34,6 +34,7 @@ def _load_all() -> None:
         "pipeline.agents.architect",
         "pipeline.agents.coder_frontend",
         "pipeline.agents.coder_backend",
+        "pipeline.agents.testgen",
         "pipeline.agents.secops",
         "pipeline.agents.qa",
         "pipeline.agents.refinement",

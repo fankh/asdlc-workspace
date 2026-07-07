@@ -82,6 +82,30 @@ class Agent:
         return target
 
 
+# Shared output protocol for code-writing agents: schema-validated file list,
+# never freeform text with fenced blocks.
+FILES_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "files": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string"},
+                    "content": {"type": "string"},
+                },
+                "required": ["path", "content"],
+                "additionalProperties": False,
+            },
+        },
+        "notes": {"type": "string"},
+    },
+    "required": ["files", "notes"],
+    "additionalProperties": False,
+}
+
+
 class NoopAgent(Agent):
     """Dry-run placeholder: succeeds without doing anything."""
 
