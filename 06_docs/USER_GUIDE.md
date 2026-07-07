@@ -1,48 +1,56 @@
-# user_guide
+# User Guide
 
 ## Overview
-Manage a local roster of autonomous agents through a browser-based console. Register new agents, monitor their status, and remove obsolete records without page reloads.
+My Local Agent App manages agent lifecycles through a browser-based console. The application handles registration, roster monitoring, status filtering, and record removal via a single-page interface backed by Express and SQLite.
 
-## Local Execution
-Prerequisites: Node.js 20+, SQLite3 CLI.
+## Installation & Local Execution
+Prerequisites: Node 20+, npm or pnpm.
 
-1. Initialize database and seed sample data:
+1. Initialize the database and apply seeds:
    ```bash
-   cd backend
    npx prisma db push
-   npm run db:seed
+   npx prisma db seed
    ```
-2. Start backend service:
+2. Start the backend service on port `:3001`:
    ```bash
-   npm run dev
-   # Runs on http://localhost:3001
+   cd backend && npm run dev
    ```
-3. Start frontend service:
+3. Start the frontend service on port `:3000` in a separate terminal:
    ```bash
-   cd frontend
-   npm install
-   npm run dev
-   # Runs on http://localhost:3000
+   cd frontend && npm run dev
    ```
-4. Open `http://localhost:3000` in a supported browser.
+4. Open `http://localhost:3000` in your browser.
 
-## Workflow & Screens
+## Workflows
 
-### Landing Page (`/`)
-- Renders the product title and a primary "Get Started" call-to-action button.
-- Clicking "Get Started" navigates directly to `/onboarding`.
-- Compliant with WCAG 2.1 AA standards. Keyboard focus order follows logical top-down sequence.
+### Landing Page (STORY-001)
+1. Navigate to `http://localhost:3000`.
+2. Verify the application heading displays "My Local Agent App".
+3. Click **Get Started**. The interface routes to `/onboarding`.
 
-### Agent Onboarding (`/onboarding`)
-- Displays a registration form under a "Welcome" heading.
-- **Fields:**
-  - `agent name` (Required). Accepts alphanumeric strings, spaces, and hyphens. Minimum 1 character.
-  - `description` (Optional). Textarea accepting up to 500 characters.
-- Submit the form to persist the agent record via POST `/api/agents`.
-- On success, the interface redirects to `/agents`. The new row appears with status `idle`.
+### Agent Onboarding (STORY-002)
+1. Proceed to the `/onboarding` screen.
+2. Enter a display name in the required `agent name` field.
+3. Provide context in the `description` text area (optional).
+4. Submit the form.
+5. The system persists the record, redirects to `/agents`, and populates the roster table. Default status is `idle`.
 
-### Agent Management List (`/agents`)
-- Renders a data table with columns: `name`, `description`, `status`, `creation date`.
-- **Empty State:** When no agents exist, displays contextual text and a link navigating to `/onboarding`.
-- **Row Actions:** Each row contains a delete control. Triggering it calls DELETE `/api/agents/{agentId}` and removes the row from the DOM instantly. The browser URL remains `/agents` without a full reload.
-- **Status Values:** `idle`, `active`, `paused`. Reflects the agent's current lifecycle state.
+### Agent List & Management (STORY-003)
+1. Navigate to `/agents` to view the registered roster.
+2. Review columns: `name`, `description`, `status`, `creation date`.
+3. Remove a record by clicking the delete action in the target row. The row removes from the DOM immediately. No page reload occurs.
+
+### Status Filtering (STORY-004)
+1. Locate the dropdown control above the table on `/agents`.
+2. Select `All`, `idle`, `active`, or `paused`.
+3. The table updates visibility instantly using client-side filtering. Browser navigation history records no new page load event.
+
+### Empty State Handling
+1. Navigate to `/agents` with zero registered agents.
+2. Observe the empty state prompt.
+3. Select the provided link to route to `/onboarding`. Create an agent to populate the table.
+
+## Accessibility & UX Notes
+- All inputs and interactive controls support keyboard navigation and screen reader focus order.
+- Status badges render with WCAG AA contrast ratios using the console token palette.
+- Error banners appear inline for validation failures and as dismissible alerts for network faults.

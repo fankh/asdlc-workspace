@@ -1,110 +1,97 @@
-# api_reference
+# API Reference
 
-Base URL: `http://localhost:3001/api`
+## Protocol & Content Negotiation
+All endpoints operate over HTTP/1.1 or HTTP/2. Clients must set `Content-Type: application/json` for POST requests.
 
 ## Endpoints
 
-### GET /api/agents
-Retrieve all registered agents.
+### List Agents
+Retrieves all registered agents.
 
-**Request**
-No body required. Include standard headers if needed for authentication or content negotiation.
+- **Method:** `GET`
+- **Path:** `/api/agents`
+- **Response (200):** Array of `Agent` objects.
 
-**Response 200 OK**
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 [
   {
-    "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    "name": "DataProcessor",
-    "description": "Batch ETL pipeline orchestrator",
+    "id": "550e8400-e29b-41d4-a716-446655440000",
+    "name": "Data Processor Agent",
+    "description": "Processes incoming CSV files",
     "status": "active",
-    "createdAt": "2024-05-12T09:15:00Z"
+    "createdAt": "2023-10-25T14:30:00Z"
   }
 ]
 ```
 
-**Response Default (Error Envelope)**
-See `ErrorEnvelope` schema. Returns `4xx` or `5xx` status with unified JSON payload.
+### Create Agent
+Registers a new agent record. Returns the created resource and `Location` header.
 
----
+- **Method:** `POST`
+- **Path:** `/api/agents`
+- **Request Body:** `CreateAgentRequest`
+- **Response (201):** Created `Agent` object + `Location` header.
 
-### POST /api/agents
-Register a new agent.
+```http
+POST /api/agents HTTP/1.1
+Content-Type: application/json
 
-**Request Body**
-```json
 {
-  "name": "DataProcessor",
-  "description": "Batch ETL pipeline orchestrator"
+  "name": "Log Watcher",
+  "description": "Monitors system logs for errors"
 }
 ```
-- `name`: Required string. Minimum length 1.
-- `description`: Optional string. Maximum length 500. Nullable.
 
-**Response 201 Created**
-Returns the persisted agent DTO and a `Location` header pointing to the new resource.
-```json
+```http
+HTTP/1.1 201 Created
+Location: /api/agents/550e8400-e29b-41d4-a716-446655440000
+Content-Type: application/json
+
 {
-  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-  "name": "DataProcessor",
-  "description": "Batch ETL pipeline orchestrator",
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "name": "Log Watcher",
+  "description": "Monitors system logs for errors",
   "status": "idle",
-  "createdAt": "2024-05-12T09:15:00Z"
+  "createdAt": "2023-10-26T09:15:00Z"
 }
 ```
 
-**Response Default (Error Envelope)**
-Returns `400` on validation failure.
+### Delete Agent
+Removes an agent by UUID. Returns `204 No Content` on success.
+
+- **Method:** `DELETE`
+- **Path:** `/api/agents/{agentId}`
+- **Parameters:** `agentId` (string, format: uuid) — required path parameter.
+- **Response (204):** Empty body.
+
+```http
+DELETE /api/agents/550e8400-e29b-41d4-a716-446655440000 HTTP/1.1
+```
+
+```http
+HTTP/1.1 204 No Content
+```
+
+## Error Envelope
+All failures return a unified JSON payload matching the `ErrorEnvelope` schema. Use HTTP semantics (`400` for validation, `404` for missing entities, `500` for server faults). Never expect raw stack traces.
+
+- **Structure:**
 ```json
 {
   "code": "VALIDATION_FAILED",
   "message": "Agent name is required."
 }
 ```
-
----
-
-### DELETE /api/agents/{agentId}
-Remove an agent by ID.
-
-**Path Parameters**
-- `agentId`: string (UUID format). Required.
-
-**Response 204 No Content**
-Empty body on successful deletion.
-
-**Response Default (Error Envelope)**
-Returns `404` if the agent does not exist, or `4xx/5xx` on internal failures.
+- **Behavior Rules:**
+  - Validation failures (`400`) include a machine-readable `code` and human-readable `message`.
+  - Missing entities (`404`) return the same envelope with `"code": "NOT_FOUND"`.
+  - Unhandled server faults (`500`) return `"code": "INTERNAL_ERROR"` and a generic message.
+- **Examples:**
 ```json
-{
-  "code": "NOT_FOUND",
-  "message": "Agent with the specified ID was not found."
-}
+{"code": "VALIDATION_FAILED", "message": "name is a required field."}
+{"code": "NOT_FOUND", "message": "Agent with specified ID does not exist."}
+{"code": "INTERNAL_ERROR", "message": "An unexpected error occurred. Please try again."}
 ```
-
----
-
-## Schemas & Error Handling
-
-### Agent
-Serialized DTO bound to UI fields.
-```json
-{
-  "id": "string (UUID)",
-  "name": "string",
-  "description": "string | null",
-  "status": "idle | active | paused",
-  "createdAt": "string (ISO 8601 date-time)"
-}
-```
-
-### ErrorEnvelope
-Standardized payload for all API failures.
-```json
-{
-  "code": "VALIDATION_FAILED",
-  "message": "Human-readable explanation of the failure."
-}
-```
-- `code`: Machine-readable identifier (e.g., `VALIDATION_FAILED`, `NOT_FOUND`).
-- `message`: User-facing description. Never contains stack traces or internal field names.
