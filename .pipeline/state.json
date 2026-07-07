@@ -1,7 +1,7 @@
 {
-  "current_phase": "05_test_reports",
+  "current_phase": "06_docs",
   "started_at": "2026-07-07T08:56:17+00:00",
-  "last_updated_at": "2026-07-07T10:08:14+00:00",
+  "last_updated_at": "2026-07-07T10:11:46+00:00",
   "phase_history": [
     "ingest",
     "product",
@@ -12,7 +12,8 @@
     "testgen",
     "secops",
     "refine",
-    "qa"
+    "qa",
+    "docs"
   ],
   "refinement_loops": 0,
   "human_intervention_required": false,
@@ -76,6 +77,12 @@
       "started_at": "2026-07-07T09:51:24+00:00",
       "finished_at": "2026-07-07T09:54:45+00:00",
       "error": null
+    },
+    "docs": {
+      "status": "done",
+      "started_at": "2026-07-07T10:08:37+00:00",
+      "finished_at": "2026-07-07T10:11:46+00:00",
+      "error": null
     }
   },
   "usage": {
@@ -131,6 +138,13 @@
     "refine": {
       "input_tokens": 117658,
       "output_tokens": 5350,
+      "cache_read": 0,
+      "cache_write": 0,
+      "cost_usd": 0.0
+    },
+    "docs": {
+      "input_tokens": 7076,
+      "output_tokens": 1332,
       "cache_read": 0,
       "cache_write": 0,
       "cost_usd": 0.0
