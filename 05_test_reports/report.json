@@ -1,9 +1,9 @@
 {
-  "ok": true,
+  "ok": false,
   "steps": [
     {
       "name": "frontend npm install",
-      "passed": true
+      "passed": false
     },
     {
       "name": "backend npm install",
@@ -26,15 +26,14 @@
       "passed": true
     },
     {
-      "name": "playwright e2e",
-      "passed": true
-    },
-    {
-      "name": "ai vision scenarios",
-      "passed": true
+      "name": "dev servers",
+      "passed": false
     }
   ],
-  "step_outputs": {},
+  "step_outputs": {
+    "frontend npm install": "npm error code ERESOLVE\nnpm error ERESOLVE could not resolve\nnpm error\nnpm error While resolving: @vitejs/plugin-react@4.7.0\nnpm error Found: vite@8.1.3\nnpm error node_modules/vite\nnpm error   dev vite@\"^8.1.3\" from the root project\nnpm error\nnpm error Could not resolve dependency:\nnpm error peer vite@\"^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0\" from @vitejs/plugin-react@4.7.0\nnpm error node_modules/@vitejs/plugin-react\nnpm error   dev @vitejs/plugin-react@\"^4.3.0\" from the root project\nnpm error\nnpm error Conflicting peer dependency: vite@7.3.6\nnpm error node_modules/vite\nnpm error   peer vite@\"^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0\" from @vitejs/plugin-react@4.7.0\nnpm error   node_modules/@vitejs/plugin-react\nnpm error     dev @vitejs/plugin-react@\"^4.3.0\" from the root project\nnpm error\nnpm error Fix the upstream dependency conflict, or retry this command with --force or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.\nnpm error\nnpm error\nnpm error For a full report see:\nnpm error C:\\Users\\seekers\\AppData\\Local\\npm-cache\\_logs\\2026-07-07T11_32_58_702Z-eresolve-report.txt\nnpm error A complete log of this run can be found in: C:\\Users\\seekers\\AppData\\Local\\npm-cache\\_logs\\2026-07-07T11_32_58_702Z-debug-0.log\n",
+    "dev servers": "frontend dev server not reachable at http://localhost:3000"
+  },
   "e2e": {
     "total": 28,
     "passed": 28,

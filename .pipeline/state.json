@@ -1,7 +1,7 @@
 {
-  "current_phase": "05_test_reports",
+  "current_phase": "04_source",
   "started_at": "2026-07-07T08:56:17+00:00",
-  "last_updated_at": "2026-07-07T11:32:58+00:00",
+  "last_updated_at": "2026-07-07T11:35:06+00:00",
   "phase_history": [
     "ingest",
     "product",
@@ -68,16 +68,14 @@
       "error": null
     },
     "qa": {
-      "status": "done",
-      "started_at": "2026-07-07T10:34:05+00:00",
-      "finished_at": "2026-07-07T10:34:33+00:00",
-      "error": null
+      "status": "failed",
+      "started_at": "2026-07-07T11:32:58+00:00",
+      "finished_at": "2026-07-07T11:35:06+00:00",
+      "error": "28/28 e2e passed, 2 failed step(s)"
     },
     "refine": {
-      "status": "done",
-      "started_at": "2026-07-07T09:51:24+00:00",
-      "finished_at": "2026-07-07T09:54:45+00:00",
-      "error": null
+      "status": "running",
+      "started_at": "2026-07-07T11:35:06+00:00"
     },
     "docs": {
       "status": "done",

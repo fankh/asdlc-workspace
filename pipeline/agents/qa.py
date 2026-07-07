@@ -104,6 +104,8 @@ class QAAgent(Agent):
                 steps.append({"name": "dev servers", "passed": False, "output": str(exc)})
                 ok = False
             else:
+                # stale results from a prior run must not masquerade as current
+                (root / "05_test_reports" / "results.json").unlink(missing_ok=True)
                 ok &= step("playwright e2e", [npx, "playwright", "test"], frontend)
                 ui_agent = root / "tools" / "ui-test-agent"
                 if (self.ctx.config.agents.get("qa", {}).get("ai_vision_tests")

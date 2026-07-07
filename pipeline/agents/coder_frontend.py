@@ -61,7 +61,7 @@ PACKAGE_JSON = {
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.3.0",
         "typescript": "^5.5.0",
-        "vite": "^8.1.3",
+        "vite": "^7.3.6",
     },
 }
 
