@@ -1,0 +1,46 @@
+{
+  "ok": false,
+  "steps": [
+    {
+      "name": "frontend npm install",
+      "passed": true
+    },
+    {
+      "name": "backend npm install",
+      "passed": true
+    },
+    {
+      "name": "frontend typecheck",
+      "passed": false
+    },
+    {
+      "name": "backend typecheck",
+      "passed": false
+    },
+    {
+      "name": "prisma db push",
+      "passed": false
+    },
+    {
+      "name": "db seed",
+      "passed": false
+    },
+    {
+      "name": "dev servers",
+      "passed": false
+    }
+  ],
+  "step_outputs": {
+    "frontend typecheck": "src/pages/AgentListPage.tsx(2,68): error TS2305: Module '\"antd\"' has no exported member 'Link'.\nsrc/pages/AgentListPage.tsx(34,7): error TS2552: Cannot find name 'fetchAgents'. Did you mean 'setAgents'?\n",
+    "backend typecheck": "prisma/seed.ts(1,24): error TS2305: Module '\"@prisma/client\"' has no exported member 'Status'.\nsrc/services/agents.ts(1,24): error TS2305: Module '\"@prisma/client\"' has no exported member 'Status'.\n",
+    "prisma db push": "Environment variables loaded from .env\nPrisma schema loaded from prisma\\schema.prisma\nDatasource \"db\": SQLite database \"dev.db\" at \"file:./dev.db\"\n\nSQLite database dev.db created at file:./dev.db\n\nThe SQLite database \"dev.db\" at \"file:./dev.db\" was successfully reset.\nError: P1012\n\nerror: Error validating: You defined the enum `Status`. But the current connector does not support enums.\n  -->  prisma\\schema.prisma:20\n   | \n19 | \n20 | enum Status {\n21 |   IDLE\n22 |   ACTIVE\n23 |   PAUSED\n24 | }\n   | \n\n\n",
+    "db seed": "\n> backend@0.1.0 db:seed\n> tsx prisma/seed.ts\n\nC:\\repos\\asdlc-workspace\\04_source\\backend\\node_modules\\.prisma\\client\\default.js:43\n    throw new Error('@prisma/client did not initialize yet. Please run \"prisma generate\" and try to import it again.');\n          ^\n\nError: @prisma/client did not initialize yet. Please run \"prisma generate\" and try to import it again.\n    at new PrismaClient (C:\\repos\\asdlc-workspace\\04_source\\backend\\node_modules\\.prisma\\client\\default.js:43:11)\n    at <anonymous> (C:\\repos\\asdlc-workspace\\04_source\\backend\\prisma\\seed.ts:3:16)\n    at Object.<anonymous> (C:\\repos\\asdlc-workspace\\04_source\\backend\\prisma\\seed.ts:20:38)\n    at Module._compile (node:internal/modules/cjs/loader:1830:14)\n    at Object.transformer (C:\\repos\\asdlc-workspace\\04_source\\backend\\node_modules\\tsx\\dist\\register-BLUABhh3.cjs:9:3252)\n    at Module.load (node:internal/modules/cjs/loader:1553:32)\n    at Module._load (node:internal/modules/cjs/loader:1355:12)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at loadCJSModuleWithModuleLoad (node:internal/modules/esm/translators:326:3)\n    at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:231:7)\n\nNode.js v24.15.0\n",
+    "dev servers": "backend dev server not reachable at http://localhost:3001/api/health"
+  },
+  "e2e": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "failures": []
+  }
+}

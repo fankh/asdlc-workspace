@@ -1,4 +1,4 @@
-import { PrismaClient, Status } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 
 export const CreateAgentDto = z.object({
@@ -16,7 +16,7 @@ export async function listAgents() {
 }
 
 export async function createAgent(data: CreateAgentInput) {
-  const record = await prisma.agent.create({ data: { ...data, status: Status.IDLE } })
+  const record = await prisma.agent.create({ data: { ...data, status: 'idle' } })
   return toAgentDto([record])[0]
 }
 

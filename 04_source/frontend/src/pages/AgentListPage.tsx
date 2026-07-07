@@ -1,36 +1,32 @@
 import { useEffect, useState } from 'react';
-import { Typography, Table, Button, Empty, Alert, Tag, Popconfirm, Link } from 'antd';
+import { Typography, Table, Button, Empty, Alert, Tag, Popconfirm } from 'antd';
+import { Link } from 'react-router-dom';
 import { listAgents, deleteAgent } from '../api/client';
 import type { Agent } from '../api/types';
 
-// Displays registered agents with inline deletion and contextual empty state.
-// Date formatting uses locale-aware formatter to guarantee YYYY-MM-DD output.
 export default function AgentListPage() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    let cancelled = false;
-    async function fetchAgents() {
-      try {
-        const data = await listAgents();
-        if (!cancelled) setAgents(data);
-      } catch (err: any) {
-        if (!cancelled) setError('Failed to load agents. Please refresh.');
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
+  const fetchAgents = async () => {
+    try {
+      const data = await listAgents();
+      setAgents(data);
+    } catch {
+      setError('Failed to load agents. Please refresh.');
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
     fetchAgents();
-    return () => { cancelled = true; };
   }, []);
 
   const handleDelete = async (id: string) => {
-    // Optimistic row removal ensures zero page reloads per spec.
     setAgents(prev => prev.filter(a => a.id !== id));
     await deleteAgent(id).catch(() => {
-      // Revert on failure to maintain consistency
       fetchAgents();
     });
   };

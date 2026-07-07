@@ -1,7 +1,7 @@
 {
-  "current_phase": "05_test_reports",
+  "current_phase": "04_source",
   "started_at": "2026-07-07T08:56:17+00:00",
-  "last_updated_at": "2026-07-07T09:22:10+00:00",
+  "last_updated_at": "2026-07-07T09:29:00+00:00",
   "phase_history": [
     "ingest",
     "product",
@@ -10,9 +10,10 @@
     "code_frontend",
     "code_backend",
     "testgen",
-    "secops"
+    "secops",
+    "refine"
   ],
-  "refinement_loops": 0,
+  "refinement_loops": 1,
   "human_intervention_required": false,
   "stages": {
     "ingest": {
@@ -62,6 +63,18 @@
       "started_at": "2026-07-07T09:22:08+00:00",
       "finished_at": "2026-07-07T09:22:10+00:00",
       "error": null
+    },
+    "qa": {
+      "status": "failed",
+      "started_at": "2026-07-07T09:22:10+00:00",
+      "finished_at": "2026-07-07T09:25:05+00:00",
+      "error": "0/0 e2e passed, 5 failed step(s)"
+    },
+    "refine": {
+      "status": "done",
+      "started_at": "2026-07-07T09:25:05+00:00",
+      "finished_at": "2026-07-07T09:29:00+00:00",
+      "error": null
     }
   },
   "usage": {
@@ -110,6 +123,13 @@
     "testgen": {
       "input_tokens": 11250,
       "output_tokens": 2626,
+      "cache_read": 0,
+      "cache_write": 0,
+      "cost_usd": 0.0
+    },
+    "refine": {
+      "input_tokens": 12562,
+      "output_tokens": 1568,
       "cache_read": 0,
       "cache_write": 0,
       "cost_usd": 0.0
