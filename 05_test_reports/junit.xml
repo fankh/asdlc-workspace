@@ -1,197 +1,344 @@
-<testsuites id="" name="" tests="28" failures="12" skipped="0" errors="8" time="38.460356999999995">
-<testsuite name="home.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="3" failures="1" skipped="0" time="39.529" errors="1">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="6.343">
+<testsuites id="" name="" tests="28" failures="18" skipped="0" errors="0" time="9.820162">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="chromium" tests="3" failures="1" skipped="0" time="3.483" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.967">
+</testcase>
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.878">
+</testcase>
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="1.638">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\test-failed-1.png]]
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\test-failed-1.png]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\video.webm]]
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\video-1.webm]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\error-context.md]]
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\error-context.md]]
 ]]>
 </system-out>
-<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
-<![CDATA[  [chromium] › home.spec.ts:8:7 › Home page first impression › page loads and shows product name ───
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [chromium] › home.spec.ts:22:7 › Home page first impression › page is accessible (no serious axe violations) 
 
-    Error: expect(locator).toBeVisible() failed
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#1677ff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>Get Started</span>",
+            "target": [
+              "span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
 
-    Locator: getByRole('heading', { name: /my local agent app/i })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    expect(received).toEqual(expected) // deep equality
 
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('heading', { name: /my local agent app/i })
+    - Expected  -  1
+    + Received  + 58
 
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#1677ff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#ffffff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+    +                 "target": Array [
+    +                   "button",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Get Started</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
 
-       at pages\HomePage.ts:20
-
-      18 |
-      19 |   async expectVisible() {
-    > 20 |     await expect(this.heading).toBeVisible();
-         |                                ^
-      21 |     await expect(this.getStartedButton).toBeVisible();
-      22 |   }
-      23 |
-        at HomePage.expectVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\HomePage.ts:20:32)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:11:16
+      29 |       v => v.impact === 'serious' || v.impact === 'critical',
+      30 |     );
+    > 31 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      32 |   });
+      33 | });
+      34 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:31:55
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\test-failed-1.png
+    ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\video.webm
+    ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\video-1.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\error-context.md
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--chromium\error-context.md
 ]]>
 </failure>
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="31.765">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [chromium] › home.spec.ts:14:7 › Home page first impression › Get Started navigates to onboarding 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('button', { name: /get started/i })
-
-
-       at pages\HomePage.ts:25
-
-      23 |
-      24 |   async clickGetStarted() {
-    > 25 |     await this.getStartedButton.click();
-         |                                 ^
-      26 |   }
-      27 | }
-      28 |
-        at HomePage.clickGetStarted (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\HomePage.ts:25:33)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:17:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\error-context.md
-]]>
-</error>
-</testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="1.421">
-</testcase>
 </testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="3" failures="1" skipped="0" time="39.391" errors="1">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="6.226">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="chromium" tests="3" failures="1" skipped="0" time="3.714" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.98">
+</testcase>
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.944">
+</testcase>
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="1.79">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\test-failed-1.png]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\test-failed-1.png]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\video.webm]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\video.webm]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\error-context.md]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\error-context.md]]
 ]]>
 </system-out>
-<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
-<![CDATA[  [chromium] › story-001.spec.ts:6:7 › STORY-001 › renders product name and primary CTA ────────────
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [chromium] › story-001.spec.ts:21:7 › STORY-001 › accessibility compliance on landing page ───────
 
-    Error: expect(locator).toBeVisible() failed
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#1677ff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>Get Started</span>",
+            "target": [
+              "span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
 
-    Locator: getByRole('heading', { name: /my local agent app/i })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    expect(received).toEqual(expected) // deep equality
 
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('heading', { name: /my local agent app/i })
+    - Expected  -  1
+    + Received  + 58
 
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#1677ff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#ffffff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+    +                 "target": Array [
+    +                   "button",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Get Started</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
 
-       7 |     const home = new HomePage(page);
-       8 |     await home.goto();
-    >  9 |     await expect(home.heading).toBeVisible();
-         |                                ^
-      10 |     await expect(home.getStartedButton).toBeVisible();
-      11 |   });
-      12 |
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:9:32
+      28 |       v => v.impact === 'serious' || v.impact === 'critical'
+      29 |     );
+    > 30 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      31 |   });
+      32 | });
+      33 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:30:55
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\test-failed-1.png
+    ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\video.webm
+    ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\error-context.md
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-chromium\error-context.md
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="31.683">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [chromium] › story-001.spec.ts:13:7 › STORY-001 › CTA navigates to onboarding route ──────────────
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('button', { name: /get started/i })
-
-
-       at pages\HomePage.ts:25
-
-      23 |
-      24 |   async clickGetStarted() {
-    > 25 |     await this.getStartedButton.click();
-         |                                 ^
-      26 |   }
-      27 | }
-      28 |
-        at HomePage.clickGetStarted (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\HomePage.ts:25:33)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:16:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\error-context.md
-]]>
-</error>
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="1.482">
-</testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="4" failures="1" skipped="0" time="70.769" errors="2">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.866">
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="chromium" tests="4" failures="4" skipped="0" time="20.863" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="6.085">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\test-failed-1.png]]
@@ -240,7 +387,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="31.8">
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="6.527">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\test-failed-1.png]]
@@ -250,27 +397,29 @@
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
 <![CDATA[  [chromium] › story-002.spec.ts:13:7 › STORY-002 › valid submission saves record and redirects to list 
 
-    Test timeout of 30000ms exceeded.
+    Error: expect(locator).toBeVisible() failed
 
-    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Locator: getByRole('row').filter({ hasText: /^Test Agent 1783417873544$/i }).getByRole('cell')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByLabel('Agent name')
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: /^Test Agent 1783417873544$/i }).getByRole('cell')
 
 
-       at pages\OnboardingPage.ts:29
-
-      27 |
-      28 |   async fillAgentName(name: string) {
-    > 29 |     await this.agentNameInput.fill(name);
-         |                               ^
-      30 |   }
-      31 |
-      32 |   async fillDescription(text: string) {
-        at OnboardingPage.fillAgentName (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\OnboardingPage.ts:29:31)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:19:22
+      30 |
+      31 |     // Verify visible copy in table body
+    > 32 |     await expect(list.rowBodyFor(agentName)).toBeVisible();
+         |                                              ^
+      33 |   });
+      34 |
+      35 |   test('default agent status reflects as idle after creation', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:32:46
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\test-failed-1.png
@@ -282,9 +431,9 @@
 
     Error Context: ..\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\error-context.md
 ]]>
-</error>
+</failure>
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="31.77">
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="6.603">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\test-failed-1.png]]
@@ -294,27 +443,29 @@
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
+<failure message="expect(locator).toHaveText(expected) failed" type="expect.toHaveText">
 <![CDATA[  [chromium] › story-002.spec.ts:35:7 › STORY-002 › default agent status reflects as idle after creation 
 
-    Test timeout of 30000ms exceeded.
+    Error: expect(locator).toHaveText(expected) failed
 
-    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Locator: getByRole('row').filter({ hasText: /^Idle Status Agent 1783417873636$/i }).getByRole('cell').nth(2)
+    Expected pattern: /idle/i
+    Timeout: 5000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByLabel('Agent name')
+      - Expect "toHaveText" with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: /^Idle Status Agent 1783417873636$/i }).getByRole('cell').nth(2)
 
 
-       at pages\OnboardingPage.ts:29
-
-      27 |
-      28 |   async fillAgentName(name: string) {
-    > 29 |     await this.agentNameInput.fill(name);
-         |                               ^
-      30 |   }
-      31 |
-      32 |   async fillDescription(text: string) {
-        at OnboardingPage.fillAgentName (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\OnboardingPage.ts:29:31)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:41:22
+      42 |     await onboarding.submit();
+      43 |
+    > 44 |     await expect(list.statusCellFor(agentName)).toHaveText(/idle/i);
+         |                                                 ^
+      45 |   });
+      46 |
+      47 |   test('accessibility compliance on onboarding page', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:44:49
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\test-failed-1.png
@@ -326,62 +477,176 @@
 
     Error Context: ..\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\error-context.md
 ]]>
-</error>
+</failure>
 </testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="1.333">
-</testcase>
-</testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="4" failures="3" skipped="0" time="20.016" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="6.074">
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="1.648">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\test-failed-1.png]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\test-failed-1.png]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\video.webm]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\video.webm]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\error-context.md]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\error-context.md]]
 ]]>
 </system-out>
-<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
-<![CDATA[  [chromium] › story-003.spec.ts:6:7 › STORY-003 › table renders with required column headers ──────
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [chromium] › story-002.spec.ts:47:7 › STORY-002 › accessibility compliance on onboarding page ────
 
-    Error: expect(locator).toBeVisible() failed
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#1677ff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button type=\"submit\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Create Agent</span></button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>Create Agent</span>",
+            "target": [
+              "span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
 
-    Locator: getByRole('columnheader', { name: 'name' })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    expect(received).toEqual(expected) // deep equality
 
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('columnheader', { name: 'name' })
+    - Expected  -  1
+    + Received  + 58
 
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#1677ff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#ffffff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<button type=\"submit\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Create Agent</span></button>",
+    +                 "target": Array [
+    +                   "button",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Create Agent</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
 
-       at pages\AgentListPage.ts:41
-
-      39 |
-      40 |   async expectHeadersVisible() {
-    > 41 |     await expect(this.tableHeaderName).toBeVisible();
-         |                                        ^
-      42 |     await expect(this.tableHeaderDescription).toBeVisible();
-      43 |     await expect(this.tableHeaderStatus).toBeVisible();
-      44 |     await expect(this.tableHeaderCreationDate).toBeVisible();
-        at AgentListPage.expectHeadersVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:41:40)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:9:16
+      54 |       v => v.impact === 'serious' || v.impact === 'critical'
+      55 |     );
+    > 56 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      57 |   });
+      58 | });
+      59 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:56:55
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\test-failed-1.png
+    ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\video.webm
+    ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\error-context.md
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-chromium\error-context.md
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="6.373">
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="chromium" tests="4" failures="2" skipped="0" time="15.756" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="1.251">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="6.509">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\test-failed-1.png]]
@@ -430,7 +695,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="6.287">
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="6.187">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\test-failed-1.png]]
@@ -445,14 +710,14 @@
 
     Error: expect(locator).toBeVisible() failed
 
-    Locator: getByRole('row').filter({ hasText: /^Log Analyzer$/i })
+    Locator: getByRole('row').filter({ hasText: /^Idle Status Agent 1783417873636$/i })
     Expected: visible
     Timeout: 5000ms
     Error: element(s) not found
 
     Call log:
       - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('row').filter({ hasText: /^Log Analyzer$/i })
+      - waiting for getByRole('row').filter({ hasText: /^Idle Status Agent 1783417873636$/i })
 
 
       37 |
@@ -476,202 +741,349 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="1.282">
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="1.809">
 </testcase>
 </testsuite>
-<testsuite name="home.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="38.139" errors="1">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="5.938">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="3.409" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.952">
+</testcase>
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="1.072">
+</testcase>
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="1.385">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\test-failed-1.png]]
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\test-failed-1.png]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\video.webm]]
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\video-1.webm]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\error-context.md]]
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\error-context.md]]
 ]]>
 </system-out>
-<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
-<![CDATA[  [mobile-chrome] › home.spec.ts:8:7 › Home page first impression › page loads and shows product name 
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [mobile-chrome] › home.spec.ts:22:7 › Home page first impression › page is accessible (no serious axe violations) 
 
-    Error: expect(locator).toBeVisible() failed
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#1677ff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>Get Started</span>",
+            "target": [
+              "span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
 
-    Locator: getByRole('heading', { name: /my local agent app/i })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    expect(received).toEqual(expected) // deep equality
 
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('heading', { name: /my local agent app/i })
+    - Expected  -  1
+    + Received  + 58
 
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#1677ff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#ffffff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+    +                 "target": Array [
+    +                   "button",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Get Started</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
 
-       at pages\HomePage.ts:20
-
-      18 |
-      19 |   async expectVisible() {
-    > 20 |     await expect(this.heading).toBeVisible();
-         |                                ^
-      21 |     await expect(this.getStartedButton).toBeVisible();
-      22 |   }
-      23 |
-        at HomePage.expectVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\HomePage.ts:20:32)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:11:16
+      29 |       v => v.impact === 'serious' || v.impact === 'critical',
+      30 |     );
+    > 31 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      32 |   });
+      33 | });
+      34 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:31:55
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\test-failed-1.png
+    ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\video.webm
+    ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\video-1.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\error-context.md
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-Home-page-first-impre-f02e8--no-serious-axe-violations--mobile-chrome\error-context.md
 ]]>
 </failure>
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="31.431">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [mobile-chrome] › home.spec.ts:14:7 › Home page first impression › Get Started navigates to onboarding 
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('button', { name: /get started/i })
-
-
-       at pages\HomePage.ts:25
-
-      23 |
-      24 |   async clickGetStarted() {
-    > 25 |     await this.getStartedButton.click();
-         |                                 ^
-      26 |   }
-      27 | }
-      28 |
-        at HomePage.clickGetStarted (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\HomePage.ts:25:33)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:17:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\error-context.md
-]]>
-</error>
-</testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.77">
-</testcase>
 </testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="37.464" errors="1">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="5.631">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="2.697" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.753">
+</testcase>
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.777">
+</testcase>
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="1.167">
 <system-out>
 <![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\test-failed-1.png]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\test-failed-1.png]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\video.webm]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\video.webm]]
 
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\error-context.md]]
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\error-context.md]]
 ]]>
 </system-out>
-<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
-<![CDATA[  [mobile-chrome] › story-001.spec.ts:6:7 › STORY-001 › renders product name and primary CTA ───────
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [mobile-chrome] › story-001.spec.ts:21:7 › STORY-001 › accessibility compliance on landing page ──
 
-    Error: expect(locator).toBeVisible() failed
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#1677ff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>Get Started</span>",
+            "target": [
+              "span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
 
-    Locator: getByRole('heading', { name: /my local agent app/i })
-    Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    expect(received).toEqual(expected) // deep equality
 
-    Call log:
-      - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('heading', { name: /my local agent app/i })
+    - Expected  -  1
+    + Received  + 58
 
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#1677ff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#ffffff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<button aria-label=\"Get Started\" type=\"button\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Get Started</span></button>",
+    +                 "target": Array [
+    +                   "button",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Get Started</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
 
-       7 |     const home = new HomePage(page);
-       8 |     await home.goto();
-    >  9 |     await expect(home.heading).toBeVisible();
-         |                                ^
-      10 |     await expect(home.getStartedButton).toBeVisible();
-      11 |   });
-      12 |
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:9:32
+      28 |       v => v.impact === 'serious' || v.impact === 'critical'
+      29 |     );
+    > 30 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      31 |   });
+      32 | });
+      33 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:30:55
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\test-failed-1.png
+    ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\test-failed-1.png
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
     attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\video.webm
+    ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\video.webm
     ────────────────────────────────────────────────────────────────────────────────────────────────
 
-    Error Context: ..\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\error-context.md
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-001-STORY-001-accessibility-compliance-on-landing-page-mobile-chrome\error-context.md
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="31.153">
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\test-failed-1.png]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\video.webm]]
-
-[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\error-context.md]]
-]]>
-</system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
-<![CDATA[  [mobile-chrome] › story-001.spec.ts:13:7 › STORY-001 › CTA navigates to onboarding route ─────────
-
-    Test timeout of 30000ms exceeded.
-
-    Error: locator.click: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByRole('button', { name: /get started/i })
-
-
-       at pages\HomePage.ts:25
-
-      23 |
-      24 |   async clickGetStarted() {
-    > 25 |     await this.getStartedButton.click();
-         |                                 ^
-      26 |   }
-      27 | }
-      28 |
-        at HomePage.clickGetStarted (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\HomePage.ts:25:33)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:16:16
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
-    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\video.webm
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\error-context.md
-]]>
-</error>
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.68">
-</testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="4" failures="1" skipped="0" time="68.449" errors="2">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.498">
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="mobile-chrome" tests="4" failures="4" skipped="0" time="13.592" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.618">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\test-failed-1.png]]
@@ -720,7 +1132,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="31.085">
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.957">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\test-failed-1.png]]
@@ -730,27 +1142,21 @@
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
+<failure message="expect(received).toBeTruthy()" type="expect.toBeTruthy">
 <![CDATA[  [mobile-chrome] › story-002.spec.ts:13:7 › STORY-002 › valid submission saves record and redirects to list 
 
-    Test timeout of 30000ms exceeded.
+    Error: expect(received).toBeTruthy()
 
-    Error: locator.fill: Test timeout of 30000ms exceeded.
-    Call log:
-      - waiting for getByLabel('Agent name')
+    Received: false
 
-
-       at pages\OnboardingPage.ts:29
-
-      27 |
-      28 |   async fillAgentName(name: string) {
-    > 29 |     await this.agentNameInput.fill(name);
-         |                               ^
-      30 |   }
-      31 |
-      32 |   async fillDescription(text: string) {
-        at OnboardingPage.fillAgentName (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\OnboardingPage.ts:29:31)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:19:22
+      27 |     const agents = await response.json();
+      28 |     expect(Array.isArray(agents)).toBeTruthy();
+    > 29 |     expect(agents.some((a: any) => a.name === agentName)).toBeTruthy();
+         |                                                           ^
+      30 |
+      31 |     // Verify visible copy in table body
+      32 |     await expect(list.rowBodyFor(agentName)).toBeVisible();
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:29:59
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\test-failed-1.png
@@ -762,9 +1168,9 @@
 
     Error Context: ..\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\error-context.md
 ]]>
-</error>
+</failure>
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="31.024">
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="5.868">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\test-failed-1.png]]
@@ -774,27 +1180,29 @@
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\error-context.md]]
 ]]>
 </system-out>
-<error message="Test timeout of 30000ms exceeded." type="Error">
+<failure message="expect(locator).toHaveText(expected) failed" type="expect.toHaveText">
 <![CDATA[  [mobile-chrome] › story-002.spec.ts:35:7 › STORY-002 › default agent status reflects as idle after creation 
 
-    Test timeout of 30000ms exceeded.
+    Error: expect(locator).toHaveText(expected) failed
 
-    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Locator: getByRole('row').filter({ hasText: /^Idle Status Agent 1783417875010$/i }).getByRole('cell').nth(2)
+    Expected pattern: /idle/i
+    Timeout: 5000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByLabel('Agent name')
+      - Expect "toHaveText" with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: /^Idle Status Agent 1783417875010$/i }).getByRole('cell').nth(2)
 
 
-       at pages\OnboardingPage.ts:29
-
-      27 |
-      28 |   async fillAgentName(name: string) {
-    > 29 |     await this.agentNameInput.fill(name);
-         |                               ^
-      30 |   }
-      31 |
-      32 |   async fillDescription(text: string) {
-        at OnboardingPage.fillAgentName (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\OnboardingPage.ts:29:31)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:41:22
+      42 |     await onboarding.submit();
+      43 |
+    > 44 |     await expect(list.statusCellFor(agentName)).toHaveText(/idle/i);
+         |                                                 ^
+      45 |   });
+      46 |
+      47 |   test('accessibility compliance on onboarding page', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:44:49
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\test-failed-1.png
@@ -806,13 +1214,174 @@
 
     Error Context: ..\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\error-context.md
 ]]>
-</error>
+</failure>
 </testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.842">
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="1.149">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [mobile-chrome] › story-002.spec.ts:47:7 › STORY-002 › accessibility compliance on onboarding page 
+
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#1677ff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button type=\"submit\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Create Agent</span></button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<span>Create Agent</span>",
+            "target": [
+              "span"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 58
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#1677ff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#ffffff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [
+    +               Object {
+    +                 "html": "<button type=\"submit\" class=\"ant-btn css-dev-only-do-not-override-mncuj7 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid\"><span>Create Agent</span></button>",
+    +                 "target": Array [
+    +                   "button",
+    +                 ],
+    +               },
+    +             ],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #1677ff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<span>Create Agent</span>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "span",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+      54 |       v => v.impact === 'serious' || v.impact === 'critical'
+      55 |     );
+    > 56 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      57 |   });
+      58 | });
+      59 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-002.spec.ts:56:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-002-STORY-002-access-79e93-mpliance-on-onboarding-page-mobile-chrome\error-context.md
+]]>
+</failure>
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="4" failures="3" skipped="0" time="17.799" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="5.709">
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:51:12.545Z" hostname="mobile-chrome" tests="4" failures="4" skipped="0" time="13.317" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="5.784">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-mobile-chrome\test-failed-1.png]]
@@ -827,27 +1396,27 @@
 
     Error: expect(locator).toBeVisible() failed
 
-    Locator: getByRole('columnheader', { name: 'name' })
+    Locator: getByRole('columnheader', { name: 'description' })
     Expected: visible
     Timeout: 5000ms
     Error: element(s) not found
 
     Call log:
       - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('columnheader', { name: 'name' })
+      - waiting for getByRole('columnheader', { name: 'description' })
 
 
-       at pages\AgentListPage.ts:41
+       at pages\AgentListPage.ts:42
 
-      39 |
       40 |   async expectHeadersVisible() {
-    > 41 |     await expect(this.tableHeaderName).toBeVisible();
-         |                                        ^
-      42 |     await expect(this.tableHeaderDescription).toBeVisible();
+      41 |     await expect(this.tableHeaderName).toBeVisible();
+    > 42 |     await expect(this.tableHeaderDescription).toBeVisible();
+         |                                               ^
       43 |     await expect(this.tableHeaderStatus).toBeVisible();
       44 |     await expect(this.tableHeaderCreationDate).toBeVisible();
-        at AgentListPage.expectHeadersVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:41:40)
-        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:9:16
+      45 |   }
+        at AgentListPage.expectHeadersVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:42:47)
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:9:5
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ..\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-mobile-chrome\test-failed-1.png
@@ -861,7 +1430,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="5.685">
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.755">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\test-failed-1.png]]
@@ -878,8 +1447,9 @@
 
     Locator: getByText(/no data|empty/i)
     Expected: visible
-    Timeout: 5000ms
-    Error: element(s) not found
+    Error: strict mode violation: getByText(/no data|empty/i) resolved to 2 elements:
+        1) <title>No data</title> aka getByRole('img', { name: 'No data' }).locator('title')
+        2) <div class="ant-empty-description">No data</div> aka getByText('No data').nth(1)
 
     Call log:
       - Expect "toBeVisible" with timeout 5000ms
@@ -910,7 +1480,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="5.682">
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="5.762">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\test-failed-1.png]]
@@ -956,7 +1526,209 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.723">
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="1.016">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [mobile-chrome] › story-003.spec.ts:49:7 › STORY-003 › accessibility compliance on agents list page 
+
+    Error: [
+      {
+        "id": "color-contrast",
+        "impact": "serious",
+        "tags": [
+          "cat.color",
+          "wcag2aa",
+          "wcag143",
+          "TTv5",
+          "TT13.c",
+          "EN-301-549",
+          "EN-9.1.4.3",
+          "ACT",
+          "RGAAv4",
+          "RGAA-3.2.1"
+        ],
+        "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+        "help": "Elements must meet minimum color contrast ratio thresholds",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#8c8c8c",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 3.36,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.36 (foreground color: #8c8c8c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"ant-empty-description\">No data available</div>",
+            "target": [
+              ".ant-empty-description"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.36 (foreground color: #8c8c8c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          },
+          {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#1677ff",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 4.1,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #1677ff, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"/onboarding\">Create your first agent</a>",
+            "target": [
+              "a"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #1677ff, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        ]
+      }
+    ]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 79
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+    +     "help": "Elements must meet minimum color contrast ratio thresholds",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/color-contrast?application=playwright",
+    +     "id": "color-contrast",
+    +     "impact": "serious",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 3.36,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#8c8c8c",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 3.36 (foreground color: #8c8c8c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 3.36 (foreground color: #8c8c8c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<div class=\"ant-empty-description\">No data available</div>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           ".ant-empty-description",
+    +         ],
+    +       },
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": Object {
+    +               "bgColor": "#ffffff",
+    +               "contrastRatio": 4.1,
+    +               "expectedContrastRatio": "4.5:1",
+    +               "fgColor": "#1677ff",
+    +               "fontSize": "10.5pt (14px)",
+    +               "fontWeight": "normal",
+    +               "messageKey": null,
+    +             },
+    +             "id": "color-contrast",
+    +             "impact": "serious",
+    +             "message": "Element has insufficient color contrast of 4.1 (foreground color: #1677ff, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element has insufficient color contrast of 4.1 (foreground color: #1677ff, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1",
+    +         "html": "<a href=\"/onboarding\">Create your first agent</a>",
+    +         "impact": "serious",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "a",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.color",
+    +       "wcag2aa",
+    +       "wcag143",
+    +       "TTv5",
+    +       "TT13.c",
+    +       "EN-301-549",
+    +       "EN-9.1.4.3",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-3.2.1",
+    +     ],
+    +   },
+    + ]
+
+      56 |       v => v.impact === 'serious' || v.impact === 'critical'
+      57 |     );
+    > 58 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      59 |   });
+      60 | });
+      61 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:58:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\error-context.md
+]]>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>

@@ -7,7 +7,7 @@ import App from './App';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ConfigProvider>
+      <ConfigProvider theme={{ token: { colorPrimary: '#0958d9', colorTextSecondary: '#595959' } }}>
         <App />
       </ConfigProvider>
     </BrowserRouter>

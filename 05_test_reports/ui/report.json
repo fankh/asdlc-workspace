@@ -26,14 +26,12 @@
         {
           "kind": "act",
           "description": "click the \"Get Started\" button",
-          "status": "fail",
-          "detail": "no button/link/text matching \"Get Started\""
+          "status": "pass"
         },
         {
           "kind": "url",
           "description": "URL matches /onboarding$",
-          "status": "fail",
-          "detail": "actual URL: http://localhost:3000/"
+          "status": "pass"
         },
         {
           "kind": "observe",
