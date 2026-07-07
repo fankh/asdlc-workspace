@@ -1,74 +1,962 @@
-<testsuites id="" name="" tests="28" failures="0" skipped="0" errors="0" time="15.330670999999999">
-<testsuite name="home.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.422" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.374">
+<testsuites id="" name="" tests="34" failures="10" skipped="4" errors="2" time="61.771344000000006">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="chromium" tests="3" failures="1" skipped="0" time="6.676" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.404">
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.42">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="5.606">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › home.spec.ts:14:7 › Home page first impression › Get Started navigates to onboarding 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: /onboarding/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: /onboarding/i })
+
+
+      17 |     await home.clickGetStarted();
+      18 |     await expect(page).toHaveURL(/\/onboarding$/);
+    > 19 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();
+         |                                                                      ^
+      20 |   });
+      21 |
+      22 |   test('page is accessible (no serious axe violations)', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:19:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\error-context.md
+]]>
+</failure>
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.628">
-</testcase>
-</testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.346" errors="0">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.327">
-</testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.415">
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.604">
-</testcase>
-</testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.078" errors="0">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.357">
-</testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.557">
-</testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.521">
-</testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.643">
-</testcase>
-</testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="4" failures="0" skipped="0" time="1.912" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.429">
-</testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.439">
-</testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.428">
-</testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.616">
-</testcase>
-</testsuite>
-<testsuite name="home.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.578" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.432">
-</testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.471">
-</testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.675">
-</testcase>
-</testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.573" errors="0">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.406">
-</testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.467">
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.7">
-</testcase>
-</testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.189" errors="0">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.411">
-</testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.544">
-</testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.558">
-</testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.676">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.666">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.048" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.453">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="chromium" tests="3" failures="1" skipped="0" time="6.705" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.333">
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.465">
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="5.696">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › story-001.spec.ts:13:7 › STORY-001 › CTA navigates to onboarding route ──────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: /onboarding/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: /onboarding/i })
+
+
+      16 |     await home.clickGetStarted();
+      17 |     await expect(page).toHaveURL(/\/onboarding$/);
+    > 18 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();
+         |                                                                      ^
+      19 |   });
+      20 |
+      21 |   test('accessibility compliance on landing page', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:18:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\error-context.md
+]]>
+</failure>
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.498">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.676">
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.632">
+</testsuite>
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.148" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.363">
+</testcase>
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.565">
+</testcase>
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.545">
+</testcase>
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.675">
+</testcase>
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="chromium" tests="4" failures="3" skipped="0" time="12.361" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.445">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="5.56">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [chromium] › story-003.spec.ts:16:7 › STORY-003 › empty state displays with link when no agents exist 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/no data available/i).first()
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText(/no data available/i).first()
+
+
+       at pages\AgentListPage.ts:48
+
+      46 |
+      47 |   async expectEmptyStateVisible() {
+    > 48 |     await expect(this.emptyStateMessage).toBeVisible();
+         |                                          ^
+      49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();
+      50 |   }
+      51 |
+        at AgentListPage.expectEmptyStateVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:48:42)
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:26:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="5.622">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).not.toBeVisible() failed" type="expect.not.toBeVisible">
+<![CDATA[  [chromium] › story-003.spec.ts:29:7 › STORY-003 › deletion removes agent row without full page reload 
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })
+    Expected: not visible
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "not toBeVisible" with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })
+        14 × locator resolved to <tr class="ant-table-row ant-table-row-level-0" data-row-key="0a31bc81-9f9b-4340-94a7-c372ba2ec8a8">…</tr>
+           - unexpected value "visible"
+
+
+       at pages\AgentListPage.ts:56
+
+      54 |     await row.getByRole('button', { name: /delete|remove/i }).click();
+      55 |     // Auto-wait for row detachment before proceeding
+    > 56 |     await expect(row).not.toBeVisible();
+         |                           ^
+      57 |   }
+      58 | }
+      59 |
+        at AgentListPage.deleteAgent (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:56:27)
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:43:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.734">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\error-context.md]]
+]]>
+</system-out>
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [chromium] › story-003.spec.ts:50:7 › STORY-003 › accessibility compliance on agents list page ───
+
+    Error: [
+      {
+        "id": "label",
+        "impact": "critical",
+        "tags": [
+          "cat.forms",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.n",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT",
+          "RGAAv4",
+          "RGAA-11.1.1"
+        ],
+        "description": "Ensure every form element has a label",
+        "help": "Form elements must have labels",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/label?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "non-empty-placeholder",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no placeholder attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<input type=\"search\" autocomplete=\"off\" class=\"ant-select-selection...\" role=\"combobox\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-owns=\"rc_select_1_list\" aria-autocomplete=\"list\" aria-controls=\"rc_select_1_list\" readonly=\"\" unselectable=\"on\" value=\"\" id=\"rc_select_1\" ...>",
+            "target": [
+              "#rc_select_1"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        ]
+      }
+    ]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 97
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure every form element has a label",
+    +     "help": "Form elements must have labels",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/label?application=playwright",
+    +     "id": "label",
+    +     "impact": "critical",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "implicit-label",
+    +             "impact": "critical",
+    +             "message": "Element does not have an implicit (wrapped) <label>",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "explicit-label",
+    +             "impact": "critical",
+    +             "message": "Element does not have an explicit <label>",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "aria-label",
+    +             "impact": "critical",
+    +             "message": "aria-label attribute does not exist or is empty",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "aria-labelledby",
+    +             "impact": "critical",
+    +             "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": Object {
+    +               "messageKey": "noAttr",
+    +             },
+    +             "id": "non-empty-title",
+    +             "impact": "critical",
+    +             "message": "Element has no title attribute",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": Object {
+    +               "messageKey": "noAttr",
+    +             },
+    +             "id": "non-empty-placeholder",
+    +             "impact": "critical",
+    +             "message": "Element has no placeholder attribute",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "presentational-role",
+    +             "impact": "critical",
+    +             "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element does not have an implicit (wrapped) <label>
+    +   Element does not have an explicit <label>
+    +   aria-label attribute does not exist or is empty
+    +   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+    +   Element has no title attribute
+    +   Element has no placeholder attribute
+    +   Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+    +         "html": "<input type=\"search\" autocomplete=\"off\" class=\"ant-select-selection...\" role=\"combobox\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-owns=\"rc_select_1_list\" aria-autocomplete=\"list\" aria-controls=\"rc_select_1_list\" readonly=\"\" unselectable=\"on\" value=\"\" id=\"rc_select_1\" ...>",
+    +         "impact": "critical",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "#rc_select_1",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.forms",
+    +       "wcag2a",
+    +       "wcag412",
+    +       "section508",
+    +       "section508.22.n",
+    +       "TTv5",
+    +       "TT5.c",
+    +       "EN-301-549",
+    +       "EN-9.4.1.2",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-11.1.1",
+    +     ],
+    +   },
+    + ]
+
+      57 |       v => v.impact === 'serious' || v.impact === 'critical'
+      58 |     );
+    > 59 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      60 |   });
+      61 | });
+      62 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:59:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\error-context.md
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="story-004.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="chromium" tests="3" failures="0" skipped="2" time="0" errors="1">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\error-context.md]]
+]]>
+</system-out>
+<error message="&quot;context&quot; and &quot;page&quot; fixtures are not supported in &quot;beforeAll&quot; since they are created on a per-test basis." type="Error">
+<![CDATA[  [chromium] › story-004.spec.ts:20:7 › STORY-004: Status Filter Dropdown & Client-Side Filtering › renders status filter dropdown with required options 
+
+    Error: "context" and "page" fixtures are not supported in "beforeAll" since they are created on a per-test basis.
+    If you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.
+    If you would like to configure your page before each test, do that in beforeEach hook instead.
+
+    Error Context: ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-chromium\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts">
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="6.802" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.431">
+</testcase>
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="5.666">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [mobile-chrome] › home.spec.ts:14:7 › Home page first impression › Get Started navigates to onboarding 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: /onboarding/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: /onboarding/i })
+
+
+      17 |     await home.clickGetStarted();
+      18 |     await expect(page).toHaveURL(/\/onboarding$/);
+    > 19 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();
+         |                                                                      ^
+      20 |   });
+      21 |
+      22 |   test('page is accessible (no serious axe violations)', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\home.spec.ts:19:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.705">
+</testcase>
+</testsuite>
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="6.756" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.398">
+</testcase>
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="5.625">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [mobile-chrome] › story-001.spec.ts:13:7 › STORY-001 › CTA navigates to onboarding route ─────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByRole('heading', { name: /onboarding/i })
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByRole('heading', { name: /onboarding/i })
+
+
+      16 |     await home.clickGetStarted();
+      17 |     await expect(page).toHaveURL(/\/onboarding$/);
+    > 18 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();
+         |                                                                      ^
+      19 |   });
+      20 |
+      21 |   test('accessibility compliance on landing page', async ({ page }) => {
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-001.spec.ts:18:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.733">
+</testcase>
+</testsuite>
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.212" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.423">
+</testcase>
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.573">
+</testcase>
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.549">
+</testcase>
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.667">
+</testcase>
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="mobile-chrome" tests="4" failures="3" skipped="0" time="12.489" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.492">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="5.571">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).toBeVisible() failed" type="expect.toBeVisible">
+<![CDATA[  [mobile-chrome] › story-003.spec.ts:16:7 › STORY-003 › empty state displays with link when no agents exist 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText(/no data available/i).first()
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for getByText(/no data available/i).first()
+
+
+       at pages\AgentListPage.ts:48
+
+      46 |
+      47 |   async expectEmptyStateVisible() {
+    > 48 |     await expect(this.emptyStateMessage).toBeVisible();
+         |                                          ^
+      49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();
+      50 |   }
+      51 |
+        at AgentListPage.expectEmptyStateVisible (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:48:42)
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:26:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="5.66">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="expect(locator).not.toBeVisible() failed" type="expect.not.toBeVisible">
+<![CDATA[  [mobile-chrome] › story-003.spec.ts:29:7 › STORY-003 › deletion removes agent row without full page reload 
+
+    Error: expect(locator).not.toBeVisible() failed
+
+    Locator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })
+    Expected: not visible
+    Received: visible
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "not toBeVisible" with timeout 5000ms
+      - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })
+        14 × locator resolved to <tr class="ant-table-row ant-table-row-level-0" data-row-key="69580b20-d4fa-4d58-a131-54a62f91c291">…</tr>
+           - unexpected value "visible"
+
+
+       at pages\AgentListPage.ts:56
+
+      54 |     await row.getByRole('button', { name: /delete|remove/i }).click();
+      55 |     // Auto-wait for row detachment before proceeding
+    > 56 |     await expect(row).not.toBeVisible();
+         |                           ^
+      57 |   }
+      58 | }
+      59 |
+        at AgentListPage.deleteAgent (C:\repos\asdlc-workspace\04_source\frontend\e2e\pages\AgentListPage.ts:56:27)
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:43:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\error-context.md
+]]>
+</failure>
+</testcase>
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.766">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\test-failed-1.png]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video-1.webm]]
+
+[[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<failure message="[" type="expect.toEqual">
+<![CDATA[  [mobile-chrome] › story-003.spec.ts:50:7 › STORY-003 › accessibility compliance on agents list page 
+
+    Error: [
+      {
+        "id": "label",
+        "impact": "critical",
+        "tags": [
+          "cat.forms",
+          "wcag2a",
+          "wcag412",
+          "section508",
+          "section508.22.n",
+          "TTv5",
+          "TT5.c",
+          "EN-301-549",
+          "EN-9.4.1.2",
+          "ACT",
+          "RGAAv4",
+          "RGAA-11.1.1"
+        ],
+        "description": "Ensure every form element has a label",
+        "help": "Form elements must have labels",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/label?application=playwright",
+        "nodes": [
+          {
+            "any": [
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "non-empty-placeholder",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no placeholder attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<input type=\"search\" autocomplete=\"off\" class=\"ant-select-selection...\" role=\"combobox\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-owns=\"rc_select_1_list\" aria-autocomplete=\"list\" aria-controls=\"rc_select_1_list\" readonly=\"\" unselectable=\"on\" value=\"\" id=\"rc_select_1\" ...>",
+            "target": [
+              "#rc_select_1"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        ]
+      }
+    ]
+
+    expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 97
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "description": "Ensure every form element has a label",
+    +     "help": "Form elements must have labels",
+    +     "helpUrl": "https://dequeuniversity.com/rules/axe/4.12/label?application=playwright",
+    +     "id": "label",
+    +     "impact": "critical",
+    +     "nodes": Array [
+    +       Object {
+    +         "all": Array [],
+    +         "any": Array [
+    +           Object {
+    +             "data": null,
+    +             "id": "implicit-label",
+    +             "impact": "critical",
+    +             "message": "Element does not have an implicit (wrapped) <label>",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "explicit-label",
+    +             "impact": "critical",
+    +             "message": "Element does not have an explicit <label>",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "aria-label",
+    +             "impact": "critical",
+    +             "message": "aria-label attribute does not exist or is empty",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "aria-labelledby",
+    +             "impact": "critical",
+    +             "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": Object {
+    +               "messageKey": "noAttr",
+    +             },
+    +             "id": "non-empty-title",
+    +             "impact": "critical",
+    +             "message": "Element has no title attribute",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": Object {
+    +               "messageKey": "noAttr",
+    +             },
+    +             "id": "non-empty-placeholder",
+    +             "impact": "critical",
+    +             "message": "Element has no placeholder attribute",
+    +             "relatedNodes": Array [],
+    +           },
+    +           Object {
+    +             "data": null,
+    +             "id": "presentational-role",
+    +             "impact": "critical",
+    +             "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+    +             "relatedNodes": Array [],
+    +           },
+    +         ],
+    +         "failureSummary": "Fix any of the following:
+    +   Element does not have an implicit (wrapped) <label>
+    +   Element does not have an explicit <label>
+    +   aria-label attribute does not exist or is empty
+    +   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+    +   Element has no title attribute
+    +   Element has no placeholder attribute
+    +   Element's default semantics were not overridden with role=\"none\" or role=\"presentation\"",
+    +         "html": "<input type=\"search\" autocomplete=\"off\" class=\"ant-select-selection...\" role=\"combobox\" aria-expanded=\"false\" aria-haspopup=\"listbox\" aria-owns=\"rc_select_1_list\" aria-autocomplete=\"list\" aria-controls=\"rc_select_1_list\" readonly=\"\" unselectable=\"on\" value=\"\" id=\"rc_select_1\" ...>",
+    +         "impact": "critical",
+    +         "none": Array [],
+    +         "target": Array [
+    +           "#rc_select_1",
+    +         ],
+    +       },
+    +     ],
+    +     "tags": Array [
+    +       "cat.forms",
+    +       "wcag2a",
+    +       "wcag412",
+    +       "section508",
+    +       "section508.22.n",
+    +       "TTv5",
+    +       "TT5.c",
+    +       "EN-301-549",
+    +       "EN-9.4.1.2",
+    +       "ACT",
+    +       "RGAAv4",
+    +       "RGAA-11.1.1",
+    +     ],
+    +   },
+    + ]
+
+      57 |       v => v.impact === 'serious' || v.impact === 'critical'
+      58 |     );
+    > 59 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);
+         |                                                       ^
+      60 |   });
+      61 | });
+      62 |
+        at C:\repos\asdlc-workspace\04_source\frontend\e2e\story-003.spec.ts:59:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\video-1.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\error-context.md
+]]>
+</failure>
+</testcase>
+</testsuite>
+<testsuite name="story-004.spec.ts" timestamp="2026-07-07T11:36:43.334Z" hostname="mobile-chrome" tests="3" failures="0" skipped="2" time="0" errors="1">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\04_source\frontend\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\error-context.md]]
+]]>
+</system-out>
+<error message="&quot;context&quot; and &quot;page&quot; fixtures are not supported in &quot;beforeAll&quot; since they are created on a per-test basis." type="Error">
+<![CDATA[  [mobile-chrome] › story-004.spec.ts:20:7 › STORY-004: Status Filter Dropdown & Client-Side Filtering › renders status filter dropdown with required options 
+
+    Error: "context" and "page" fixtures are not supported in "beforeAll" since they are created on a per-test basis.
+    If you would like to reuse a single page between tests, create context manually with browser.newContext(). See https://aka.ms/playwright/reuse-page for details.
+    If you would like to configure your page before each test, do that in beforeEach hook instead.
+
+    Error Context: ..\test-results\story-004-STORY-004-Status-bb8ee-pdown-with-required-options-mobile-chrome\error-context.md
+]]>
+</error>
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>

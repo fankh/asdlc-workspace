@@ -91,11 +91,11 @@ export default function AgentListPage() {
       )}
 
       <div className="control-bar">
-        <Select value={filterStatus} onChange={(val) => setFilterStatus(val)} options={filterOptions} style={{ width: 120 }} />
+        <Select value={filterStatus} onChange={(val) => setFilterStatus(val)} options={filterOptions} style={{ width: 120 }} aria-label="Filter by status" />
       </div>
 
       {filteredAgents.length === 0 && !loading ? (
-        <Empty description="No agents registered.">
+        <Empty description="No data available">
           <Link to="/onboarding">Create your first agent</Link>
         </Empty>
       ) : (
