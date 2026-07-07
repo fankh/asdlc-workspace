@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: My Local Agent App API
+  version: 1.0.0
+tags:
+  - name: agents
+    description: Agent lifecycle management
+paths:
+  /api/agents:
+    get:
+      summary: Retrieve all registered agents
+      tags: [agents]
+      operationId: listAgents
+      responses:
+        '200':
+          description: List of agents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Agent'
+    post:
+      summary: Register a new agent
+      tags: [agents]
+      operationId: createAgent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAgentRequest'
+      responses:
+        '201':
+          description: Agent successfully created
+          headers:
+            Location:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+        default:
+          description: Validation or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /api/agents/{agentId}:
+    delete:
+      summary: Remove an agent by ID
+      tags: [agents]
+      operationId: deleteAgent
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '204':
+          description: Agent deleted successfully
+        default:
+          description: Validation or server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+components:
+  schemas:
+    Agent:
+      type: object
+      description: Serialized agent DTO. Contains only UI-bound fields.
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [idle, active, paused]
+        createdAt:
+          type: string
+          format: date-time
+    CreateAgentRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          description: Display name for the agent
+        description:
+          type: string
+          maxLength: 500
+    ErrorEnvelope:
+      type: object
+      required: [code, message]
+      description: Standardized error payload for all API responses.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error identifier (e.g., VALIDATION_FAILED, NOT_FOUND)
+        message:
+          type: string
+          description: Human-readable explanation of the failure

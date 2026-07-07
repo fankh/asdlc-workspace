@@ -58,7 +58,51 @@ The single source of truth all agents read before generating code. Empty section
 
 ## Section 6 — Error handling
 
-> One pattern per layer. Established by Architect + first Coder run. Must be filled in before second feature.
+## Section 6 — Error Handling Patterns
+
+### Layer 1: API Error Envelope
+All backend failures return a unified JSON envelope matching the OpenAPI `ErrorEnvelope` schema:
+```json
+{
+  "code": "VALIDATION_FAILED",
+  "message": "Agent name is required."
+}
+```
+- Use HTTP status codes semantically (`400` for validation, `404` for missing entities, `500` for unhandled server errors).
+- Never return raw stack traces or internal field names.
+- Validation failures must include the failing field name in metadata (optional extension) but keep the envelope minimal per spec.
+
+### Layer 2: Express Error Middleware
+Centralized middleware (`src/backend/middleware/errorHandler.ts`):
+```typescript
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  const status = err.statusCode || 500;
+  const code = err.code || 'INTERNAL_ERROR';
+  const message = status === 500 ? 'An unexpected error occurred. Please try again.' : (err.message || 'Request failed.');
+  res.status(status).json({ code, message });
+});
+```
+- Catches synchronous/async errors from route handlers.
+- Strips internal stack traces; logs full error to console in `NODE_ENV !== 'production'`.
+- Express default handler is disabled to prevent framework leakage.
+
+### Layer 3: Frontend Fetch Wrapper & UI Feedback
+A single `src/frontend/api/fetchWrapper.ts` intercepts all HTTP responses:
+```typescript
+export async function fetchJson<T>(url: string, opts?: RequestInit): Promise<T> {
+  const res = await fetch(url, { ...opts, headers: { 'Content-Type': 'application/json', ...opts?.headers } });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ code: 'NETWORK_ERROR', message: 'Request failed.' }));
+    throw new ApiError(res.status, err.code, err.message);
+  }
+  return res.json();
+}
+```
+**UI Feedback Rules (Ant Design):**
+- **Validation errors:** `form.setFields([{ name: ['fieldName'], errors: [error.message] }])` using Ant's internal form state.
+- **Network/Server errors on list pages:** `<Alert type="error" message={err.message} banner action={<Button>Retry</Button>} />`
+- **Fatal/Unrecoverable errors:** `message.error({ key: 'global-error', content: err.message, duration: 6 });` (single instance, dismissible).
+- All error text uses `colorError` token via Ant's theme context. No custom colors or inline styles.
 
 ## Section 7 — Writing standards
 

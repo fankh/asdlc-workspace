@@ -44,7 +44,11 @@ class Orchestrator:
                 log.info("stage %-13s SKIPPED (disabled in config.yaml)", stage.name)
                 continue
             if not self._run_stage(stage):
-                return False
+                if stage.name == "qa":
+                    if not self._refine_until_green(stage):
+                        return False
+                else:
+                    return False
             if matches_stop_after(stage, stop_after):
                 log.info("stop_after=%s reached — halting.", stop_after)
                 return True
@@ -111,6 +115,27 @@ class Orchestrator:
         log.info("stage %-13s DONE: %s", stage.name, result.summary)
         self._auto_commit(stage)
         return True
+
+    def _refine_until_green(self, qa_stage: Stage) -> bool:
+        """Bounded refinement loop: patch -> re-run QA, up to max_loops.
+        On exhaustion, flag HUMAN_INTERVENTION_REQUIRED per config.yaml."""
+        max_loops = self.config.max_refinement_loops
+        refine_stage = Stage("refine", "refinement", "04_source", False, "qa")
+        while self.state.data["refinement_loops"] < max_loops:
+            self.state.data["refinement_loops"] += 1
+            loop_no = self.state.data["refinement_loops"]
+            self.state.save()
+            log.info("refinement loop %d/%d", loop_no, max_loops)
+            if not self._run_stage(refine_stage):
+                break  # refinement itself failed — no point re-running QA
+            if self._run_stage(qa_stage):
+                return True
+        reason = (f"QA still red after {self.state.data['refinement_loops']} "
+                  f"refinement loop(s)")
+        log.error("%s — %s", reason,
+                  self.config.refinement.get("on_overflow", "HUMAN_INTERVENTION_REQUIRED"))
+        self.state.require_human(reason)
+        return False
 
     def _auto_commit(self, stage: Stage) -> None:
         if self.dry_run or not self.config.auto_commit:

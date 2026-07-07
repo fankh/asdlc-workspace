@@ -1,0 +1,24 @@
+{
+  "name": "ui-test-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI-vision test oracle: runs scenarios/*.yaml with Playwright + axe-core + Claude vision verdicts.",
+  "scripts": {
+    "test": "tsx src/index.ts",
+    "install:browsers": "playwright install chromium"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
+    "@axe-core/playwright": "^4.9.0",
+    "dotenv": "^16.4.7",
+    "playwright": "^1.48.0",
+    "yaml": "^2.5.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
