@@ -7,3 +7,7 @@ playwright-report/
 04_source/frontend/dist/
 04_source/frontend/.next/
 04_source/backend/target/
+.venv/
+__pycache__/
+test-results/
+05_test_reports/playwright/
