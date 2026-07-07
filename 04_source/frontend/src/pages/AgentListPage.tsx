@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import { listAgents, deleteAgent } from '../api/client';
 import type { Agent } from '../api/types';
 
+// Status semantics use Ant preset tag palettes (dark-algorithm aware).
+const STATUS_COLOR: Record<string, string | undefined> = {
+  active: 'green',
+  paused: 'gold',
+  idle: undefined, // default neutral
+};
+
 export default function AgentListPage() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,14 +41,23 @@ export default function AgentListPage() {
   const dateFormatter = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' });
 
   const columns = [
-    { title: 'name', dataIndex: 'name', key: 'name' },
-    { title: 'description', dataIndex: 'description', key: 'description', render: (val: string | null) => val || '' },
-    { title: 'status', dataIndex: 'status', key: 'status', render: (status: string) => <Tag>{status}</Tag> },
+    { title: 'Name', dataIndex: 'name', key: 'name' },
+    { title: 'Description', dataIndex: 'description', key: 'description', render: (val: string | null) => val || '—' },
     {
-      title: 'creation date',
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      render: (status: string) => (
+        <Tag color={STATUS_COLOR[status]} className="mono-cell">{status}</Tag>
+      ),
+    },
+    {
+      title: 'Creation date',
       dataIndex: 'createdAt',
       key: 'createdAt',
-      render: (date: string) => dateFormatter.format(new Date(date)),
+      render: (date: string) => (
+        <span className="mono-cell">{dateFormatter.format(new Date(date))}</span>
+      ),
     },
     {
       title: '',
@@ -54,8 +70,11 @@ export default function AgentListPage() {
   ];
 
   return (
-    <div className="page-container">
-      <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: '16px' }}>Agents</h2>
+    <main className="page-container">
+      <div className="page-header">
+        <h2>Agents</h2>
+        <span className="count-chip">{loading ? '…' : `${agents.length} registered`}</span>
+      </div>
       {error && (
         <Alert message={error} type="error" showIcon action={<Button onClick={() => window.location.reload()}>Reload</Button>} />
       )}
@@ -67,6 +86,6 @@ export default function AgentListPage() {
       ) : (
         <Table dataSource={agents} columns={columns} loading={loading} rowKey="id" pagination={false} scroll={{ x: 'max-content' }} />
       )}
-    </div>
+    </main>
   );
 }

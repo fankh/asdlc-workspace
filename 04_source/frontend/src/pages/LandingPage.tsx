@@ -1,17 +1,27 @@
-import { Button } from 'antd';
+import { Button, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-// Renders the initial impression zone with centered layout per UI spec.
-// Semantic h1 ensures axe-core passes without custom components.
+// Hero for the agent ops console. "My Local Agent App" heading and the
+// single "Get Started" primary CTA are test-bound copy — do not rephrase.
 export default function LandingPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="landing-container">
-      <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: '32px' }}>My Local Agent App</h1>
-      <Button type="primary" onClick={() => navigate('/onboarding')} aria-label="Get Started">
+    <main className="landing-container">
+      <span className="eyebrow">agent ops console</span>
+      <Typography.Title level={1}>My Local Agent App</Typography.Title>
+      <Typography.Paragraph className="hero-sub" type="secondary">
+        Register, monitor, and retire the automation agents running on your
+        machines — one local console, no cloud dependency, data stays with you.
+      </Typography.Paragraph>
+      <Button type="primary" size="large" onClick={() => navigate('/onboarding')}>
         Get Started
       </Button>
-    </div>
+      <div className="hero-meta" aria-hidden="true">
+        <span>local-first runtime</span>
+        <span>REST + OpenAPI 3.1</span>
+        <span>zero-config SQLite</span>
+      </div>
+    </main>
   );
 }

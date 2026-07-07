@@ -21,22 +21,32 @@ The single source of truth all agents read before generating code. Empty section
 
 ## Section 2 — Colors
 
-# Section 2 — Colors
-- Primary Actions & Links: `colorPrimary`
-- Base Text: `colorTextBase`
-- Muted/Placeholders/Accents: `colorTextSecondary`
-- Error/Validation: `colorError`
-- Container/Card Backgrounds: `colorBgContainer`
-- Page Background (B2B Console): `colorBgLayout`
-- Borders: `colorBorder`
-(All values resolved via Ant Design theme provider; zero hex literals.)
+Dark "agent ops console" theme (Ant `darkAlgorithm` + token overrides).
+All values live in `src/theme.ts` — components reference tokens/classes only,
+never hex literals. Every text/bg pair clears WCAG AA 4.5:1 (axe-gated).
+
+| Token | Value | Use |
+|---|---|---|
+| `colorPrimary` | `#2DD4A7` (teal-green) | primary actions, accent dot/eyebrow |
+| `colorLink` | `#4CC2FF` | links |
+| `colorBgBase` / `colorBgLayout` | `#0B1016` | page background (dot-grid texture) |
+| `colorBgContainer` | `#111823` | cards, table header |
+| `colorTextBase` | `#E8EEF4` | body text |
+| `colorTextSecondary` / `Description` | `#A9B7C6` | muted text, empty states |
+| `colorBorder` | `#243244` | borders, chips |
+| Button `primaryColor` | `#08110D` | dark text on bright primary (contrast) |
+
+Deliberately NOT: purple gradients, cream/serif editorial styling, or stock
+light-console look — house style is dark, technical, restrained glow.
 
 ## Section 3 — Typography
 
 # Section 3 — Typography
-- Families: System UI default (`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`) + Monospace fallback for technical payloads only (not used in current scope).
+- Families (max 2): System UI default for prose + `ui-monospace/JetBrains Mono/Consolas`
+  for technical accents (eyebrow labels, status tags, dates, count chips — via
+  `.mono-cell` / `.eyebrow` classes and `mono` export in `src/theme.ts`).
 - Body Size: 14px (minimum per policy)
-- Heading Scale: h1=24px/600, h2=20px/600, h3=18px/500
+- Heading Scale: hero h1=56px/700/-0.02em, page h2=24px/600, h3=18px/500
 - Body Weight: `fontWeightRegular` (400)
 - Strong/Meta Weight: `fontWeightStrong` (600)
 (Strictly max 2 families. Ant Design `fontFamily` token applied globally.)
@@ -110,13 +120,16 @@ export async function fetchJson<T>(url: string, opts?: RequestInit): Promise<T> 
 - **UI copy:** Apple/Mailchimp style. Specific button labels ("Save changes", not "Submit"). Actionable error messages.
 - **Docs:** Google/AWS imperative voice. Code first, theory second.
 
-## Section 8 — Visual design (Option A: Ant Design)
+## Section 8 — Visual design (Option A: Ant Design, dark console theme)
 
-- Colors: Ant Design palette only.
-- Typography: Ant defaults.
+- Colors: theme tokens from `src/theme.ts` only (Section 2). No hex in components.
+- Typography: system UI + mono accents per Section 3.
 - Spacing: 8pt grid.
-- Elevation: Ant `boxShadow` tokens only — no custom shadows.
-- Accessibility: WCAG AA, 4.5:1 minimum contrast.
+- Texture: page-level dot grid + top aurora glow (`src/styles.css`, decorative
+  only, `pointer-events: none`, never behind body text at AA-relevant contrast).
+- Elevation: Ant `boxShadow` tokens; the one custom glow (eyebrow status dot)
+  is decorative and `aria-hidden`.
+- Accessibility: WCAG AA, 4.5:1 minimum contrast — enforced by axe-core e2e.
 
 ## Section 9 — Anti-patterns (always forbidden)
 

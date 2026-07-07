@@ -1,7 +1,7 @@
 {
-  "current_phase": "06_docs",
+  "current_phase": "05_test_reports",
   "started_at": "2026-07-07T08:56:17+00:00",
-  "last_updated_at": "2026-07-07T10:11:46+00:00",
+  "last_updated_at": "2026-07-07T10:34:33+00:00",
   "phase_history": [
     "ingest",
     "product",
@@ -68,8 +68,8 @@
     },
     "qa": {
       "status": "done",
-      "started_at": "2026-07-07T10:07:48+00:00",
-      "finished_at": "2026-07-07T10:08:14+00:00",
+      "started_at": "2026-07-07T10:34:05+00:00",
+      "finished_at": "2026-07-07T10:34:33+00:00",
       "error": null
     },
     "refine": {

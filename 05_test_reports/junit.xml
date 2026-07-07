@@ -1,10 +1,74 @@
-<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="1.4329749999999999">
-<testsuite name="home.spec.ts" timestamp="2026-07-07T10:15:31.730Z" hostname="chromium" tests="3" failures="0" skipped="0" time="0.952" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.205">
+<testsuites id="" name="" tests="28" failures="0" skipped="0" errors="0" time="15.330670999999999">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.422" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.374">
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.261">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.42">
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.486">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.628">
+</testcase>
+</testsuite>
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.346" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.327">
+</testcase>
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.415">
+</testcase>
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.604">
+</testcase>
+</testsuite>
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.078" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.357">
+</testcase>
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.557">
+</testcase>
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.521">
+</testcase>
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.643">
+</testcase>
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="chromium" tests="4" failures="0" skipped="0" time="1.912" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.429">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.439">
+</testcase>
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.428">
+</testcase>
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.616">
+</testcase>
+</testsuite>
+<testsuite name="home.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.578" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.432">
+</testcase>
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.471">
+</testcase>
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.675">
+</testcase>
+</testsuite>
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.573" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.406">
+</testcase>
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.467">
+</testcase>
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.7">
+</testcase>
+</testsuite>
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.189" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.411">
+</testcase>
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.544">
+</testcase>
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.558">
+</testcase>
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.676">
+</testcase>
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T10:34:16.087Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.048" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.453">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.465">
+</testcase>
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.498">
+</testcase>
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.632">
 </testcase>
 </testsuite>
 </testsuites>

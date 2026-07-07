@@ -27,9 +27,10 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="centered-page">
-      <Card>
-        <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: '16px' }}>Welcome to onboarding</h2>
+    <main className="centered-page">
+      <span className="eyebrow">step 01 — register an agent</span>
+      <Card style={{ marginTop: 16 }}>
+        <h2>Welcome to onboarding</h2>
         {error && <Alert message={error} type="error" showIcon />}
         <Form layout="vertical" onFinish={handleSubmit} requiredMark={false}>
           <Form.Item
@@ -49,6 +50,6 @@ export default function OnboardingPage() {
           </Form.Item>
         </Form>
       </Card>
-    </div>
+    </main>
   );
 }
