@@ -1,13 +1,12 @@
-# ADR-001: Full-Stack Technology & Runtime Choice
-## Status: Accepted
-## Context: The project requires rapid refinement loops, strict type safety across layers, and a lightweight local-first storage strategy before potential migration to PostgreSQL in deployment.
-## Decision: 
-- **Frontend:** React + TypeScript (Vite) for fast HMR and tree-shaking.
-- **Backend:** Express + TypeScript (Node 20 LTS) for shared type generation with OpenAPI tooling.
-- **Database:** SQLite via Prisma ORM for zero-config local development, transactional safety, and schema migration compatibility.
-- **Contract:** REST over HTTP with OpenAPI 3.1 as the single source of truth for frontend API clients.
-## Consequences:
-- Zero config overhead; `npm run dev` starts full stack locally.
-- Prisma provides runtime type generation (`prisma generate`) preventing DTO drift between backend and Vite client.
-- SQLite limits concurrent write throughput but is fully sufficient for single-user B2B console use cases.
-- REST + OpenAPI 3.1 simplifies codegen validation and avoids GraphQL complexity for linear CRUD workflows.
+# ADR-001 — Full-Stack Technology & Runtime Choice
+
+## Context
+The project requires a fast feedback loop for rapid iteration during the NEW phase, with a clear path to production deployment without framework fragmentation.
+
+## Decision
+Adopt a unified Node.js runtime (v20) across frontend build tooling (Vite), backend API server (Express), and development toolchain. Pair with TypeScript throughout to enforce type safety from data model to UI components. Persist data using SQLite via Prisma ORM for local-first simplicity during development, with a documented migration path to Postgres for production.
+
+## Consequences
+- **Pros:** Single debug context, shared type definitions (via generated Prisma client / OpenAPI spec), faster local iteration, lower operational overhead during early stages.
+- **Cons:** SQLite limits concurrent writes under heavy load; requires explicit configuration to switch storage drivers later. Requires careful version pinning to ensure Node 20 LTS compatibility across tooling.
+- **Mitigation:** Prisma's provider flexibility abstracts the database driver. OpenAPI/DTO enforcement prevents backend/frontend contract drift. Production deployment will swap SQLite for Postgres via Docker without code changes.
