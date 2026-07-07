@@ -55,7 +55,7 @@ python -m venv .venv
 .venv/Scripts/python run-pipeline.py status             # stage/marker/cost table
 .venv/Scripts/python run-pipeline.py run --stage discover  # crawl a live app into tickets
 
-docker compose up --build    # deploy the generated app at http://localhost:8080
+docker compose up --build    # deploy the generated app at http://localhost:8088
 scripts/smoke.sh             # or scripts\smoke.ps1 on Windows
 ```
 

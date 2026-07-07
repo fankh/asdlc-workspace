@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: deploy/Dockerfile.frontend
     ports:
-      - "8080:80"
+      - "8088:80"
     depends_on:
       backend:
         condition: service_healthy

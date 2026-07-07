@@ -1,4 +1,6 @@
 FROM node:20-alpine
+# Prisma's engines need OpenSSL, which node:alpine no longer bundles
+RUN apk add --no-cache openssl
 WORKDIR /app
 COPY 04_source/backend/package.json 04_source/backend/package-lock.json* ./
 RUN npm install

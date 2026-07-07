@@ -1,6 +1,6 @@
 # Pipeline Runbook (Windows-first)
 
-Fresh clone → running app at http://localhost:8080, plus recovery procedures.
+Fresh clone → running app at http://localhost:8088, plus recovery procedures.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ live in `.pipeline/state.json`.
 ## Deploy + smoke test
 
 ```powershell
-docker compose up --build -d          # app at http://localhost:8080
+docker compose up --build -d          # app at http://localhost:8088
 powershell scripts\smoke.ps1          # build, boot, Playwright + AI-vision smoke, teardown
 ```
 
@@ -67,6 +67,25 @@ powershell scripts\smoke.ps1          # build, boot, Playwright + AI-vision smok
 | Ports 3000/3001 already in use | Kill strays: `taskkill /F /IM node.exe` (QA normally cleans up its own servers). |
 | Vision checks all `skipped` | Expected on Ollama (no vision model). Playwright + axe still gate; add an Anthropic key for the vision layer. |
 | Auto-commit skipped on main | By design. Work on a branch (`git checkout -b dev`). |
+
+## Ollama validation results (2026-07-07, qwen3.6 24GB)
+
+The full pipeline ran end-to-end on `qwen3.6:latest` with zero API cost:
+
+- **Works on Ollama**: every stage completed — ingestion, product (11 Gherkin
+  scenarios), design, architect (valid OpenAPI 3.1), both coders, testgen,
+  secops, QA, docs. Structured outputs up to 32k tokens held schema.
+- **Speed**: codegen stages take 10–30+ min each; a full run is hours, not
+  minutes. Use `--stop-after` to iterate on one phase at a time.
+- **Quality line**: the refinement loop auto-fixed a Prisma/SQLite enum bug,
+  TypeScript errors, a nested-Router crash (loop 4), and WCAG contrast tokens
+  — but exhausted its 5 loops on selector/copy-level issues and needed one
+  round of human intervention to reach 28/28 green. Expect the same: Ollama is
+  solid for specs/design/docs, workable-with-supervision for code/refinement.
+- **No vision**: ui-test-agent runs its Playwright/axe layers and marks
+  AI-vision observes `skipped`. Add an Anthropic key for the full oracle.
+- Anthropic-only features: `--stage discover` (Claude vision crawler), vision
+  observes/ux_review, Batch API, prompt caching.
 
 ## Cost expectations (Anthropic path)
 

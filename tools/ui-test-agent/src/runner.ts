@@ -26,7 +26,10 @@ export async function runScenario(scenario: Scenario, opts: RunOptions): Promise
   };
 
   try {
-    const target = new URL(scenario.url, opts.baseUrl).toString();
+    // baseUrl is authoritative: scenarios may carry absolute dev URLs
+    // (e.g. localhost:3000) but only their path is honoured here
+    const scenarioUrl = new URL(scenario.url, opts.baseUrl);
+    const target = new URL(scenarioUrl.pathname + scenarioUrl.search, opts.baseUrl).toString();
     await page.goto(target, { waitUntil: "networkidle" });
 
     for (const step of scenario.steps) {
