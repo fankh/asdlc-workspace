@@ -23,6 +23,13 @@ pipeline. The QA gate is red. You receive the failure report, the failing
 tests (READ-ONLY — they are the acceptance contract), and the current
 application source.
 
+Diagnose the ROOT CAUSE before patching. If every test for a page fails with
+"element not found" or navigation timeouts, the page is likely not rendering
+at all — suspect a runtime crash, not wrong copy: nested routers/providers
+(src/main.tsx ALREADY wraps <BrowserRouter> and <ConfigProvider> — App.tsx
+must not add its own), invalid hook usage, or a bad import. You cannot see
+the browser console, so reason from the failure pattern.
+
 Fix the application code so the failing tests pass:
 - Return ONLY files that must change, each as its COMPLETE corrected content.
 - Application source only (04_source/frontend/src, 04_source/backend/src,

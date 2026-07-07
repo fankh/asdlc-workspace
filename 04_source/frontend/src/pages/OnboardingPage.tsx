@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Typography, Card, Form, Input, Button, Alert } from 'antd';
+import { Card, Form, Input, Button, Alert } from 'antd';
 import { createAgent } from '../api/client';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ export default function OnboardingPage() {
   return (
     <div className="centered-page">
       <Card>
-        <Typography.Title level={2}>Onboarding</Typography.Title>
+        <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: '16px' }}>Onboarding</h2>
         {error && <Alert message={error} type="error" showIcon />}
         <Form layout="vertical" onFinish={handleSubmit} requiredMark={false}>
           <Form.Item

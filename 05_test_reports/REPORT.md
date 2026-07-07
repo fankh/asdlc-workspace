@@ -5,7 +5,7 @@
 | step | result |
 |---|---|
 | frontend npm install | pass |
-| backend npm install | FAIL |
+| backend npm install | pass |
 | frontend typecheck | pass |
 | backend typecheck | pass |
 | prisma db push | pass |
@@ -213,14 +213,14 @@ Call log:
 ```
 Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
 
-Locator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })
+Locator: getByRole('row').filter({ hasText: /^Task Optimizer$/i })
 Expected: visible
 Timeout: 5000ms
 Error: element(s) not found
 
 Call log:
 [2m  - Expect "toBeVisible" with timeout 5000ms[22m
-[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })[22m
+[2m  - waiting for getByRole('row').filter({ hasText: /^Task Optimizer$/i })[22m
 
 ```
 

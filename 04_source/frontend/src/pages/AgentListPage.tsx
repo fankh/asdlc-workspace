@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Typography, Table, Button, Empty, Alert, Tag, Popconfirm } from 'antd';
+import { Table, Button, Empty, Alert, Tag, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 import { listAgents, deleteAgent } from '../api/client';
 import type { Agent } from '../api/types';
@@ -57,13 +57,13 @@ export default function AgentListPage() {
 
   return (
     <div className="page-container">
-      <Typography.Title level={2}>Agents</Typography.Title>
+      <h2 style={{ fontSize: 20, fontWeight: 600, marginBottom: '16px' }}>Agents</h2>
       {error && (
         <Alert message={error} type="error" showIcon action={<Button onClick={() => window.location.reload()}>Reload</Button>} />
       )}
 
       {agents.length === 0 && !loading ? (
-        <Empty description="Empty">
+        <Empty description="No data available">
           <Link to="/onboarding">Create your first agent</Link>
         </Empty>
       ) : (

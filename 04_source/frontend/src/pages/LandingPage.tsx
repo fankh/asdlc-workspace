@@ -1,4 +1,4 @@
-import { Typography, Button } from 'antd';
+import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
 // Renders the initial impression zone with centered layout per UI spec.
@@ -8,7 +8,7 @@ export default function LandingPage() {
 
   return (
     <div className="landing-container">
-      <Typography.Title level={1}>My Local Agent App</Typography.Title>
+      <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: '32px' }}>My Local Agent App</h1>
       <Button type="primary" onClick={() => navigate('/onboarding')} aria-label="Get Started">
         Get Started
       </Button>
