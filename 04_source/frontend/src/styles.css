@@ -118,7 +118,9 @@ body::before {
   margin-bottom: 24px;
 }
 
+.page-header h1,
 .page-header h2,
+.centered-page h1,
 .centered-page h2 {
   font-size: 24px;
   font-weight: 600;

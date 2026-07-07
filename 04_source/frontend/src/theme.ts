@@ -16,6 +16,7 @@ export const appTheme: ThemeConfig = {
     colorTextDescription: '#A9B7C6',
     colorBorder: '#243244',
     colorBorderSecondary: '#1B2635',
+    colorError: '#F26663',
     borderRadius: 10,
     fontSize: 14,
   },

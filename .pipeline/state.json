@@ -1,7 +1,7 @@
 {
-  "current_phase": "04_source",
+  "current_phase": "05_test_reports",
   "started_at": "2026-07-07T08:56:17+00:00",
-  "last_updated_at": "2026-07-07T11:49:43+00:00",
+  "last_updated_at": "2026-07-07T12:01:57+00:00",
   "phase_history": [
     "ingest",
     "product",
@@ -16,7 +16,7 @@
     "docs",
     "audit"
   ],
-  "refinement_loops": 2,
+  "refinement_loops": 0,
   "human_intervention_required": false,
   "stages": {
     "ingest": {
@@ -63,21 +63,19 @@
     },
     "secops": {
       "status": "done",
-      "started_at": "2026-07-07T11:36:31+00:00",
-      "finished_at": "2026-07-07T11:36:33+00:00",
+      "started_at": "2026-07-07T12:01:55+00:00",
+      "finished_at": "2026-07-07T12:01:57+00:00",
       "error": null
     },
     "qa": {
       "status": "failed",
-      "started_at": "2026-07-07T11:43:30+00:00",
-      "finished_at": "2026-07-07T11:44:31+00:00",
-      "error": "22/34 e2e passed, 1 failed step(s)"
+      "started_at": "2026-07-07T11:54:17+00:00",
+      "finished_at": "2026-07-07T11:56:51+00:00",
+      "error": "30/34 e2e passed, 1 failed step(s)"
     },
     "refine": {
-      "status": "done",
-      "started_at": "2026-07-07T11:44:31+00:00",
-      "finished_at": "2026-07-07T11:49:43+00:00",
-      "error": null
+      "status": "running",
+      "started_at": "2026-07-07T11:50:57+00:00"
     },
     "docs": {
       "status": "done",

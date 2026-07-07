@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Table, Button, Empty, Alert, Tag, Select, Popconfirm } from 'antd';
+import { Table, Button, Empty, Alert, Tag, Select } from 'antd';
 import { Link } from 'react-router-dom';
 import { listAgents, deleteAgent } from '../api/client';
 import type { Agent } from '../api/types';
@@ -65,9 +65,7 @@ export default function AgentListPage() {
       key: 'action',
       width: 100,
       render: (_: any, record: Agent) => (
-        <Popconfirm title="Delete agent?" description="Are you sure?" onConfirm={() => handleDelete(record.id)} okText="Yes" cancelText="No">
-          <Button danger>Delete</Button>
-        </Popconfirm>
+        <Button danger onClick={() => handleDelete(record.id)}>Delete</Button>
       ),
     },
   ];
@@ -82,7 +80,7 @@ export default function AgentListPage() {
   return (
     <main className="page-container">
       <div className="page-header">
-        <h2>Agents</h2>
+        <h1>Agents</h1>
         <span className="count-chip">{loading ? '…' : `${agents.length} registered`}</span>
       </div>
 
@@ -96,7 +94,7 @@ export default function AgentListPage() {
 
       {filteredAgents.length === 0 && !loading ? (
         <Empty description="No data available">
-          <Link to="/onboarding">Add an agent</Link>
+          <Link to="/onboarding">Add agent</Link>
         </Empty>
       ) : (
         <Table key={`agent-table-${agents.length}`} dataSource={filteredAgents} columns={columns} loading={loading} rowKey="id" pagination={false} scroll={{ x: 'max-content' }} locale={{ emptyText: null }} />

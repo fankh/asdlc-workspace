@@ -27,7 +27,7 @@ export default function OnboardingPage() {
     <main className="centered-page">
       <span className="eyebrow">step 01 — register an agent</span>
       <Card style={{ marginTop: 16 }}>
-        <h1>Welcome</h1>
+        <h1>Welcome to onboarding</h1>
         {error && <Alert message={error} type="error" showIcon />}
         <Form layout="vertical" onFinish={handleSubmit} requiredMark={false}>
           <Form.Item
