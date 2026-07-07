@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "tools": [
+    "npm-audit:frontend",
+    "npm-audit:backend",
+    "regex-secret-scan"
+  ],
+  "findings": []
+}
