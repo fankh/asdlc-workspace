@@ -116,10 +116,11 @@ PLAYWRIGHT_CONFIG = """import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: './e2e',
-  fullyParallel: true,
+  // sequential: tests share one backend database; parallel workers race
+  fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: [
     ['html', { outputFolder: '../../05_test_reports/playwright', open: 'never' }],
     ['json', { outputFile: '../../05_test_reports/results.json' }],

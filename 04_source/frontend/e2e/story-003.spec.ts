@@ -4,6 +4,10 @@ import { AgentListPage } from './pages/AgentListPage';
 
 test.describe('STORY-003', () => {
   test('table renders with required column headers', async ({ page }) => {
+    // headers only render when the table has data — guarantee one agent
+    await page.request.post('/api/agents', {
+      data: { name: `Header Test Agent ${Date.now()}`, description: 'auto' },
+    });
     const list = new AgentListPage(page);
     await list.goto();
     await list.expectHeadersVisible();
@@ -23,17 +27,14 @@ test.describe('STORY-003', () => {
   });
 
   test('deletion removes agent row without full page reload', async ({ page }) => {
+    // Deterministic setup BEFORE navigation (page fetches agents on mount)
+    const targetName = `Deletion Test Agent ${Date.now()}`;
+    await page.request.post('/api/agents', {
+      data: { name: targetName, description: 'auto' },
+    });
+
     const list = new AgentListPage(page);
     await list.goto();
-
-    // Deterministic setup: ensure one agent exists
-    let targetName = 'Deletion Test Agent';
-    const existing = await page.request.get('/api/agents').then(r => r.json()).catch(() => []);
-    if (existing.length === 0) {
-      await page.request.post('/api/agents', { data: JSON.stringify({ name: targetName, description: 'auto' }) });
-    } else {
-      targetName = existing[0].name;
-    }
 
     const row = list.rowFor(targetName);
     await expect(row).toBeVisible();

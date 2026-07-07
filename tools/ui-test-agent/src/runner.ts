@@ -13,7 +13,9 @@ export interface RunOptions {
 
 export async function runScenario(scenario: Scenario, opts: RunOptions): Promise<ScenarioResult> {
   const browser = await chromium.launch({ headless: !opts.headed });
-  const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  // axe-core/playwright requires a context-created page
+  const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await context.newPage();
   const checks: CheckResult[] = [];
   let shotIndex = 0;
 

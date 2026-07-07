@@ -1,13 +1,13 @@
 {
   "base_url": "http://localhost:3000",
   "oracle": "vision disabled (provider=ollama, key=missing)",
-  "ok": false,
+  "ok": true,
   "scenarios": [
     {
       "scenario": "home_page_first_impression",
       "story": "STORY-001",
       "url": "http://localhost:3000/",
-      "ok": false,
+      "ok": true,
       "checks": [
         {
           "kind": "observe",
@@ -62,10 +62,9 @@
           "screenshot": "home_page_first_impression-06.png"
         },
         {
-          "kind": "act",
-          "description": "scenario execution",
-          "status": "fail",
-          "detail": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+          "kind": "accessibility",
+          "description": "axe-core wcag2a,wcag2aa (fail on serious,critical)",
+          "status": "pass"
         }
       ]
     }

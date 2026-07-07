@@ -15,7 +15,7 @@ export class AgentListPage {
     this.tableHeaderDescription = page.getByRole('columnheader', { name: 'description' });
     this.tableHeaderStatus = page.getByRole('columnheader', { name: 'status' });
     this.tableHeaderCreationDate = page.getByRole('columnheader', { name: 'creation date' });
-    this.emptyStateMessage = page.getByText(/no data|empty/i);
+    this.emptyStateMessage = page.getByText(/no data available/i).first();
     this.emptyStateLinkToOnboarding = page.getByRole('link', { name: /onboarding|add agent/i }).first();
   }
 
@@ -24,11 +24,11 @@ export class AgentListPage {
   }
 
   rowFor(agentName: string): Locator {
-    return this.page.getByRole('row').filter({ hasText: new RegExp(`^${agentName}$`, 'i') });
+    return this.page.getByRole('row').filter({ hasText: agentName });
   }
 
   rowBodyFor(agentName: string): Locator {
-    return this.rowFor(agentName).getByRole('cell');
+    return this.rowFor(agentName).getByRole('cell').first();
   }
 
   statusCellFor(agentName: string): Locator {

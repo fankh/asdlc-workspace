@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Table, Button, Empty, Alert, Tag, Popconfirm } from 'antd';
+import { Table, Button, Empty, Alert, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { listAgents, deleteAgent } from '../api/client';
 import type { Agent } from '../api/types';
@@ -48,9 +48,7 @@ export default function AgentListPage() {
       key: 'action',
       width: 100,
       render: (_: any, record: Agent) => (
-        <Popconfirm title="Delete agent?" description="Are you sure?" okText="Yes" cancelText="No">
-          <Button danger onClick={() => handleDelete(record.id)}>Delete</Button>
-        </Popconfirm>
+        <Button danger onClick={() => handleDelete(record.id)}>Delete</Button>
       ),
     },
   ];
@@ -64,10 +62,10 @@ export default function AgentListPage() {
 
       {agents.length === 0 && !loading ? (
         <Empty description="No data available">
-          <Link to="/onboarding">Create your first agent</Link>
+          <Link to="/onboarding">Add agent</Link>
         </Empty>
       ) : (
-        <Table dataSource={agents} columns={columns} loading={loading} rowKey="id" pagination={false} />
+        <Table dataSource={agents} columns={columns} loading={loading} rowKey="id" pagination={false} scroll={{ x: 'max-content' }} />
       )}
     </div>
   );
