@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Agent {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  status      Status   @default(IDLE)
+  createdAt   DateTime @default(now())
+
+  @@map("agents")
+}
+
+enum Status {
+  IDLE
+  ACTIVE
+  PAUSED
+}

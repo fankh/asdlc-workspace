@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -28,11 +29,13 @@ def _now() -> str:
 class State:
     def __init__(self, path: Path):
         self.path = path
-        self.data: dict[str, Any] = dict(STATE_KEYS)
+        # deep copy: STATE_KEYS holds mutable defaults that must never be
+        # shared between State instances (or mutated in place)
+        self.data: dict[str, Any] = copy.deepcopy(STATE_KEYS)
         if path.exists():
             self.data.update(json.loads(path.read_text(encoding="utf-8")))
         for key, default in STATE_KEYS.items():
-            self.data.setdefault(key, default)
+            self.data.setdefault(key, copy.deepcopy(default))
 
     def save(self) -> None:
         self.data["last_updated_at"] = _now()
@@ -81,8 +84,5 @@ class State:
         self.save()
 
     def reset(self) -> None:
-        self.data = dict(STATE_KEYS)
-        self.data["stages"] = {}
-        self.data["usage"] = {}
-        self.data["phase_history"] = []
+        self.data = copy.deepcopy(STATE_KEYS)
         self.save()
