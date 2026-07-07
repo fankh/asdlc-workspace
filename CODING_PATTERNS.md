@@ -21,15 +21,36 @@ The single source of truth all agents read before generating code. Empty section
 
 ## Section 2 — Colors
 
-> Established when Design Agent runs. Until then, use Ant Design tokens only. No hex literals.
+# Section 2 — Colors
+- Primary Actions & Links: `colorPrimary`
+- Base Text: `colorTextBase`
+- Muted/Placeholders/Accents: `colorTextSecondary`
+- Error/Validation: `colorError`
+- Container/Card Backgrounds: `colorBgContainer`
+- Page Background (B2B Console): `colorBgLayout`
+- Borders: `colorBorder`
+(All values resolved via Ant Design theme provider; zero hex literals.)
 
 ## Section 3 — Typography
 
-> System UI fonts. Body 14px minimum. Max 2 families.
+# Section 3 — Typography
+- Families: System UI default (`-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`) + Monospace fallback for technical payloads only (not used in current scope).
+- Body Size: 14px (minimum per policy)
+- Heading Scale: h1=24px/600, h2=20px/600, h3=18px/500
+- Body Weight: `fontWeightRegular` (400)
+- Strong/Meta Weight: `fontWeightStrong` (600)
+(Strictly max 2 families. Ant Design `fontFamily` token applied globally.)
 
 ## Section 4 — Spacing
 
-> 8pt grid (4 / 8 / 16 / 24 / 32 / 48). No 13px, 17px, 23px.
+# Section 4 — Spacing
+- Page/Region Padding: 32px
+- Component/Card Padding: 24px
+- Form Item Margin: 16px vertical, 0 horizontal
+- Table Cell Padding: 16px
+- Button Height: 40px (default Ant)
+- Gaps/Breaks: 8px (tight), 16px (standard), 32px (section separators)
+(All values strictly on 4/8/16/24/32 grid.)
 
 ## Section 5 — Components
 

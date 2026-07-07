@@ -112,6 +112,53 @@ INDEX_HTML = """<!doctype html>
 </html>
 """
 
+PLAYWRIGHT_CONFIG = """import { defineConfig, devices } from '@playwright/test';
+
+export default defineConfig({
+  testDir: './e2e',
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: [
+    ['html', { outputFolder: '../../05_test_reports/playwright', open: 'never' }],
+    ['json', { outputFile: '../../05_test_reports/results.json' }],
+    ['junit', { outputFile: '../../05_test_reports/junit.xml' }],
+    ['list'],
+  ],
+
+  use: {
+    baseURL: process.env.BASE_URL ?? 'http://localhost:3000',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
+  },
+
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'mobile-chrome', use: { ...devices['Pixel 5'] } },
+  ],
+
+  webServer: process.env.NO_WEB_SERVER
+    ? undefined
+    : [
+        {
+          command: 'npm run dev',
+          cwd: '../backend',
+          url: 'http://localhost:3001/api/health',
+          reuseExistingServer: !process.env.CI,
+          timeout: 120_000,
+        },
+        {
+          command: 'npm run dev',
+          url: 'http://localhost:3000',
+          reuseExistingServer: !process.env.CI,
+          timeout: 120_000,
+        },
+      ],
+});
+"""
+
 MAIN_TSX = """import { ConfigProvider } from 'antd';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -175,6 +222,7 @@ class FrontendCoderAgent(Agent):
         self.write_file(f"{FRONTEND}/package.json",
                         json.dumps(PACKAGE_JSON, indent=2) + "\n")
         self.write_file(f"{FRONTEND}/vite.config.ts", VITE_CONFIG)
+        self.write_file(f"{FRONTEND}/playwright.config.ts", PLAYWRIGHT_CONFIG)
         self.write_file(f"{FRONTEND}/tsconfig.json", TSCONFIG)
         self.write_file(f"{FRONTEND}/index.html", INDEX_HTML)
         self.write_file(f"{FRONTEND}/src/main.tsx", MAIN_TSX)
