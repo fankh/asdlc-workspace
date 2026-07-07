@@ -122,7 +122,7 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5744,
+                      "duration": 6343,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at HomePage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:20:32)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:11:16",
@@ -146,7 +146,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:17.911Z",
+                      "startTime": "2026-07-07T09:44:48.188Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -196,7 +196,7 @@
                       "workerIndex": 1,
                       "parallelIndex": 1,
                       "status": "timedOut",
-                      "duration": 31707,
+                      "duration": 31765,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -217,7 +217,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.042Z",
+                      "startTime": "2026-07-07T09:44:48.113Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -262,12 +262,12 @@
                       "workerIndex": 2,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 1237,
+                      "duration": 1421,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:17.978Z",
+                      "startTime": "2026-07-07T09:44:48.095Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -296,7 +296,7 @@
                       "workerIndex": 14,
                       "parallelIndex": 14,
                       "status": "failed",
-                      "duration": 6167,
+                      "duration": 5938,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at HomePage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:20:32)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:11:16",
@@ -320,7 +320,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.043Z",
+                      "startTime": "2026-07-07T09:44:48.359Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -370,7 +370,7 @@
                       "workerIndex": 15,
                       "parallelIndex": 15,
                       "status": "timedOut",
-                      "duration": 31432,
+                      "duration": 31431,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -391,7 +391,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.147Z",
+                      "startTime": "2026-07-07T09:44:48.188Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -436,12 +436,12 @@
                       "workerIndex": 16,
                       "parallelIndex": 2,
                       "status": "passed",
-                      "duration": 749,
+                      "duration": 770,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:19.880Z",
+                      "startTime": "2026-07-07T09:44:50.163Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -487,7 +487,7 @@
                       "workerIndex": 3,
                       "parallelIndex": 3,
                       "status": "failed",
-                      "duration": 6144,
+                      "duration": 6226,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:9:32",
@@ -511,7 +511,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.052Z",
+                      "startTime": "2026-07-07T09:44:48.145Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -561,7 +561,7 @@
                       "workerIndex": 4,
                       "parallelIndex": 4,
                       "status": "timedOut",
-                      "duration": 31819,
+                      "duration": 31683,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -582,7 +582,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:17.986Z",
+                      "startTime": "2026-07-07T09:44:48.190Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -627,12 +627,12 @@
                       "workerIndex": 5,
                       "parallelIndex": 5,
                       "status": "passed",
-                      "duration": 1093,
+                      "duration": 1482,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.057Z",
+                      "startTime": "2026-07-07T09:44:48.170Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -659,9 +659,9 @@
                   "results": [
                     {
                       "workerIndex": 17,
-                      "parallelIndex": 5,
+                      "parallelIndex": 13,
                       "status": "failed",
-                      "duration": 5649,
+                      "duration": 5631,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:9:32",
@@ -685,7 +685,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:19.919Z",
+                      "startTime": "2026-07-07T09:44:50.293Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -733,9 +733,9 @@
                   "results": [
                     {
                       "workerIndex": 18,
-                      "parallelIndex": 13,
+                      "parallelIndex": 5,
                       "status": "timedOut",
-                      "duration": 31045,
+                      "duration": 31153,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -756,7 +756,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:20.039Z",
+                      "startTime": "2026-07-07T09:44:50.327Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -801,12 +801,12 @@
                       "workerIndex": 19,
                       "parallelIndex": 9,
                       "status": "passed",
-                      "duration": 653,
+                      "duration": 680,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:20.079Z",
+                      "startTime": "2026-07-07T09:44:50.384Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -852,7 +852,7 @@
                       "workerIndex": 6,
                       "parallelIndex": 6,
                       "status": "failed",
-                      "duration": 5834,
+                      "duration": 5866,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22",
@@ -876,7 +876,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:17.997Z",
+                      "startTime": "2026-07-07T09:44:48.161Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -926,7 +926,7 @@
                       "workerIndex": 7,
                       "parallelIndex": 7,
                       "status": "timedOut",
-                      "duration": 31798,
+                      "duration": 31800,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -947,7 +947,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:17.988Z",
+                      "startTime": "2026-07-07T09:44:48.179Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -992,7 +992,7 @@
                       "workerIndex": 8,
                       "parallelIndex": 8,
                       "status": "timedOut",
-                      "duration": 31771,
+                      "duration": 31770,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1013,7 +1013,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.046Z",
+                      "startTime": "2026-07-07T09:44:48.147Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1058,12 +1058,12 @@
                       "workerIndex": 9,
                       "parallelIndex": 9,
                       "status": "passed",
-                      "duration": 1197,
+                      "duration": 1333,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.098Z",
+                      "startTime": "2026-07-07T09:44:48.182Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1092,7 +1092,7 @@
                       "workerIndex": 16,
                       "parallelIndex": 2,
                       "status": "failed",
-                      "duration": 5493,
+                      "duration": 5498,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22",
@@ -1116,7 +1116,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:20.738Z",
+                      "startTime": "2026-07-07T09:44:51.033Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1166,7 +1166,7 @@
                       "workerIndex": 19,
                       "parallelIndex": 9,
                       "status": "timedOut",
-                      "duration": 31042,
+                      "duration": 31085,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1187,7 +1187,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:20.851Z",
+                      "startTime": "2026-07-07T09:44:51.209Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1230,9 +1230,9 @@
                   "results": [
                     {
                       "workerIndex": 20,
-                      "parallelIndex": 0,
+                      "parallelIndex": 6,
                       "status": "timedOut",
-                      "duration": 31145,
+                      "duration": 31024,
                       "error": {
                         "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
                         "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
@@ -1253,7 +1253,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:24.261Z",
+                      "startTime": "2026-07-07T09:44:54.682Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1296,14 +1296,14 @@
                   "results": [
                     {
                       "workerIndex": 21,
-                      "parallelIndex": 6,
+                      "parallelIndex": 3,
                       "status": "passed",
-                      "duration": 888,
+                      "duration": 842,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:24.709Z",
+                      "startTime": "2026-07-07T09:44:55.148Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1349,7 +1349,7 @@
                       "workerIndex": 10,
                       "parallelIndex": 10,
                       "status": "failed",
-                      "duration": 6065,
+                      "duration": 6074,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n\n    at AgentListPage.expectHeadersVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:41:40)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:9:16",
@@ -1373,7 +1373,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.033Z",
+                      "startTime": "2026-07-07T09:44:48.204Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1423,7 +1423,7 @@
                       "workerIndex": 11,
                       "parallelIndex": 11,
                       "status": "failed",
-                      "duration": 6312,
+                      "duration": 6373,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:22:16",
@@ -1447,7 +1447,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.075Z",
+                      "startTime": "2026-07-07T09:44:48.294Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1497,10 +1497,10 @@
                       "workerIndex": 12,
                       "parallelIndex": 12,
                       "status": "failed",
-                      "duration": 6202,
+                      "duration": 6287,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Task Optimizer$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Task Optimizer$/i })\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Task Optimizer$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Task Optimizer$/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Log Analyzer$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Log Analyzer$/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Log Analyzer$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Log Analyzer$/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23",
                         "location": {
                           "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
                           "column": 23,
@@ -1515,13 +1515,13 @@
                             "column": 23,
                             "line": 39
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Task Optimizer$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Task Optimizer$/i })\u001b[22m\n\n\n  37 |\n  38 |     const row = list.rowFor(targetName);\n> 39 |     await expect(row).toBeVisible();\n     |                       ^\n  40 |     await expect(page).toHaveURL('/agents');\n  41 |\n  42 |     await list.deleteAgent(targetName);\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Log Analyzer$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Log Analyzer$/i })\u001b[22m\n\n\n  37 |\n  38 |     const row = list.rowFor(targetName);\n> 39 |     await expect(row).toBeVisible();\n     |                       ^\n  40 |     await expect(page).toHaveURL('/agents');\n  41 |\n  42 |     await list.deleteAgent(targetName);\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.017Z",
+                      "startTime": "2026-07-07T09:44:48.178Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1571,12 +1571,12 @@
                       "workerIndex": 13,
                       "parallelIndex": 13,
                       "status": "passed",
-                      "duration": 1049,
+                      "duration": 1282,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:18.090Z",
+                      "startTime": "2026-07-07T09:44:48.262Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1605,7 +1605,7 @@
                       "workerIndex": 22,
                       "parallelIndex": 10,
                       "status": "failed",
-                      "duration": 5661,
+                      "duration": 5709,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n\n    at AgentListPage.expectHeadersVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:41:40)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:9:16",
@@ -1629,7 +1629,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:24.944Z",
+                      "startTime": "2026-07-07T09:44:55.229Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1679,7 +1679,7 @@
                       "workerIndex": 23,
                       "parallelIndex": 12,
                       "status": "failed",
-                      "duration": 5670,
+                      "duration": 5685,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:22:16",
@@ -1703,7 +1703,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:24.991Z",
+                      "startTime": "2026-07-07T09:44:55.250Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1753,7 +1753,7 @@
                       "workerIndex": 24,
                       "parallelIndex": 14,
                       "status": "failed",
-                      "duration": 5673,
+                      "duration": 5682,
                       "error": {
                         "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n",
                         "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23",
@@ -1777,7 +1777,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:25.105Z",
+                      "startTime": "2026-07-07T09:44:55.269Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1825,14 +1825,14 @@
                   "results": [
                     {
                       "workerIndex": 25,
-                      "parallelIndex": 3,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 747,
+                      "duration": 723,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T09:37:25.175Z",
+                      "startTime": "2026-07-07T09:44:55.513Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1852,8 +1852,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-07T09:37:17.304Z",
-    "duration": 38280.607,
+    "startTime": "2026-07-07T09:44:47.451Z",
+    "duration": 38460.356999999996,
     "expected": 8,
     "skipped": 0,
     "unexpected": 20,

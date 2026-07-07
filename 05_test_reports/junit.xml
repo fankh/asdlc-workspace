@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="28" failures="12" skipped="0" errors="8" time="38.280607">
-<testsuite name="home.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="chromium" tests="3" failures="1" skipped="0" time="38.688" errors="1">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="5.744">
+<testsuites id="" name="" tests="28" failures="12" skipped="0" errors="8" time="38.460356999999995">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="3" failures="1" skipped="0" time="39.529" errors="1">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="6.343">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\test-failed-1.png]]
@@ -49,7 +49,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="31.707">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="31.765">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\test-failed-1.png]]
@@ -93,11 +93,11 @@
 ]]>
 </error>
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="1.237">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="1.421">
 </testcase>
 </testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="chromium" tests="3" failures="1" skipped="0" time="39.056" errors="1">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="6.144">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="3" failures="1" skipped="0" time="39.391" errors="1">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="6.226">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\test-failed-1.png]]
@@ -143,7 +143,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="31.819">
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="31.683">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\test-failed-1.png]]
@@ -187,11 +187,11 @@
 ]]>
 </error>
 </testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="1.093">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="1.482">
 </testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="chromium" tests="4" failures="1" skipped="0" time="70.6" errors="2">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.834">
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="4" failures="1" skipped="0" time="70.769" errors="2">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.866">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\test-failed-1.png]]
@@ -240,7 +240,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="31.798">
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="31.8">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\test-failed-1.png]]
@@ -284,7 +284,7 @@
 ]]>
 </error>
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="31.771">
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="31.77">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\test-failed-1.png]]
@@ -328,11 +328,11 @@
 ]]>
 </error>
 </testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="1.197">
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="1.333">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="chromium" tests="4" failures="3" skipped="0" time="19.628" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="6.065">
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="chromium" tests="4" failures="3" skipped="0" time="20.016" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="6.074">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\test-failed-1.png]]
@@ -381,7 +381,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="6.312">
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="6.373">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\test-failed-1.png]]
@@ -430,7 +430,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="6.202">
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="6.287">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\test-failed-1.png]]
@@ -445,14 +445,14 @@
 
     Error: expect(locator).toBeVisible() failed
 
-    Locator: getByRole('row').filter({ hasText: /^Task Optimizer$/i })
+    Locator: getByRole('row').filter({ hasText: /^Log Analyzer$/i })
     Expected: visible
     Timeout: 5000ms
     Error: element(s) not found
 
     Call log:
       - Expect "toBeVisible" with timeout 5000ms
-      - waiting for getByRole('row').filter({ hasText: /^Task Optimizer$/i })
+      - waiting for getByRole('row').filter({ hasText: /^Log Analyzer$/i })
 
 
       37 |
@@ -476,11 +476,11 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="1.049">
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="1.282">
 </testcase>
 </testsuite>
-<testsuite name="home.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="38.348" errors="1">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="6.167">
+<testsuite name="home.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="38.139" errors="1">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="5.938">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\test-failed-1.png]]
@@ -529,7 +529,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="31.432">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="31.431">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\test-failed-1.png]]
@@ -573,11 +573,11 @@
 ]]>
 </error>
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.749">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.77">
 </testcase>
 </testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="37.347" errors="1">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="5.649">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="3" failures="1" skipped="0" time="37.464" errors="1">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="5.631">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\test-failed-1.png]]
@@ -623,7 +623,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="31.045">
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="31.153">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\test-failed-1.png]]
@@ -667,11 +667,11 @@
 ]]>
 </error>
 </testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.653">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.68">
 </testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="mobile-chrome" tests="4" failures="1" skipped="0" time="68.568" errors="2">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.493">
+<testsuite name="story-002.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="4" failures="1" skipped="0" time="68.449" errors="2">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="5.498">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\test-failed-1.png]]
@@ -720,7 +720,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="31.042">
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="31.085">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\test-failed-1.png]]
@@ -764,7 +764,7 @@
 ]]>
 </error>
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="31.145">
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="31.024">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\test-failed-1.png]]
@@ -808,11 +808,11 @@
 ]]>
 </error>
 </testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.888">
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.842">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:37:17.376Z" hostname="mobile-chrome" tests="4" failures="3" skipped="0" time="17.751" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="5.661">
+<testsuite name="story-003.spec.ts" timestamp="2026-07-07T09:44:47.539Z" hostname="mobile-chrome" tests="4" failures="3" skipped="0" time="17.799" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="5.709">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-table--2f2b9-ith-required-column-headers-mobile-chrome\test-failed-1.png]]
@@ -861,7 +861,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="5.67">
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="5.685">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\test-failed-1.png]]
@@ -910,7 +910,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="5.673">
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="5.682">
 <system-out>
 <![CDATA[
 [[ATTACHMENT|..\04_source\frontend\test-results\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\test-failed-1.png]]
@@ -956,7 +956,7 @@
 ]]>
 </failure>
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.747">
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.723">
 </testcase>
 </testsuite>
 </testsuites>
