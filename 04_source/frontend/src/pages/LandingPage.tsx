@@ -1,8 +1,6 @@
 import { Button, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
-// Hero for the agent ops console. "My Local Agent App" heading and the
-// single "Get Started" primary CTA are test-bound copy — do not rephrase.
 export default function LandingPage() {
   const navigate = useNavigate();
 
