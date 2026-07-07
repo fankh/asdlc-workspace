@@ -1,0 +1,75 @@
+{
+  "base_url": "http://localhost:3000",
+  "oracle": "vision disabled (provider=ollama, key=missing)",
+  "ok": false,
+  "scenarios": [
+    {
+      "scenario": "home_page_first_impression",
+      "story": "STORY-001",
+      "url": "http://localhost:3000/",
+      "ok": false,
+      "checks": [
+        {
+          "kind": "observe",
+          "description": "The page should clearly identify the product as \"My Local Agent App\"\n(heading, hero, or logo containing that name).",
+          "status": "skipped",
+          "detail": "vision oracle unavailable",
+          "screenshot": "home_page_first_impression-01.png"
+        },
+        {
+          "kind": "observe",
+          "description": "A primary call-to-action button labelled \"Get Started\" should be visible\nabove the fold without scrolling.",
+          "status": "skipped",
+          "detail": "vision oracle unavailable",
+          "screenshot": "home_page_first_impression-02.png"
+        },
+        {
+          "kind": "act",
+          "description": "click the \"Get Started\" button",
+          "status": "fail",
+          "detail": "no button/link/text matching \"Get Started\""
+        },
+        {
+          "kind": "url",
+          "description": "URL matches /onboarding$",
+          "status": "fail",
+          "detail": "actual URL: http://localhost:3000/"
+        },
+        {
+          "kind": "observe",
+          "description": "The onboarding screen should show a heading containing the word\n\"Onboarding\" or \"Welcome\".",
+          "status": "skipped",
+          "detail": "vision oracle unavailable",
+          "screenshot": "home_page_first_impression-03.png"
+        },
+        {
+          "kind": "ux_review",
+          "description": "The hero copy should be benefit-led, not feature-led.",
+          "status": "skipped",
+          "detail": "vision oracle unavailable",
+          "screenshot": "home_page_first_impression-04.png"
+        },
+        {
+          "kind": "ux_review",
+          "description": "The CTA contrast should pass WCAG AA against its background.",
+          "status": "skipped",
+          "detail": "vision oracle unavailable",
+          "screenshot": "home_page_first_impression-05.png"
+        },
+        {
+          "kind": "ux_review",
+          "description": "There must be exactly one primary action above the fold.",
+          "status": "skipped",
+          "detail": "vision oracle unavailable",
+          "screenshot": "home_page_first_impression-06.png"
+        },
+        {
+          "kind": "act",
+          "description": "scenario execution",
+          "status": "fail",
+          "detail": "Please use browser.newContext()\n Please check out https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/error-handling.md"
+        }
+      ]
+    }
+  ]
+}

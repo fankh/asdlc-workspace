@@ -29,7 +29,7 @@ export default function OnboardingPage() {
   return (
     <div className="centered-page">
       <Card>
-        <Typography.Title level={2}>Welcome</Typography.Title>
+        <Typography.Title level={2}>Onboarding</Typography.Title>
         {error && <Alert message={error} type="error" showIcon />}
         <Form layout="vertical" onFinish={handleSubmit} requiredMark={false}>
           <Form.Item

@@ -1,0 +1,1862 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\repos\\asdlc-workspace\\04_source\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\playwright.config.ts",
+    "rootDir": "C:/repos/asdlc-workspace/04_source/frontend/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 16
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/repos/asdlc-workspace/04_source/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 16
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/repos/asdlc-workspace/04_source/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/repos/asdlc-workspace/04_source/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 16
+        },
+        "id": "mobile-chrome",
+        "name": "mobile-chrome",
+        "testDir": "C:/repos/asdlc-workspace/04_source/frontend/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "../../05_test_reports/playwright",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../05_test_reports/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "../../05_test_reports/junit.xml"
+        }
+      ],
+      [
+        "list",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.61.1",
+    "workers": 16,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "home.spec.ts",
+      "file": "home.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Home page first impression",
+          "file": "home.spec.ts",
+          "line": 7,
+          "column": 6,
+          "specs": [
+            {
+              "title": "page loads and shows product name",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6809,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at HomePage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:20:32)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:11:16",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                          "column": 32,
+                          "line": 20
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\HomePage.ts:20\n\n\u001b[0m \u001b[90m 18 |\u001b[39m\n \u001b[90m 19 |\u001b[39m   \u001b[36masync\u001b[39m expectVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mheading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetStartedButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m   }\n \u001b[90m 23 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                            "column": 32,
+                            "line": 20
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n\n   at pages\\HomePage.ts:20\n\n  18 |\n  19 |   async expectVisible() {\n> 20 |     await expect(this.heading).toBeVisible();\n     |                                ^\n  21 |     await expect(this.getStartedButton).toBeVisible();\n  22 |   }\n  23 |\n    at HomePage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:20:32)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:11:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.819Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-0f377-oads-and-shows-product-name-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                        "column": 32,
+                        "line": 20
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-d630d004756654998f22",
+              "file": "home.spec.ts",
+              "line": 8,
+              "column": 7
+            },
+            {
+              "title": "Get Started navigates to onboarding",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 31751,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                            "column": 33,
+                            "line": 25
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /get started/i })\u001b[22m\n\n\n   at pages\\HomePage.ts:25\n\n  23 |\n  24 |   async clickGetStarted() {\n> 25 |     await this.getStartedButton.click();\n     |                                 ^\n  26 |   }\n  27 | }\n  28 |\n    at HomePage.clickGetStarted (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:25:33)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:17:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.888Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-7edc5e6be53d46c97774",
+              "file": "home.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "page is accessible (no serious axe violations)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 1315,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.818Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-243bf2b9451085ebd3e3",
+              "file": "home.spec.ts",
+              "line": 22,
+              "column": 7
+            },
+            {
+              "title": "page loads and shows product name",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 14,
+                      "status": "failed",
+                      "duration": 6246,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at HomePage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:20:32)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:11:16",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                          "column": 32,
+                          "line": 20
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\HomePage.ts:20\n\n\u001b[0m \u001b[90m 18 |\u001b[39m\n \u001b[90m 19 |\u001b[39m   \u001b[36masync\u001b[39m expectVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 20 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mheading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 21 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mgetStartedButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 22 |\u001b[39m   }\n \u001b[90m 23 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                            "column": 32,
+                            "line": 20
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n\n   at pages\\HomePage.ts:20\n\n  18 |\n  19 |   async expectVisible() {\n> 20 |     await expect(this.heading).toBeVisible();\n     |                                ^\n  21 |     await expect(this.getStartedButton).toBeVisible();\n  22 |   }\n  23 |\n    at HomePage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:20:32)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:11:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.966Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-0f377-oads-and-shows-product-name-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                        "column": 32,
+                        "line": 20
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-bc4f0f5d493eca75cd42",
+              "file": "home.spec.ts",
+              "line": 8,
+              "column": 7
+            },
+            {
+              "title": "Get Started navigates to onboarding",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 15,
+                      "parallelIndex": 15,
+                      "status": "timedOut",
+                      "duration": 31422,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                            "column": 33,
+                            "line": 25
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /get started/i })\u001b[22m\n\n\n   at pages\\HomePage.ts:25\n\n  23 |\n  24 |   async clickGetStarted() {\n> 25 |     await this.getStartedButton.click();\n     |                                 ^\n  26 |   }\n  27 | }\n  28 |\n    at HomePage.clickGetStarted (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:25:33)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:17:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.970Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-59295d60cacfe6da0a57",
+              "file": "home.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "page is accessible (no serious axe violations)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 817,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:13.835Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d318381359a9b96acb1e-7f586fd9c5a1df951e70",
+              "file": "home.spec.ts",
+              "line": 22,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "story-001.spec.ts",
+      "file": "story-001.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "STORY-001",
+          "file": "story-001.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "renders product name and primary CTA",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 6185,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:9:32",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
+                          "column": 32,
+                          "line": 9
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  7 |\u001b[39m     \u001b[36mconst\u001b[39m home \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m home\u001b[33m.\u001b[39mgoto()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m expect(home\u001b[33m.\u001b[39mheading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m expect(home\u001b[33m.\u001b[39mgetStartedButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
+                            "column": 32,
+                            "line": 9
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n\n   7 |     const home = new HomePage(page);\n   8 |     await home.goto();\n>  9 |     await expect(home.heading).toBeVisible();\n     |                                ^\n  10 |     await expect(home.getStartedButton).toBeVisible();\n  11 |   });\n  12 |\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:9:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.837Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-renders-product-name-and-primary-CTA-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
+                        "column": 32,
+                        "line": 9
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "11e2bbbbcd1e1cc20f6c-1f5703b0c1dbe7657caa",
+              "file": "story-001.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "CTA navigates to onboarding route",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "timedOut",
+                      "duration": 31771,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                            "column": 33,
+                            "line": 25
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /get started/i })\u001b[22m\n\n\n   at pages\\HomePage.ts:25\n\n  23 |\n  24 |   async clickGetStarted() {\n> 25 |     await this.getStartedButton.click();\n     |                                 ^\n  26 |   }\n  27 | }\n  28 |\n    at HomePage.clickGetStarted (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:25:33)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:16:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.867Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "11e2bbbbcd1e1cc20f6c-f2883724b8842b063960",
+              "file": "story-001.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "accessibility compliance on landing page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 5,
+                      "status": "passed",
+                      "duration": 1718,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.866Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "11e2bbbbcd1e1cc20f6c-2f48922860d90db8843e",
+              "file": "story-001.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "renders product name and primary CTA",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 17,
+                      "parallelIndex": 13,
+                      "status": "failed",
+                      "duration": 5718,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:9:32",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
+                          "column": 32,
+                          "line": 9
+                        },
+                        "snippet": "\u001b[0m \u001b[90m  7 |\u001b[39m     \u001b[36mconst\u001b[39m home \u001b[33m=\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mHomePage\u001b[39m(page)\u001b[33m;\u001b[39m\n \u001b[90m  8 |\u001b[39m     \u001b[36mawait\u001b[39m home\u001b[33m.\u001b[39mgoto()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  9 |\u001b[39m     \u001b[36mawait\u001b[39m expect(home\u001b[33m.\u001b[39mheading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 10 |\u001b[39m     \u001b[36mawait\u001b[39m expect(home\u001b[33m.\u001b[39mgetStartedButton)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 11 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 12 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
+                            "column": 32,
+                            "line": 9
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /my local agent app/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /my local agent app/i })\u001b[22m\n\n\n   7 |     const home = new HomePage(page);\n   8 |     await home.goto();\n>  9 |     await expect(home.heading).toBeVisible();\n     |                                ^\n  10 |     await expect(home.getStartedButton).toBeVisible();\n  11 |   });\n  12 |\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:9:32"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:14.254Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-renders-product-name-and-primary-CTA-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
+                        "column": 32,
+                        "line": 9
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "11e2bbbbcd1e1cc20f6c-fa9b6f531dccea751c2b",
+              "file": "story-001.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "CTA navigates to onboarding route",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 18,
+                      "parallelIndex": 5,
+                      "status": "timedOut",
+                      "duration": 30989,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts",
+                            "column": 33,
+                            "line": 25
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: /get started/i })\u001b[22m\n\n\n   at pages\\HomePage.ts:25\n\n  23 |\n  24 |   async clickGetStarted() {\n> 25 |     await this.getStartedButton.click();\n     |                                 ^\n  26 |   }\n  27 | }\n  28 |\n    at HomePage.clickGetStarted (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\HomePage.ts:25:33)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:16:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:14.288Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "11e2bbbbcd1e1cc20f6c-69ad1ce39da4ae9a8e6b",
+              "file": "story-001.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "accessibility compliance on landing page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 9,
+                      "status": "passed",
+                      "duration": 692,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:14.349Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "11e2bbbbcd1e1cc20f6c-6ffc880dfe2ec7b80268",
+              "file": "story-001.spec.ts",
+              "line": 21,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "story-002.spec.ts",
+      "file": "story-002.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "STORY-002",
+          "file": "story-002.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "displays welcome message and form fields",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 6496,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                          "column": 39,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\OnboardingPage.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m   \u001b[36masync\u001b[39m expectVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mwelcomeHeading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39magentNameInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdescriptionInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m   }\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 39,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:23\n\n  21 |\n  22 |   async expectVisible() {\n> 23 |     await expect(this.welcomeHeading).toBeVisible();\n     |                                       ^\n  24 |     await expect(this.agentNameInput).toBeVisible();\n  25 |     await expect(this.descriptionInput).toBeVisible();\n  26 |   }\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.922Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                        "column": 39,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-4556c2b723182e273fa7",
+              "file": "story-002.spec.ts",
+              "line": 7,
+              "column": 7
+            },
+            {
+              "title": "valid submission saves record and redirects to list",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 7,
+                      "status": "timedOut",
+                      "duration": 31845,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 31,
+                            "line": 29
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Agent name')\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:29\n\n  27 |\n  28 |   async fillAgentName(name: string) {\n> 29 |     await this.agentNameInput.fill(name);\n     |                               ^\n  30 |   }\n  31 |\n  32 |   async fillDescription(text: string) {\n    at OnboardingPage.fillAgentName (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:29:31)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:19:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.832Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-34d9ce97d75b3d40b87d",
+              "file": "story-002.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "default agent status reflects as idle after creation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 8,
+                      "status": "timedOut",
+                      "duration": 31771,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 31,
+                            "line": 29
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Agent name')\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:29\n\n  27 |\n  28 |   async fillAgentName(name: string) {\n> 29 |     await this.agentNameInput.fill(name);\n     |                               ^\n  30 |   }\n  31 |\n  32 |   async fillDescription(text: string) {\n    at OnboardingPage.fillAgentName (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:29:31)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:41:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.891Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-chromium\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-dd1df8c4cde463631cdf",
+              "file": "story-002.spec.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "accessibility compliance on onboarding page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 9,
+                      "status": "passed",
+                      "duration": 1559,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.924Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-80e298eec861a2dbe943",
+              "file": "story-002.spec.ts",
+              "line": 47,
+              "column": 7
+            },
+            {
+              "title": "displays welcome message and form fields",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 16,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 5535,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                          "column": 39,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\OnboardingPage.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m   \u001b[36masync\u001b[39m expectVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mwelcomeHeading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39magentNameInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdescriptionInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m   }\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 39,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:23\n\n  21 |\n  22 |   async expectVisible() {\n> 23 |     await expect(this.welcomeHeading).toBeVisible();\n     |                                       ^\n  24 |     await expect(this.agentNameInput).toBeVisible();\n  25 |     await expect(this.descriptionInput).toBeVisible();\n  26 |   }\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:14.760Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                        "column": 39,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-50f7a73d57dd1c55b446",
+              "file": "story-002.spec.ts",
+              "line": 7,
+              "column": 7
+            },
+            {
+              "title": "valid submission saves record and redirects to list",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 19,
+                      "parallelIndex": 9,
+                      "status": "timedOut",
+                      "duration": 30996,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 31,
+                            "line": 29
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Agent name')\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:29\n\n  27 |\n  28 |   async fillAgentName(name: string) {\n> 29 |     await this.agentNameInput.fill(name);\n     |                               ^\n  30 |   }\n  31 |\n  32 |   async fillDescription(text: string) {\n    at OnboardingPage.fillAgentName (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:29:31)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:19:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:15.176Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-valid--68989-ecord-and-redirects-to-list-mobile-chrome\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-a34d41ad31137d634e19",
+              "file": "story-002.spec.ts",
+              "line": 13,
+              "column": 7
+            },
+            {
+              "title": "default agent status reflects as idle after creation",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 20,
+                      "parallelIndex": 3,
+                      "status": "timedOut",
+                      "duration": 31003,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 31,
+                            "line": 29
+                          },
+                          "message": "Error: locator.fill: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Agent name')\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:29\n\n  27 |\n  28 |   async fillAgentName(name: string) {\n> 29 |     await this.agentNameInput.fill(name);\n     |                               ^\n  30 |   }\n  31 |\n  32 |   async fillDescription(text: string) {\n    at OnboardingPage.fillAgentName (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:29:31)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:41:22"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:18.705Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-defaul-52bb6-ects-as-idle-after-creation-mobile-chrome\\error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-3b8cb9f57c495248ff9c",
+              "file": "story-002.spec.ts",
+              "line": 35,
+              "column": 7
+            },
+            {
+              "title": "accessibility compliance on onboarding page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 21,
+                      "parallelIndex": 10,
+                      "status": "passed",
+                      "duration": 883,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:18.829Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "746185c611ae9074bbb5-1093a192779a90b95a20",
+              "file": "story-002.spec.ts",
+              "line": 47,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "story-003.spec.ts",
+      "file": "story-003.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "STORY-003",
+          "file": "story-003.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "table renders with required column headers",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 10,
+                      "status": "failed",
+                      "duration": 6167,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n\n    at AgentListPage.expectHeadersVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:41:40)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:9:16",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                          "column": 40,
+                          "line": 41
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m\n \u001b[90m 40 |\u001b[39m   \u001b[36masync\u001b[39m expectHeadersVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderName)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderDescription)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderStatus)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 44 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderCreationDate)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                            "column": 40,
+                            "line": 41
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n\n\n   at pages\\AgentListPage.ts:41\n\n  39 |\n  40 |   async expectHeadersVisible() {\n> 41 |     await expect(this.tableHeaderName).toBeVisible();\n     |                                        ^\n  42 |     await expect(this.tableHeaderDescription).toBeVisible();\n  43 |     await expect(this.tableHeaderStatus).toBeVisible();\n  44 |     await expect(this.tableHeaderCreationDate).toBeVisible();\n    at AgentListPage.expectHeadersVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:41:40)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:9:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.864Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-table--2f2b9-ith-required-column-headers-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                        "column": 40,
+                        "line": 41
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-8db5a2ac6a104ef2980a",
+              "file": "story-003.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "empty state displays with link when no agents exist",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 11,
+                      "status": "failed",
+                      "duration": 6813,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:22:16",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                          "column": 42,
+                          "line": 48
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m\n \u001b[90m 47 |\u001b[39m   \u001b[36masync\u001b[39m expectEmptyStateVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateMessage)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateLinkToOnboarding)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m   }\n \u001b[90m 51 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                            "column": 42,
+                            "line": 48
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n\n\n   at pages\\AgentListPage.ts:48\n\n  46 |\n  47 |   async expectEmptyStateVisible() {\n> 48 |     await expect(this.emptyStateMessage).toBeVisible();\n     |                                          ^\n  49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();\n  50 |   }\n  51 |\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:22:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.918Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                        "column": 42,
+                        "line": 48
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-7fe0a301002de2cf46db",
+              "file": "story-003.spec.ts",
+              "line": 12,
+              "column": 7
+            },
+            {
+              "title": "deletion removes agent row without full page reload",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 12,
+                      "status": "failed",
+                      "duration": 6810,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
+                          "column": 23,
+                          "line": 39
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m     \u001b[36mconst\u001b[39m row \u001b[33m=\u001b[39m list\u001b[33m.\u001b[39mrowFor(targetName)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 |\u001b[39m     \u001b[36mawait\u001b[39m expect(row)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/agents'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m     \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mdeleteAgent(targetName)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
+                            "column": 23,
+                            "line": 39
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n\n\n  37 |\n  38 |     const row = list.rowFor(targetName);\n> 39 |     await expect(row).toBeVisible();\n     |                       ^\n  40 |     await expect(page).toHaveURL('/agents');\n  41 |\n  42 |     await list.deleteAgent(targetName);\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.871Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
+                        "column": 23,
+                        "line": 39
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-a7c2527caad63b3f673b",
+              "file": "story-003.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "accessibility compliance on agents list page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 13,
+                      "status": "passed",
+                      "duration": 1548,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:11.909Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-2febeeae18645e9b074f",
+              "file": "story-003.spec.ts",
+              "line": 49,
+              "column": 7
+            },
+            {
+              "title": "table renders with required column headers",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 22,
+                      "parallelIndex": 14,
+                      "status": "failed",
+                      "duration": 5722,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n\n    at AgentListPage.expectHeadersVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:41:40)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:9:16",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                          "column": 40,
+                          "line": 41
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:41\n\n\u001b[0m \u001b[90m 39 |\u001b[39m\n \u001b[90m 40 |\u001b[39m   \u001b[36masync\u001b[39m expectHeadersVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 41 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderName)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 42 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderDescription)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 43 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderStatus)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 44 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mtableHeaderCreationDate)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                            "column": 40,
+                            "line": 41
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('columnheader', { name: 'name' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('columnheader', { name: 'name' })\u001b[22m\n\n\n   at pages\\AgentListPage.ts:41\n\n  39 |\n  40 |   async expectHeadersVisible() {\n> 41 |     await expect(this.tableHeaderName).toBeVisible();\n     |                                        ^\n  42 |     await expect(this.tableHeaderDescription).toBeVisible();\n  43 |     await expect(this.tableHeaderStatus).toBeVisible();\n  44 |     await expect(this.tableHeaderCreationDate).toBeVisible();\n    at AgentListPage.expectHeadersVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:41:40)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:9:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:19.373Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-table--2f2b9-ith-required-column-headers-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-table--2f2b9-ith-required-column-headers-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-table--2f2b9-ith-required-column-headers-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                        "column": 40,
+                        "line": 41
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-c30fbf18f748f0262ed2",
+              "file": "story-003.spec.ts",
+              "line": 6,
+              "column": 7
+            },
+            {
+              "title": "empty state displays with link when no agents exist",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 23,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5728,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:22:16",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                          "column": 42,
+                          "line": 48
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m\n \u001b[90m 47 |\u001b[39m   \u001b[36masync\u001b[39m expectEmptyStateVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateMessage)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateLinkToOnboarding)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m   }\n \u001b[90m 51 |\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                            "column": 42,
+                            "line": 48
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data|empty/i)\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data|empty/i)\u001b[22m\n\n\n   at pages\\AgentListPage.ts:48\n\n  46 |\n  47 |   async expectEmptyStateVisible() {\n> 48 |     await expect(this.emptyStateMessage).toBeVisible();\n     |                                          ^\n  49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();\n  50 |   }\n  51 |\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:22:16"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:19.376Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-empty--63905-h-link-when-no-agents-exist-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
+                        "column": 42,
+                        "line": 48
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-3b16b66c3546d73f70a4",
+              "file": "story-003.spec.ts",
+              "line": 12,
+              "column": 7
+            },
+            {
+              "title": "deletion removes agent row without full page reload",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 24,
+                      "parallelIndex": 6,
+                      "status": "failed",
+                      "duration": 5739,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
+                          "column": 23,
+                          "line": 39
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 37 |\u001b[39m\n \u001b[90m 38 |\u001b[39m     \u001b[36mconst\u001b[39m row \u001b[33m=\u001b[39m list\u001b[33m.\u001b[39mrowFor(targetName)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 39 |\u001b[39m     \u001b[36mawait\u001b[39m expect(row)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 40 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/agents'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 41 |\u001b[39m\n \u001b[90m 42 |\u001b[39m     \u001b[36mawait\u001b[39m list\u001b[33m.\u001b[39mdeleteAgent(targetName)\u001b[33m;\u001b[39m\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
+                            "column": 23,
+                            "line": 39
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: /^Deletion Test Agent$/i })\u001b[22m\n\n\n  37 |\n  38 |     const row = list.rowFor(targetName);\n> 39 |     await expect(row).toBeVisible();\n     |                       ^\n  40 |     await expect(page).toHaveURL('/agents');\n  41 |\n  42 |     await list.deleteAgent(targetName);\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:39:23"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:19.418Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-deleti-65900-ow-without-full-page-reload-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
+                        "column": 23,
+                        "line": 39
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-c6dc8b47a713c3778438",
+              "file": "story-003.spec.ts",
+              "line": 25,
+              "column": 7
+            },
+            {
+              "title": "accessibility compliance on agents list page",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-chrome",
+                  "projectName": "mobile-chrome",
+                  "results": [
+                    {
+                      "workerIndex": 25,
+                      "parallelIndex": 12,
+                      "status": "passed",
+                      "duration": 833,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-07-07T09:29:19.429Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d54e5b84a01443914686-fbc778611111dae7e5e9",
+              "file": "story-003.spec.ts",
+              "line": 49,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-07-07T09:29:11.086Z",
+    "duration": 38831.880000000005,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 20,
+    "flaky": 0
+  }
+}

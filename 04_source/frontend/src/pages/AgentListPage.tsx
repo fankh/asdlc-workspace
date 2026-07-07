@@ -63,7 +63,7 @@ export default function AgentListPage() {
       )}
 
       {agents.length === 0 && !loading ? (
-        <Empty description="No agents registered.">
+        <Empty description="Empty">
           <Link to="/onboarding">Create your first agent</Link>
         </Empty>
       ) : (
