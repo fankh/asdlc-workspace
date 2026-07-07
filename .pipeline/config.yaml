@@ -10,10 +10,10 @@ agents:
   ingestion:    { enabled: true,  ocr_engine: "tesseract" }
   product:      { enabled: true,  story_format: "gherkin" }
   design:       { enabled: true,  design_system: "ant" }   # Option A: established system
-  architect:    { enabled: true,  database: "postgresql", api_style: "rest" }
+  architect:    { enabled: true,  database: "sqlite", api_style: "rest" }
   coder:
     frontend:   { enabled: true,  framework: "react", language: "typescript" }
-    backend:    { enabled: true,  framework: "spring-boot", language: "java" }
+    backend:    { enabled: true,  framework: "express", language: "typescript" }
   validator:    { enabled: true,  strict_mode: true }
   secops:       { enabled: true,  sast: true, dependency_check: true }
   qa:

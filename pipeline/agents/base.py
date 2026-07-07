@@ -58,6 +58,11 @@ class Agent:
     def run(self) -> AgentResult:  # pragma: no cover - abstract
         raise NotImplementedError
 
+    def system_blocks(self, agent_prompt: str) -> list[str]:
+        """Stable-first system blocks: agent prompt, then CODING_PATTERNS.md.
+        Order matters for prompt caching — keep volatile content in `user`."""
+        return [agent_prompt, self.ctx.coding_patterns()]
+
     # -- sandboxed writes -------------------------------------------------
 
     def _allowed_roots(self) -> list[Path]:

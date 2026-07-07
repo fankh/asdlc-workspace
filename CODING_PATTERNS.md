@@ -13,10 +13,10 @@ The single source of truth all agents read before generating code. Empty section
 
 | Layer | Choice | Notes |
 |---|---|---|
-| Frontend framework | React + TypeScript | TBD by Architect agent |
+| Frontend framework | React + TypeScript (Vite) | |
 | UI library | Ant Design | per Section 0 |
-| Backend framework | Spring Boot (Java 17) | TBD by Architect agent |
-| Database | PostgreSQL | TBD by Architect agent |
+| Backend framework | Express + TypeScript (Node 20) | single Node toolchain for fast refinement loops |
+| Database | SQLite via Prisma | Postgres available via Docker in deploy phase |
 | API style | REST + OpenAPI 3.1 | |
 
 ## Section 2 — Colors
