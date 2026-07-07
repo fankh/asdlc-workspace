@@ -25,14 +25,21 @@ export default defineConfig({
     { name: 'mobile-chrome', use: { ...devices['Pixel 5'] } },
   ],
 
-  // Coder agent will replace `npm run dev` with the real dev server.
-  // Until then the test suite goes RED — that is intentional and proves the oracle.
   webServer: process.env.NO_WEB_SERVER
     ? undefined
-    : {
-        command: 'npm run dev',
-        url: 'http://localhost:3000',
-        reuseExistingServer: !process.env.CI,
-        timeout: 120_000,
-      },
+    : [
+        {
+          command: 'npm run dev',
+          cwd: '../backend',
+          url: 'http://localhost:3001/api/health',
+          reuseExistingServer: !process.env.CI,
+          timeout: 120_000,
+        },
+        {
+          command: 'npm run dev',
+          url: 'http://localhost:3000',
+          reuseExistingServer: !process.env.CI,
+          timeout: 120_000,
+        },
+      ],
 });

@@ -1,12 +1,13 @@
 {
   "current_phase": "04_source",
   "started_at": "2026-07-07T08:56:17+00:00",
-  "last_updated_at": "2026-07-07T09:07:07+00:00",
+  "last_updated_at": "2026-07-07T09:12:08+00:00",
   "phase_history": [
     "ingest",
     "product",
     "design",
-    "architect"
+    "architect",
+    "code_frontend"
   ],
   "refinement_loops": 0,
   "human_intervention_required": false,
@@ -36,8 +37,10 @@
       "error": null
     },
     "code_frontend": {
-      "status": "running",
-      "started_at": "2026-07-07T09:07:07+00:00"
+      "status": "done",
+      "started_at": "2026-07-07T09:07:07+00:00",
+      "finished_at": "2026-07-07T09:12:08+00:00",
+      "error": null
     }
   },
   "usage": {
@@ -65,6 +68,13 @@
     "architect": {
       "input_tokens": 7100,
       "output_tokens": 2102,
+      "cache_read": 0,
+      "cache_write": 0,
+      "cost_usd": 0.0
+    },
+    "code_frontend": {
+      "input_tokens": 12555,
+      "output_tokens": 2321,
       "cache_read": 0,
       "cache_write": 0,
       "cost_usd": 0.0
