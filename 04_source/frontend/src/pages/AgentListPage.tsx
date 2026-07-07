@@ -96,10 +96,10 @@ export default function AgentListPage() {
 
       {filteredAgents.length === 0 && !loading ? (
         <Empty description="No data available">
-          <Link to="/onboarding">Create your first agent</Link>
+          <Link to="/onboarding">Add an agent</Link>
         </Empty>
       ) : (
-        <Table dataSource={filteredAgents} columns={columns} loading={loading} rowKey="id" pagination={false} scroll={{ x: 'max-content' }} locale={{ emptyText: null }} />
+        <Table key={`agent-table-${agents.length}`} dataSource={filteredAgents} columns={columns} loading={loading} rowKey="id" pagination={false} scroll={{ x: 'max-content' }} locale={{ emptyText: null }} />
       )}
     </main>
   );

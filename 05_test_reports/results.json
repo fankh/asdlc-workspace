@@ -122,12 +122,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 404,
+                      "duration": 377,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:43.626Z",
+                      "startTime": "2026-07-07T11:43:40.043Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -142,7 +142,7 @@
             },
             {
               "title": "Get Started navigates to onboarding",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -155,58 +155,18 @@
                     {
                       "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 5606,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:19:70",
-                        "location": {
-                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts",
-                          "column": 70,
-                          "line": 19
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m home\u001b[33m.\u001b[39mclickGetStarted()\u001b[33m;\u001b[39m\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/\\/onboarding$/\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/onboarding/i\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m   test(\u001b[32m'page is accessible (no serious axe violations)'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts",
-                            "column": 70,
-                            "line": 19
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n\n  17 |     await home.clickGetStarted();\n  18 |     await expect(page).toHaveURL(/\\/onboarding$/);\n> 19 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();\n     |                                                                      ^\n  20 |   });\n  21 |\n  22 |   test('page is accessible (no serious axe violations)', async ({ page }) => {\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:19:70"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 431,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:44.118Z",
+                      "startTime": "2026-07-07T11:43:40.504Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts",
-                        "column": 70,
-                        "line": 19
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "d318381359a9b96acb1e-7edc5e6be53d46c97774",
@@ -227,15 +187,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 666,
+                      "duration": 647,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:50.086Z",
+                      "startTime": "2026-07-07T11:43:40.942Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -261,15 +221,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 431,
+                      "duration": 433,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:14.265Z",
+                      "startTime": "2026-07-07T11:44:04.442Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -284,7 +244,7 @@
             },
             {
               "title": "Get Started navigates to onboarding",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -295,60 +255,20 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 6,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 5666,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:19:70",
-                        "location": {
-                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts",
-                          "column": 70,
-                          "line": 19
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m home\u001b[33m.\u001b[39mclickGetStarted()\u001b[33m;\u001b[39m\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/\\/onboarding$/\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 19 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/onboarding/i\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 20 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m   test(\u001b[32m'page is accessible (no serious axe violations)'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts",
-                            "column": 70,
-                            "line": 19
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n\n  17 |     await home.clickGetStarted();\n  18 |     await expect(page).toHaveURL(/\\/onboarding$/);\n> 19 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();\n     |                                                                      ^\n  20 |   });\n  21 |\n  22 |   test('page is accessible (no serious axe violations)', async ({ page }) => {\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts:19:70"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 457,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:14.780Z",
+                      "startTime": "2026-07-07T11:44:04.951Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\home-Home-page-first-impre-638d8-ted-navigates-to-onboarding-mobile-chrome\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\home.spec.ts",
-                        "column": 70,
-                        "line": 19
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "d318381359a9b96acb1e-59295d60cacfe6da0a57",
@@ -369,15 +289,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 7,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 705,
+                      "duration": 689,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:20.804Z",
+                      "startTime": "2026-07-07T11:44:05.414Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -420,15 +340,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 333,
+                      "duration": 340,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:50.847Z",
+                      "startTime": "2026-07-07T11:43:41.597Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -443,7 +363,7 @@
             },
             {
               "title": "CTA navigates to onboarding route",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -454,60 +374,20 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 1,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 5696,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:18:70",
-                        "location": {
-                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
-                          "column": 70,
-                          "line": 18
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m home\u001b[33m.\u001b[39mclickGetStarted()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/\\/onboarding$/\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/onboarding/i\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 19 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 20 |\u001b[39m\n \u001b[90m 21 |\u001b[39m   test(\u001b[32m'accessibility compliance on landing page'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
-                            "column": 70,
-                            "line": 18
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n\n  16 |     await home.clickGetStarted();\n  17 |     await expect(page).toHaveURL(/\\/onboarding$/);\n> 18 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();\n     |                                                                      ^\n  19 |   });\n  20 |\n  21 |   test('accessibility compliance on landing page', async ({ page }) => {\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:18:70"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 438,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:51.187Z",
+                      "startTime": "2026-07-07T11:43:41.943Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
-                        "column": 70,
-                        "line": 18
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "11e2bbbbcd1e1cc20f6c-f2883724b8842b063960",
@@ -528,15 +408,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 676,
+                      "duration": 594,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:57.253Z",
+                      "startTime": "2026-07-07T11:43:42.386Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -562,15 +442,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 7,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 398,
+                      "duration": 393,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:21.590Z",
+                      "startTime": "2026-07-07T11:44:06.112Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -585,7 +465,7 @@
             },
             {
               "title": "CTA navigates to onboarding route",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -596,60 +476,20 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 7,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 5625,
-                      "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:18:70",
-                        "location": {
-                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
-                          "column": 70,
-                          "line": 18
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m home\u001b[33m.\u001b[39mclickGetStarted()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[35m/\\/onboarding$/\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mgetByRole(\u001b[32m'heading'\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[35m/onboarding/i\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 19 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 20 |\u001b[39m\n \u001b[90m 21 |\u001b[39m   test(\u001b[32m'accessibility compliance on landing page'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
-                            "column": 70,
-                            "line": 18
-                          },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /onboarding/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /onboarding/i })\u001b[22m\n\n\n  16 |     await home.clickGetStarted();\n  17 |     await expect(page).toHaveURL(/\\/onboarding$/);\n> 18 |     await expect(page.getByRole('heading', { name: /onboarding/i })).toBeVisible();\n     |                                                                      ^\n  19 |   });\n  20 |\n  21 |   test('accessibility compliance on landing page', async ({ page }) => {\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts:18:70"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 467,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:21.994Z",
+                      "startTime": "2026-07-07T11:44:06.510Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\\video.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-001-STORY-001-CTA-navigates-to-onboarding-route-mobile-chrome\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-001.spec.ts",
-                        "column": 70,
-                        "line": 18
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "11e2bbbbcd1e1cc20f6c-69ad1ce39da4ae9a8e6b",
@@ -670,15 +510,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 733,
+                      "duration": 698,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:27.977Z",
+                      "startTime": "2026-07-07T11:44:06.982Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -710,7 +550,7 @@
           "specs": [
             {
               "title": "displays welcome message and form fields",
-              "ok": true,
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -721,20 +561,60 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 0,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 363,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 5513,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                          "column": 39,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\OnboardingPage.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m   \u001b[36masync\u001b[39m expectVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mwelcomeHeading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39magentNameInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdescriptionInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m   }\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 39,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:23\n\n  21 |\n  22 |   async expectVisible() {\n> 23 |     await expect(this.welcomeHeading).toBeVisible();\n     |                                       ^\n  24 |     await expect(this.agentNameInput).toBeVisible();\n  25 |     await expect(this.descriptionInput).toBeVisible();\n  26 |   }\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:58.017Z",
+                      "startTime": "2026-07-07T11:43:42.998Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                        "column": 39,
+                        "line": 23
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
               "id": "746185c611ae9074bbb5-4556c2b723182e273fa7",
@@ -755,15 +635,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 565,
+                      "duration": 574,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:58.386Z",
+                      "startTime": "2026-07-07T11:43:48.894Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -789,15 +669,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 545,
+                      "duration": 557,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:58.956Z",
+                      "startTime": "2026-07-07T11:43:49.559Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -823,15 +703,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 675,
+                      "duration": 654,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:36:59.507Z",
+                      "startTime": "2026-07-07T11:43:50.122Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -846,7 +726,7 @@
             },
             {
               "title": "displays welcome message and form fields",
-              "ok": true,
+              "ok": false,
               "tags": [],
               "tests": [
                 {
@@ -857,20 +737,60 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 4,
                       "parallelIndex": 0,
-                      "status": "passed",
-                      "duration": 423,
-                      "errors": [],
+                      "status": "failed",
+                      "duration": 5509,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22",
+                        "location": {
+                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                          "column": 39,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\OnboardingPage.ts:23\n\n\u001b[0m \u001b[90m 21 |\u001b[39m\n \u001b[90m 22 |\u001b[39m   \u001b[36masync\u001b[39m expectVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mwelcomeHeading)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39magentNameInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39mdescriptionInput)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 26 |\u001b[39m   }\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                            "column": 39,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('heading', { name: /welcome/i })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('heading', { name: /welcome/i })\u001b[22m\n\n\n   at pages\\OnboardingPage.ts:23\n\n  21 |\n  22 |   async expectVisible() {\n> 23 |     await expect(this.welcomeHeading).toBeVisible();\n     |                                       ^\n  24 |     await expect(this.agentNameInput).toBeVisible();\n  25 |     await expect(this.descriptionInput).toBeVisible();\n  26 |   }\n    at OnboardingPage.expectVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts:23:39)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-002.spec.ts:10:22"
+                        }
+                      ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:28.797Z",
+                      "startTime": "2026-07-07T11:44:07.693Z",
                       "annotations": [],
-                      "attachments": []
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\\test-failed-1.png"
+                        },
+                        {
+                          "name": "video",
+                          "contentType": "video/webm",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\\video.webm"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-002-STORY-002-displays-welcome-message-and-form-fields-mobile-chrome\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\OnboardingPage.ts",
+                        "column": 39,
+                        "line": 23
+                      }
                     }
                   ],
-                  "status": "expected"
+                  "status": "unexpected"
                 }
               ],
               "id": "746185c611ae9074bbb5-50f7a73d57dd1c55b446",
@@ -891,15 +811,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 573,
+                      "duration": 591,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:29.225Z",
+                      "startTime": "2026-07-07T11:44:13.566Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -925,15 +845,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 549,
+                      "duration": 586,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:29.804Z",
+                      "startTime": "2026-07-07T11:44:14.233Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -959,15 +879,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 667,
+                      "duration": 682,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:30.358Z",
+                      "startTime": "2026-07-07T11:44:14.826Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1010,15 +930,15 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 445,
+                      "duration": 453,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:00.192Z",
+                      "startTime": "2026-07-07T11:43:50.785Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1044,34 +964,34 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 2,
+                      "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5560,
+                      "duration": 5638,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data available/i).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data available/i).first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data available/i).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data available/i).first()\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:16",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /onboarding|add agent/i }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /onboarding|add agent/i }).first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /onboarding|add agent/i }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /onboarding|add agent/i }).first()\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:49:51)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:5",
                         "location": {
                           "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
-                          "column": 42,
-                          "line": 48
+                          "column": 51,
+                          "line": 49
                         },
-                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m\n \u001b[90m 47 |\u001b[39m   \u001b[36masync\u001b[39m expectEmptyStateVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateMessage)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateLinkToOnboarding)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m   }\n \u001b[90m 51 |\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:49\n\n\u001b[0m \u001b[90m 47 |\u001b[39m   \u001b[36masync\u001b[39m expectEmptyStateVisible() {\n \u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateMessage)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateLinkToOnboarding)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m   }\n \u001b[90m 51 |\u001b[39m\n \u001b[90m 52 |\u001b[39m   \u001b[36masync\u001b[39m deleteAgent(agentName\u001b[33m:\u001b[39m string) {\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
-                            "column": 42,
-                            "line": 48
+                            "column": 51,
+                            "line": 49
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data available/i).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data available/i).first()\u001b[22m\n\n\n   at pages\\AgentListPage.ts:48\n\n  46 |\n  47 |   async expectEmptyStateVisible() {\n> 48 |     await expect(this.emptyStateMessage).toBeVisible();\n     |                                          ^\n  49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();\n  50 |   }\n  51 |\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:16"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /onboarding|add agent/i }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /onboarding|add agent/i }).first()\u001b[22m\n\n\n   at pages\\AgentListPage.ts:49\n\n  47 |   async expectEmptyStateVisible() {\n  48 |     await expect(this.emptyStateMessage).toBeVisible();\n> 49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();\n     |                                                   ^\n  50 |   }\n  51 |\n  52 |   async deleteAgent(agentName: string) {\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:49:51)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:00.644Z",
+                      "startTime": "2026-07-07T11:43:51.244Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1092,8 +1012,8 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
-                        "column": 42,
-                        "line": 48
+                        "column": 51,
+                        "line": 49
                       }
                     }
                   ],
@@ -1118,13 +1038,13 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 3,
+                      "workerIndex": 2,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5622,
+                      "duration": 5601,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"0a31bc81-9f9b-4340-94a7-c372ba2ec8a8\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"0a31bc81-9f9b-4340-94a7-c372ba2ec8a8\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424637381' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424637381' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"5a251d14-8166-4d00-9e49-980ddbecfc2a\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424637381' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424637381' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"5a251d14-8166-4d00-9e49-980ddbecfc2a\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5",
                         "location": {
                           "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
                           "column": 27,
@@ -1139,13 +1059,13 @@
                             "column": 27,
                             "line": 56
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424226694' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"0a31bc81-9f9b-4340-94a7-c372ba2ec8a8\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n   at pages\\AgentListPage.ts:56\n\n  54 |     await row.getByRole('button', { name: /delete|remove/i }).click();\n  55 |     // Auto-wait for row detachment before proceeding\n> 56 |     await expect(row).not.toBeVisible();\n     |                           ^\n  57 |   }\n  58 | }\n  59 |\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424637381' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424637381' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"5a251d14-8166-4d00-9e49-980ddbecfc2a\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n   at pages\\AgentListPage.ts:56\n\n  54 |     await row.getByRole('button', { name: /delete|remove/i }).click();\n  55 |     // Auto-wait for row detachment before proceeding\n> 56 |     await expect(row).not.toBeVisible();\n     |                           ^\n  57 |   }\n  58 | }\n  59 |\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:06.560Z",
+                      "startTime": "2026-07-07T11:43:57.257Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1181,7 +1101,7 @@
             },
             {
               "title": "accessibility compliance on agents list page",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1192,65 +1112,20 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 4,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 734,
-                      "error": {
-                        "message": "Error: [\n  {\n    \"id\": \"label\",\n    \"impact\": \"critical\",\n    \"tags\": [\n      \"cat.forms\",\n      \"wcag2a\",\n      \"wcag412\",\n      \"section508\",\n      \"section508.22.n\",\n      \"TTv5\",\n      \"TT5.c\",\n      \"EN-301-549\",\n      \"EN-9.4.1.2\",\n      \"ACT\",\n      \"RGAAv4\",\n      \"RGAA-11.1.1\"\n    ],\n    \"description\": \"Ensure every form element has a label\",\n    \"help\": \"Form elements must have labels\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"implicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an implicit (wrapped) <label>\"\n          },\n          {\n            \"id\": \"explicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an explicit <label>\"\n          },\n          {\n            \"id\": \"aria-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-label attribute does not exist or is empty\"\n          },\n          {\n            \"id\": \"aria-labelledby\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\"\n          },\n          {\n            \"id\": \"non-empty-title\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no title attribute\"\n          },\n          {\n            \"id\": \"non-empty-placeholder\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no placeholder attribute\"\n          },\n          {\n            \"id\": \"presentational-role\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"critical\",\n        \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\n        \"target\": [\n          \"#rc_select_1\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element does not have an implicit (wrapped) <label>\\n  Element does not have an explicit <label>\\n  aria-label attribute does not exist or is empty\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\n  Element has no title attribute\\n  Element has no placeholder attribute\\n  Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n      }\n    ]\n  }\n]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 97\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure every form element has a label\",\u001b[39m\n\u001b[31m+     \"help\": \"Form elements must have labels\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"label\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-placeholder\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no placeholder attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element has no placeholder attribute\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#rc_select_1\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.forms\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.n\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT5.c\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.1.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
-                        "stack": "Error: [\n  {\n    \"id\": \"label\",\n    \"impact\": \"critical\",\n    \"tags\": [\n      \"cat.forms\",\n      \"wcag2a\",\n      \"wcag412\",\n      \"section508\",\n      \"section508.22.n\",\n      \"TTv5\",\n      \"TT5.c\",\n      \"EN-301-549\",\n      \"EN-9.4.1.2\",\n      \"ACT\",\n      \"RGAAv4\",\n      \"RGAA-11.1.1\"\n    ],\n    \"description\": \"Ensure every form element has a label\",\n    \"help\": \"Form elements must have labels\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"implicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an implicit (wrapped) <label>\"\n          },\n          {\n            \"id\": \"explicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an explicit <label>\"\n          },\n          {\n            \"id\": \"aria-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-label attribute does not exist or is empty\"\n          },\n          {\n            \"id\": \"aria-labelledby\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\"\n          },\n          {\n            \"id\": \"non-empty-title\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no title attribute\"\n          },\n          {\n            \"id\": \"non-empty-placeholder\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no placeholder attribute\"\n          },\n          {\n            \"id\": \"presentational-role\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"critical\",\n        \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\n        \"target\": [\n          \"#rc_select_1\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element does not have an implicit (wrapped) <label>\\n  Element does not have an explicit <label>\\n  aria-label attribute does not exist or is empty\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\n  Element has no title attribute\\n  Element has no placeholder attribute\\n  Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n      }\n    ]\n  }\n]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 97\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure every form element has a label\",\u001b[39m\n\u001b[31m+     \"help\": \"Form elements must have labels\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"label\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-placeholder\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no placeholder attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element has no placeholder attribute\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#rc_select_1\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.forms\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.n\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT5.c\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.1.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:59:55",
-                        "location": {
-                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
-                          "column": 55,
-                          "line": 59
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 57 |\u001b[39m       v \u001b[33m=>\u001b[39m v\u001b[33m.\u001b[39mimpact \u001b[33m===\u001b[39m \u001b[32m'serious'\u001b[39m \u001b[33m||\u001b[39m v\u001b[33m.\u001b[39mimpact \u001b[33m===\u001b[39m \u001b[32m'critical'\u001b[39m\n \u001b[90m 58 |\u001b[39m     )\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 59 |\u001b[39m     expect(serious\u001b[33m,\u001b[39m \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify(serious\u001b[33m,\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m \u001b[35m2\u001b[39m))\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 60 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
-                            "column": 55,
-                            "line": 59
-                          },
-                          "message": "Error: [\n  {\n    \"id\": \"label\",\n    \"impact\": \"critical\",\n    \"tags\": [\n      \"cat.forms\",\n      \"wcag2a\",\n      \"wcag412\",\n      \"section508\",\n      \"section508.22.n\",\n      \"TTv5\",\n      \"TT5.c\",\n      \"EN-301-549\",\n      \"EN-9.4.1.2\",\n      \"ACT\",\n      \"RGAAv4\",\n      \"RGAA-11.1.1\"\n    ],\n    \"description\": \"Ensure every form element has a label\",\n    \"help\": \"Form elements must have labels\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"implicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an implicit (wrapped) <label>\"\n          },\n          {\n            \"id\": \"explicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an explicit <label>\"\n          },\n          {\n            \"id\": \"aria-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-label attribute does not exist or is empty\"\n          },\n          {\n            \"id\": \"aria-labelledby\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\"\n          },\n          {\n            \"id\": \"non-empty-title\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no title attribute\"\n          },\n          {\n            \"id\": \"non-empty-placeholder\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no placeholder attribute\"\n          },\n          {\n            \"id\": \"presentational-role\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"critical\",\n        \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\n        \"target\": [\n          \"#rc_select_1\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element does not have an implicit (wrapped) <label>\\n  Element does not have an explicit <label>\\n  aria-label attribute does not exist or is empty\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\n  Element has no title attribute\\n  Element has no placeholder attribute\\n  Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n      }\n    ]\n  }\n]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 97\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure every form element has a label\",\u001b[39m\n\u001b[31m+     \"help\": \"Form elements must have labels\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"label\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-placeholder\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no placeholder attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element has no placeholder attribute\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#rc_select_1\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.forms\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.n\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT5.c\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.1.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  57 |       v => v.impact === 'serious' || v.impact === 'critical'\n  58 |     );\n> 59 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);\n     |                                                       ^\n  60 |   });\n  61 | });\n  62 |\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:59:55"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 705,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:12.619Z",
+                      "startTime": "2026-07-07T11:44:03.300Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\\video.webm"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\\video-1.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-chromium\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
-                        "column": 55,
-                        "line": 59
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "d54e5b84a01443914686-2febeeae18645e9b074f",
@@ -1271,15 +1146,15 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 492,
+                      "duration": 478,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:31.035Z",
+                      "startTime": "2026-07-07T11:44:15.517Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1305,34 +1180,34 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 8,
+                      "workerIndex": 5,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5571,
+                      "duration": 5649,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data available/i).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data available/i).first()\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data available/i).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data available/i).first()\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:16",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /onboarding|add agent/i }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /onboarding|add agent/i }).first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /onboarding|add agent/i }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /onboarding|add agent/i }).first()\u001b[22m\n\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:49:51)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:5",
                         "location": {
                           "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
-                          "column": 42,
-                          "line": 48
+                          "column": 51,
+                          "line": 49
                         },
-                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:48\n\n\u001b[0m \u001b[90m 46 |\u001b[39m\n \u001b[90m 47 |\u001b[39m   \u001b[36masync\u001b[39m expectEmptyStateVisible() {\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateMessage)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateLinkToOnboarding)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m 50 |\u001b[39m   }\n \u001b[90m 51 |\u001b[39m\u001b[0m"
+                        "snippet": "\u001b[90m   at \u001b[39mpages\\AgentListPage.ts:49\n\n\u001b[0m \u001b[90m 47 |\u001b[39m   \u001b[36masync\u001b[39m expectEmptyStateVisible() {\n \u001b[90m 48 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateMessage)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 49 |\u001b[39m     \u001b[36mawait\u001b[39m expect(\u001b[36mthis\u001b[39m\u001b[33m.\u001b[39memptyStateLinkToOnboarding)\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                   \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 50 |\u001b[39m   }\n \u001b[90m 51 |\u001b[39m\n \u001b[90m 52 |\u001b[39m   \u001b[36masync\u001b[39m deleteAgent(agentName\u001b[33m:\u001b[39m string) {\u001b[0m"
                       },
                       "errors": [
                         {
                           "location": {
                             "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
-                            "column": 42,
-                            "line": 48
+                            "column": 51,
+                            "line": 49
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/no data available/i).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/no data available/i).first()\u001b[22m\n\n\n   at pages\\AgentListPage.ts:48\n\n  46 |\n  47 |   async expectEmptyStateVisible() {\n> 48 |     await expect(this.emptyStateMessage).toBeVisible();\n     |                                          ^\n  49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();\n  50 |   }\n  51 |\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:48:42)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:16"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /onboarding|add agent/i }).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /onboarding|add agent/i }).first()\u001b[22m\n\n\n   at pages\\AgentListPage.ts:49\n\n  47 |   async expectEmptyStateVisible() {\n  48 |     await expect(this.emptyStateMessage).toBeVisible();\n> 49 |     await expect(this.emptyStateLinkToOnboarding).toBeVisible();\n     |                                                   ^\n  50 |   }\n  51 |\n  52 |   async deleteAgent(agentName: string) {\n    at AgentListPage.expectEmptyStateVisible (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:49:51)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:26:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:31.534Z",
+                      "startTime": "2026-07-07T11:44:16.000Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1353,8 +1228,8 @@
                       ],
                       "errorLocation": {
                         "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
-                        "column": 42,
-                        "line": 48
+                        "column": 51,
+                        "line": 49
                       }
                     }
                   ],
@@ -1379,13 +1254,13 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 9,
+                      "workerIndex": 6,
                       "parallelIndex": 0,
                       "status": "failed",
-                      "duration": 5660,
+                      "duration": 5675,
                       "error": {
-                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"69580b20-d4fa-4d58-a131-54a62f91c291\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
-                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"69580b20-d4fa-4d58-a131-54a62f91c291\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5",
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424662147' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424662147' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"a5668350-53d8-4f6f-b9a1-cab80d156c3c\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424662147' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424662147' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"a5668350-53d8-4f6f-b9a1-cab80d156c3c\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5",
                         "location": {
                           "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts",
                           "column": 27,
@@ -1400,13 +1275,13 @@
                             "column": 27,
                             "line": 56
                           },
-                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424257597' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"69580b20-d4fa-4d58-a131-54a62f91c291\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n   at pages\\AgentListPage.ts:56\n\n  54 |     await row.getByRole('button', { name: /delete|remove/i }).click();\n  55 |     // Auto-wait for row detachment before proceeding\n> 56 |     await expect(row).not.toBeVisible();\n     |                           ^\n  57 |   }\n  58 | }\n  59 |\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5"
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424662147' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('row').filter({ hasText: 'Deletion Test Agent 1783424662147' })\u001b[22m\n\u001b[2m    14 × locator resolved to <tr class=\"ant-table-row ant-table-row-level-0\" data-row-key=\"a5668350-53d8-4f6f-b9a1-cab80d156c3c\">…</tr>\u001b[22m\n\u001b[2m       - unexpected value \"visible\"\u001b[22m\n\n\n   at pages\\AgentListPage.ts:56\n\n  54 |     await row.getByRole('button', { name: /delete|remove/i }).click();\n  55 |     // Auto-wait for row detachment before proceeding\n> 56 |     await expect(row).not.toBeVisible();\n     |                           ^\n  57 |   }\n  58 | }\n  59 |\n    at AgentListPage.deleteAgent (C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\pages\\AgentListPage.ts:56:27)\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:43:5"
                         }
                       ],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:37.467Z",
+                      "startTime": "2026-07-07T11:44:22.014Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1442,7 +1317,7 @@
             },
             {
               "title": "accessibility compliance on agents list page",
-              "ok": false,
+              "ok": true,
               "tags": [],
               "tests": [
                 {
@@ -1453,65 +1328,20 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 10,
+                      "workerIndex": 7,
                       "parallelIndex": 0,
-                      "status": "failed",
-                      "duration": 766,
-                      "error": {
-                        "message": "Error: [\n  {\n    \"id\": \"label\",\n    \"impact\": \"critical\",\n    \"tags\": [\n      \"cat.forms\",\n      \"wcag2a\",\n      \"wcag412\",\n      \"section508\",\n      \"section508.22.n\",\n      \"TTv5\",\n      \"TT5.c\",\n      \"EN-301-549\",\n      \"EN-9.4.1.2\",\n      \"ACT\",\n      \"RGAAv4\",\n      \"RGAA-11.1.1\"\n    ],\n    \"description\": \"Ensure every form element has a label\",\n    \"help\": \"Form elements must have labels\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"implicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an implicit (wrapped) <label>\"\n          },\n          {\n            \"id\": \"explicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an explicit <label>\"\n          },\n          {\n            \"id\": \"aria-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-label attribute does not exist or is empty\"\n          },\n          {\n            \"id\": \"aria-labelledby\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\"\n          },\n          {\n            \"id\": \"non-empty-title\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no title attribute\"\n          },\n          {\n            \"id\": \"non-empty-placeholder\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no placeholder attribute\"\n          },\n          {\n            \"id\": \"presentational-role\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"critical\",\n        \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\n        \"target\": [\n          \"#rc_select_1\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element does not have an implicit (wrapped) <label>\\n  Element does not have an explicit <label>\\n  aria-label attribute does not exist or is empty\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\n  Element has no title attribute\\n  Element has no placeholder attribute\\n  Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n      }\n    ]\n  }\n]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 97\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure every form element has a label\",\u001b[39m\n\u001b[31m+     \"help\": \"Form elements must have labels\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"label\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-placeholder\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no placeholder attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element has no placeholder attribute\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#rc_select_1\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.forms\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.n\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT5.c\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.1.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
-                        "stack": "Error: [\n  {\n    \"id\": \"label\",\n    \"impact\": \"critical\",\n    \"tags\": [\n      \"cat.forms\",\n      \"wcag2a\",\n      \"wcag412\",\n      \"section508\",\n      \"section508.22.n\",\n      \"TTv5\",\n      \"TT5.c\",\n      \"EN-301-549\",\n      \"EN-9.4.1.2\",\n      \"ACT\",\n      \"RGAAv4\",\n      \"RGAA-11.1.1\"\n    ],\n    \"description\": \"Ensure every form element has a label\",\n    \"help\": \"Form elements must have labels\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"implicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an implicit (wrapped) <label>\"\n          },\n          {\n            \"id\": \"explicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an explicit <label>\"\n          },\n          {\n            \"id\": \"aria-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-label attribute does not exist or is empty\"\n          },\n          {\n            \"id\": \"aria-labelledby\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\"\n          },\n          {\n            \"id\": \"non-empty-title\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no title attribute\"\n          },\n          {\n            \"id\": \"non-empty-placeholder\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no placeholder attribute\"\n          },\n          {\n            \"id\": \"presentational-role\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"critical\",\n        \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\n        \"target\": [\n          \"#rc_select_1\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element does not have an implicit (wrapped) <label>\\n  Element does not have an explicit <label>\\n  aria-label attribute does not exist or is empty\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\n  Element has no title attribute\\n  Element has no placeholder attribute\\n  Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n      }\n    ]\n  }\n]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 97\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure every form element has a label\",\u001b[39m\n\u001b[31m+     \"help\": \"Form elements must have labels\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"label\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-placeholder\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no placeholder attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element has no placeholder attribute\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#rc_select_1\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.forms\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.n\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT5.c\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.1.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:59:55",
-                        "location": {
-                          "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
-                          "column": 55,
-                          "line": 59
-                        },
-                        "snippet": "\u001b[0m \u001b[90m 57 |\u001b[39m       v \u001b[33m=>\u001b[39m v\u001b[33m.\u001b[39mimpact \u001b[33m===\u001b[39m \u001b[32m'serious'\u001b[39m \u001b[33m||\u001b[39m v\u001b[33m.\u001b[39mimpact \u001b[33m===\u001b[39m \u001b[32m'critical'\u001b[39m\n \u001b[90m 58 |\u001b[39m     )\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 59 |\u001b[39m     expect(serious\u001b[33m,\u001b[39m \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify(serious\u001b[33m,\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m \u001b[35m2\u001b[39m))\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                       \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 60 |\u001b[39m   })\u001b[33m;\u001b[39m\n \u001b[90m 61 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 62 |\u001b[39m\u001b[0m"
-                      },
-                      "errors": [
-                        {
-                          "location": {
-                            "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
-                            "column": 55,
-                            "line": 59
-                          },
-                          "message": "Error: [\n  {\n    \"id\": \"label\",\n    \"impact\": \"critical\",\n    \"tags\": [\n      \"cat.forms\",\n      \"wcag2a\",\n      \"wcag412\",\n      \"section508\",\n      \"section508.22.n\",\n      \"TTv5\",\n      \"TT5.c\",\n      \"EN-301-549\",\n      \"EN-9.4.1.2\",\n      \"ACT\",\n      \"RGAAv4\",\n      \"RGAA-11.1.1\"\n    ],\n    \"description\": \"Ensure every form element has a label\",\n    \"help\": \"Form elements must have labels\",\n    \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\n    \"nodes\": [\n      {\n        \"any\": [\n          {\n            \"id\": \"implicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an implicit (wrapped) <label>\"\n          },\n          {\n            \"id\": \"explicit-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element does not have an explicit <label>\"\n          },\n          {\n            \"id\": \"aria-label\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-label attribute does not exist or is empty\"\n          },\n          {\n            \"id\": \"aria-labelledby\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\"\n          },\n          {\n            \"id\": \"non-empty-title\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no title attribute\"\n          },\n          {\n            \"id\": \"non-empty-placeholder\",\n            \"data\": {\n              \"messageKey\": \"noAttr\"\n            },\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element has no placeholder attribute\"\n          },\n          {\n            \"id\": \"presentational-role\",\n            \"data\": null,\n            \"relatedNodes\": [],\n            \"impact\": \"critical\",\n            \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n          }\n        ],\n        \"all\": [],\n        \"none\": [],\n        \"impact\": \"critical\",\n        \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\n        \"target\": [\n          \"#rc_select_1\"\n        ],\n        \"failureSummary\": \"Fix any of the following:\\n  Element does not have an implicit (wrapped) <label>\\n  Element does not have an explicit <label>\\n  aria-label attribute does not exist or is empty\\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\\n  Element has no title attribute\\n  Element has no placeholder attribute\\n  Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\"\n      }\n    ]\n  }\n]\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 97\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"description\": \"Ensure every form element has a label\",\u001b[39m\n\u001b[31m+     \"help\": \"Form elements must have labels\",\u001b[39m\n\u001b[31m+     \"helpUrl\": \"https://dequeuniversity.com/rules/axe/4.12/label?application=playwright\",\u001b[39m\n\u001b[31m+     \"id\": \"label\",\u001b[39m\n\u001b[31m+     \"impact\": \"critical\",\u001b[39m\n\u001b[31m+     \"nodes\": Array [\u001b[39m\n\u001b[31m+       Object {\u001b[39m\n\u001b[31m+         \"all\": Array [],\u001b[39m\n\u001b[31m+         \"any\": Array [\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"implicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an implicit (wrapped) <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"explicit-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element does not have an explicit <label>\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-label\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-label attribute does not exist or is empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"aria-labelledby\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-title\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no title attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": Object {\u001b[39m\n\u001b[31m+               \"messageKey\": \"noAttr\",\u001b[39m\n\u001b[31m+             },\u001b[39m\n\u001b[31m+             \"id\": \"non-empty-placeholder\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element has no placeholder attribute\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+           Object {\u001b[39m\n\u001b[31m+             \"data\": null,\u001b[39m\n\u001b[31m+             \"id\": \"presentational-role\",\u001b[39m\n\u001b[31m+             \"impact\": \"critical\",\u001b[39m\n\u001b[31m+             \"message\": \"Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+             \"relatedNodes\": Array [],\u001b[39m\n\u001b[31m+           },\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+         \"failureSummary\": \"Fix any of the following:\u001b[39m\n\u001b[31m+   Element does not have an implicit (wrapped) <label>\u001b[39m\n\u001b[31m+   Element does not have an explicit <label>\u001b[39m\n\u001b[31m+   aria-label attribute does not exist or is empty\u001b[39m\n\u001b[31m+   aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\u001b[39m\n\u001b[31m+   Element has no title attribute\u001b[39m\n\u001b[31m+   Element has no placeholder attribute\u001b[39m\n\u001b[31m+   Element's default semantics were not overridden with role=\\\"none\\\" or role=\\\"presentation\\\"\",\u001b[39m\n\u001b[31m+         \"html\": \"<input type=\\\"search\\\" autocomplete=\\\"off\\\" class=\\\"ant-select-selection...\\\" role=\\\"combobox\\\" aria-expanded=\\\"false\\\" aria-haspopup=\\\"listbox\\\" aria-owns=\\\"rc_select_1_list\\\" aria-autocomplete=\\\"list\\\" aria-controls=\\\"rc_select_1_list\\\" readonly=\\\"\\\" unselectable=\\\"on\\\" value=\\\"\\\" id=\\\"rc_select_1\\\" ...>\",\u001b[39m\n\u001b[31m+         \"impact\": \"critical\",\u001b[39m\n\u001b[31m+         \"none\": Array [],\u001b[39m\n\u001b[31m+         \"target\": Array [\u001b[39m\n\u001b[31m+           \"#rc_select_1\",\u001b[39m\n\u001b[31m+         ],\u001b[39m\n\u001b[31m+       },\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+     \"tags\": Array [\u001b[39m\n\u001b[31m+       \"cat.forms\",\u001b[39m\n\u001b[31m+       \"wcag2a\",\u001b[39m\n\u001b[31m+       \"wcag412\",\u001b[39m\n\u001b[31m+       \"section508\",\u001b[39m\n\u001b[31m+       \"section508.22.n\",\u001b[39m\n\u001b[31m+       \"TTv5\",\u001b[39m\n\u001b[31m+       \"TT5.c\",\u001b[39m\n\u001b[31m+       \"EN-301-549\",\u001b[39m\n\u001b[31m+       \"EN-9.4.1.2\",\u001b[39m\n\u001b[31m+       \"ACT\",\u001b[39m\n\u001b[31m+       \"RGAAv4\",\u001b[39m\n\u001b[31m+       \"RGAA-11.1.1\",\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  57 |       v => v.impact === 'serious' || v.impact === 'critical'\n  58 |     );\n> 59 |     expect(serious, JSON.stringify(serious, null, 2)).toEqual([]);\n     |                                                       ^\n  60 |   });\n  61 | });\n  62 |\n    at C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts:59:55"
-                        }
-                      ],
+                      "status": "passed",
+                      "duration": 752,
+                      "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:43.589Z",
+                      "startTime": "2026-07-07T11:44:28.140Z",
                       "annotations": [],
-                      "attachments": [
-                        {
-                          "name": "screenshot",
-                          "contentType": "image/png",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\\test-failed-1.png"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\\video.webm"
-                        },
-                        {
-                          "name": "video",
-                          "contentType": "video/webm",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\\video-1.webm"
-                        },
-                        {
-                          "name": "error-context",
-                          "contentType": "text/markdown",
-                          "path": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\test-results\\story-003-STORY-003-access-028c8-pliance-on-agents-list-page-mobile-chrome\\error-context.md"
-                        }
-                      ],
-                      "errorLocation": {
-                        "file": "C:\\repos\\asdlc-workspace\\04_source\\frontend\\e2e\\story-003.spec.ts",
-                        "column": 55,
-                        "line": 59
-                      }
+                      "attachments": []
                     }
                   ],
-                  "status": "unexpected"
+                  "status": "expected"
                 }
               ],
               "id": "d54e5b84a01443914686-fbc778611111dae7e5e9",
@@ -1549,7 +1379,7 @@
                   "projectName": "chromium",
                   "results": [
                     {
-                      "workerIndex": 5,
+                      "workerIndex": 3,
                       "parallelIndex": 0,
                       "status": "failed",
                       "duration": 0,
@@ -1565,7 +1395,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:13.785Z",
+                      "startTime": "2026-07-07T11:44:04.089Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1605,7 +1435,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:13.954Z",
+                      "startTime": "2026-07-07T11:44:04.138Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1639,7 +1469,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:13.955Z",
+                      "startTime": "2026-07-07T11:44:04.138Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1665,7 +1495,7 @@
                   "projectName": "mobile-chrome",
                   "results": [
                     {
-                      "workerIndex": 11,
+                      "workerIndex": 7,
                       "parallelIndex": 0,
                       "status": "failed",
                       "duration": 0,
@@ -1681,7 +1511,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:44.782Z",
+                      "startTime": "2026-07-07T11:44:28.975Z",
                       "annotations": [],
                       "attachments": [
                         {
@@ -1721,7 +1551,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:44.941Z",
+                      "startTime": "2026-07-07T11:44:29.025Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1755,7 +1585,7 @@
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-07-07T11:37:44.941Z",
+                      "startTime": "2026-07-07T11:44:29.025Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1775,11 +1605,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-07T11:36:43.193Z",
-    "duration": 61771.344000000005,
-    "expected": 18,
+    "startTime": "2026-07-07T11:43:39.685Z",
+    "duration": 49363.419,
+    "expected": 22,
     "skipped": 4,
-    "unexpected": 12,
+    "unexpected": 8,
     "flaky": 0
   }
 }
