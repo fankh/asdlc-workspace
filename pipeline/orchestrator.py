@@ -76,10 +76,10 @@ class Orchestrator:
     # -- internals ---------------------------------------------------------
 
     def _is_complete(self, stage: Stage) -> bool:
-        if self.state.stage_status(stage.name) == "done":
-            return True
-        # a pre-existing folder marker counts as done (resume after clone/copy)
-        return stage.writes_marker and marker_path(self.root, stage).exists()
+        # The folder marker is the single source of truth: deleting a
+        # .status_done re-runs every stage that fills that folder (the
+        # documented change workflow). state.json is bookkeeping only.
+        return marker_path(self.root, stage).exists()
 
     def _run_stage(self, stage: Stage) -> bool:
         log.info("stage %-13s RUNNING (agent=%s -> %s)", stage.name, stage.agent, stage.output_dir)
