@@ -34,11 +34,31 @@ def main() -> int:
     sub.add_parser("status", help="show stage table")
     sub.add_parser("reset", help="clear .status_done markers and reset state.json")
 
+    watch_p = sub.add_parser("watch", help="automatic development loop: react to "
+                                           "input/ticket changes, run, optionally deploy")
+    watch_p.add_argument("--interval", type=int, default=300,
+                         help="seconds between checks (default 300)")
+    watch_p.add_argument("--deploy", action="store_true",
+                         help="docker compose up --build -d after a green run")
+    watch_p.add_argument("--once", action="store_true",
+                         help="single check instead of looping (for cron/tests)")
+
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
     config = load_config()
     state = State(config.root / ".pipeline" / "state.json")
+
+    if args.command == "watch":
+        # daemon-friendly: also log to a file with timestamps
+        file_handler = logging.FileHandler(config.root / ".pipeline" / "watch.log",
+                                           encoding="utf-8")
+        file_handler.setFormatter(
+            logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
+        logging.getLogger("pipeline").addHandler(file_handler)
+        from pipeline.watcher import Watcher
+        Watcher(config, deploy=args.deploy).watch(args.interval, once=args.once)
+        return 0
 
     if args.command == "status":
         print(Orchestrator(config, state).status_table())

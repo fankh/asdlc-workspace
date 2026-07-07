@@ -192,6 +192,42 @@ vision and writes deduplicated tickets to `01_requirements/discovered/tickets/`.
 Delete `02_specs/.status_done` and `run` again to fold the tickets into the
 backlog — this is how the cycle feeds itself.
 
+### 3.3b Automatic development loop (watch mode)
+
+Instead of running the pipeline by hand, let it run itself. Watch mode polls
+for work and runs the whole maintenance cycle when it finds any:
+
+```powershell
+run-pipeline.py watch --interval 300 --deploy
+```
+
+- Watches `00_input/` — a changed/new document → re-runs from the **ingest**
+  stage.
+- Watches `01_requirements/discovered/tickets/` — new tickets (from
+  `--stage discover` or `--stage audit`) → re-runs from the **product** stage.
+- On a green run with `--deploy`, it rebuilds and restarts the container at
+  http://localhost:8088.
+- If the refinement circuit breaker trips (`HUMAN_INTERVENTION_REQUIRED`), the
+  loop **idles** and logs it rather than thrashing — clear the flag (see §4)
+  and it resumes on the next tick.
+- A lockfile (`.pipeline/watch.lock`) guarantees only one watcher runs even if
+  started twice. Activity is logged to `.pipeline/watch.log`.
+
+The first tick records a baseline and does nothing, so enabling it on an
+already-built workspace won't trigger a rebuild.
+
+**Run it at logon (Windows, no admin):** `scripts/auto-dev.cmd` launches the
+watcher minimized; a shortcut to it in the Startup folder
+(`shell:startup`) starts it automatically each logon. To run once manually:
+double-click `scripts/auto-dev.cmd`. To stop: end the `pythonw.exe` running
+`run-pipeline.py watch` (Task Manager) or delete `.pipeline/watch.lock` after
+killing it.
+
+> On the local Ollama a triggered cycle can take **hours** and may still need a
+> human-intervention round on hard changes (see §4). Watch mode is
+> "fire-and-forget with a safety net", not instant CI. With an Anthropic key it
+> becomes minutes per cycle.
+
 ### 3.4 Run a single stage
 
 ```powershell
@@ -265,6 +301,7 @@ run-pipeline.py run                     advance through all remaining stages
 run-pipeline.py run --stop-after X     halt after stage/alias (specs|architecture|code|test)
 run-pipeline.py run --stage X          run exactly one stage (incl. discover, audit)
 run-pipeline.py run --dry-run          walk stages as no-ops (exercises markers)
+run-pipeline.py watch [--interval N] [--deploy] [--once]   automatic dev loop
 run-pipeline.py status                 stage table + refinement loops + cost
 run-pipeline.py reset                  clear all markers and state — full redo
 pytest tests/                          pipeline's own unit tests

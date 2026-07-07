@@ -11,3 +11,6 @@ playwright-report/
 __pycache__/
 test-results/
 05_test_reports/playwright/
+.pipeline/watch.lock
+.pipeline/watch.log
+.pipeline/watch.json

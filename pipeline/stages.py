@@ -63,6 +63,19 @@ def write_marker(root: Path, stage: Stage) -> None:
         marker_path(root, stage).write_text("done\n", encoding="utf-8")
 
 
+def clear_markers_from(root: Path, first_stage: str) -> list[Path]:
+    """Remove .status_done markers for `first_stage` and everything after it,
+    so the next run re-executes the pipeline from that point (maintenance)."""
+    names = [s.name for s in STAGES]
+    removed = []
+    for stage in STAGES[names.index(first_stage):]:
+        path = marker_path(root, stage)
+        if stage.writes_marker and path.exists():
+            path.unlink()
+            removed.append(path)
+    return removed
+
+
 def clear_markers(root: Path) -> list[Path]:
     removed = []
     for stage in STAGES:
