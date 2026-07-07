@@ -85,18 +85,30 @@ class ArchitectAgent(Agent):
                 "the pattern is frozen."
             )
 
-        result = self.ctx.llm.complete(
-            system=self.system_blocks(PROMPT),
-            user=user,
-            schema=SCHEMA,
-            max_tokens=16000,
-        )
-        data = result.parsed
-
-        spec_error = self._validate_openapi(data["openapi_yaml"])
+        usage_total: dict = {}
+        spec_error: str | None = None
+        data = None
+        for attempt in range(3):  # local models emit invalid YAML occasionally
+            result = self.ctx.llm.complete(
+                system=self.system_blocks(PROMPT),
+                user=user,
+                schema=SCHEMA,
+                max_tokens=16000,
+            )
+            for key, val in result.usage.items():
+                usage_total[key] = usage_total.get(key, 0) + val
+            data = result.parsed
+            spec_error = self._validate_openapi(data["openapi_yaml"])
+            if not spec_error:
+                break
+            user += (f"\n\nYour previous openapi_yaml was INVALID: {spec_error}. "
+                     "Regenerate the full response with a valid OpenAPI 3.1 "
+                     "document (no empty/null nodes; every path item and "
+                     "schema must be a mapping).")
+        result.usage = usage_total
         if spec_error:
-            return AgentResult(ok=False, usage=result.usage,
-                               summary=f"generated OpenAPI spec invalid: {spec_error}")
+            return AgentResult(ok=False, usage=usage_total,
+                               summary=f"generated OpenAPI spec invalid after 3 attempts: {spec_error}")
 
         self.write_file("03_architecture/openapi.yaml", data["openapi_yaml"].strip() + "\n")
         self.write_file("03_architecture/DATA_MODEL.md", data["data_model"].strip() + "\n")
