@@ -125,6 +125,39 @@ class Dashboard:
                 pass
         return out
 
+    # -- page data --------------------------------------------------------
+
+    def _read(self, rel: str) -> str:
+        p = self.root / rel
+        return p.read_text(encoding="utf-8", errors="replace") if p.exists() else ""
+
+    def report_files(self) -> dict:
+        security = None
+        secp = self.root / "05_test_reports" / "security" / "report.json"
+        if secp.exists():
+            try:
+                security = json.loads(secp.read_text(encoding="utf-8"))
+            except json.JSONDecodeError:
+                pass
+        return {
+            "qa_md": self._read("05_test_reports/REPORT.md"),
+            "audit_md": self._read("05_test_reports/audit/AUDIT.md"),
+            "security": security,
+        }
+
+    def ticket_files(self) -> dict:
+        def load(rel: str) -> list[dict]:
+            d = self.root / rel
+            return [{"name": p.name, "content": p.read_text(encoding="utf-8")}
+                    for p in sorted(d.glob("PROBLEM-*.md"))] if d.exists() else []
+        return {
+            "tickets": load("01_requirements/discovered/tickets"),
+            "deferred": load("01_requirements/discovered/deferred"),
+        }
+
+    def backlog(self) -> str:
+        return self._read("02_specs/PRODUCT_BACKLOG.md")
+
     # -- jobs -------------------------------------------------------------
 
     def _job_running(self) -> bool:
@@ -195,7 +228,13 @@ def _make_handler(dash: Dashboard):
                 self._json(dash.status())
             elif parsed.path == "/api/log":
                 q = parse_qs(parsed.query)
-                self._json({"log": dash.tail_log(q.get("name", ["job"])[0])})
+                self._json({"log": dash.tail_log(q.get("name", ["job"])[0], lines=400)})
+            elif parsed.path == "/api/reports":
+                self._json(dash.report_files())
+            elif parsed.path == "/api/tickets":
+                self._json(dash.ticket_files())
+            elif parsed.path == "/api/backlog":
+                self._json({"content": dash.backlog()})
             else:
                 self._send(404, b"not found", "text/plain")
 
@@ -228,98 +267,5 @@ def serve(config: Config, port: int) -> None:
 
 # -- the single-page dashboard (dark, self-contained, polls /api/status) -----
 
-PAGE = r"""<!doctype html><html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ASDLC Pipeline Control</title>
-<style>
-:root{--bg:#0B0F14;--panel:#141A21;--border:#232D38;--text:#E6EDF3;--muted:#9BA8B4;
---blue:#3B82F6;--green:#37B24D;--gold:#E8A33D;--red:#F26663;--mono:ui-monospace,'JetBrains Mono',Consolas,monospace}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);
-font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px}
-.wrap{max-width:1100px;margin:0 auto;padding:24px 28px}
-h1{font-size:22px;margin:0 0 2px}.sub{color:var(--muted);margin-bottom:20px}
-.sub b{color:var(--text)}.grid{display:grid;gap:16px}
-.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
-.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 12px}
-.stages{display:flex;flex-wrap:wrap;gap:8px}
-.stage{border:1px solid var(--border);border-radius:8px;padding:8px 12px;min-width:112px}
-.stage .n{font-weight:600}.stage .s{font-family:var(--mono);font-size:12px;color:var(--muted)}
-.stage.done{border-color:var(--green)}.stage.done .s{color:var(--green)}
-.stage.running{border-color:var(--blue)}.stage.running .s{color:var(--blue)}
-.stage.failed{border-color:var(--red)}.stage.failed .s{color:var(--red)}
-.row{display:flex;gap:24px;flex-wrap:wrap}
-.stat{font-family:var(--mono)}.stat .v{font-size:22px;font-weight:700}.stat .l{color:var(--muted);font-size:12px}
-button{background:#1C2530;color:var(--text);border:1px solid var(--border);border-radius:7px;
-padding:8px 14px;font-size:13px;cursor:pointer}button:hover{border-color:var(--blue)}
-button:disabled{opacity:.4;cursor:not-allowed}button.primary{background:var(--blue);border-color:var(--blue);color:#08110D;font-weight:600}
-button.danger{border-color:var(--red);color:var(--red)}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font-family:var(--mono);font-size:12px;border:1px solid var(--border);border-radius:999px;padding:2px 10px}
-.pill.on{border-color:var(--green);color:var(--green)}.pill.off{color:var(--muted)}
-.loop{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-pre{background:#0C1219;border:1px solid var(--border);border-radius:8px;padding:12px;
-font-family:var(--mono);font-size:12px;max-height:280px;overflow:auto;white-space:pre-wrap;margin:0;color:#B9C6D3}
-.warn{background:#2A1A1A;border-color:var(--red);color:#F2B8B6}
-.mut{color:var(--muted)}.ok{color:var(--green)}.bad{color:var(--red)}
-</style></head><body><div class="wrap">
-<h1>ASDLC Pipeline Control</h1>
-<div class="sub">workspace <b id="proj">…</b> · provider <b id="prov">…</b> · mode <b id="mode">…</b></div>
-<div id="human" class="card warn" style="display:none;margin-bottom:16px"></div>
-<div class="grid">
-  <div class="card"><h2>Stages</h2><div class="stages" id="stages"></div></div>
-  <div class="card"><h2>Run</h2>
-    <div class="btns" id="runbtns">
-      <button class="primary" data-a="run">Run full pipeline</button>
-      <button data-a="run-specs">→ specs</button>
-      <button data-a="run-architecture">→ architecture</button>
-      <button data-a="run-code">→ code</button>
-      <button data-a="run-test">→ QA gate</button>
-      <button data-a="audit">Audit</button>
-      <button data-a="discover">Discover</button>
-      <button class="danger" data-a="reset">Reset</button>
-    </div>
-    <div class="mut" id="jobstate" style="margin-top:10px"></div>
-  </div>
-  <div class="row">
-    <div class="card" style="flex:1;min-width:260px"><h2>Metrics</h2>
-      <div class="row">
-        <div class="stat"><div class="v" id="loops">0/0</div><div class="l">refine loops</div></div>
-        <div class="stat"><div class="v" id="cost">$0</div><div class="l">llm cost</div></div>
-        <div class="stat"><div class="v" id="tickets">0</div><div class="l">tickets</div></div>
-        <div class="stat"><div class="v" id="deferred">0</div><div class="l">deferred</div></div>
-        <div class="stat"><div class="v" id="qa">—</div><div class="l">last QA</div></div>
-      </div>
-    </div>
-    <div class="card" style="flex:1;min-width:260px"><h2>Loops</h2>
-      <div class="loop"><span>watch</span><span class="pill off" id="watch-pill">stopped</span>
-        <button data-a="watch-start">Start</button><button class="danger" data-a="stop-watch">Stop</button></div>
-      <div class="loop"><span>improve</span><span class="pill off" id="improve-pill">stopped</span>
-        <button data-a="improve-start">Start</button><button class="danger" data-a="stop-improve">Stop</button></div>
-      <div class="mut" style="font-size:12px">Run only one loop at a time.</div>
-    </div>
-  </div>
-  <div class="card"><h2>Log <select id="logsel" style="background:#1C2530;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:2px 6px"><option value="job">job</option><option value="watch">watch</option><option value="improve">improve</option></select></h2>
-    <pre id="log">—</pre></div>
-</div></div>
-<script>
-const $=id=>document.getElementById(id);
-async function post(name){const r=await fetch('/api/action',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})});const j=await r.json();$('jobstate').textContent=j.message;refresh();}
-document.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>post(b.dataset.a));
-function stageClass(s){if(s.state==='running')return'running';if(s.state==='failed')return'failed';if(s.state==='done'||s.marker==='yes')return'done';return'';}
-async function refresh(){
- let s;try{s=await(await fetch('/api/status')).json()}catch(e){return}
- $('proj').textContent=s.project;$('prov').textContent=s.provider;$('mode').textContent=s.mode;
- $('stages').innerHTML=s.stages.map(x=>`<div class="stage ${stageClass(x)}"><div class="n">${x.name}</div><div class="s">${x.state}${x.marker==='yes'?' ✓':''}</div></div>`).join('');
- $('loops').textContent=s.refinement_loops+'/'+s.max_loops;
- $('cost').textContent='$'+(s.total_cost_usd||0).toFixed(2);
- $('tickets').textContent=s.tickets;$('deferred').textContent=s.deferred;
- $('qa').innerHTML=s.reports.qa?`<span class="${s.reports.qa.ok?'ok':'bad'}">${s.reports.qa.passed}/${s.reports.qa.total}</span>`:'—';
- for(const k of ['watch','improve']){const on=s.loops[k].running;const p=$(k+'-pill');p.textContent=on?'running':'stopped';p.className='pill '+(on?'on':'off');}
- const running=s.job.running;$('runbtns').querySelectorAll('button').forEach(b=>b.disabled=running);
- $('jobstate').innerHTML=running?`<span class="ok">● running: ${s.job.name}</span>`:'<span class="mut">idle</span>';
- if(s.human_intervention){$('human').style.display='block';$('human').innerHTML='⚠ HUMAN_INTERVENTION_REQUIRED — '+(s.human_reason||'QA red after refinement. Fix, then Reset or re-run.');}else{$('human').style.display='none';}
-}
-async function refreshLog(){try{const j=await(await fetch('/api/log?name='+$('logsel').value)).json();$('log').textContent=j.log||'(empty)';}catch(e){}}
-$('logsel').onchange=refreshLog;
-refresh();refreshLog();setInterval(refresh,3000);setInterval(refreshLog,3000);
-</script></body></html>"""
+# the dashboard page lives in _page.html (kept out of this module)
+PAGE = (Path(__file__).parent / "_page.html").read_text(encoding="utf-8")

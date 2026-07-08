@@ -1,0 +1,182 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ASDLC Pipeline Control</title>
+<style>
+:root{--bg:#0B0F14;--panel:#141A21;--border:#232D38;--text:#E6EDF3;--muted:#9BA8B4;
+--blue:#3B82F6;--green:#37B24D;--gold:#E8A33D;--red:#F26663;--mono:ui-monospace,'JetBrains Mono',Consolas,monospace}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);display:flex;
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px}
+/* sidebar */
+.side{width:210px;flex:0 0 210px;background:var(--panel);border-right:1px solid var(--border);
+display:flex;flex-direction:column;height:100vh;position:sticky;top:0}
+.brand{font-weight:700;font-size:18px;padding:18px 20px 4px}
+.brand small{display:block;color:var(--muted);font-weight:400;font-size:11px;letter-spacing:.05em}
+.nav{display:flex;flex-direction:column;padding:12px 10px;gap:2px}
+.nav a{color:var(--muted);text-decoration:none;padding:9px 14px;border-radius:7px;cursor:pointer;
+display:flex;justify-content:space-between;align-items:center}
+.nav a:hover{background:#1C2530;color:var(--text)}
+.nav a.active{background:#1D2630;color:var(--text)}
+.nav .badge{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:0 7px}
+.side-foot{margin-top:auto;padding:14px 20px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3a4653;margin-right:6px}
+.dot.on{background:var(--green)}.dot.busy{background:var(--blue)}
+/* main */
+.main{flex:1;min-width:0;height:100vh;overflow:auto;padding:24px 28px}
+h1{font-size:20px;margin:0 0 2px}.sub{color:var(--muted);margin-bottom:18px}.sub b{color:var(--text)}
+.view{display:none}.view.active{display:block}
+.grid{display:grid;gap:16px}.row{display:flex;gap:16px;flex-wrap:wrap}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 12px}
+.stages{display:flex;flex-wrap:wrap;gap:8px}
+.stage{border:1px solid var(--border);border-radius:8px;padding:8px 12px;min-width:110px}
+.stage .n{font-weight:600}.stage .s{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.stage.done{border-color:var(--green)}.stage.done .s{color:var(--green)}
+.stage.running{border-color:var(--blue)}.stage.running .s{color:var(--blue)}
+.stage.failed{border-color:var(--red)}.stage.failed .s{color:var(--red)}
+.stat{font-family:var(--mono)}.stat .v{font-size:22px;font-weight:700}.stat .l{color:var(--muted);font-size:12px}
+button{background:#1C2530;color:var(--text);border:1px solid var(--border);border-radius:7px;padding:8px 14px;font-size:13px;cursor:pointer}
+button:hover{border-color:var(--blue)}button:disabled{opacity:.4;cursor:not-allowed}
+button.primary{background:var(--blue);border-color:var(--blue);color:#08110D;font-weight:600}
+button.danger{border-color:var(--red);color:var(--red)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--mono);font-size:12px;border:1px solid var(--border);border-radius:999px;padding:2px 10px}
+.pill.on{border-color:var(--green);color:var(--green)}.pill.off{color:var(--muted)}
+.loop{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+pre.code,pre.log{background:#0C1219;border:1px solid var(--border);border-radius:8px;padding:12px;
+font-family:var(--mono);font-size:12px;overflow:auto;white-space:pre-wrap;margin:8px 0;color:#B9C6D3}
+pre.log{max-height:70vh}
+.doc{line-height:1.6}.doc h3{font-size:16px;margin:18px 0 6px}.doc h4{font-size:14px;color:var(--muted);margin:14px 0 4px}
+.doc hr{border:0;border-top:1px solid var(--border);margin:16px 0}.doc code{font-family:var(--mono);background:#0C1219;padding:1px 5px;border-radius:4px}
+.ticket{border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.warn{background:#2A1A1A;border-color:var(--red);color:#F2B8B6}
+.mut{color:var(--muted)}.ok{color:var(--green)}.bad{color:var(--red)}
+select{background:#1C2530;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:3px 8px}
+</style></head><body>
+<div class="side">
+  <div class="brand">ASDLC<small>pipeline control</small></div>
+  <nav class="nav" id="nav">
+    <a data-view="overview" class="active">Overview</a>
+    <a data-view="backlog">Backlog</a>
+    <a data-view="tickets">Tickets <span class="badge" id="nav-tickets">0</span></a>
+    <a data-view="reports">Reports</a>
+    <a data-view="logs">Logs</a>
+  </nav>
+  <div class="side-foot">
+    <div><span class="dot" id="job-dot"></span><span id="job-foot">idle</span></div>
+    <div style="margin-top:6px"><span class="dot" id="watch-dot"></span>watch
+      &nbsp;<span class="dot" id="improve-dot"></span>improve</div>
+  </div>
+</div>
+<div class="main">
+  <h1 id="title">Overview</h1>
+  <div class="sub">workspace <b id="proj">…</b> · provider <b id="prov">…</b> · mode <b id="mode">…</b></div>
+  <div id="human" class="card warn" style="display:none;margin-bottom:16px"></div>
+
+  <!-- OVERVIEW -->
+  <section class="view active" id="view-overview"><div class="grid">
+    <div class="card"><h2>Stages</h2><div class="stages" id="stages"></div></div>
+    <div class="card"><h2>Run</h2>
+      <div class="btns" id="runbtns">
+        <button class="primary" data-a="run">Run full pipeline</button>
+        <button data-a="run-specs">→ specs</button>
+        <button data-a="run-architecture">→ architecture</button>
+        <button data-a="run-code">→ code</button>
+        <button data-a="run-test">→ QA gate</button>
+        <button data-a="audit">Audit</button>
+        <button data-a="discover">Discover</button>
+        <button class="danger" data-a="reset">Reset</button>
+      </div>
+      <div class="mut" id="jobstate" style="margin-top:10px"></div>
+    </div>
+    <div class="row">
+      <div class="card" style="flex:1;min-width:260px"><h2>Metrics</h2><div class="row">
+        <div class="stat"><div class="v" id="loops">0/0</div><div class="l">refine loops</div></div>
+        <div class="stat"><div class="v" id="cost">$0</div><div class="l">llm cost</div></div>
+        <div class="stat"><div class="v" id="tickets">0</div><div class="l">tickets</div></div>
+        <div class="stat"><div class="v" id="deferred">0</div><div class="l">deferred</div></div>
+        <div class="stat"><div class="v" id="qa">—</div><div class="l">last QA</div></div>
+      </div></div>
+      <div class="card" style="flex:1;min-width:260px"><h2>Loops</h2>
+        <div class="loop"><span>watch</span><span class="pill off" id="watch-pill">stopped</span>
+          <button data-a="watch-start">Start</button><button class="danger" data-a="stop-watch">Stop</button></div>
+        <div class="loop"><span>improve</span><span class="pill off" id="improve-pill">stopped</span>
+          <button data-a="improve-start">Start</button><button class="danger" data-a="stop-improve">Stop</button></div>
+        <div class="mut" style="font-size:12px">Run only one loop at a time.</div>
+      </div>
+    </div>
+  </div></section>
+
+  <!-- BACKLOG -->
+  <section class="view" id="view-backlog"><div class="card"><h2>Product backlog (the contract)</h2>
+    <div class="doc" id="backlog">…</div></div></section>
+
+  <!-- TICKETS -->
+  <section class="view" id="view-tickets">
+    <div class="card"><h2>Discovered problems</h2><div id="tickets-list"></div></div>
+    <div class="card" style="margin-top:16px"><h2>Deferred (auto-fix gave up)</h2><div id="deferred-list"></div></div>
+  </section>
+
+  <!-- REPORTS -->
+  <section class="view" id="view-reports"><div class="grid">
+    <div class="card"><h2>QA report</h2><div class="doc" id="rep-qa">—</div></div>
+    <div class="card"><h2>Audit</h2><div class="doc" id="rep-audit">—</div></div>
+    <div class="card"><h2>Security</h2><div id="rep-sec">—</div></div>
+  </div></section>
+
+  <!-- LOGS -->
+  <section class="view" id="view-logs"><div class="card">
+    <h2>Log <select id="logsel"><option value="job">job</option><option value="watch">watch</option><option value="improve">improve</option></select></h2>
+    <pre class="log" id="log">—</pre></div></section>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function md(t){if(!t)return '<span class="mut">(empty)</span>';const parts=t.split('```');let out='';
+ parts.forEach((c,i)=>{if(i%2){out+='<pre class="code">'+esc(c.replace(/^[a-z]*\n/,''))+'</pre>';}
+ else{out+=esc(c).replace(/^#{4,6} (.*)$/gm,'<h4>$1</h4>').replace(/^### (.*)$/gm,'<h4>$1</h4>')
+  .replace(/^## (.*)$/gm,'<h3>$1</h3>').replace(/^# (.*)$/gm,'<h3>$1</h3>')
+  .replace(/^\s*---\s*$/gm,'<hr>').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')
+  .replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\n{2,}/g,'<br><br>').replace(/\n/g,'<br>');}});
+ return out;}
+
+async function post(name){const j=await(await fetch('/api/action',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})})).json();$('jobstate').textContent=j.message;refresh();}
+document.querySelectorAll('button[data-a]').forEach(b=>b.onclick=()=>post(b.dataset.a));
+
+let view='overview';
+function setView(v){view=v;location.hash='#/'+v;
+ document.querySelectorAll('.view').forEach(s=>s.classList.toggle('active',s.id==='view-'+v));
+ document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.dataset.view===v));
+ $('title').textContent={overview:'Overview',backlog:'Backlog',tickets:'Tickets',reports:'Reports',logs:'Logs'}[v];
+ if(v==='backlog')loadBacklog();if(v==='tickets')loadTickets();if(v==='reports')loadReports();if(v==='logs')refreshLog();}
+document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>setView(a.dataset.view));
+
+function stageClass(s){if(s.state==='running')return'running';if(s.state==='failed')return'failed';if(s.state==='done'||s.marker==='yes')return'done';return'';}
+async function refresh(){let s;try{s=await(await fetch('/api/status')).json()}catch(e){return}
+ $('proj').textContent=s.project;$('prov').textContent=s.provider;$('mode').textContent=s.mode;
+ $('stages').innerHTML=s.stages.map(x=>`<div class="stage ${stageClass(x)}"><div class="n">${x.name}</div><div class="s">${x.state}${x.marker==='yes'?' ✓':''}</div></div>`).join('');
+ $('loops').textContent=s.refinement_loops+'/'+s.max_loops;$('cost').textContent='$'+(s.total_cost_usd||0).toFixed(2);
+ $('tickets').textContent=s.tickets;$('deferred').textContent=s.deferred;$('nav-tickets').textContent=s.tickets+s.deferred;
+ $('qa').innerHTML=s.reports.qa?`<span class="${s.reports.qa.ok?'ok':'bad'}">${s.reports.qa.passed}/${s.reports.qa.total}</span>`:'—';
+ for(const k of ['watch','improve']){const on=s.loops[k].running;const p=$(k+'-pill');if(p){p.textContent=on?'running':'stopped';p.className='pill '+(on?'on':'off');}$(k+'-dot').className='dot'+(on?' on':'');}
+ const running=s.job.running;$('runbtns').querySelectorAll('button').forEach(b=>b.disabled=running);
+ $('jobstate').innerHTML=running?`<span class="ok">● running: ${s.job.name}</span>`:'<span class="mut">idle</span>';
+ $('job-dot').className='dot'+(running?' busy':'');$('job-foot').textContent=running?('job: '+s.job.name):'idle';
+ if(s.human_intervention){$('human').style.display='block';$('human').innerHTML='⚠ HUMAN_INTERVENTION_REQUIRED — '+(s.human_reason||'QA red after refinement. Fix, then Reset or re-run.');}else{$('human').style.display='none';}
+}
+async function loadBacklog(){const j=await(await fetch('/api/backlog')).json();$('backlog').innerHTML=md(j.content);}
+async function loadTickets(){const j=await(await fetch('/api/tickets')).json();
+ const render=a=>a.length?a.map(t=>`<div class="ticket"><div class="doc">${md(t.content)}</div></div>`).join(''):'<span class="mut">none</span>';
+ $('tickets-list').innerHTML=render(j.tickets);$('deferred-list').innerHTML=render(j.deferred);}
+async function loadReports(){const j=await(await fetch('/api/reports')).json();
+ $('rep-qa').innerHTML=md(j.qa_md);$('rep-audit').innerHTML=md(j.audit_md);
+ if(j.security){const f=j.security.findings||[];$('rep-sec').innerHTML=`<div class="mut" style="margin-bottom:8px">${f.length} finding(s), tools: ${(j.security.tools||[]).join(', ')}</div>`+
+  (f.length?f.map(x=>`<div class="ticket"><b class="${['high','critical'].includes(x.severity)?'bad':'mut'}">${x.severity}</b> — ${esc(x.tool)} · ${esc(x.target||x.package||'')}<br><span class="mut">${esc(x.detail||'')}</span></div>`).join(''):'<span class="ok">clean</span>');}
+ else{$('rep-sec').innerHTML='<span class="mut">no security report yet</span>';}}
+async function refreshLog(){const j=await(await fetch('/api/log?name='+$('logsel').value)).json();$('log').textContent=j.log||'(empty)';}
+$('logsel').onchange=refreshLog;
+
+const start=(location.hash||'').replace('#/','')||'overview';
+setView(['overview','backlog','tickets','reports','logs'].includes(start)?start:'overview');
+refresh();setInterval(refresh,3000);setInterval(()=>{if(view==='logs')refreshLog();},3000);
+</script></body></html>
