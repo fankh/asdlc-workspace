@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 import subprocess
 import sys
 import threading
@@ -23,11 +24,43 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from pipeline.config import Config
+import yaml
+
+from pipeline.config import VALID_PROJECT_TYPES, Config, load_config
 from pipeline.stages import STAGES, marker_path
 from pipeline.state import State
 
 log = logging.getLogger("pipeline")
+
+# .env values whose keys look secret are masked in the browser; a save that
+# leaves the mask in place keeps the original secret.
+_SECRET_KEY = re.compile(r"(_KEY|_TOKEN|_SECRET|PASSWORD)$")
+_ENV_MASK = "********"
+_ENV_LINE = re.compile(r"^([A-Za-z0-9_]+)=(.*)$")
+
+
+def _mask_env(text: str) -> str:
+    out = []
+    for line in text.splitlines():
+        m = _ENV_LINE.match(line)
+        if m and _SECRET_KEY.search(m.group(1)) and m.group(2) and "REPLACE_ME" not in m.group(2):
+            out.append(f"{m.group(1)}={_ENV_MASK}")
+        else:
+            out.append(line)
+    return "\n".join(out)
+
+
+def _unmask_env(new: str, original: str) -> str:
+    orig = {m.group(1): m.group(2) for line in original.splitlines()
+            if (m := _ENV_LINE.match(line))}
+    out = []
+    for line in new.splitlines():
+        m = _ENV_LINE.match(line)
+        if m and m.group(2) == _ENV_MASK and m.group(1) in orig:
+            out.append(f"{m.group(1)}={orig[m.group(1)]}")
+        else:
+            out.append(line)
+    return "\n".join(out)
 
 # name -> argv passed to run-pipeline.py. Only these can be triggered.
 ACTIONS: dict[str, list[str]] = {
@@ -63,6 +96,7 @@ class Dashboard:
     # -- status -----------------------------------------------------------
 
     def status(self) -> dict:
+        self._refresh_config()  # reflect any config edits made in the browser
         state = State(self.root / ".pipeline" / "state.json")
         stages = []
         for s in STAGES:
@@ -158,6 +192,45 @@ class Dashboard:
     def backlog(self) -> str:
         return self._read("02_specs/PRODUCT_BACKLOG.md")
 
+    # -- config edit ------------------------------------------------------
+
+    def config_get(self) -> dict:
+        return {
+            "config_yaml": self._read(".pipeline/config.yaml"),
+            "env": _mask_env(self._read(".env")),
+            "project_types": sorted(VALID_PROJECT_TYPES),
+        }
+
+    def config_save(self, config_yaml: str | None, env: str | None) -> dict:
+        saved = []
+        if config_yaml is not None:
+            try:
+                parsed = yaml.safe_load(config_yaml)
+            except yaml.YAMLError as exc:
+                return {"ok": False, "message": f"config.yaml is not valid YAML: {exc}"}
+            if not isinstance(parsed, dict):
+                return {"ok": False, "message": "config.yaml must be a mapping"}
+            (self.root / ".pipeline" / "config.yaml").write_text(config_yaml, encoding="utf-8")
+            saved.append("config.yaml")
+        if env is not None:
+            merged = _unmask_env(env, self._read(".env"))
+            if not merged.endswith("\n"):
+                merged += "\n"
+            (self.root / ".env").write_text(merged, encoding="utf-8")
+            saved.append(".env")
+        warn = ""
+        try:
+            self.config = load_config(self.root)  # apply immediately
+        except Exception as exc:
+            warn = f" — but the pipeline won't load yet: {exc}"
+        return {"ok": True, "message": "saved " + " + ".join(saved) + warn}
+
+    def _refresh_config(self) -> None:
+        try:
+            self.config = load_config(self.root)
+        except Exception:
+            pass  # keep last-good config for the status panel
+
     # -- jobs -------------------------------------------------------------
 
     def _job_running(self) -> bool:
@@ -235,17 +308,23 @@ def _make_handler(dash: Dashboard):
                 self._json(dash.ticket_files())
             elif parsed.path == "/api/backlog":
                 self._json({"content": dash.backlog()})
+            elif parsed.path == "/api/config":
+                self._json(dash.config_get())
             else:
                 self._send(404, b"not found", "text/plain")
 
         def do_POST(self):
-            if urlparse(self.path).path != "/api/action":
+            path = urlparse(self.path).path
+            if path not in ("/api/action", "/api/config"):
                 return self._send(404, b"not found", "text/plain")
             length = int(self.headers.get("Content-Length", 0))
             try:
                 payload = json.loads(self.rfile.read(length) or b"{}")
             except json.JSONDecodeError:
                 return self._json({"ok": False, "message": "bad json"}, 400)
+            if path == "/api/config":
+                return self._json(dash.config_save(payload.get("config_yaml"),
+                                                    payload.get("env")))
             name = payload.get("name", "")
             if name.startswith("stop-"):
                 self._json(dash.stop_loop(name[len("stop-"):]))
