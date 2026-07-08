@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import agentRoutes from './routes/agents.js'
+import { agentRunsRouter, runsRouter } from './routes/runs.js'
 import { Request, Response, NextFunction } from 'express'
 
 const app = express()
@@ -15,7 +16,9 @@ app.get('/api/health', (_req: Request, res: Response) => {
 })
 
 // Routes
+app.use('/api/agents', agentRunsRouter) // /api/agents/:id/runs (before agentRoutes)
 app.use('/api/agents', agentRoutes)
+app.use('/api/runs', runsRouter)
 
 // Error middleware (must be last)
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

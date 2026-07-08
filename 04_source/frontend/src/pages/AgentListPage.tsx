@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { listAgents, deleteAgent, updateAgent } from '../api/client';
 import type { Agent, AgentInput } from '../api/types';
 import AgentFormFields from '../components/AgentFormFields';
+import RunAgentModal from '../components/RunAgentModal';
 
 const STATUS_COLOR: Record<string, string | undefined> = {
   active: 'green',
@@ -28,6 +29,7 @@ export default function AgentListPage() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [editing, setEditing] = useState<Agent | null>(null);
   const [viewing, setViewing] = useState<Agent | null>(null);
+  const [running, setRunning] = useState<Agent | null>(null);
   const [saving, setSaving] = useState(false);
   const [form] = Form.useForm();
 
@@ -91,9 +93,10 @@ export default function AgentListPage() {
       render: (v: string) => <Tag color={IMPORTANCE_COLOR[v]} className="mono-cell">{v}</Tag>,
     },
     {
-      title: '', key: 'action', width: 150,
+      title: '', key: 'action', width: 220,
       render: (_: unknown, record: Agent) => (
         <Space onClick={(e) => e.stopPropagation()}>
+          <Button size="small" type="primary" onClick={() => setRunning(record)}>Run</Button>
           <Button size="small" onClick={() => openEdit(record)}>Edit</Button>
           <Button size="small" danger onClick={() => handleDelete(record.id)}>Delete</Button>
         </Space>
@@ -171,7 +174,12 @@ export default function AgentListPage() {
         open={!!viewing}
         onClose={() => setViewing(null)}
         width={460}
-        extra={viewing ? <Button type="primary" onClick={() => openEdit(viewing)}>Edit</Button> : null}
+        extra={viewing ? (
+          <Space>
+            <Button type="primary" onClick={() => { const a = viewing; setViewing(null); setRunning(a); }}>Run</Button>
+            <Button onClick={() => openEdit(viewing)}>Edit</Button>
+          </Space>
+        ) : null}
       >
         {viewing && (
           <Descriptions bordered column={1} size="small">
@@ -189,6 +197,9 @@ export default function AgentListPage() {
           </Descriptions>
         )}
       </Drawer>
+
+      {/* Run agent — task execution + history */}
+      <RunAgentModal agent={running} onClose={() => setRunning(null)} />
     </main>
   );
 }

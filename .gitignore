@@ -6,6 +6,7 @@ playwright-report/
 .pipeline/*.tmp
 04_source/frontend/dist/
 04_source/frontend/.next/
+04_source/backend/dist/
 04_source/backend/target/
 .venv/
 __pycache__/
@@ -18,4 +19,5 @@ test-results/
 .pipeline/loops.json
 .pipeline/*-metrics.json
 .pipeline/dashboard.log
+.pipeline/job.log
 .pipeline/*.png

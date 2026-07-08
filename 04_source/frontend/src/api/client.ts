@@ -1,4 +1,4 @@
-import { Agent, AgentInput, ErrorEnvelope } from './types';
+import { Agent, AgentInput, AgentRun, ErrorEnvelope } from './types';
 
 export class ApiError extends Error {
   constructor(public status: number, public code: string, message: string) {
@@ -35,4 +35,17 @@ export async function updateAgent(agentId: string, data: AgentInput): Promise<Ag
 
 export async function deleteAgent(agentId: string): Promise<void> {
   await fetchJson<void>(`/api/agents/${agentId}`, { method: 'DELETE' });
+}
+
+// -- agent execution (runs) --
+export async function startRun(agentId: string, task: string): Promise<AgentRun> {
+  return fetchJson<AgentRun>(`/api/agents/${agentId}/runs`, { method: 'POST', body: JSON.stringify({ task }) });
+}
+
+export async function listRuns(agentId: string): Promise<AgentRun[]> {
+  return fetchJson<AgentRun[]>(`/api/agents/${agentId}/runs`);
+}
+
+export async function getRun(runId: string): Promise<AgentRun> {
+  return fetchJson<AgentRun>(`/api/runs/${runId}`);
 }

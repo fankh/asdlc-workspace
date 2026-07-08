@@ -143,6 +143,21 @@ body::before {
   font-size: 14px;
 }
 
+/* Run agent modal */
+.run-model-hint { color: #8A96A4; font-size: 13px; margin-bottom: 10px; }
+.run-result { margin-top: 14px; }
+.run-output, .run-history-output, .run-history-error {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; line-height: 1.5; white-space: pre-wrap; word-break: break-word;
+  background: #0C1219; border: 1px solid #232D38; border-radius: 8px;
+  padding: 10px 12px; margin: 8px 0 0; color: #B9C6D3; max-height: 320px; overflow: auto;
+}
+.run-history-error { color: #F2B8B6; border-color: #5a2b2b; }
+.run-meta { color: #8A96A4; font-size: 12px; }
+.run-history-title { margin: 20px 0 8px; font-size: 14px; }
+.run-history-item { border: 1px solid #232D38; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+.run-history-task { color: #C7D2DC; font-size: 13px; margin: 6px 0 0; }
+
 /* Control bar for right-aligned filters */
 .control-bar {
   display: flex;

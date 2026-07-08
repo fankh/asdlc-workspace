@@ -22,5 +22,25 @@ model Agent {
   goal        String   @default("")
   createdAt   DateTime @default(now())
 
+  runs        AgentRun[]
+
   @@map("agents")
+}
+
+// One execution of an agent against a task. Runs asynchronously: created in
+// `running`, then the executor fills output/status. Frontend polls until done.
+model AgentRun {
+  id         String   @id @default(uuid())
+  agentId    String
+  agent      Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  task       String
+  output     String   @default("")
+  status     String   @default("running") // running | succeeded | failed
+  model      String   @default("")         // model actually used for this run
+  error      String   @default("")
+  durationMs Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  @@index([agentId])
+  @@map("agent_runs")
 }

@@ -31,6 +31,20 @@ export interface AgentInput {
   goal?: string;
 }
 
+export type RunStatus = 'running' | 'succeeded' | 'failed';
+
+export interface AgentRun {
+  id: string;
+  agentId: string;
+  task: string;
+  output: string;
+  status: RunStatus;
+  model: string;
+  error: string;
+  durationMs: number;
+  createdAt: string;
+}
+
 export interface ErrorEnvelope {
   code: string;
   message: string;
