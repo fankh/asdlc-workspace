@@ -1,0 +1,2 @@
+2026-07-08 12:50:21,294 INFO improve: target=http://localhost:8088 | interval=1800s | deploy=False | provider=ollama
+2026-07-08 12:50:23,390 INFO improve: cycle 1 — auditing http://localhost:8088
