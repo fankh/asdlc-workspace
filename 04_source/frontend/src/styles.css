@@ -149,3 +149,45 @@ body::before {
   justify-content: flex-end;
   margin-bottom: 16px;
 }
+
+/* ---- top navigation header ------------------------------------------ */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  height: 56px;
+  padding: 0 32px;
+  border-bottom: 1px solid #243244;
+  background: rgba(11, 16, 22, 0.85);
+  backdrop-filter: blur(8px);
+}
+.app-brand {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: #e8eef4;
+  text-decoration: none;
+}
+.top-nav {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+.top-nav .nav-item {
+  color: #a9b7c6;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.top-nav .nav-item:hover {
+  color: #e8eef4;
+  background: #16202e;
+}
+.top-nav .nav-item.active {
+  color: #2dd4a7;
+  background: rgba(45, 212, 167, 0.12);
+}
