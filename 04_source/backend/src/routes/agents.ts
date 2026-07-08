@@ -24,6 +24,23 @@ router.post('/', async (req: Request, res: Response) => {
   }
 })
 
+router.put('/:agentId', async (req: Request, res: Response) => {
+  try {
+    const id = AgentIdSchema.parse(req.params.agentId)
+    const data = agentService.UpdateAgentDto.parse(req.body)
+    const agent = await agentService.updateAgent(id, data)
+    res.json(agent)
+  } catch (err: any) {
+    if (err instanceof z.ZodError) {
+      return res.status(400).json({ code: 'VALIDATION_FAILED', message: err.errors[0].message })
+    }
+    if (err?.statusCode === 404) {
+      return res.status(404).json({ code: 'NOT_FOUND', message: 'Agent not found' })
+    }
+    throw err
+  }
+})
+
 router.delete('/:agentId', async (req: Request, res: Response) => {
   try {
     const parsed = AgentIdSchema.parse(req.params.agentId)

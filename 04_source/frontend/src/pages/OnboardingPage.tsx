@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card, Form, Input, Button, Alert } from 'antd';
 import { createAgent } from '../api/client';
 import { useNavigate } from 'react-router-dom';
+import AgentFormFields from '../components/AgentFormFields';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
@@ -29,7 +30,12 @@ export default function OnboardingPage() {
       <Card style={{ marginTop: 16 }}>
         <h1>Welcome to onboarding</h1>
         {error && <Alert message={error} type="error" showIcon />}
-        <Form layout="vertical" onFinish={handleSubmit} requiredMark={false}>
+        <Form
+          layout="vertical"
+          onFinish={handleSubmit}
+          requiredMark={false}
+          initialValues={{ gender: 'unspecified', importance: 'medium' }}
+        >
           <Form.Item
             name="name"
             label="Agent name *"
@@ -40,6 +46,7 @@ export default function OnboardingPage() {
           <Form.Item name="description" label="Description">
             <Input.TextArea placeholder="Optional details about this agent" rows={4} />
           </Form.Item>
+          <AgentFormFields />
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading}>
               Create Agent

@@ -12,6 +12,14 @@ model Agent {
   name        String   @unique
   description String?
   status      String   @default("idle")
+  // AI-agent management attributes
+  role        String   @default("")
+  persona     String   @default("")
+  skills      String   @default("") // comma-separated; DTO exposes string[]
+  gender      String   @default("unspecified")
+  importance  String   @default("medium")
+  model       String   @default("")
+  goal        String   @default("")
   createdAt   DateTime @default(now())
 
   @@map("agents")

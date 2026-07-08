@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Table, Button, Empty, Alert, Tag, Select } from 'antd';
+import {
+  Table, Button, Empty, Alert, Tag, Select, Space, Modal, Drawer,
+  Descriptions, Form, Input,
+} from 'antd';
 import { Link } from 'react-router-dom';
-import { listAgents, deleteAgent } from '../api/client';
-import type { Agent } from '../api/types';
+import { listAgents, deleteAgent, updateAgent } from '../api/client';
+import type { Agent, AgentInput } from '../api/types';
+import AgentFormFields from '../components/AgentFormFields';
 
 const STATUS_COLOR: Record<string, string | undefined> = {
   active: 'green',
@@ -10,11 +14,22 @@ const STATUS_COLOR: Record<string, string | undefined> = {
   idle: undefined,
 };
 
+const IMPORTANCE_COLOR: Record<string, string | undefined> = {
+  critical: 'red',
+  high: 'volcano',
+  medium: 'blue',
+  low: undefined,
+};
+
 export default function AgentListPage() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [editing, setEditing] = useState<Agent | null>(null);
+  const [viewing, setViewing] = useState<Agent | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [form] = Form.useForm();
 
   const fetchAgents = async () => {
     try {
@@ -28,44 +43,60 @@ export default function AgentListPage() {
     }
   };
 
-  useEffect(() => {
-    fetchAgents();
-  }, []);
+  useEffect(() => { fetchAgents(); }, []);
 
   const handleDelete = async (id: string) => {
     setAgents(prev => prev.filter(a => a.id !== id));
+    try { await deleteAgent(id); } catch { /* optimistic update stands */ }
+  };
+
+  const openEdit = (agent: Agent) => {
+    setViewing(null);
+    setEditing(agent);
+    form.setFieldsValue({ ...agent, description: agent.description ?? undefined });
+  };
+
+  const submitEdit = async () => {
+    const values = (await form.validateFields()) as AgentInput;
+    if (!editing) return;
+    setSaving(true);
     try {
-      await deleteAgent(id);
+      const updated = await updateAgent(editing.id, values);
+      setAgents(prev => prev.map(a => (a.id === updated.id ? updated : a)));
+      setEditing(null);
     } catch {
-      // Optimistic update stands; server sync handles reconciliation
+      setError('Failed to save changes.');
+    } finally {
+      setSaving(false);
     }
   };
 
   const dateFormatter = new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: '2-digit', day: '2-digit' });
-
   const filteredAgents = filterStatus === 'all' ? agents : agents.filter(a => a.status === filterStatus);
 
   const columns = [
     { title: 'name', dataIndex: 'name', key: 'name' },
-    { title: 'description', dataIndex: 'description', key: 'description', render: (val: string | null) => val || '—' },
+    { title: 'description', dataIndex: 'description', key: 'description', render: (v: string | null) => v || '—' },
     {
-      title: 'status',
-      dataIndex: 'status',
-      key: 'status',
-      render: (status: string) => <Tag color={STATUS_COLOR[status]} className="mono-cell">{status}</Tag>,
+      title: 'status', dataIndex: 'status', key: 'status',
+      render: (s: string) => <Tag color={STATUS_COLOR[s]} className="mono-cell">{s}</Tag>,
     },
     {
-      title: 'creation date',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      render: (date: string) => <span className="mono-cell">{dateFormatter.format(new Date(date))}</span>,
+      title: 'creation date', dataIndex: 'createdAt', key: 'createdAt',
+      render: (d: string) => <span className="mono-cell">{dateFormatter.format(new Date(d))}</span>,
+    },
+    { title: 'role', dataIndex: 'role', key: 'role', render: (v: string) => v || '—' },
+    {
+      title: 'importance', dataIndex: 'importance', key: 'importance',
+      render: (v: string) => <Tag color={IMPORTANCE_COLOR[v]} className="mono-cell">{v}</Tag>,
     },
     {
-      title: '',
-      key: 'action',
-      width: 100,
-      render: (_: any, record: Agent) => (
-        <Button danger onClick={() => handleDelete(record.id)}>Delete</Button>
+      title: '', key: 'action', width: 150,
+      render: (_: unknown, record: Agent) => (
+        <Space onClick={(e) => e.stopPropagation()}>
+          <Button size="small" onClick={() => openEdit(record)}>Edit</Button>
+          <Button size="small" danger onClick={() => handleDelete(record.id)}>Delete</Button>
+        </Space>
       ),
     },
   ];
@@ -82,6 +113,9 @@ export default function AgentListPage() {
       <div className="page-header">
         <h1>Agents</h1>
         <span className="count-chip">{loading ? '…' : `${agents.length} registered`}</span>
+        <Link to="/onboarding" style={{ marginLeft: 'auto' }}>
+          <Button type="primary">Add agent</Button>
+        </Link>
       </div>
 
       {error && (
@@ -89,7 +123,7 @@ export default function AgentListPage() {
       )}
 
       <div className="control-bar">
-        <Select value={filterStatus} onChange={(val) => setFilterStatus(val)} options={filterOptions} style={{ width: 120 }} aria-label="Filter by status" />
+        <Select value={filterStatus} onChange={setFilterStatus} options={filterOptions} style={{ width: 120 }} aria-label="Filter by status" />
       </div>
 
       {filteredAgents.length === 0 && !loading ? (
@@ -97,8 +131,64 @@ export default function AgentListPage() {
           <Link to="/onboarding">Add agent</Link>
         </Empty>
       ) : (
-        <Table key={`agent-table-${agents.length}`} dataSource={filteredAgents} columns={columns} loading={loading} rowKey="id" pagination={false} scroll={{ x: 'max-content' }} locale={{ emptyText: null }} />
+        <Table
+          key={`agent-table-${agents.length}`}
+          dataSource={filteredAgents}
+          columns={columns}
+          loading={loading}
+          rowKey="id"
+          pagination={false}
+          scroll={{ x: 'max-content' }}
+          locale={{ emptyText: null }}
+          onRow={(record) => ({ onClick: () => setViewing(record), style: { cursor: 'pointer' } })}
+        />
       )}
+
+      {/* Edit modal — full management of all attributes */}
+      <Modal
+        title={editing ? `Edit ${editing.name}` : 'Edit agent'}
+        open={!!editing}
+        onOk={submitEdit}
+        confirmLoading={saving}
+        onCancel={() => setEditing(null)}
+        okText="Save changes"
+        width={560}
+      >
+        <Form form={form} layout="vertical" requiredMark={false}>
+          <Form.Item name="name" label="Agent name" rules={[{ required: true, message: 'Agent name is required.' }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name="description" label="Description">
+            <Input.TextArea rows={2} />
+          </Form.Item>
+          <AgentFormFields includeStatus />
+        </Form>
+      </Modal>
+
+      {/* Read-only detail drawer (row click) */}
+      <Drawer
+        title={viewing?.name}
+        open={!!viewing}
+        onClose={() => setViewing(null)}
+        width={460}
+        extra={viewing ? <Button type="primary" onClick={() => openEdit(viewing)}>Edit</Button> : null}
+      >
+        {viewing && (
+          <Descriptions bordered column={1} size="small">
+            <Descriptions.Item label="Role">{viewing.role || '—'}</Descriptions.Item>
+            <Descriptions.Item label="Status"><Tag color={STATUS_COLOR[viewing.status]}>{viewing.status}</Tag></Descriptions.Item>
+            <Descriptions.Item label="Importance"><Tag color={IMPORTANCE_COLOR[viewing.importance]}>{viewing.importance}</Tag></Descriptions.Item>
+            <Descriptions.Item label="Persona">{viewing.persona || '—'}</Descriptions.Item>
+            <Descriptions.Item label="Skills">
+              {viewing.skills.length ? viewing.skills.map(s => <Tag key={s}>{s}</Tag>) : '—'}
+            </Descriptions.Item>
+            <Descriptions.Item label="Gender">{viewing.gender}</Descriptions.Item>
+            <Descriptions.Item label="Model"><span className="mono-cell">{viewing.model || '—'}</span></Descriptions.Item>
+            <Descriptions.Item label="Goal">{viewing.goal || '—'}</Descriptions.Item>
+            <Descriptions.Item label="Description">{viewing.description || '—'}</Descriptions.Item>
+          </Descriptions>
+        )}
+      </Drawer>
     </main>
   );
 }

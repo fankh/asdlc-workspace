@@ -14,6 +14,7 @@ export const appTheme: ThemeConfig = {
     colorTextBase: '#E8EEF4',
     colorTextSecondary: '#A9B7C6',
     colorTextDescription: '#A9B7C6',
+    colorTextPlaceholder: '#8A96A4',
     colorBorder: '#243244',
     colorBorderSecondary: '#1B2635',
     colorError: '#F26663',
