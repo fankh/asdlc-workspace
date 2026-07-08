@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Table, Button, Empty, Alert, Tag, Space } from 'antd';
-import { listPipelines, deletePipeline, listAgents } from '../api/client';
-import type { Agent, Pipeline } from '../api/types';
-import PipelineEditorModal from '../components/PipelineEditorModal';
+import { useNavigate } from 'react-router-dom';
+import { listPipelines, deletePipeline } from '../api/client';
+import type { Pipeline } from '../api/types';
 import RunPipelineModal from '../components/RunPipelineModal';
 
 const RUN_COLOR: Record<string, string | undefined> = {
@@ -14,19 +14,15 @@ const RUN_COLOR: Record<string, string | undefined> = {
 // Multi-agent pipelines: ordered chains where each agent's output feeds the
 // next. Create a chain from registered agents, then run it against a task.
 export default function PipelinesPage() {
+  const navigate = useNavigate();
   const [pipelines, setPipelines] = useState<Pipeline[]>([]);
-  const [agents, setAgents] = useState<Agent[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [editorOpen, setEditorOpen] = useState(false);
-  const [editing, setEditing] = useState<Pipeline | null>(null);
   const [running, setRunning] = useState<Pipeline | null>(null);
 
   const fetchAll = async () => {
     try {
-      const [p, a] = await Promise.all([listPipelines(), listAgents()]);
-      setPipelines(p);
-      setAgents(a);
+      setPipelines(await listPipelines());
       setError(null);
     } catch {
       setError('Failed to load pipelines. Please refresh.');
@@ -42,14 +38,8 @@ export default function PipelinesPage() {
     try { await deletePipeline(id); } catch { /* optimistic update stands */ }
   };
 
-  const openCreate = () => { setEditing(null); setEditorOpen(true); };
-  const openEdit = (p: Pipeline) => { setEditing(p); setEditorOpen(true); };
-  const onSaved = (saved: Pipeline) => {
-    setPipelines(prev => {
-      const exists = prev.some(p => p.id === saved.id);
-      return exists ? prev.map(p => (p.id === saved.id ? saved : p)) : [saved, ...prev];
-    });
-  };
+  const openCreate = () => navigate('/pipelines/new');
+  const openEdit = (p: Pipeline) => navigate(`/pipelines/${p.id}`);
 
   const columns = [
     { title: 'name', dataIndex: 'name', key: 'name' },
@@ -105,13 +95,6 @@ export default function PipelinesPage() {
         />
       )}
 
-      <PipelineEditorModal
-        open={editorOpen}
-        pipeline={editing}
-        agents={agents}
-        onClose={() => setEditorOpen(false)}
-        onSaved={onSaved}
-      />
       <RunPipelineModal pipeline={running} onClose={() => setRunning(null)} />
     </main>
   );

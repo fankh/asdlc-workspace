@@ -3,10 +3,12 @@ import LandingPage from './pages/LandingPage';
 import OnboardingPage from './pages/OnboardingPage';
 import AgentListPage from './pages/AgentListPage';
 import PipelinesPage from './pages/PipelinesPage';
+import PipelineCanvasPage from './pages/PipelineCanvasPage';
 
 export default function App() {
   const { pathname } = useLocation();
-  const cls = (p: string) => 'nav-item' + (pathname === p ? ' active' : '');
+  const cls = (p: string) =>
+    'nav-item' + ((p === '/' ? pathname === '/' : pathname.startsWith(p)) ? ' active' : '');
   return (
     <>
       <header className="app-header">
@@ -23,6 +25,8 @@ export default function App() {
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/agents" element={<AgentListPage />} />
         <Route path="/pipelines" element={<PipelinesPage />} />
+        <Route path="/pipelines/new" element={<PipelineCanvasPage />} />
+        <Route path="/pipelines/:pipelineId" element={<PipelineCanvasPage />} />
       </Routes>
     </>
   );

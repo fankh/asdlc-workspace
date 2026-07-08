@@ -54,6 +54,8 @@ export interface PipelineStep {
   agentId: string;
   agentName: string;
   instruction: string;
+  posX: number;
+  posY: number;
 }
 
 export interface Pipeline {
@@ -68,7 +70,7 @@ export interface Pipeline {
 export interface PipelineInput {
   name: string;
   description?: string;
-  steps: { agentId: string; instruction?: string }[];
+  steps: { agentId: string; instruction?: string; posX?: number; posY?: number }[];
 }
 
 export interface PipelineStepRun {

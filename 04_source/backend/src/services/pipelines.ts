@@ -7,6 +7,8 @@ const prisma = new PrismaClient()
 const StepDto = z.object({
   agentId: z.string().uuid(),
   instruction: z.string().max(2000).optional(),
+  posX: z.number().int().min(-100000).max(100000).optional(),
+  posY: z.number().int().min(-100000).max(100000).optional(),
 })
 
 export const CreatePipelineDto = z.object({
@@ -66,7 +68,7 @@ export async function createPipeline(data: CreatePipelineInput) {
       data: {
         name: data.name,
         description: data.description ?? '',
-        steps: { create: data.steps.map((s, i) => ({ order: i, agentId: s.agentId, instruction: s.instruction ?? '' })) },
+        steps: { create: data.steps.map(toStepRecord) },
       },
       include: includeSteps,
     })
@@ -81,6 +83,10 @@ export async function createPipeline(data: CreatePipelineInput) {
   }
 }
 
+function toStepRecord(s: z.infer<typeof StepDto>, i: number) {
+  return { order: i, agentId: s.agentId, instruction: s.instruction ?? '', posX: s.posX ?? 0, posY: s.posY ?? 0 }
+}
+
 export async function updatePipeline(pipelineId: string, data: CreatePipelineInput) {
   await assertAgentsExist(data.steps)
   try {
@@ -91,7 +97,7 @@ export async function updatePipeline(pipelineId: string, data: CreatePipelineInp
         description: data.description ?? '',
         steps: {
           deleteMany: {},
-          create: data.steps.map((s, i) => ({ order: i, agentId: s.agentId, instruction: s.instruction ?? '' })),
+          create: data.steps.map(toStepRecord),
         },
       },
       include: includeSteps,
@@ -226,6 +232,8 @@ function toPipelineDto(p: any) {
       agentId: s.agentId,
       agentName: s.agent?.name ?? '(deleted agent)',
       instruction: s.instruction ?? '',
+      posX: s.posX ?? 0,
+      posY: s.posY ?? 0,
     })),
     lastRun: lastRun
       ? { id: lastRun.id, status: lastRun.status, createdAt: lastRun.createdAt.toISOString() }

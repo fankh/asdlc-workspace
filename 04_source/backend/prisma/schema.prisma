@@ -49,6 +49,8 @@ model PipelineStep {
   agentId     String
   agent       Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
   instruction String   @default("") // optional per-step directive prepended to the input
+  posX        Int      @default(0) // canvas layout (n8n-style editor)
+  posY        Int      @default(0)
 
   @@index([pipelineId])
   @@map("pipeline_steps")
