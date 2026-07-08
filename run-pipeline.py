@@ -56,6 +56,11 @@ def main() -> int:
     imp_p.add_argument("--once", action="store_true",
                        help="run a single cycle then exit")
 
+    serve_p = sub.add_parser("serve", help="web control panel: view stage status, "
+                                           "trigger runs, manage the loops")
+    serve_p.add_argument("--port", type=int, default=8099,
+                         help="port for the dashboard (default 8099)")
+
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
@@ -82,6 +87,11 @@ def main() -> int:
         from pipeline.improve import SelfImproveLoop
         SelfImproveLoop(config, target=args.target, deploy=not args.no_deploy).loop(
             args.interval, max_cycles=args.max_cycles, once=args.once)
+        return 0
+
+    if args.command == "serve":
+        from pipeline.dashboard import serve
+        serve(config, args.port)
         return 0
 
     if args.command == "status":
