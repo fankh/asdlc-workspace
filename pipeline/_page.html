@@ -54,6 +54,19 @@ pre.log{max-height:70vh}
 select{background:#1C2530;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:3px 8px}
 .editor{width:100%;min-height:300px;background:#0C1219;color:#E6EDF3;border:1px solid var(--border);
 border-radius:8px;padding:12px;font-family:var(--mono);font-size:13px;line-height:1.5;resize:vertical}
+/* loop config */
+.lpgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.lpgrid{grid-template-columns:1fr}}
+.lpcard{border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:#0F151C}
+.lphead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.lphead .name{font-weight:600;font-size:15px}
+.lpmetrics{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:10px 0 14px;
+font-family:var(--mono);font-size:12px}
+.lpmetrics .k{color:var(--muted)}.lpmetrics .v{text-align:right}
+.field{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:7px 0}
+.field label{color:var(--muted)}.field input[type=number]{width:90px}.field input[type=text]{width:190px}
+input,select{background:#1C2530;color:var(--text);border:1px solid var(--border);border-radius:6px;padding:5px 8px;font-size:13px}
+.tog{cursor:pointer;user-select:none;font-family:var(--mono);font-size:12px}
 </style></head><body>
 <div class="side">
   <div class="brand">ASDLC<small>pipeline control</small></div>
@@ -129,6 +142,15 @@ border-radius:8px;padding:12px;font-family:var(--mono);font-size:13px;line-heigh
 
   <!-- CONFIG -->
   <section class="view" id="view-config"><div class="grid">
+    <div class="card"><h2>Loops — priority &amp; timers</h2>
+      <div class="field"><label for="lp-priority">Higher priority (wins the job slot; the other yields its tick)</label>
+        <select id="lp-priority">
+          <option value="improve">improve &gt; watch</option>
+          <option value="watch">watch &gt; improve</option>
+        </select></div>
+      <div class="lpgrid" id="lp-cards"><div class="mut">loading…</div></div>
+      <div style="margin-top:12px"><button class="primary" id="save-loops">Save loop settings</button>
+        <span class="mut" id="lp-msg" style="margin-left:10px"></span></div></div>
     <div id="cfg-msg" class="mut"></div>
     <div class="card"><h2>.pipeline/config.yaml</h2>
       <textarea id="cfg-yaml" class="editor" spellcheck="false"></textarea>
@@ -188,15 +210,55 @@ async function loadReports(){const j=await(await fetch('/api/reports')).json();
  if(j.security){const f=j.security.findings||[];$('rep-sec').innerHTML=`<div class="mut" style="margin-bottom:8px">${f.length} finding(s), tools: ${(j.security.tools||[]).join(', ')}</div>`+
   (f.length?f.map(x=>`<div class="ticket"><b class="${['high','critical'].includes(x.severity)?'bad':'mut'}">${x.severity}</b> — ${esc(x.tool)} · ${esc(x.target||x.package||'')}<br><span class="mut">${esc(x.detail||'')}</span></div>`).join(''):'<span class="ok">clean</span>');}
  else{$('rep-sec').innerHTML='<span class="mut">no security report yet</span>';}}
-async function loadConfig(){const j=await(await fetch('/api/config')).json();$('cfg-yaml').value=j.config_yaml;$('cfg-env').value=j.env;$('ptypes').textContent='project types: '+(j.project_types||[]).join(', ');$('cfg-msg').textContent='';}
+async function loadConfig(){const j=await(await fetch('/api/config')).json();$('cfg-yaml').value=j.config_yaml;$('cfg-env').value=j.env;$('ptypes').textContent='project types: '+(j.project_types||[]).join(', ');$('cfg-msg').textContent='';
+ buildLoopCards(j.loops||{});refreshLoopMetrics();}
 async function saveConfig(which){const body=which==='yaml'?{config_yaml:$('cfg-yaml').value}:{env:$('cfg-env').value};
  const j=await(await fetch('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
  $('cfg-msg').innerHTML=j.ok?`<span class="ok">✓ ${j.message}</span>`:`<span class="bad">✗ ${j.message}</span>`;if(j.ok){refresh();if(which==='env')loadConfig();}}
 $('save-yaml').onclick=()=>saveConfig('yaml');$('save-env').onclick=()=>saveConfig('env');
+
+// ---- loop config: metrics + form ----
+function dur(s){if(s==null)return'—';s=Math.round(s);if(s<90)return s+'s';const m=Math.floor(s/60);if(m<90)return m+'m';return Math.floor(m/60)+'h'+(m%60)+'m';}
+function metricRow(k,id){return`<div class="k">${k}</div><div class="v" id="${id}">—</div>`;}
+function buildLoopCards(loops){
+ $('lp-priority').value=(loops.priority||['improve','watch'])[0];
+ const w=loops.watch||{},im=loops.improve||{};
+ $('lp-cards').innerHTML=`
+ <div class="lpcard"><div class="lphead"><span class="name">watch</span><span class="pill off" id="m-watch-state">—</span></div>
+  <div class="lpmetrics">${metricRow('priority','m-watch-rank')}${metricRow('last cycle','m-watch-outcome')}${metricRow('avg cycle','m-watch-avg')}${metricRow('next tick','m-watch-eta')}${metricRow('cycles','m-watch-cycles')}${metricRow('ollama','m-watch-reach')}</div>
+  <div class="field"><label for="f-watch-interval">idle poll (s)</label><input type="number" id="f-watch-interval" min="10" value="${w.interval??300}"></div>
+  <div class="field"><label>deploy on green</label><label class="tog"><input type="checkbox" id="f-watch-deploy" ${w.deploy!==false?'checked':''}> docker up</label></div></div>
+ <div class="lpcard"><div class="lphead"><span class="name">improve</span><span class="pill off" id="m-improve-state">—</span></div>
+  <div class="lpmetrics">${metricRow('priority','m-improve-rank')}${metricRow('last cycle','m-improve-outcome')}${metricRow('avg cycle','m-improve-avg')}${metricRow('next tick','m-improve-eta')}${metricRow('cycles','m-improve-cycles')}${metricRow('target','m-improve-reach')}</div>
+  <div class="field"><label for="f-improve-interval">idle poll (s)</label><input type="number" id="f-improve-interval" min="10" value="${im.interval??1800}"></div>
+  <div class="field"><label for="f-improve-target">audit target</label><input type="text" id="f-improve-target" value="${im.target||'http://localhost:8088'}"></div>
+  <div class="field"><label for="f-improve-maxcycles">max cycles (blank=∞)</label><input type="number" id="f-improve-maxcycles" min="1" value="${im.max_cycles??''}"></div>
+  <div class="field"><label>deploy on green</label><label class="tog"><input type="checkbox" id="f-improve-deploy" ${im.deploy!==false?'checked':''}> docker up</label></div></div>`;}
+function applyLoop(name,m,reachTxt){
+ const st=$('m-'+name+'-state');if(!st)return;const run=m.running;
+ st.textContent=run?(m.yielding_to?'yielding→'+m.yielding_to:'running'):'stopped';st.className='pill '+(run?'on':'off');
+ $('m-'+name+'-rank').textContent='#'+(m.priority_rank||'?');
+ $('m-'+name+'-outcome').textContent=m.last_outcome||'—';
+ $('m-'+name+'-avg').textContent=dur(m.avg_duration_s);
+ $('m-'+name+'-eta').textContent=run?(m.next_eta_s!=null?'~'+dur(m.next_eta_s):'…'):'—';
+ $('m-'+name+'-cycles').textContent=(m.work_cycles||0)+'/'+(m.cycles||0);
+ $('m-'+name+'-reach').innerHTML=reachTxt;}
+async function refreshLoopMetrics(){if(!$('m-watch-state'))return;let d;try{d=await(await fetch('/api/loop-metrics')).json()}catch(e){return}
+ const rb=v=>v==null?'<span class="mut">n/a</span>':(v?'<span class="ok">up</span>':'<span class="bad">down</span>');
+ applyLoop('watch',d.watch,rb(d.reachable.ollama));applyLoop('improve',d.improve,rb(d.reachable.target));}
+async function saveLoops(){const order=$('lp-priority').value==='watch'?['watch','improve']:['improve','watch'];
+ const mc=$('f-improve-maxcycles').value.trim();
+ const loops={priority:order,
+  watch:{interval:+$('f-watch-interval').value,deploy:$('f-watch-deploy').checked},
+  improve:{interval:+$('f-improve-interval').value,target:$('f-improve-target').value.trim(),
+   deploy:$('f-improve-deploy').checked,max_cycles:mc===''?null:+mc}};
+ const j=await(await fetch('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({loops})})).json();
+ $('lp-msg').innerHTML=j.ok?`<span class="ok">✓ ${j.message}</span>`:`<span class="bad">✗ ${j.message}</span>`;if(j.ok)refreshLoopMetrics();}
+$('save-loops').onclick=saveLoops;
 async function refreshLog(){const j=await(await fetch('/api/log?name='+$('logsel').value)).json();$('log').textContent=j.log||'(empty)';}
 $('logsel').onchange=refreshLog;
 
 const start=(location.hash||'').replace('#/','')||'overview';
 setView(['overview','backlog','tickets','reports','config','logs'].includes(start)?start:'overview');
-refresh();setInterval(refresh,3000);setInterval(()=>{if(view==='logs')refreshLog();},3000);
+refresh();setInterval(refresh,3000);setInterval(()=>{if(view==='logs')refreshLog();if(view==='config')refreshLoopMetrics();},3000);
 </script></body></html>

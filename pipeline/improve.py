@@ -33,6 +33,7 @@ from pathlib import Path
 
 import requests
 
+from pipeline import loopcfg, loopmetrics
 from pipeline.config import Config
 from pipeline.stages import clear_markers_from
 from pipeline.state import State
@@ -77,11 +78,19 @@ class SelfImproveLoop:
         cycle = 0
         while True:
             cycle += 1
+            started = loopmetrics.now()
             try:
-                outcome = self.cycle(cycle)
+                blocker = loopcfg.should_yield(self.root, "improve")
+                if blocker:
+                    outcome = f"yielded:{blocker}"
+                    log.info("improve: yielding to higher-priority %s loop", blocker)
+                else:
+                    outcome = self.cycle(cycle)
                 log.info("improve: cycle %d -> %s", cycle, outcome)
             except Exception:
+                outcome = "crashed"
                 log.exception("improve: cycle %d crashed (loop continues)", cycle)
+            loopmetrics.record(self.root, "improve", started, loopmetrics.now(), outcome)
             if once or (max_cycles and cycle >= max_cycles):
                 return
             time.sleep(interval)

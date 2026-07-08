@@ -26,6 +26,7 @@ from urllib.parse import parse_qs, urlparse
 
 import yaml
 
+from pipeline import loopcfg, loopmetrics
 from pipeline.config import VALID_PROJECT_TYPES, Config, load_config
 from pipeline.stages import STAGES, marker_path
 from pipeline.state import State
@@ -199,10 +200,17 @@ class Dashboard:
             "config_yaml": self._read(".pipeline/config.yaml"),
             "env": _mask_env(self._read(".env")),
             "project_types": sorted(VALID_PROJECT_TYPES),
+            "loops": loopcfg.load(self.root),
         }
 
-    def config_save(self, config_yaml: str | None, env: str | None) -> dict:
+    def config_save(self, config_yaml: str | None, env: str | None,
+                    loops: dict | None = None) -> dict:
         saved = []
+        if loops is not None:
+            ok, msg = loopcfg.save(self.root, loops)
+            if not ok:
+                return {"ok": False, "message": msg}
+            saved.append("loop settings")
         if config_yaml is not None:
             try:
                 parsed = yaml.safe_load(config_yaml)
@@ -231,6 +239,46 @@ class Dashboard:
         except Exception:
             pass  # keep last-good config for the status panel
 
+    # -- loop metrics (feedback for tuning timers/priority) ---------------
+
+    def loop_metrics(self) -> dict:
+        settings = loopcfg.load(self.root)
+        order = settings["priority"]
+        now = loopmetrics.now()
+        out: dict = {"priority": order, "reachable": self._reachable(settings)}
+        for name in ("watch", "improve"):
+            m = loopmetrics.summary(self.root, name)
+            running = loopcfg.loop_running(self.root, name)
+            interval = settings[name]["interval"]
+            eta = None
+            if running and m.get("last_run_ts"):
+                eta = max(0, round(m["last_run_ts"] + interval - now))
+            m.update({
+                "running": running,
+                "interval": interval,
+                "next_eta_s": eta,
+                "priority_rank": order.index(name) + 1 if name in order else None,
+                "yielding_to": loopcfg.should_yield(self.root, name) if running else None,
+            })
+            out[name] = m
+        return out
+
+    def _reachable(self, settings: dict) -> dict:
+        import requests  # lazy: keep status polling free of network cost
+        def ping(url: str) -> bool:
+            try:
+                return requests.get(url, timeout=1.5).status_code < 500
+            except Exception:
+                return False
+        result = {}
+        if self.config.llm_provider == "ollama":
+            host = self.config.env.get("OLLAMA_HOST", "http://localhost:11434")
+            result["ollama"] = ping(f"{host}/api/tags")
+        else:
+            result["ollama"] = None  # not used
+        result["target"] = ping(settings["improve"]["target"])
+        return result
+
     # -- jobs -------------------------------------------------------------
 
     def _job_running(self) -> bool:
@@ -242,12 +290,19 @@ class Dashboard:
         with self._lock:
             if self._job_running():
                 return {"ok": False, "message": f"a job is already running ({self.job_name})"}
-            argv = [sys.executable, str(self.root / "run-pipeline.py"), *ACTIONS[name]]
             if name in LOOP_ACTIONS:
+                loop = LOOP_ACTIONS[name]
+                if loopcfg.loop_running(self.root, loop):
+                    return {"ok": False, "message": f"{loop} loop already running"}
+                # build args from saved loop settings, not the frozen defaults
+                spec = loopcfg.watch_argv(self.root) if loop == "watch" \
+                    else loopcfg.improve_argv(self.root)
+                argv = [sys.executable, str(self.root / "run-pipeline.py"), *spec]
                 # loops manage their own lock/log; fire-and-forget
                 subprocess.Popen(argv, cwd=self.root,
                                  stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                return {"ok": True, "message": f"started {LOOP_ACTIONS[name]} loop"}
+                return {"ok": True, "message": f"started {loop} loop"}
+            argv = [sys.executable, str(self.root / "run-pipeline.py"), *ACTIONS[name]]
             logf = open(self.job_log, "w", encoding="utf-8")
             self.job = subprocess.Popen(argv, cwd=self.root, stdout=logf,
                                         stderr=subprocess.STDOUT, text=True)
@@ -310,6 +365,8 @@ def _make_handler(dash: Dashboard):
                 self._json({"content": dash.backlog()})
             elif parsed.path == "/api/config":
                 self._json(dash.config_get())
+            elif parsed.path == "/api/loop-metrics":
+                self._json(dash.loop_metrics())
             else:
                 self._send(404, b"not found", "text/plain")
 
@@ -324,7 +381,8 @@ def _make_handler(dash: Dashboard):
                 return self._json({"ok": False, "message": "bad json"}, 400)
             if path == "/api/config":
                 return self._json(dash.config_save(payload.get("config_yaml"),
-                                                    payload.get("env")))
+                                                    payload.get("env"),
+                                                    payload.get("loops")))
             name = payload.get("name", "")
             if name.startswith("stop-"):
                 self._json(dash.stop_loop(name[len("stop-"):]))

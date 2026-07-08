@@ -31,6 +31,7 @@ from pathlib import Path
 
 import requests
 
+from pipeline import loopcfg, loopmetrics
 from pipeline.config import Config
 from pipeline.stages import clear_markers_from
 from pipeline.state import State
@@ -113,11 +114,19 @@ class Watcher:
         log.info("watch: every %ds | provider=%s | deploy=%s | workspace=%s",
                  interval, self.config.llm_provider, self.deploy, self.root)
         while True:
+            started = loopmetrics.now()
             try:
-                outcome = self.tick()
+                blocker = loopcfg.should_yield(self.root, "watch")
+                if blocker:
+                    outcome = f"yielded:{blocker}"
+                    log.info("watch: yielding to higher-priority %s loop", blocker)
+                else:
+                    outcome = self.tick()
                 log.info("watch: cycle -> %s", outcome)
             except Exception:
+                outcome = "crashed"
                 log.exception("watch: cycle crashed (loop continues)")
+            loopmetrics.record(self.root, "watch", started, loopmetrics.now(), outcome)
             if once:
                 return
             time.sleep(interval)

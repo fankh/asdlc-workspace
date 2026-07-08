@@ -14,3 +14,8 @@ test-results/
 .pipeline/watch.lock
 .pipeline/watch.log
 .pipeline/watch.json
+.pipeline/improve.lock
+.pipeline/loops.json
+.pipeline/*-metrics.json
+.pipeline/dashboard.log
+.pipeline/*.png
