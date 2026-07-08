@@ -3,7 +3,12 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  await prisma.agent.deleteMany()
+  // idempotent: only seed an empty DB so restarts never wipe existing agents
+  const existing = await prisma.agent.count()
+  if (existing > 0) {
+    console.log(`Seed skipped: ${existing} agents already present.`)
+    return
+  }
   const seeds = [
     { name: 'Code Reviewer', description: 'Automatically reviews pull requests.', status: 'idle' },
     { name: 'Task Optimizer', description: 'Prioritizes sprint backlog items.', status: 'active' },
