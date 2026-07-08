@@ -209,11 +209,15 @@ class AuditAgent(Agent):
         tickets_dir = self.ctx.root / "01_requirements" / "discovered" / "tickets"
         existing = [int(m.group(1)) for p in tickets_dir.glob("PROBLEM-*.md")
                     if (m := re.match(r"PROBLEM-(\d+)", p.name))] if tickets_dir.exists() else []
+        # dedup against both existing tickets AND deferred (unfixable) ones,
+        # so the self-improvement loop never re-files a problem it gave up on
+        deferred_dir = self.ctx.root / "01_requirements" / "discovered" / "deferred"
         seen_titles = set()
-        if tickets_dir.exists():
-            for p in tickets_dir.glob("PROBLEM-*.md"):
-                first = p.read_text(encoding="utf-8").splitlines()[0]
-                seen_titles.add(re.sub(r"[^a-z0-9]", "", first.lower()))
+        for folder in (tickets_dir, deferred_dir):
+            if folder.exists():
+                for p in folder.glob("PROBLEM-*.md"):
+                    first = p.read_text(encoding="utf-8").splitlines()[0]
+                    seen_titles.add(re.sub(r"[^a-z0-9]", "", first.lower()))
 
         next_id = max(existing, default=0) + 1
         written = []

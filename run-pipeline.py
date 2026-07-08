@@ -43,6 +43,19 @@ def main() -> int:
     watch_p.add_argument("--once", action="store_true",
                          help="single check instead of looping (for cron/tests)")
 
+    imp_p = sub.add_parser("improve", help="self-improvement loop: audit the deployed "
+                                           "app, auto-fix problems, redeploy on green")
+    imp_p.add_argument("--target", default="http://localhost:8088",
+                       help="URL of the running app to audit (default :8088)")
+    imp_p.add_argument("--interval", type=int, default=1800,
+                       help="seconds between cycles (default 1800)")
+    imp_p.add_argument("--max-cycles", type=int, default=None,
+                       help="stop after N cycles (default: run forever)")
+    imp_p.add_argument("--no-deploy", action="store_true",
+                       help="fix and verify but do not redeploy the container")
+    imp_p.add_argument("--once", action="store_true",
+                       help="run a single cycle then exit")
+
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
@@ -58,6 +71,17 @@ def main() -> int:
         logging.getLogger("pipeline").addHandler(file_handler)
         from pipeline.watcher import Watcher
         Watcher(config, deploy=args.deploy).watch(args.interval, once=args.once)
+        return 0
+
+    if args.command == "improve":
+        file_handler = logging.FileHandler(config.root / ".pipeline" / "improve.log",
+                                           encoding="utf-8")
+        file_handler.setFormatter(
+            logging.Formatter("%(asctime)s %(levelname)s %(message)s"))
+        logging.getLogger("pipeline").addHandler(file_handler)
+        from pipeline.improve import SelfImproveLoop
+        SelfImproveLoop(config, target=args.target, deploy=not args.no_deploy).loop(
+            args.interval, max_cycles=args.max_cycles, once=args.once)
         return 0
 
     if args.command == "status":
