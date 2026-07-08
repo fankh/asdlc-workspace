@@ -228,6 +228,22 @@ killing it.
 > "fire-and-forget with a safety net", not instant CI. With an Anthropic key it
 > becomes minutes per cycle.
 
+### 3.3c Pipeline control panel (web screen)
+
+Instead of the CLI, manage the pipeline from a browser:
+
+```powershell
+run-pipeline.py serve            # dashboard at http://localhost:8099
+```
+
+The dashboard shows live **stage status** (per-marker, colour-coded), refinement
+loops, LLM cost, mode (new/maintenance), ticket/deferred counts, and the last QA
+result. From it you can **trigger runs** (full, `--stop-after` specs/architecture/
+code/QA, audit, discover, reset) and **start/stop the watch and improve loops** —
+all as safe whitelisted actions (one job at a time, bound to localhost). A log
+viewer tails the active job / watch / improve logs. If a run trips
+`HUMAN_INTERVENTION_REQUIRED`, a banner explains it.
+
 ### 3.4 Run a single stage
 
 ```powershell
@@ -302,6 +318,8 @@ run-pipeline.py run --stop-after X     halt after stage/alias (specs|architectur
 run-pipeline.py run --stage X          run exactly one stage (incl. discover, audit)
 run-pipeline.py run --dry-run          walk stages as no-ops (exercises markers)
 run-pipeline.py watch [--interval N] [--deploy] [--once]   automatic dev loop
+run-pipeline.py improve [--target URL] [--interval N] [--once]   self-improvement loop
+run-pipeline.py serve [--port 8099]     web control panel (status + run/loop controls)
 run-pipeline.py status                 stage table + refinement loops + cost
 run-pipeline.py reset                  clear all markers and state — full redo
 pytest tests/                          pipeline's own unit tests
