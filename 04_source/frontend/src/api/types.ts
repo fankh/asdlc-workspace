@@ -45,6 +45,58 @@ export interface AgentRun {
   createdAt: string;
 }
 
+// -- pipelines: ordered agent chains --
+export type StepRunStatus = 'pending' | 'running' | 'succeeded' | 'failed';
+
+export interface PipelineStep {
+  id: string;
+  order: number;
+  agentId: string;
+  agentName: string;
+  instruction: string;
+}
+
+export interface Pipeline {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  steps: PipelineStep[];
+  lastRun: { id: string; status: RunStatus; createdAt: string } | null;
+}
+
+export interface PipelineInput {
+  name: string;
+  description?: string;
+  steps: { agentId: string; instruction?: string }[];
+}
+
+export interface PipelineStepRun {
+  id: string;
+  order: number;
+  agentId: string;
+  agentName: string;
+  instruction: string;
+  model: string;
+  task: string;
+  output: string;
+  status: StepRunStatus;
+  error: string;
+  durationMs: number;
+}
+
+export interface PipelineRun {
+  id: string;
+  pipelineId: string;
+  task: string;
+  output: string;
+  status: RunStatus;
+  error: string;
+  durationMs: number;
+  createdAt: string;
+  steps: PipelineStepRun[];
+}
+
 export interface ErrorEnvelope {
   code: string;
   message: string;

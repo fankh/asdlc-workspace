@@ -158,6 +158,21 @@ body::before {
 .run-history-item { border: 1px solid #232D38; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
 .run-history-task { color: #C7D2DC; font-size: 13px; margin: 6px 0 0; }
 
+/* Pipeline editor + list */
+.pipe-field { margin-bottom: 12px; }
+.pipe-field label { display: block; color: #8A96A4; font-size: 13px; margin-bottom: 4px; }
+.pipe-steps-head { color: #8A96A4; font-size: 13px; margin: 16px 0 8px; }
+.pipe-step { border: 1px solid #232D38; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.pipe-step-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.pipe-step-no {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  color: #8A96A4; min-width: 18px; text-align: center;
+}
+.pipe-chain {
+  font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px; color: #C7D2DC;
+}
+
 /* Control bar for right-aligned filters */
 .control-bar {
   display: flex;

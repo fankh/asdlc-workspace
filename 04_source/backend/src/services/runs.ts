@@ -63,13 +63,7 @@ export async function getRun(runId: string) {
   return toRunDto(run)
 }
 
-function toAgentLike(a: any): llm.AgentLike {
-  return {
-    name: a.name, role: a.role ?? '', persona: a.persona ?? '',
-    skills: a.skills ? String(a.skills).split(',').filter(Boolean) : [],
-    goal: a.goal ?? '', model: a.model ?? '',
-  }
-}
+const toAgentLike = llm.toAgentLike
 
 function toRunDto(r: any) {
   return {

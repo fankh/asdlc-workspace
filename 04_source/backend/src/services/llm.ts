@@ -38,6 +38,15 @@ export function modelFor(agent: AgentLike): string {
   return agent.model?.trim() || DEFAULT_MODEL
 }
 
+// Map a Prisma Agent record (skills stored as csv) to the executor's shape.
+export function toAgentLike(a: any): AgentLike {
+  return {
+    name: a.name, role: a.role ?? '', persona: a.persona ?? '',
+    skills: a.skills ? String(a.skills).split(',').filter(Boolean) : [],
+    goal: a.goal ?? '', model: a.model ?? '',
+  }
+}
+
 // Execute against Ollama. Throws on unreachable daemon / model errors so the
 // caller can record a failed run with a useful message.
 export async function execute(agent: AgentLike, task: string): Promise<ExecResult> {

@@ -22,9 +22,74 @@ model Agent {
   goal        String   @default("")
   createdAt   DateTime @default(now())
 
-  runs        AgentRun[]
+  runs          AgentRun[]
+  pipelineSteps PipelineStep[]
 
   @@map("agents")
+}
+
+// An ordered chain of agents: each step's output becomes the next step's input.
+model Pipeline {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String   @default("")
+  createdAt   DateTime @default(now())
+
+  steps PipelineStep[]
+  runs  PipelineRun[]
+
+  @@map("pipelines")
+}
+
+model PipelineStep {
+  id          String   @id @default(uuid())
+  pipelineId  String
+  pipeline    Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  order       Int
+  agentId     String
+  agent       Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  instruction String   @default("") // optional per-step directive prepended to the input
+
+  @@index([pipelineId])
+  @@map("pipeline_steps")
+}
+
+// One execution of a pipeline. Step runs snapshot agent name/instruction so the
+// record stays readable even if the pipeline or agents change later.
+model PipelineRun {
+  id         String   @id @default(uuid())
+  pipelineId String
+  pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  task       String
+  output     String   @default("") // final output = last step's output
+  status     String   @default("running") // running | succeeded | failed
+  error      String   @default("")
+  durationMs Int      @default(0)
+  createdAt  DateTime @default(now())
+
+  steps PipelineStepRun[]
+
+  @@index([pipelineId])
+  @@map("pipeline_runs")
+}
+
+model PipelineStepRun {
+  id            String      @id @default(uuid())
+  pipelineRunId String
+  pipelineRun   PipelineRun @relation(fields: [pipelineRunId], references: [id], onDelete: Cascade)
+  order         Int
+  agentId       String
+  agentName     String
+  instruction   String      @default("")
+  model         String      @default("")
+  task          String      @default("") // composed input this step actually received
+  output        String      @default("")
+  status        String      @default("pending") // pending | running | succeeded | failed
+  error         String      @default("")
+  durationMs    Int         @default(0)
+
+  @@index([pipelineRunId])
+  @@map("pipeline_step_runs")
 }
 
 // One execution of an agent against a task. Runs asynchronously: created in

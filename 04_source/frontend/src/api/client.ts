@@ -1,4 +1,4 @@
-import { Agent, AgentInput, AgentRun, ErrorEnvelope } from './types';
+import { Agent, AgentInput, AgentRun, ErrorEnvelope, Pipeline, PipelineInput, PipelineRun } from './types';
 
 export class ApiError extends Error {
   constructor(public status: number, public code: string, message: string) {
@@ -48,4 +48,33 @@ export async function listRuns(agentId: string): Promise<AgentRun[]> {
 
 export async function getRun(runId: string): Promise<AgentRun> {
   return fetchJson<AgentRun>(`/api/runs/${runId}`);
+}
+
+// -- pipelines (agent chains) --
+export async function listPipelines(): Promise<Pipeline[]> {
+  return fetchJson<Pipeline[]>('/api/pipelines');
+}
+
+export async function createPipeline(data: PipelineInput): Promise<Pipeline> {
+  return fetchJson<Pipeline>('/api/pipelines', { method: 'POST', body: JSON.stringify(data) });
+}
+
+export async function updatePipeline(pipelineId: string, data: PipelineInput): Promise<Pipeline> {
+  return fetchJson<Pipeline>(`/api/pipelines/${pipelineId}`, { method: 'PUT', body: JSON.stringify(data) });
+}
+
+export async function deletePipeline(pipelineId: string): Promise<void> {
+  await fetchJson<void>(`/api/pipelines/${pipelineId}`, { method: 'DELETE' });
+}
+
+export async function startPipelineRun(pipelineId: string, task: string): Promise<PipelineRun> {
+  return fetchJson<PipelineRun>(`/api/pipelines/${pipelineId}/runs`, { method: 'POST', body: JSON.stringify({ task }) });
+}
+
+export async function listPipelineRuns(pipelineId: string): Promise<PipelineRun[]> {
+  return fetchJson<PipelineRun[]>(`/api/pipelines/${pipelineId}/runs`);
+}
+
+export async function getPipelineRun(runId: string): Promise<PipelineRun> {
+  return fetchJson<PipelineRun>(`/api/pipeline-runs/${runId}`);
 }
