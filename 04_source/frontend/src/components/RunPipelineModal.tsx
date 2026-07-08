@@ -134,6 +134,7 @@ export default function RunPipelineModal({ pipeline, onClose }: Props) {
                 <div className="run-history-item" key={h.id}>
                   <Space size="small">
                     <Tag color={STATUS_COLOR[h.status]}>{h.status}</Tag>
+                    {h.trigger !== 'manual' && <Tag color={h.trigger === 'interval' ? 'geekblue' : 'purple'}>⚡ {h.trigger}</Tag>}
                     <span className="run-meta">{new Date(h.createdAt).toLocaleString()}</span>
                     {h.durationMs > 0 && <span className="run-meta">{fmtDur(h.durationMs)}</span>}
                   </Space>

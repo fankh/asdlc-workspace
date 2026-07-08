@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import agentRoutes from './routes/agents.js'
 import { agentRunsRouter, runsRouter } from './routes/runs.js'
-import { pipelinesRouter, pipelineRunsRouter } from './routes/pipelines.js'
+import { pipelinesRouter, pipelineRunsRouter, hooksRouter } from './routes/pipelines.js'
 import { Request, Response, NextFunction } from 'express'
 
 const app = express()
@@ -22,6 +22,7 @@ app.use('/api/agents', agentRoutes)
 app.use('/api/runs', runsRouter)
 app.use('/api/pipelines', pipelinesRouter)
 app.use('/api/pipeline-runs', pipelineRunsRouter)
+app.use('/api/hooks', hooksRouter)
 
 // Error middleware (must be last)
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

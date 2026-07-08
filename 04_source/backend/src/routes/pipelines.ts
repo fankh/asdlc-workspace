@@ -61,6 +61,19 @@ pipelinesRouter.post('/:pipelineId/runs', async (req: Request, res: Response) =>
   } catch (err) { fail(res, err) }
 })
 
+// Mounted at /api/hooks — fire a pipeline from outside (CI, cron, other tools).
+// POST /api/hooks/:webhookKey with optional {"task": "..."} body.
+export const hooksRouter = Router()
+
+hooksRouter.post('/:webhookKey', async (req: Request, res: Response) => {
+  try {
+    const key = z.string().uuid().parse(req.params.webhookKey)
+    const task = typeof req.body?.task === 'string' ? req.body.task : undefined
+    const run = await pipelineService.triggerByWebhook(key, task)
+    res.status(202).setHeader('Location', `/api/pipeline-runs/${run.id}`).json(run)
+  } catch (err) { fail(res, err) }
+})
+
 // Mounted at /api/pipeline-runs — single run lookup for polling.
 export const pipelineRunsRouter = Router()
 

@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Button, Input, Select, Alert, Tag, Modal, Space } from 'antd';
+import { Button, Input, InputNumber, Select, Switch, Alert, Tag, Modal, Space } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   listAgents, listPipelines, createPipeline, updatePipeline,
   startPipelineRun, getPipelineRun,
 } from '../api/client';
-import type { Agent, Pipeline, PipelineRun } from '../api/types';
+import type { Agent, Pipeline, PipelineRun, TriggerType } from '../api/types';
 
 // n8n-style canvas editor: agent nodes on a pannable/zoomable grid, wired with
 // bezier connections. The drawn chain IS the execution order — save derives
@@ -14,6 +14,18 @@ import type { Agent, Pipeline, PipelineRun } from '../api/types';
 const NODE_W = 200;
 const NODE_H = 88;
 const MAX_NODES = 10;
+const TRIG_W = 168;
+const TRIG_H = 64;
+
+interface TriggerSettings { type: TriggerType; intervalSec: number; defaultTask: string; enabled: boolean }
+
+function triggerLabel(trig: TriggerSettings): string {
+  if (trig.type === 'interval') {
+    return trig.intervalSec >= 60 && trig.intervalSec % 60 === 0
+      ? `every ${trig.intervalSec / 60}m` : `every ${trig.intervalSec}s`;
+  }
+  return trig.type === 'webhook' ? 'on webhook' : 'manual (Run button)';
+}
 
 const STATUS_STROKE: Record<string, string> = {
   pending: '#3a4653',
@@ -72,6 +84,9 @@ export default function PipelineCanvasPage() {
   const [tempEdge, setTempEdge] = useState<{ from: string; x: number; y: number } | null>(null);
   const [msg, setMsg] = useState<{ kind: 'error' | 'ok'; text: string } | null>(null);
   const [saving, setSaving] = useState(false);
+  const [trig, setTrig] = useState<TriggerSettings>({ type: 'manual', intervalSec: 300, defaultTask: '', enabled: true });
+  const [trigOpen, setTrigOpen] = useState(false);
+  const [webhookPath, setWebhookPath] = useState<string | null>(null);
   const [taskOpen, setTaskOpen] = useState(false);
   const [task, setTask] = useState('');
   const [run, setRun] = useState<PipelineRun | null>(null);
@@ -109,6 +124,13 @@ export default function PipelineCanvasPage() {
   const loadPipeline = (p: Pipeline) => {
     setName(p.name);
     setDescription(p.description);
+    setTrig({
+      type: p.triggerType,
+      intervalSec: p.intervalSec || 300,
+      defaultTask: p.defaultTask,
+      enabled: p.enabled,
+    });
+    setWebhookPath(p.webhookPath);
     const unplaced = p.steps.every(s => s.posX === 0 && s.posY === 0);
     const ns = p.steps.map((s, i) => ({
       key: newKey(),
@@ -226,6 +248,10 @@ export default function PipelineCanvasPage() {
       const payload = {
         name: name.trim(),
         description: description.trim() || undefined,
+        triggerType: trig.type,
+        intervalSec: trig.type === 'interval' ? trig.intervalSec : 0,
+        defaultTask: trig.defaultTask.trim() || undefined,
+        enabled: trig.enabled,
         steps: order!.map(k => {
           const n = nodeByKey.get(k)!;
           return {
@@ -240,6 +266,7 @@ export default function PipelineCanvasPage() {
         ? await updatePipeline(pipelineId, payload)
         : await createPipeline(payload);
       orderKeys.current = order!;
+      setWebhookPath(saved.webhookPath);
       setMsg({ kind: 'ok', text: 'Saved.' });
       if (!pipelineId) navigate(`/pipelines/${saved.id}`, { replace: true });
       return saved;
@@ -285,6 +312,14 @@ export default function PipelineCanvasPage() {
   const selectedNode = selected ? nodeByKey.get(selected) : null;
   const agentOptions = agents.map(a => ({ label: a.name, value: a.id }));
 
+  // Chain start (unique node without an incoming edge) — the trigger node
+  // attaches there, n8n-style.
+  const startNode = useMemo(() => {
+    const targets = new Set(edges.map(e => e.to));
+    const starts = nodes.filter(n => !targets.has(n.key));
+    return starts.length === 1 ? starts[0] : null;
+  }, [nodes, edges]);
+
   // -- render ----------------------------------------------------------------------
   return (
     <main className="canvas-page">
@@ -295,6 +330,9 @@ export default function PipelineCanvasPage() {
         <Input aria-label="Pipeline description" placeholder="Description (optional)" value={description}
           onChange={e => setDescription(e.target.value)} style={{ width: 260 }} />
         <Button onClick={addNode} disabled={nodes.length >= MAX_NODES}>Add agent node</Button>
+        <Button onClick={() => setTrigOpen(true)}>
+          ⚡ {trig.enabled ? triggerLabel(trig) : 'disabled'}
+        </Button>
         <Button onClick={save} loading={saving}>Save</Button>
         <Button type="primary" onClick={openRun} loading={running} disabled={nodes.length === 0}>
           {running ? 'Running…' : 'Run'}
@@ -338,6 +376,26 @@ export default function PipelineCanvasPage() {
             const a = nodeByKey.get(tempEdge.from);
             return a ? <path className="pedge pedge-temp"
               d={edgePath(a.x + NODE_W, a.y + NODE_H / 2, tempEdge.x, tempEdge.y)} /> : null;
+          })()}
+
+          {startNode && (() => {
+            const tx = startNode.x - TRIG_W - 70;
+            const ty = startNode.y + (NODE_H - TRIG_H) / 2;
+            return (
+              <g transform={`translate(${tx},${ty})`}
+                 onPointerDown={e => { e.stopPropagation(); setTrigOpen(true); }}
+                 style={{ cursor: 'pointer' }}>
+                <path className="pedge ptrig-edge"
+                      d={edgePath(TRIG_W, TRIG_H / 2, startNode.x - tx, startNode.y + NODE_H / 2 - ty)} />
+                <rect width={TRIG_W} height={TRIG_H} rx={TRIG_H / 2}
+                      className={'ptrig' + (trig.enabled ? '' : ' ptrig-off')} />
+                <text x={18} y={26} className="pnode-title">⚡ Trigger</text>
+                <text x={18} y={45} className="pnode-sub">
+                  {trig.enabled ? triggerLabel(trig) : 'disabled'}
+                </text>
+                <circle cx={TRIG_W} cy={TRIG_H / 2} r={6} className="pport" />
+              </g>
+            );
           })()}
 
           {nodes.map((n, i) => {
@@ -419,6 +477,67 @@ export default function PipelineCanvasPage() {
           {run.status === 'succeeded' && <pre className="run-output">{run.output || '(no output)'}</pre>}
         </div>
       )}
+
+      <Modal
+        title="Trigger settings"
+        open={trigOpen}
+        onOk={() => setTrigOpen(false)}
+        onCancel={() => setTrigOpen(false)}
+        okText="Done"
+        cancelButtonProps={{ style: { display: 'none' } }}
+      >
+        <div className="trig-row">
+          <label htmlFor="trig-type">Trigger</label>
+          <Select
+            id="trig-type"
+            value={trig.type}
+            onChange={v => setTrig(prev => ({ ...prev, type: v }))}
+            style={{ width: 220 }}
+            options={[
+              { value: 'manual', label: 'Manual — Run button only' },
+              { value: 'interval', label: 'Interval — run on a timer' },
+              { value: 'webhook', label: 'Webhook — run via HTTP POST' },
+            ]}
+          />
+        </div>
+        <div className="trig-row">
+          <label htmlFor="trig-enabled">Enabled</label>
+          <Switch id="trig-enabled" checked={trig.enabled}
+                  onChange={v => setTrig(prev => ({ ...prev, enabled: v }))} />
+        </div>
+        {trig.type === 'interval' && (
+          <div className="trig-row">
+            <label htmlFor="trig-interval">Every (seconds)</label>
+            <InputNumber id="trig-interval" min={10} max={604800} value={trig.intervalSec}
+                         onChange={v => setTrig(prev => ({ ...prev, intervalSec: Number(v) || 10 }))} />
+          </div>
+        )}
+        {trig.type !== 'manual' && (
+          <>
+            <label className="canvas-label" htmlFor="trig-task">
+              Default task — what automated runs execute
+            </label>
+            <Input.TextArea
+              id="trig-task"
+              rows={3}
+              value={trig.defaultTask}
+              onChange={e => setTrig(prev => ({ ...prev, defaultTask: e.target.value }))}
+              placeholder="e.g. Audit the latest logs and summarize anomalies."
+            />
+          </>
+        )}
+        {trig.type === 'webhook' && (
+          <div className="trig-hook">
+            {webhookPath
+              ? <>POST <code>{`${window.location.origin}${webhookPath}`}</code>
+                  <span className="run-meta"> — optional JSON body {'{"task": "..."}'} overrides the default task</span></>
+              : <span className="run-meta">Save the pipeline to get its webhook URL.</span>}
+          </div>
+        )}
+        <div className="run-meta" style={{ marginTop: 12 }}>
+          Changes apply when you save the pipeline.
+        </div>
+      </Modal>
 
       <Modal
         title="Run pipeline"

@@ -29,11 +29,19 @@ model Agent {
 }
 
 // An ordered chain of agents: each step's output becomes the next step's input.
+// Triggers automate the chain: manual (Run button), interval (scheduler fires
+// defaultTask every intervalSec), webhook (POST /api/hooks/:webhookKey).
 model Pipeline {
-  id          String   @id @default(uuid())
-  name        String   @unique
-  description String   @default("")
-  createdAt   DateTime @default(now())
+  id              String    @id @default(uuid())
+  name            String    @unique
+  description     String    @default("")
+  triggerType     String    @default("manual") // manual | interval | webhook
+  intervalSec     Int       @default(0)
+  defaultTask     String    @default("") // task used by interval/webhook runs
+  enabled         Boolean   @default(true)
+  webhookKey      String?   @unique // nullable: backfilled on save for old rows
+  lastTriggeredAt DateTime?
+  createdAt       DateTime  @default(now())
 
   steps PipelineStep[]
   runs  PipelineRun[]
@@ -63,6 +71,7 @@ model PipelineRun {
   pipelineId String
   pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
   task       String
+  trigger    String   @default("manual") // what fired this run: manual | interval | webhook
   output     String   @default("") // final output = last step's output
   status     String   @default("running") // running | succeeded | failed
   error      String   @default("")

@@ -1,9 +1,19 @@
 import { useEffect, useState } from 'react';
-import { Table, Button, Empty, Alert, Tag, Space } from 'antd';
+import { Table, Button, Empty, Alert, Tag, Space, Switch } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { listPipelines, deletePipeline } from '../api/client';
+import { listPipelines, deletePipeline, updatePipeline } from '../api/client';
 import type { Pipeline } from '../api/types';
 import RunPipelineModal from '../components/RunPipelineModal';
+
+function triggerTag(p: Pipeline) {
+  if (p.triggerType === 'interval') {
+    const label = p.intervalSec >= 60 && p.intervalSec % 60 === 0
+      ? `every ${p.intervalSec / 60}m` : `every ${p.intervalSec}s`;
+    return <Tag color="geekblue" className="mono-cell">⚡ {label}</Tag>;
+  }
+  if (p.triggerType === 'webhook') return <Tag color="purple" className="mono-cell">⚡ webhook</Tag>;
+  return <Tag className="mono-cell">manual</Tag>;
+}
 
 const RUN_COLOR: Record<string, string | undefined> = {
   running: 'blue',
@@ -41,6 +51,31 @@ export default function PipelinesPage() {
   const openCreate = () => navigate('/pipelines/new');
   const openEdit = (p: Pipeline) => navigate(`/pipelines/${p.id}`);
 
+  // Flip enabled without touching anything else (update is full-replace, so
+  // rebuild the payload from the DTO we already hold).
+  const toggleEnabled = async (p: Pipeline, enabled: boolean) => {
+    setPipelines(prev => prev.map(x => (x.id === p.id ? { ...x, enabled } : x)));
+    try {
+      await updatePipeline(p.id, {
+        name: p.name,
+        description: p.description || undefined,
+        triggerType: p.triggerType,
+        intervalSec: p.intervalSec,
+        defaultTask: p.defaultTask || undefined,
+        enabled,
+        steps: p.steps.map(s => ({
+          agentId: s.agentId,
+          instruction: s.instruction || undefined,
+          posX: s.posX,
+          posY: s.posY,
+        })),
+      });
+    } catch {
+      setPipelines(prev => prev.map(x => (x.id === p.id ? { ...x, enabled: !enabled } : x)));
+      setError('Failed to update the pipeline.');
+    }
+  };
+
   const columns = [
     { title: 'name', dataIndex: 'name', key: 'name' },
     {
@@ -49,7 +84,14 @@ export default function PipelinesPage() {
         <span className="pipe-chain">{p.steps.map(s => s.agentName).join(' → ') || '—'}</span>
       ),
     },
-    { title: 'description', dataIndex: 'description', key: 'description', render: (v: string) => v || '—' },
+    { title: 'trigger', key: 'trigger', render: (_: unknown, p: Pipeline) => triggerTag(p) },
+    {
+      title: 'enabled', key: 'enabled',
+      render: (_: unknown, p: Pipeline) => (
+        <Switch size="small" checked={p.enabled} aria-label={`${p.name} enabled`}
+                onChange={v => toggleEnabled(p, v)} />
+      ),
+    },
     {
       title: 'last run', key: 'lastRun',
       render: (_: unknown, p: Pipeline) => p.lastRun

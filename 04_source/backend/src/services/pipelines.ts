@@ -1,8 +1,12 @@
+import { randomUUID } from 'node:crypto'
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import * as llm from './llm.js'
 
 const prisma = new PrismaClient()
+
+export type TriggerSource = 'manual' | 'interval' | 'webhook'
+export const MIN_INTERVAL_SEC = 10
 
 const StepDto = z.object({
   agentId: z.string().uuid(),
@@ -14,7 +18,20 @@ const StepDto = z.object({
 export const CreatePipelineDto = z.object({
   name: z.string().min(1, 'Pipeline name is required.').max(120),
   description: z.string().max(500).optional(),
+  triggerType: z.enum(['manual', 'interval', 'webhook']).optional(),
+  intervalSec: z.number().int().min(0).max(7 * 86400).optional(),
+  defaultTask: z.string().max(4000).optional(),
+  enabled: z.boolean().optional(),
   steps: z.array(StepDto).min(1, 'A pipeline needs at least one step.').max(10),
+}).superRefine((data, ctx) => {
+  if (data.triggerType === 'interval') {
+    if ((data.intervalSec ?? 0) < MIN_INTERVAL_SEC) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Interval trigger needs an interval of at least ${MIN_INTERVAL_SEC}s.` })
+    }
+    if (!data.defaultTask?.trim()) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Interval trigger needs a default task for automated runs.' })
+    }
+  }
 })
 // Updates use full-replace semantics: the editor always submits the whole chain.
 export const UpdatePipelineDto = CreatePipelineDto
@@ -68,6 +85,11 @@ export async function createPipeline(data: CreatePipelineInput) {
       data: {
         name: data.name,
         description: data.description ?? '',
+        triggerType: data.triggerType ?? 'manual',
+        intervalSec: data.intervalSec ?? 0,
+        defaultTask: data.defaultTask ?? '',
+        enabled: data.enabled ?? true,
+        webhookKey: randomUUID(),
         steps: { create: data.steps.map(toStepRecord) },
       },
       include: includeSteps,
@@ -90,11 +112,18 @@ function toStepRecord(s: z.infer<typeof StepDto>, i: number) {
 export async function updatePipeline(pipelineId: string, data: CreatePipelineInput) {
   await assertAgentsExist(data.steps)
   try {
+    const existing = await prisma.pipeline.findUnique({ where: { id: pipelineId }, select: { webhookKey: true } })
     const p = await prisma.pipeline.update({
       where: { id: pipelineId },
       data: {
         name: data.name,
         description: data.description ?? '',
+        triggerType: data.triggerType ?? 'manual',
+        intervalSec: data.intervalSec ?? 0,
+        defaultTask: data.defaultTask ?? '',
+        enabled: data.enabled ?? true,
+        // backfill for rows created before webhooks existed
+        ...(existing && !existing.webhookKey ? { webhookKey: randomUUID() } : {}),
         steps: {
           deleteMany: {},
           create: data.steps.map(toStepRecord),
@@ -124,7 +153,8 @@ export async function deletePipeline(pipelineId: string) {
 
 // Create the run with every step snapshotted as `pending`, then execute the
 // chain in the background; the frontend polls getPipelineRun until terminal.
-export async function startPipelineRun(pipelineId: string, data: CreatePipelineRunInput) {
+export async function startPipelineRun(pipelineId: string, data: CreatePipelineRunInput,
+                                        trigger: TriggerSource = 'manual') {
   const pipeline = await prisma.pipeline.findUnique({ where: { id: pipelineId }, include: includeSteps })
   if (!pipeline) notFound('Pipeline')
   if (pipeline.steps.length === 0) {
@@ -132,10 +162,12 @@ export async function startPipelineRun(pipelineId: string, data: CreatePipelineR
     err.code = 'VALIDATION_FAILED'; err.statusCode = 400
     throw err
   }
+  await prisma.pipeline.update({ where: { id: pipelineId }, data: { lastTriggeredAt: new Date() } })
   const run = await prisma.pipelineRun.create({
     data: {
       pipelineId,
       task: data.task,
+      trigger,
       steps: {
         create: pipeline.steps.map(s => ({
           order: s.order,
@@ -208,6 +240,25 @@ export async function listPipelineRuns(pipelineId: string) {
   return runs.map(toPipelineRunDto)
 }
 
+// Fire a pipeline from its webhook key (POST /api/hooks/:key). The caller may
+// supply a task; otherwise the pipeline's defaultTask is used.
+export async function triggerByWebhook(webhookKey: string, task?: string) {
+  const pipeline = await prisma.pipeline.findUnique({ where: { webhookKey } })
+  if (!pipeline) notFound('Webhook')
+  if (!pipeline.enabled) {
+    const err = new Error('This pipeline is disabled.') as any
+    err.code = 'DISABLED'; err.statusCode = 409
+    throw err
+  }
+  const effective = (task ?? '').trim() || pipeline.defaultTask.trim()
+  if (!effective) {
+    const err = new Error('No task: send {"task": "..."} or set a default task on the pipeline.') as any
+    err.code = 'VALIDATION_FAILED'; err.statusCode = 400
+    throw err
+  }
+  return startPipelineRun(pipeline.id, { task: effective }, 'webhook')
+}
+
 export async function getPipelineRun(runId: string) {
   const run = await prisma.pipelineRun.findUnique({
     where: { id: runId },
@@ -225,6 +276,12 @@ function toPipelineDto(p: any) {
     id: p.id,
     name: p.name,
     description: p.description ?? '',
+    triggerType: p.triggerType ?? 'manual',
+    intervalSec: p.intervalSec ?? 0,
+    defaultTask: p.defaultTask ?? '',
+    enabled: p.enabled ?? true,
+    webhookPath: p.webhookKey ? `/api/hooks/${p.webhookKey}` : null,
+    lastTriggeredAt: p.lastTriggeredAt ? p.lastTriggeredAt.toISOString() : null,
     createdAt: p.createdAt.toISOString(),
     steps: p.steps.map((s: any) => ({
       id: s.id,
@@ -246,6 +303,7 @@ function toPipelineRunDto(r: any) {
     id: r.id,
     pipelineId: r.pipelineId,
     task: r.task,
+    trigger: r.trigger ?? 'manual',
     output: r.output ?? '',
     status: r.status as 'running' | 'succeeded' | 'failed',
     error: r.error ?? '',

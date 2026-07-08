@@ -58,10 +58,18 @@ export interface PipelineStep {
   posY: number;
 }
 
+export type TriggerType = 'manual' | 'interval' | 'webhook';
+
 export interface Pipeline {
   id: string;
   name: string;
   description: string;
+  triggerType: TriggerType;
+  intervalSec: number;
+  defaultTask: string;
+  enabled: boolean;
+  webhookPath: string | null;
+  lastTriggeredAt: string | null;
   createdAt: string;
   steps: PipelineStep[];
   lastRun: { id: string; status: RunStatus; createdAt: string } | null;
@@ -70,6 +78,10 @@ export interface Pipeline {
 export interface PipelineInput {
   name: string;
   description?: string;
+  triggerType?: TriggerType;
+  intervalSec?: number;
+  defaultTask?: string;
+  enabled?: boolean;
   steps: { agentId: string; instruction?: string; posX?: number; posY?: number }[];
 }
 
@@ -91,6 +103,7 @@ export interface PipelineRun {
   id: string;
   pipelineId: string;
   task: string;
+  trigger: TriggerType;
   output: string;
   status: RunStatus;
   error: string;
