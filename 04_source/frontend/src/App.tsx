@@ -7,6 +7,7 @@ import PipelinesPage from './pages/PipelinesPage';
 import PipelineCanvasPage from './pages/PipelineCanvasPage';
 import LogsPage from './pages/LogsPage';
 import MemoryPage from './pages/MemoryPage';
+import ManualPage from './pages/ManualPage';
 import { ThemeModeContext } from './theme';
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
           <Link to="/pipelines" className={cls('/pipelines')}>Pipelines</Link>
           <Link to="/logs" className={cls('/logs')}>Logs</Link>
           <Link to="/memory" className={cls('/memory')}>Memory</Link>
+          <Link to="/manual" className={cls('/manual')}>Manual</Link>
         </nav>
         <button
           type="button"
@@ -45,6 +47,7 @@ export default function App() {
         <Route path="/pipelines/:pipelineId" element={<PipelineCanvasPage />} />
         <Route path="/logs" element={<LogsPage />} />
         <Route path="/memory" element={<MemoryPage />} />
+        <Route path="/manual" element={<ManualPage />} />
       </Routes>
     </>
   );
