@@ -213,14 +213,24 @@ export default function PipelineCanvasPage() {
   };
 
   // -- canvas interactions ------------------------------------------------------
+
+  // Capture the pointer on the SVG for the whole drag: without this, releasing
+  // over any HTML overlay (node-settings panel, run bar, topbar) steals the
+  // pointerup and the wire silently never lands.
+  const capturePointer = (e: React.PointerEvent) => {
+    try { svgRef.current?.setPointerCapture(e.pointerId); } catch { /* older browsers */ }
+  };
+
   const onBackgroundDown = (e: React.PointerEvent) => {
     if (e.target !== e.currentTarget) return;
+    capturePointer(e);
     drag.current = { mode: 'pan', sx: e.clientX, sy: e.clientY, tx: t.x, ty: t.y };
     setSelected(null);
   };
 
   const onNodeDown = (e: React.PointerEvent, key: string) => {
     e.stopPropagation();
+    capturePointer(e);
     const w = toWorld(e.clientX, e.clientY);
     const n = nodeByKey.get(key)!;
     drag.current = { mode: 'node', key, dx: w.x - n.x, dy: w.y - n.y, moved: 0 };
@@ -228,6 +238,7 @@ export default function PipelineCanvasPage() {
 
   const onOutPortDown = (e: React.PointerEvent, key: string, branch?: 'true' | 'false') => {
     e.stopPropagation();
+    capturePointer(e);
     const w = toWorld(e.clientX, e.clientY);
     drag.current = { mode: 'connect', from: key, branch };
     setTempEdge({ from: key, x: w.x, y: w.y, branch });
@@ -237,9 +248,15 @@ export default function PipelineCanvasPage() {
   // backwards (drop on the upstream node).
   const onInPortDown = (e: React.PointerEvent, key: string) => {
     e.stopPropagation();
+    capturePointer(e);
     const w = toWorld(e.clientX, e.clientY);
     drag.current = { mode: 'connect', from: key, reverse: true };
     setTempEdge({ from: key, x: w.x, y: w.y, reverse: true });
+  };
+
+  const onCancel = () => {
+    drag.current = null;
+    setTempEdge(null);
   };
 
   const onMove = (e: React.PointerEvent) => {
@@ -258,6 +275,7 @@ export default function PipelineCanvasPage() {
   };
 
   const onUp = (e: React.PointerEvent) => {
+    try { svgRef.current?.releasePointerCapture(e.pointerId); } catch { /* not captured */ }
     const d = drag.current;
     drag.current = null;
     if (!d) return;
@@ -311,11 +329,15 @@ export default function PipelineCanvasPage() {
       : type === 'skill' ? { skill: 'summarize', param: '' }
       : type === 'http' ? { method: 'GET', url: '' }
       : {};
-    setNodes(prev => [...prev, {
-      key, type, instruction: '', config,
-      x: last ? last.x + 260 : 80,
-      y: last ? last.y : 160,
-    }]);
+    let x = last ? last.x + 260 : 80;
+    let y = last ? last.y : 160;
+    // wrap to a new row instead of spawning under the right-side settings panel
+    const svgW = svgRef.current?.clientWidth ?? 1200;
+    if (last && (x + NODE_W) * t.k + t.x > svgW - 320) {
+      x = nodes[0].x;
+      y = last.y + 170;
+    }
+    setNodes(prev => [...prev, { key, type, instruction: '', config, x, y }]);
     setSelected(key);
   };
 
@@ -485,6 +507,7 @@ export default function PipelineCanvasPage() {
         onPointerDown={onBackgroundDown}
         onPointerMove={onMove}
         onPointerUp={onUp}
+        onPointerCancel={onCancel}
         onWheel={onWheel}
       >
         <defs>
