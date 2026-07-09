@@ -17,13 +17,6 @@ const MAX_NODES = 12;
 const TRIG_W = 168;
 const TRIG_H = 64;
 
-const STATUS_STROKE: Record<string, string> = {
-  pending: '#3a4653',
-  running: '#3B82F6',
-  succeeded: '#37B24D',
-  failed: '#F26663',
-  skipped: '#57636F',
-};
 const RUN_COLOR: Record<string, string | undefined> = { running: 'blue', succeeded: 'green', failed: 'red' };
 
 const NODE_META: Record<NodeType, { icon: string; title: string }> = {
@@ -512,7 +505,7 @@ export default function PipelineCanvasPage() {
       >
         <defs>
           <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
-            <circle cx="1" cy="1" r="1" fill="#20293380" />
+            <circle cx="1" cy="1" r="1" className="grid-dot" />
           </pattern>
         </defs>
         <rect className="canvas-bg" width="100%" height="100%" fill="url(#grid)" pointerEvents="none" />
@@ -527,8 +520,8 @@ export default function PipelineCanvasPage() {
               <g key={`${e.from}-${e.to}-${e.branch ?? ''}`}>
                 <path d={d} className="pedge" />
                 {e.branch && (
-                  <text x={p1.x + 14} y={p1.y - 6} className="pedge-label"
-                        fill={e.branch === 'true' ? '#37B24D' : '#F26663'}>
+                  <text x={p1.x + 14} y={p1.y - 6}
+                        className={`pedge-label pedge-label-${e.branch}`}>
                     {e.branch === 'true' ? '✓' : '✗'}
                   </text>
                 )}
@@ -571,19 +564,18 @@ export default function PipelineCanvasPage() {
 
           {nodes.map((n, i) => {
             const st = nodeStatus(n.key);
-            const stroke = st ? STATUS_STROKE[st] : (selected === n.key ? '#2dd4a7' : '#232D38');
+            const rectCls = 'pnode' + (st ? ` pst-${st}` : selected === n.key ? ' pnode-sel' : '');
             const [l1, l2, l3] = nodeLines(n);
             const dim = st === 'skipped' ? 0.45 : 1;
             return (
               <g key={n.key} transform={`translate(${n.x},${n.y})`} opacity={dim}
                  onPointerDown={e => onNodeDown(e, n.key)} style={{ cursor: 'grab' }}>
-                <rect width={NODE_W} height={NODE_H} rx={10} className="pnode"
-                      stroke={stroke} strokeWidth={st === 'running' ? 2.5 : 1.5} />
+                <rect width={NODE_W} height={NODE_H} rx={10} className={rectCls} />
                 <text x={14} y={26} className="pnode-title">{l1}</text>
                 <text x={14} y={45} className="pnode-sub">{l2}</text>
                 <text x={14} y={66} className="pnode-instr">{l3}</text>
                 {st
-                  ? <text x={NODE_W - 2} y={-8} textAnchor="end" className="pnode-status" fill={STATUS_STROKE[st]}>{st}</text>
+                  ? <text x={NODE_W - 2} y={-8} textAnchor="end" className={`pnode-status pst-txt-${st}`}>{st}</text>
                   : <text x={NODE_W - 2} y={-8} textAnchor="end" className="pnode-sub">#{i + 1}</text>}
                 {/* in-port */}
                 <circle cx={0} cy={NODE_H / 2} r={16} className="pport-hit" data-port={`in-${n.key}`}

@@ -1,5 +1,79 @@
 /* Global shell for the agent ops console. Layout + texture only —
-   colors that carry meaning stay in theme.ts tokens. */
+   colors that carry meaning stay in theme.ts tokens.
+   Theme selection: every color routes through a CSS variable; the
+   [data-theme='light'] block overrides the dark defaults. */
+
+:root {
+  --bg: #0b1016;
+  --bg-texture: rgba(45, 212, 167, 0.07);
+  --glow-a: rgba(45, 212, 167, 0.16);
+  --glow-b: rgba(76, 194, 255, 0.1);
+  --surface: #111823;
+  --surface-translucent: rgba(17, 24, 35, 0.75);
+  --header-bg: rgba(11, 16, 22, 0.85);
+  --deep: #0c1219;
+  --node: #141a21;
+  --port: #1c2530;
+  --hover: #16202e;
+  --canvas-bg: #0b0f14;
+  --grid-dot: rgba(32, 41, 51, 0.5);
+  --text: #e8eef4;
+  --text-2: #c7d2dc;
+  --text-3: #8a96a4;
+  --text-4: #6e7b89;
+  --border: #243244;
+  --border-2: #232d38;
+  --line: #3a4653;
+  --accent: #2dd4a7;
+  --accent-text: #2dd4a7;
+  --accent-soft: rgba(45, 212, 167, 0.12);
+  --trig-fill: #10231d;
+  --ok-text: #37b24d;
+  --err-text: #f2b8b6;
+  --err-border: #5a2b2b;
+  --output-text: #b9c6d3;
+  --st-pending: #3a4653;
+  --st-running: #3b82f6;
+  --st-succeeded: #37b24d;
+  --st-failed: #f26663;
+  --st-skipped: #57636f;
+}
+
+[data-theme='light'] {
+  --bg: #f4f6f9;
+  --bg-texture: rgba(20, 150, 115, 0.09);
+  --glow-a: rgba(45, 212, 167, 0.16);
+  --glow-b: rgba(76, 194, 255, 0.12);
+  --surface: #ffffff;
+  --surface-translucent: rgba(255, 255, 255, 0.8);
+  --header-bg: rgba(255, 255, 255, 0.85);
+  --deep: #f0f3f7;
+  --node: #ffffff;
+  --port: #e8edf3;
+  --hover: #e9eef4;
+  --canvas-bg: #eef1f5;
+  --grid-dot: rgba(150, 163, 175, 0.55);
+  --text: #17222d;
+  --text-2: #3d4c5a;
+  --text-3: #5b6874;
+  --text-4: #75808c;
+  --border: #d6dde5;
+  --border-2: #d6dde5;
+  --line: #9aa7b4;
+  --accent: #2dd4a7;
+  --accent-text: #0e8f6d; /* teal darkened for AA text contrast on light */
+  --accent-soft: rgba(14, 143, 109, 0.12);
+  --trig-fill: #e2f6ee;
+  --ok-text: #1e7e34;
+  --err-text: #b3261e;
+  --err-border: #e3b0ae;
+  --output-text: #33414e;
+  --st-pending: #aab6c2;
+  --st-running: #2563eb;
+  --st-succeeded: #1e7e34;
+  --st-failed: #b3261e;
+  --st-skipped: #9aa7b4;
+}
 
 html,
 body,
@@ -11,9 +85,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;
-  color: #e8eef4;
-  background-color: #0b1016;
-  background-image: radial-gradient(rgba(45, 212, 167, 0.07) 1px, transparent 1px);
+  color: var(--text);
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--bg-texture) 1px, transparent 1px);
   background-size: 28px 28px;
 }
 
@@ -23,8 +97,8 @@ body::before {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(600px 320px at 18% -10%, rgba(45, 212, 167, 0.16), transparent 70%),
-    radial-gradient(700px 360px at 85% -20%, rgba(76, 194, 255, 0.10), transparent 70%);
+    radial-gradient(600px 320px at 18% -10%, var(--glow-a), transparent 70%),
+    radial-gradient(700px 360px at 85% -20%, var(--glow-b), transparent 70%);
 }
 
 #root {
@@ -49,14 +123,14 @@ body::before {
   font-size: 14px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #2dd4a7;
+  color: var(--accent-text);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #243244;
+  border: 1px solid var(--border);
   border-radius: 999px;
   padding: 4px 16px;
-  background: rgba(17, 24, 35, 0.75);
+  background: var(--surface-translucent);
 }
 
 .eyebrow::before {
@@ -64,7 +138,7 @@ body::before {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #2dd4a7;
+  background: var(--accent);
   box-shadow: 0 0 8px rgba(45, 212, 167, 0.9);
 }
 
@@ -94,7 +168,7 @@ body::before {
 
 .hero-meta span::before {
   content: '▸ ';
-  color: #2dd4a7;
+  color: var(--accent-text);
 }
 
 /* ---- shared page shell ---------------------------------------------- */
@@ -131,11 +205,11 @@ body::before {
 .count-chip {
   font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 14px;
-  color: #a9b7c6;
-  border: 1px solid #243244;
+  color: var(--text-3);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 2px 8px;
-  background: rgba(17, 24, 35, 0.75);
+  background: var(--surface-translucent);
 }
 
 .mono-cell {
@@ -144,95 +218,109 @@ body::before {
 }
 
 /* Run agent modal */
-.run-model-hint { color: #8A96A4; font-size: 13px; margin-bottom: 10px; }
+.run-model-hint { color: var(--text-3); font-size: 13px; margin-bottom: 10px; }
 .run-result { margin-top: 14px; }
 .run-output, .run-history-output, .run-history-error {
   font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 13px; line-height: 1.5; white-space: pre-wrap; word-break: break-word;
-  background: #0C1219; border: 1px solid #232D38; border-radius: 8px;
-  padding: 10px 12px; margin: 8px 0 0; color: #B9C6D3; max-height: 320px; overflow: auto;
+  background: var(--deep); border: 1px solid var(--border-2); border-radius: 8px;
+  padding: 10px 12px; margin: 8px 0 0; color: var(--output-text); max-height: 320px; overflow: auto;
 }
-.run-history-error { color: #F2B8B6; border-color: #5a2b2b; }
-.run-meta { color: #8A96A4; font-size: 12px; }
+.run-history-error { color: var(--err-text); border-color: var(--err-border); }
+.run-meta { color: var(--text-3); font-size: 12px; }
 .run-history-title { margin: 20px 0 8px; font-size: 14px; }
-.run-history-item { border: 1px solid #232D38; border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
-.run-history-task { color: #C7D2DC; font-size: 13px; margin: 6px 0 0; }
+.run-history-item { border: 1px solid var(--border-2); border-radius: 8px; padding: 10px 12px; margin-bottom: 10px; }
+.run-history-task { color: var(--text-2); font-size: 13px; margin: 6px 0 0; }
 
 /* Pipeline editor + list */
 .pipe-field { margin-bottom: 12px; }
-.pipe-field label { display: block; color: #8A96A4; font-size: 13px; margin-bottom: 4px; }
-.pipe-steps-head { color: #8A96A4; font-size: 13px; margin: 16px 0 8px; }
-.pipe-step { border: 1px solid #232D38; border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
+.pipe-field label { display: block; color: var(--text-3); font-size: 13px; margin-bottom: 4px; }
+.pipe-steps-head { color: var(--text-3); font-size: 13px; margin: 16px 0 8px; }
+.pipe-step { border: 1px solid var(--border-2); border-radius: 8px; padding: 10px 12px; margin-bottom: 8px; }
 .pipe-step-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .pipe-step-no {
   font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
-  color: #8A96A4; min-width: 18px; text-align: center;
+  color: var(--text-3); min-width: 18px; text-align: center;
 }
 .pipe-chain {
   font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 13px; color: #C7D2DC;
+  font-size: 13px; color: var(--text-2);
 }
 
 /* n8n-style pipeline canvas */
 .canvas-page { position: relative; height: calc(100vh - 64px); overflow: hidden; }
 .canvas-topbar {
   display: flex; align-items: center; gap: 10px; padding: 10px 16px;
-  border-bottom: 1px solid #232D38; background: #111823;
+  border-bottom: 1px solid var(--border-2); background: var(--surface);
   position: relative; z-index: 3; flex-wrap: wrap;
 }
-.canvas-back { color: #8A96A4; white-space: nowrap; }
-.canvas-back:hover { color: #2dd4a7; }
-.canvas-msg-err { color: #F2B8B6; font-size: 13px; }
-.canvas-msg-ok { color: #37B24D; font-size: 13px; }
+.canvas-back { color: var(--text-3); white-space: nowrap; }
+.canvas-back:hover { color: var(--accent-text); }
+.canvas-msg-err { color: var(--err-text); font-size: 13px; }
+.canvas-msg-ok { color: var(--ok-text); font-size: 13px; }
 .canvas-svg {
-  width: 100%; height: 100%; display: block; background: #0B0F14; touch-action: none;
+  width: 100%; height: 100%; display: block; background: var(--canvas-bg); touch-action: none;
   /* dragging must wire nodes, never select labels — a live selection turns the
      next drag into a native text-drag that swallows pointer events entirely */
   user-select: none; -webkit-user-select: none;
 }
-.pnode { fill: #141A21; }
-.pnode-title { fill: #E6EDF3; font-size: 14px; font-weight: 600; pointer-events: none; }
+.grid-dot { fill: var(--grid-dot); }
+.pnode { fill: var(--node); stroke: var(--border-2); stroke-width: 1.5; }
+.pnode-sel { stroke: var(--accent); }
+.pst-pending { stroke: var(--st-pending); }
+.pst-running { stroke: var(--st-running); stroke-width: 2.5; }
+.pst-succeeded { stroke: var(--st-succeeded); }
+.pst-failed { stroke: var(--st-failed); }
+.pst-skipped { stroke: var(--st-skipped); }
+.pst-txt-pending { fill: var(--st-pending); }
+.pst-txt-running { fill: var(--st-running); }
+.pst-txt-succeeded { fill: var(--st-succeeded); }
+.pst-txt-failed { fill: var(--st-failed); }
+.pst-txt-skipped { fill: var(--st-skipped); }
+.pnode-title { fill: var(--text); font-size: 14px; font-weight: 600; pointer-events: none; }
 .pnode-sub, .pnode-status {
   font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
   font-size: 11px; pointer-events: none;
 }
-.pnode-sub { fill: #8A96A4; }
-.pnode-instr { fill: #6E7B89; font-size: 11px; font-style: italic; pointer-events: none; }
-.pport { fill: #1C2530; stroke: #3a4653; stroke-width: 1.5; pointer-events: none; }
-.pport-true { stroke: #37B24D; }
-.pport-false { stroke: #F26663; }
+.pnode-sub { fill: var(--text-3); }
+.pnode-instr { fill: var(--text-4); font-size: 11px; font-style: italic; pointer-events: none; }
+.pport { fill: var(--port); stroke: var(--line); stroke-width: 1.5; pointer-events: none; }
+.pport-true { stroke: var(--st-succeeded); }
+.pport-false { stroke: var(--st-failed); }
 .pport-hit { fill: transparent; cursor: crosshair; }
-.pport-hit:hover + .pport { fill: #2dd4a7; stroke: #2dd4a7; }
+.pport-hit:hover + .pport { fill: var(--accent); stroke: var(--accent); }
 .pedge-label { font-size: 12px; font-weight: 700; pointer-events: none; }
-.pedge { fill: none; stroke: #3a4653; stroke-width: 2; pointer-events: none; }
-.pedge-temp { stroke: #2dd4a7; stroke-dasharray: 6 4; }
+.pedge-label-true { fill: var(--st-succeeded); }
+.pedge-label-false { fill: var(--st-failed); }
+.pedge { fill: none; stroke: var(--line); stroke-width: 2; pointer-events: none; }
+.pedge-temp { stroke: var(--accent); stroke-dasharray: 6 4; }
 .pedge-hit { fill: none; stroke: transparent; stroke-width: 14; cursor: pointer; pointer-events: stroke; }
-.pedge-hit:hover + .pedge, .pedge-hit:hover { stroke: #F2666333; }
-.canvas-hint { fill: #6E7B89; font-size: 14px; }
+.pedge-hit:hover + .pedge, .pedge-hit:hover { stroke: #f2666333; }
+.canvas-hint { fill: var(--text-4); font-size: 14px; }
 .canvas-panel {
   position: absolute; top: 66px; right: 12px; width: 280px; z-index: 3;
-  background: #141A21; border: 1px solid #232D38; border-radius: 10px; padding: 14px 16px;
+  background: var(--node); border: 1px solid var(--border-2); border-radius: 10px; padding: 14px 16px;
 }
-.canvas-panel h3 { margin: 0 0 10px; font-size: 14px; color: #E6EDF3; }
-.canvas-label { display: block; color: #8A96A4; font-size: 12px; margin: 10px 0 4px; }
+.canvas-panel h3 { margin: 0 0 10px; font-size: 14px; color: var(--text); }
+.canvas-label { display: block; color: var(--text-3); font-size: 12px; margin: 10px 0 4px; }
 .canvas-runbar {
   position: absolute; left: 12px; bottom: 12px; z-index: 3; max-width: 560px;
-  background: #141A21; border: 1px solid #232D38; border-radius: 10px; padding: 12px 14px;
+  background: var(--node); border: 1px solid var(--border-2); border-radius: 10px; padding: 12px 14px;
 }
 .canvas-runbar .run-output { max-height: 180px; }
 /* trigger node + settings */
-.ptrig { fill: #10231d; stroke: #2dd4a7; stroke-width: 1.5; }
-.ptrig-off { fill: #141A21; stroke: #3a4653; }
+.ptrig { fill: var(--trig-fill); stroke: var(--accent); stroke-width: 1.5; }
+.ptrig-off { fill: var(--node); stroke: var(--line); }
 .ptrig-edge { stroke-dasharray: 5 4; }
 .trig-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-.trig-row label { color: #8A96A4; font-size: 13px; }
+.trig-row label { color: var(--text-3); font-size: 13px; }
 .trig-hook {
-  margin-top: 10px; font-size: 13px; color: #C7D2DC;
-  border: 1px solid #232D38; border-radius: 8px; padding: 8px 10px; word-break: break-all;
+  margin-top: 10px; font-size: 13px; color: var(--text-2);
+  border: 1px solid var(--border-2); border-radius: 8px; padding: 8px 10px; word-break: break-all;
 }
 .trig-hook code {
   font-family: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, Consolas, monospace;
-  background: #0C1219; padding: 1px 5px; border-radius: 4px;
+  background: var(--deep); padding: 1px 5px; border-radius: 4px;
 }
 
 /* Control bar for right-aligned filters */
@@ -252,15 +340,15 @@ body::before {
   gap: 28px;
   height: 56px;
   padding: 0 32px;
-  border-bottom: 1px solid #243244;
-  background: rgba(11, 16, 22, 0.85);
+  border-bottom: 1px solid var(--border);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
 }
 .app-brand {
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.01em;
-  color: #e8eef4;
+  color: var(--text);
   text-decoration: none;
 }
 .top-nav {
@@ -269,17 +357,43 @@ body::before {
   margin-left: auto;
 }
 .top-nav .nav-item {
-  color: #a9b7c6;
+  color: var(--text-3);
   text-decoration: none;
   padding: 7px 14px;
   border-radius: 8px;
   font-size: 14px;
 }
 .top-nav .nav-item:hover {
-  color: #e8eef4;
-  background: #16202e;
+  color: var(--text);
+  background: var(--hover);
 }
 .top-nav .nav-item.active {
-  color: #2dd4a7;
-  background: rgba(45, 212, 167, 0.12);
+  color: var(--accent-text);
+  background: var(--accent-soft);
+}
+
+/* compact header on small screens — the toggle must never overflow the
+   viewport (horizontal overflow destabilizes mobile tap coordinates) */
+@media (max-width: 640px) {
+  .app-header { padding: 0 12px; gap: 8px; }
+  .app-brand { display: none; }
+  .top-nav { margin-left: 0; flex: 1; }
+  .top-nav .nav-item { padding: 7px 8px; }
+}
+
+/* theme toggle (header) */
+.theme-toggle {
+  margin-left: 8px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-3);
+  font-size: 15px;
+  line-height: 1;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--hover);
 }

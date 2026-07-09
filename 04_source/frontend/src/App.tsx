@@ -1,12 +1,15 @@
+import { useContext } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import OnboardingPage from './pages/OnboardingPage';
 import AgentListPage from './pages/AgentListPage';
 import PipelinesPage from './pages/PipelinesPage';
 import PipelineCanvasPage from './pages/PipelineCanvasPage';
+import { ThemeModeContext } from './theme';
 
 export default function App() {
   const { pathname } = useLocation();
+  const { mode, toggle } = useContext(ThemeModeContext);
   const cls = (p: string) =>
     'nav-item' + ((p === '/' ? pathname === '/' : pathname.startsWith(p)) ? ' active' : '');
   return (
@@ -19,6 +22,15 @@ export default function App() {
           <Link to="/agents" className={cls('/agents')}>Agents</Link>
           <Link to="/pipelines" className={cls('/pipelines')}>Pipelines</Link>
         </nav>
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggle}
+          aria-label={mode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          title={mode === 'dark' ? 'Light theme' : 'Dark theme'}
+        >
+          {mode === 'dark' ? '☀️' : '🌙'}
+        </button>
       </header>
       <Routes>
         <Route path="/" element={<LandingPage />} />
