@@ -89,8 +89,12 @@ await drag(await center('[data-port^="out-false-"]'), await center('.pnode', 3))
 check('canvas wiring on live (3 edges)', await edgeCount() === 3, await edgeCount());
 await p.getByRole('button', { name: 'Save', exact: true }).click();
 await p.waitForSelector('.canvas-msg-ok, .canvas-msg-err');
-check('pipeline saved', await p.locator('.canvas-msg-ok').count() === 1,
-  await p.locator('.canvas-msg-err').textContent().catch(() => ''));
+{
+  const saved = await p.locator('.canvas-msg-ok').count() === 1;
+  // error text only on failure — textContent() on a missing element blocks 30s
+  const saveErr = saved ? '' : await p.locator('.canvas-msg-err').textContent().catch(() => '');
+  check('pipeline saved', saved, saveErr);
+}
 
 await p.getByRole('button', { name: 'Run', exact: true }).click();
 await p.waitForSelector('textarea[aria-label="Pipeline task"]');
