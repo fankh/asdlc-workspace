@@ -10,7 +10,9 @@
 import { chromium } from 'playwright';
 import AxeBuilder from '@axe-core/playwright';
 
-const b = await chromium.launch();
+// HEADED=1 opens a visible browser and slows actions down so a human can watch.
+const b = await chromium.launch(
+  process.env.HEADED ? { headless: false, slowMo: 350 } : {});
 const ctx = await b.newContext({ viewport: { width: 1400, height: 900 } });
 const p = await ctx.newPage();
 const PASS = [], FAIL = [];
