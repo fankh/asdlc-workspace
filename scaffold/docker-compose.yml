@@ -1,0 +1,35 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.backend
+    volumes:
+      - appdata:/data
+    # Reach the host's Ollama daemon from inside the container so agents can run.
+    # Hardcoded (not ${OLLAMA_HOST}) on purpose: compose auto-loads the pipeline's
+    # .env, whose OLLAMA_HOST=localhost would point the container at itself. From
+    # inside a container the host daemon is always host.docker.internal.
+    environment:
+      OLLAMA_HOST: "http://host.docker.internal:11434"
+      OLLAMA_MODEL: "qwen3.6:latest"
+      OLLAMA_NUM_CTX: "16384" # Ollama's 4096 default silently truncates long inputs
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/api/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  frontend:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.frontend
+    ports:
+      - "8088:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+
+volumes:
+  appdata:

@@ -13,17 +13,33 @@ from __future__ import annotations
 
 import argparse
 import logging
+import shutil
+import subprocess
 import sys
+from pathlib import Path
 
-from pipeline.config import load_config
+from pipeline.config import ENGINE_ROOT, load_config
 from pipeline.orchestrator import Orchestrator
+from pipeline.scaffold import init_workspace
 from pipeline.stages import clear_markers
 from pipeline.state import State
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(prog="run-pipeline", description=__doc__)
+    # top-level so it precedes the subcommand: `run-pipeline.py -w DIR run`.
+    # Default is the engine dir itself, so a bare `run-pipeline.py run` works.
+    parser.add_argument("--workspace", "-w", help="project workspace directory "
+                        "(default: the engine directory)")
     sub = parser.add_subparsers(dest="command", required=True)
+
+    init_p = sub.add_parser("init", help="scaffold a new project workspace")
+    init_p.add_argument("name", help="project name (also the workspace dir name)")
+    init_p.add_argument("--type", default="b2b_console",
+                        help="project type (default b2b_console)")
+    init_p.add_argument("--brief", help="path to a requirements .md to seed 00_input")
+    init_p.add_argument("--dir", default="workspaces",
+                        help="parent dir for the workspace (default: workspaces/)")
 
     run_p = sub.add_parser("run", help="advance the pipeline")
     run_p.add_argument("--stage", help="run exactly one stage (incl. on-demand: "
@@ -65,7 +81,18 @@ def main() -> int:
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(message)s")
 
-    config = load_config()
+    if args.command == "init":
+        parent = Path(args.dir)
+        if not parent.is_absolute():
+            parent = ENGINE_ROOT / parent
+        dest = init_workspace(parent / args.name, name=args.name,
+                              ptype=args.type, brief=args.brief)
+        print(f"scaffolded workspace: {dest}")
+        print(f"  next: run-pipeline.py -w {dest} run --stop-after architecture")
+        return 0
+
+    workspace = Path(getattr(args, "workspace", None) or ENGINE_ROOT).resolve()
+    config = load_config(workspace)
     state = State(config.root / ".pipeline" / "state.json")
 
     if args.command == "watch":

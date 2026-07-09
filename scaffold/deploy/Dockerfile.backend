@@ -1,0 +1,19 @@
+# Debian-slim (not alpine): better-sqlite3 and sqlite-vec ship glibc prebuilt
+# binaries; musl would need a source build. openssl for Prisma's engines,
+# wget for the compose healthcheck.
+FROM node:20-slim
+# python3/make/g++: better-sqlite3 compiles from source when no prebuilt
+# binary matches the node build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssl wget python3 make g++ \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+COPY 04_source/backend/package.json 04_source/backend/package-lock.json* ./
+RUN npm install
+COPY 04_source/backend/ ./
+ENV DATABASE_URL="file:/data/app.db"
+ENV PORT=3001
+RUN npx prisma generate
+EXPOSE 3001
+# push schema + seed on boot so a fresh volume comes up usable
+CMD ["sh", "-c", "npx prisma db push --accept-data-loss && npm run db:seed && npm run start"]

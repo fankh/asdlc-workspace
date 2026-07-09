@@ -1,0 +1,29 @@
+# AI vision scenario for ../ui-test-agent. Covers the same STORY-001 contract as
+# 04_source/frontend/e2e/home.spec.ts, but described in natural language so the
+# agent can self-heal when selectors or copy drift slightly.
+
+name: home_page_first_impression
+story: STORY-001
+url: http://localhost:3000/
+
+steps:
+  - observe: |
+      The page should clearly identify the product as "My Local Agent App"
+      (heading, hero, or logo containing that name).
+  - observe: |
+      A primary call-to-action button labelled "Get Started" should be visible
+      above the fold without scrolling.
+  - act: click the "Get Started" button
+  - assert_url_matches: "/onboarding$"
+  - observe: |
+      The onboarding screen should show a heading containing the word
+      "Onboarding" or "Welcome".
+
+ux_review:
+  - "The hero copy should be benefit-led, not feature-led."
+  - "The CTA contrast should pass WCAG AA against its background."
+  - "There must be exactly one primary action above the fold."
+
+accessibility:
+  rules: ["wcag2a", "wcag2aa"]
+  fail_on: ["serious", "critical"]

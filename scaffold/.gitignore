@@ -1,0 +1,9 @@
+.env
+node_modules/
+test-reports/
+playwright-report/
+.pipeline/pipeline.log
+.pipeline/*.tmp
+04_source/frontend/dist/
+04_source/frontend/.next/
+04_source/backend/target/

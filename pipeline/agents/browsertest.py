@@ -192,7 +192,7 @@ class BrowserTestAgent(Agent):
 
     def _run_browser(self, target: str) -> dict | None:
         root = self.ctx.root
-        ui_agent = root / "tools" / "ui-test-agent"
+        ui_agent = self.ctx.config.tools_dir
         if not (ui_agent / "node_modules").exists():
             log.warning("browsertest: ui-test-agent not installed — skipping")
             return None

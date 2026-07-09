@@ -128,7 +128,7 @@ class AuditAgent(Agent):
 
     def _probe_ui(self, target: str) -> list[dict]:
         root = self.ctx.root
-        ui_agent = root / "tools" / "ui-test-agent"
+        ui_agent = self.ctx.config.tools_dir
         if not (ui_agent / "node_modules").exists():
             log.warning("audit: ui-test-agent not installed — skipping UI probe")
             return []

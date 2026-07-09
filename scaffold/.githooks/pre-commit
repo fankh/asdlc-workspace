@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Item 7 — pre-commit gates. Block secrets, block direct commits to main.
+set -euo pipefail
+
+branch="$(git symbolic-ref --short HEAD 2>/dev/null || echo "")"
+if [[ "$branch" == "main" || "$branch" == "master" ]]; then
+  echo "✗ Direct commit to '$branch' blocked. Branch + merge instead." >&2
+  exit 1
+fi
+
+# Secret scan — uses git-secrets if installed, otherwise grep heuristic
+if command -v git-secrets >/dev/null 2>&1; then
+  git secrets --pre_commit_hook -- "$@"
+else
+  staged="$(git diff --cached --name-only --diff-filter=ACM)"
+  if [[ -n "$staged" ]]; then
+    if echo "$staged" | xargs grep -EnI \
+        '(AKIA[0-9A-Z]{16}|sk-(ant|proj)-[A-Za-z0-9_-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY-----)' \
+        2>/dev/null; then
+      echo "✗ Possible secret detected in staged changes. Aborting." >&2
+      exit 1
+    fi
+  fi
+fi
+
+# Block .env files unless explicitly allowed
+if git diff --cached --name-only | grep -E '(^|/)\.env$' >/dev/null; then
+  echo "✗ Refusing to commit .env. Use .env.example for templates." >&2
+  exit 1
+fi
+
+exit 0

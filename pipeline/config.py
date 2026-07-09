@@ -10,19 +10,32 @@ from typing import Any
 import yaml
 from dotenv import load_dotenv
 
-WORKSPACE_ROOT = Path(__file__).resolve().parent.parent
+# The engine lives here (parent of pipeline/). It is also the DEFAULT workspace
+# when no --workspace is given, so a plain `run-pipeline.py run` still works.
+ENGINE_ROOT = Path(__file__).resolve().parent.parent
+WORKSPACE_ROOT = ENGINE_ROOT  # backward-compat alias
 
 VALID_PROJECT_TYPES = {"website", "sns", "ide", "appliance", "b2b_console", "secops_console"}
 
 
 @dataclass
 class Config:
-    root: Path
+    root: Path                  # the workspace being operated on
     project: dict[str, Any]
     agents: dict[str, Any]
     refinement: dict[str, Any]
     phases: dict[str, Any]
+    engine_root: Path = ENGINE_ROOT   # where pipeline/ and tools/ live
+    repo: dict[str, Any] = field(default_factory=dict)
+    requirements: dict[str, Any] = field(default_factory=dict)
     env: dict[str, str] = field(default_factory=dict)
+
+    @property
+    def tools_dir(self) -> Path:
+        """ui-test-agent lives in the engine; fall back to a workspace-local
+        copy if one exists (self-contained legacy workspaces)."""
+        local = self.root / "tools" / "ui-test-agent"
+        return local if local.exists() else self.engine_root / "tools" / "ui-test-agent"
 
     @property
     def llm_provider(self) -> str:
@@ -90,5 +103,8 @@ def load_config(root: Path | None = None) -> Config:
         agents=raw.get("agents", {}),
         refinement=raw.get("refinement", {}),
         phases=raw.get("phases", {}),
+        engine_root=ENGINE_ROOT,
+        repo=raw.get("repo", {}),
+        requirements=raw.get("requirements", {}),
         env=env,
     )

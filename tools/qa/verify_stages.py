@@ -51,6 +51,19 @@ def main() -> int:
     anchors = [a.strip() for a in args.anchors.split(',') if a.strip()]
     forbidden = [f.strip() for f in args.forbidden.split(',') if f.strip()]
 
+    # config.yaml requirements.{anchors,out_of_scope} override the CLI defaults
+    # so each workspace declares its own plan-fidelity contract
+    cfg_text = read(root / '.pipeline' / 'config.yaml')
+    try:
+        import yaml
+        reqs = (yaml.safe_load(cfg_text) or {}).get('requirements', {}) if cfg_text else {}
+        if reqs.get('anchors'):
+            anchors = [str(a) for a in reqs['anchors']]
+        if reqs.get('out_of_scope'):
+            forbidden = [str(f) for f in reqs['out_of_scope']]
+    except Exception:  # noqa: BLE001
+        pass
+
     # ---------- A. log / state / marker / commit consistency ----------
     state = {}
     state_path = root / '.pipeline' / 'state.json'

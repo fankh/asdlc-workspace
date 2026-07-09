@@ -107,7 +107,7 @@ class QAAgent(Agent):
                 # stale results from a prior run must not masquerade as current
                 (root / "05_test_reports" / "results.json").unlink(missing_ok=True)
                 ok &= step("playwright e2e", [npx, "playwright", "test"], frontend)
-                ui_agent = root / "tools" / "ui-test-agent"
+                ui_agent = self.ctx.config.tools_dir
                 if (self.ctx.config.agents.get("qa", {}).get("ai_vision_tests")
                         and (ui_agent / "node_modules").exists()):
                     ok &= step("ai vision scenarios", [npm, "run", "test"], ui_agent)
