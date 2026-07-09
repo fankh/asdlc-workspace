@@ -51,6 +51,17 @@ check('interval < 10s -> 400', c == 400, c)
 c, _ = req('POST', '/api/pipelines', {'name': 'x' * 121, 'steps': [http_node()]})
 check('name 121 chars -> 400', c == 400, c)
 
+# ---- agent context/memory fields ----
+c, ag = req('POST', '/api/agents', {'name': mkname('ctx'), 'context': 'codeword X', 'memory': True})
+check('agent create with context+memory -> 201', c == 201 and ag.get('context') == 'codeword X' and ag.get('memory') is True, (c, ag.get('context'), ag.get('memory')))
+c, _ = req('POST', '/api/agents', {'name': mkname('ctx2'), 'context': 'x' * 8001})
+check('context 8001 chars -> 400', c == 400, c)
+c, _ = req('POST', '/api/agents', {'name': mkname('ctx3'), 'memory': 'yes'})
+check('memory non-boolean -> 400', c == 400, c)
+c, upd = req('PUT', '/api/agents/' + ag['id'], {'name': ag['name'], 'role': 'probe'})
+check('partial update preserves context+memory', c == 200 and upd.get('context') == 'codeword X' and upd.get('memory') is True, (c, upd.get('context'), upd.get('memory')))
+req('DELETE', '/api/agents/' + ag['id'])
+
 # ---- 404 / 409 semantics ----
 dup = mkname('dup')
 c, p1 = req('POST', '/api/pipelines', {'name': dup, 'steps': [http_node()]})
@@ -71,8 +82,8 @@ c, _ = req('DELETE', '/api/pipelines/' + p1['id'])
 check('delete -> 204', c == 204, c)
 c, _ = req('DELETE', '/api/pipelines/' + p1['id'])
 check('second delete -> 404', c == 404, c)
-c, _ = req('POST', '/api/pipelines', {'name': mkname('t4001'), 'steps': [http_node()], 'defaultTask': 'x' * 4001})
-check('defaultTask 4001 chars -> 400', c == 400, c)
+c, _ = req('POST', '/api/pipelines', {'name': mkname('t16k'), 'steps': [http_node()], 'defaultTask': 'x' * 16001})
+check('defaultTask 16001 chars -> 400 (cap raised to 16000 with num_ctx fix)', c == 400, c)
 
 # ---- run semantics (zero-LLM) ----
 def run_and_wait(pid, task, timeout=30):
