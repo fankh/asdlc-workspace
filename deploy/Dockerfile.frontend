@@ -4,6 +4,9 @@ WORKDIR /app
 COPY 04_source/frontend/package.json 04_source/frontend/package-lock.json* ./
 RUN npm install
 COPY 04_source/frontend/ ./
+# subpath deploys: --build-arg VITE_BASE=/agents/ (defaults to root)
+ARG VITE_BASE=/
+ENV VITE_BASE=$VITE_BASE
 RUN npm run build
 
 FROM nginx:1.27-alpine

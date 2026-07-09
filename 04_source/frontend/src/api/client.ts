@@ -7,10 +7,13 @@ export class ApiError extends Error {
   }
 }
 
+// '' at root, '/agents' under a subpath deploy (VITE_BASE=/agents/)
+export const API_ROOT = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 // Centralized fetch wrapper per CODING_PATTERNS.md Section 6.
 // Strips internal traces and normalizes error envelopes before throwing.
 async function fetchJson<T>(url: string, opts?: RequestInit): Promise<T> {
-  const res = await fetch(url, { ...opts, headers: { 'Content-Type': 'application/json', ...(opts?.headers || {}) } });
+  const res = await fetch(API_ROOT + url, { ...opts, headers: { 'Content-Type': 'application/json', ...(opts?.headers || {}) } });
   if (!res.ok) {
     const errText = await res.text().catch(() => '');
     let errorData: ErrorEnvelope;

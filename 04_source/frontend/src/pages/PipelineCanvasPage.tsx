@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Button, Dropdown, Input, InputNumber, Select, Switch, Alert, Tag, Modal, Space } from 'antd';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
-  listAgents, listPipelines, createPipeline, updatePipeline,
+  API_ROOT, listAgents, listPipelines, createPipeline, updatePipeline,
   startPipelineRun, getPipelineRun,
 } from '../api/client';
 import type { Agent, NodeType, Pipeline, PipelineRun, TriggerType } from '../api/types';
@@ -803,7 +803,7 @@ export default function PipelineCanvasPage() {
         {trig.type === 'webhook' && (
           <div className="trig-hook">
             {webhookPath
-              ? <>POST <code>{`${window.location.origin}${webhookPath}`}</code>
+              ? <>POST <code>{`${window.location.origin}${API_ROOT}${webhookPath}`}</code>
                   <span className="run-meta"> — optional JSON body {'{"task": "..."}'} overrides the default task</span></>
               : <span className="run-meta">Save the pipeline to get its webhook URL.</span>}
           </div>
