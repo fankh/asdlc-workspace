@@ -1,0 +1,214 @@
+{
+  "cases": [
+    {
+      "id": "STORY-001-c1",
+      "title": "Render product name and primary CTA",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "expectText": "My Local Agent App"
+        },
+        {
+          "click": "Get Started"
+        }
+      ]
+    },
+    {
+      "id": "STORY-001-c2",
+      "title": "CTA navigates to onboarding route",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "click": "Get Started"
+        },
+        {
+          "expectUrl": "/onboarding"
+        }
+      ]
+    },
+    {
+      "id": "STORY-001-c3",
+      "title": "Accessibility compliance on landing page",
+      "steps": [
+        {
+          "goto": "/"
+        },
+        {
+          "expectNoAxe": true
+        },
+        {
+          "expectText": "My Local Agent App"
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c1",
+      "title": "Display welcome message and form fields",
+      "steps": [
+        {
+          "goto": "/onboarding"
+        },
+        {
+          "expectText": "Welcome"
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c2",
+      "title": "Valid submission saves record and redirects to list",
+      "steps": [
+        {
+          "goto": "/onboarding"
+        },
+        {
+          "fill": {
+            "label": "agent name",
+            "value": "Test Agent"
+          }
+        },
+        {
+          "click": "Submit"
+        },
+        {
+          "expectUrl": "/agents"
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c3",
+      "title": "Default agent status reflects as idle after creation",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "expectText": "idle"
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c4",
+      "title": "Accessibility compliance on onboarding page",
+      "steps": [
+        {
+          "goto": "/onboarding"
+        },
+        {
+          "expectNoAxe": true
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c1",
+      "title": "Table renders with required column headers",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "expectText": "name"
+        },
+        {
+          "expectText": "description"
+        },
+        {
+          "expectText": "status"
+        },
+        {
+          "expectText": "creation date"
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c2",
+      "title": "Empty state displays with link when no agents exist",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "expectUrl": "/agents"
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c3",
+      "title": "Deletion removes agent row without full page reload",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "click": "Delete"
+        },
+        {
+          "expectUrl": "/agents"
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c4",
+      "title": "Accessibility compliance on agents list page",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "expectNoAxe": true
+        }
+      ]
+    },
+    {
+      "id": "STORY-004-c1",
+      "title": "Render status filter dropdown with required options",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "expectText": "All"
+        },
+        {
+          "expectText": "idle"
+        },
+        {
+          "expectText": "active"
+        },
+        {
+          "expectText": "paused"
+        }
+      ]
+    },
+    {
+      "id": "STORY-004-c2",
+      "title": "Filter agent list by selected status without page reload",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "click": "active"
+        },
+        {
+          "expectUrl": "/agents"
+        }
+      ]
+    },
+    {
+      "id": "STORY-004-c3",
+      "title": "Accessibility compliance on agents list filter control",
+      "steps": [
+        {
+          "goto": "/agents"
+        },
+        {
+          "expectNoAxe": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,319 @@
+{
+  "base_url": "http://localhost:8088",
+  "total": 14,
+  "passed": 13,
+  "cases": [
+    {
+      "id": "STORY-001-c1",
+      "title": "Render product name and primary CTA",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-001-c1.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"My Local Agent App\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"click\":\"Get Started\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-001-c2",
+      "title": "CTA navigates to onboarding route",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-001-c2.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"click\":\"Get Started\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectUrl\":\"/onboarding\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-001-c3",
+      "title": "Accessibility compliance on landing page",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-001-c3.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectNoAxe\":true}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"My Local Agent App\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c1",
+      "title": "Display welcome message and form fields",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-002-c1.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/onboarding\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"Welcome\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c2",
+      "title": "Valid submission saves record and redirects to list",
+      "ok": false,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-002-c2.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/onboarding\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"fill\":{\"label\":\"agent name\",\"value\":\"Test Agent\"}}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"click\":\"Submit\"}",
+          "ok": false,
+          "detail": "locator.click: Timeout 8000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('Submit').first()\u001b[22m\n"
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c3",
+      "title": "Default agent status reflects as idle after creation",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-002-c3.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"idle\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-002-c4",
+      "title": "Accessibility compliance on onboarding page",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-002-c4.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/onboarding\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectNoAxe\":true}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c1",
+      "title": "Table renders with required column headers",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-003-c1.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"name\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"description\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"status\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"creation date\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c2",
+      "title": "Empty state displays with link when no agents exist",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-003-c2.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectUrl\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c3",
+      "title": "Deletion removes agent row without full page reload",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-003-c3.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"click\":\"Delete\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectUrl\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-003-c4",
+      "title": "Accessibility compliance on agents list page",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-003-c4.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectNoAxe\":true}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-004-c1",
+      "title": "Render status filter dropdown with required options",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-004-c1.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"All\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"idle\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"active\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectText\":\"paused\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-004-c2",
+      "title": "Filter agent list by selected status without page reload",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-004-c2.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"click\":\"active\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectUrl\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "STORY-004-c3",
+      "title": "Accessibility compliance on agents list filter control",
+      "ok": true,
+      "screenshot": "C:\\repos\\asdlc-workspace\\05_test_reports\\browser\\shots\\STORY-004-c3.png",
+      "steps": [
+        {
+          "step": "{\"goto\":\"/agents\"}",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "step": "{\"expectNoAxe\":true}",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    }
+  ]
+}

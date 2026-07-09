@@ -1,0 +1,2 @@
+stage browsertest   RUNNING (agent=browsertest -> 05_test_reports)
+  wrote 05_test_reports\browser\plan.json

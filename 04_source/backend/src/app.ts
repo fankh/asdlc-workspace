@@ -3,6 +3,7 @@ import cors from 'cors'
 import agentRoutes from './routes/agents.js'
 import { agentRunsRouter, runsRouter } from './routes/runs.js'
 import { pipelinesRouter, pipelineRunsRouter, hooksRouter } from './routes/pipelines.js'
+import logsRouter from './routes/logs.js'
 import { Request, Response, NextFunction } from 'express'
 
 const app = express()

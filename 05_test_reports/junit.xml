@@ -1,90 +1,90 @@
-<testsuites id="" name="" tests="34" failures="0" skipped="0" errors="0" time="21.266968000000002">
-<testsuite name="home.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.349" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.361">
+<testsuites id="" name="" tests="34" failures="0" skipped="0" errors="0" time="23.844987">
+<testsuite name="home.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.743" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.517">
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.398">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.532">
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.59">
-</testcase>
-</testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.3" errors="0">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.313">
-</testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.39">
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.597">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.694">
 </testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.051" errors="0">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.336">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="chromium" tests="3" failures="0" skipped="0" time="1.518" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.346">
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.557">
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.507">
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.514">
-</testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.644">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.665">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="4" failures="0" skipped="0" time="1.975" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.43">
+<testsuite name="story-002.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.514" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.446">
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.459">
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.635">
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.441">
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.612">
 </testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.645">
-</testcase>
-</testsuite>
-<testsuite name="story-004.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="chromium" tests="3" failures="0" skipped="0" time="2.874" errors="0">
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0.462">
-</testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="1.704">
-</testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.708">
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.821">
 </testcase>
 </testsuite>
-<testsuite name="home.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.52" errors="0">
-<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.417">
+<testsuite name="story-003.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="chromium" tests="4" failures="0" skipped="0" time="2.157" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.483">
 </testcase>
-<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.456">
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.502">
 </testcase>
-<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.647">
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.475">
 </testcase>
-</testsuite>
-<testsuite name="story-001.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.529" errors="0">
-<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.404">
-</testcase>
-<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.469">
-</testcase>
-<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.656">
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.697">
 </testcase>
 </testsuite>
-<testsuite name="story-002.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.25" errors="0">
-<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.423">
+<testsuite name="story-004.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="chromium" tests="3" failures="0" skipped="0" time="3.053" errors="0">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0.506">
 </testcase>
-<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.549">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="1.762">
 </testcase>
-<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.589">
-</testcase>
-<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.689">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.785">
 </testcase>
 </testsuite>
-<testsuite name="story-003.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.191" errors="0">
-<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.489">
+<testsuite name="home.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.702" errors="0">
+<testcase name="Home page first impression › page loads and shows product name" classname="home.spec.ts" time="0.458">
 </testcase>
-<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.536">
+<testcase name="Home page first impression › Get Started navigates to onboarding" classname="home.spec.ts" time="0.534">
 </testcase>
-<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.511">
-</testcase>
-<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.655">
+<testcase name="Home page first impression › page is accessible (no serious axe violations)" classname="home.spec.ts" time="0.71">
 </testcase>
 </testsuite>
-<testsuite name="story-004.spec.ts" timestamp="2026-07-07T12:02:06.726Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="3.031" errors="0">
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0.529">
+<testsuite name="story-001.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="1.633" errors="0">
+<testcase name="STORY-001 › renders product name and primary CTA" classname="story-001.spec.ts" time="0.411">
 </testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="1.772">
+<testcase name="STORY-001 › CTA navigates to onboarding route" classname="story-001.spec.ts" time="0.518">
 </testcase>
-<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.73">
+<testcase name="STORY-001 › accessibility compliance on landing page" classname="story-001.spec.ts" time="0.704">
+</testcase>
+</testsuite>
+<testsuite name="story-002.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.627" errors="0">
+<testcase name="STORY-002 › displays welcome message and form fields" classname="story-002.spec.ts" time="0.496">
+</testcase>
+<testcase name="STORY-002 › valid submission saves record and redirects to list" classname="story-002.spec.ts" time="0.633">
+</testcase>
+<testcase name="STORY-002 › default agent status reflects as idle after creation" classname="story-002.spec.ts" time="0.659">
+</testcase>
+<testcase name="STORY-002 › accessibility compliance on onboarding page" classname="story-002.spec.ts" time="0.839">
+</testcase>
+</testsuite>
+<testsuite name="story-003.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="mobile-chrome" tests="4" failures="0" skipped="0" time="2.331" errors="0">
+<testcase name="STORY-003 › table renders with required column headers" classname="story-003.spec.ts" time="0.533">
+</testcase>
+<testcase name="STORY-003 › empty state displays with link when no agents exist" classname="story-003.spec.ts" time="0.551">
+</testcase>
+<testcase name="STORY-003 › deletion removes agent row without full page reload" classname="story-003.spec.ts" time="0.512">
+</testcase>
+<testcase name="STORY-003 › accessibility compliance on agents list page" classname="story-003.spec.ts" time="0.735">
+</testcase>
+</testsuite>
+<testsuite name="story-004.spec.ts" timestamp="2026-07-09T03:58:36.305Z" hostname="mobile-chrome" tests="3" failures="0" skipped="0" time="3.202" errors="0">
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › renders status filter dropdown with required options" classname="story-004.spec.ts" time="0.585">
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › filters agent list by selected status without page reload" classname="story-004.spec.ts" time="1.814">
+</testcase>
+<testcase name="STORY-004: Status Filter Dropdown &amp; Client-Side Filtering › is accessible (no serious axe violations)" classname="story-004.spec.ts" time="0.803">
 </testcase>
 </testsuite>
 </testsuites>
