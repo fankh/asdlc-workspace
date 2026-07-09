@@ -26,7 +26,8 @@ def main() -> int:
     sub = parser.add_subparsers(dest="command", required=True)
 
     run_p = sub.add_parser("run", help="advance the pipeline")
-    run_p.add_argument("--stage", help="run exactly one stage (incl. on-demand: discover)")
+    run_p.add_argument("--stage", help="run exactly one stage (incl. on-demand: "
+                       "discover, audit, browsertest)")
     run_p.add_argument("--stop-after", help="halt after this stage or phase alias "
                                             "(specs|architecture|code|test)")
     run_p.add_argument("--dry-run", action="store_true", help="no-op agents, real markers")

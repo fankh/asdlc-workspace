@@ -41,6 +41,7 @@ def _load_all() -> None:
         "pipeline.agents.docs",
         "pipeline.agents.discovery",
         "pipeline.agents.audit",
+        "pipeline.agents.browsertest",
     ):
         try:
             import_module(mod)
