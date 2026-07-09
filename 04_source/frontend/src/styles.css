@@ -347,6 +347,27 @@ body::before {
 .log-kind-agent { color: var(--kind-agent); }
 .log-kind-pipeline { color: var(--kind-pipeline); }
 
+/* Memory page */
+.mem-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.mem-chip {
+  background: var(--surface); color: var(--text-2); cursor: pointer;
+  border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: 13px;
+}
+.mem-chip:hover { border-color: var(--accent); }
+.mem-chip.active { border-color: var(--accent); color: var(--accent-text); background: var(--accent-soft); }
+.mem-chip-n {
+  font-family: var(--mono); font-size: 11px; color: var(--text-3);
+  margin-left: 4px; border-left: 1px solid var(--border); padding-left: 6px;
+}
+.mem-list { display: flex; flex-direction: column; gap: 10px; }
+.mem-item { border: 1px solid var(--border-2); border-radius: 8px; padding: 10px 12px; background: var(--surface); }
+.mem-item-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.mem-relevance { display: inline-flex; align-items: center; gap: 6px; }
+.mem-snippet {
+  font-family: var(--mono); font-size: 13px; line-height: 1.5; color: var(--text-2);
+  white-space: pre-wrap; word-break: break-word;
+}
+
 /* ---- top navigation header ------------------------------------------ */
 .app-header {
   position: sticky;

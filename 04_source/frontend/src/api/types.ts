@@ -158,6 +158,24 @@ export interface LogQuery {
   limit?: number;
 }
 
+// -- semantic memory store --
+export interface MemoryDto {
+  rowid: number;
+  agentId: string;
+  agentName: string;
+  snippet: string;
+  distance: number | null;
+  relevance: number | null; // 0..1, only for search results
+}
+
+export interface MemoryView {
+  enabled: boolean;
+  total: number;
+  byAgent: { agentId: string; agentName: string; count: number }[];
+  memories: MemoryDto[];
+  searched: boolean;
+}
+
 export interface ErrorEnvelope {
   code: string;
   message: string;

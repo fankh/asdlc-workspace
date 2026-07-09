@@ -1,4 +1,4 @@
-import { Agent, AgentInput, AgentRun, ErrorEnvelope, LogEntry, LogQuery, Pipeline, PipelineInput, PipelineRun } from './types';
+import { Agent, AgentInput, AgentRun, ErrorEnvelope, LogEntry, LogQuery, MemoryView, Pipeline, PipelineInput, PipelineRun } from './types';
 
 export class ApiError extends Error {
   constructor(public status: number, public code: string, message: string) {
@@ -80,6 +80,24 @@ export async function listPipelineRuns(pipelineId: string): Promise<PipelineRun[
 
 export async function getPipelineRun(runId: string): Promise<PipelineRun> {
   return fetchJson<PipelineRun>(`/api/pipeline-runs/${runId}`);
+}
+
+// -- semantic memory store --
+export async function getMemory(opts: { agentId?: string; q?: string; limit?: number } = {}): Promise<MemoryView> {
+  const p = new URLSearchParams();
+  if (opts.agentId) p.set('agentId', opts.agentId);
+  if (opts.q) p.set('q', opts.q);
+  if (opts.limit) p.set('limit', String(opts.limit));
+  const qs = p.toString();
+  return fetchJson<MemoryView>(`/api/memory${qs ? `?${qs}` : ''}`);
+}
+
+export async function forgetMemory(rowid: number): Promise<void> {
+  await fetchJson<void>(`/api/memory/${rowid}`, { method: 'DELETE' });
+}
+
+export async function forgetAgentMemory(agentId: string): Promise<void> {
+  await fetchJson<void>(`/api/memory/agent/${agentId}`, { method: 'DELETE' });
 }
 
 // -- unified activity log search --

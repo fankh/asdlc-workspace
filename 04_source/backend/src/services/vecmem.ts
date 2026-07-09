@@ -109,3 +109,75 @@ export function forget(agentId: string): void {
     getDb()?.prepare('DELETE FROM run_memory WHERE agent_id = ?').run(agentId)
   } catch { /* best-effort */ }
 }
+
+export interface StoredMemory {
+  rowid: number
+  agentId: string
+  runId: string
+  snippet: string
+  distance?: number // only set by searchMemories
+}
+
+// Whether the vector store is usable (embedder + sqlite-vec present).
+export function isEnabled(): boolean {
+  return getDb() !== null
+}
+
+// List stored memories, newest first (rowid desc = insertion order).
+export function listMemories(agentId?: string, limit = 200): StoredMemory[] {
+  try {
+    const store = getDb()
+    if (!store) return []
+    const rows = agentId
+      ? store.prepare('SELECT rowid, agent_id, run_id, snippet FROM run_memory WHERE agent_id = ? ORDER BY rowid DESC LIMIT ?').all(agentId, limit)
+      : store.prepare('SELECT rowid, agent_id, run_id, snippet FROM run_memory ORDER BY rowid DESC LIMIT ?').all(limit)
+    return (rows as any[]).map(r => ({ rowid: r.rowid, agentId: r.agent_id, runId: r.run_id, snippet: r.snippet }))
+  } catch (e: any) {
+    console.error(`vecmem list failed: ${e?.message}`)
+    return []
+  }
+}
+
+// Per-agent memory counts (for the summary).
+export function memoryStats(): { agentId: string; count: number }[] {
+  try {
+    const store = getDb()
+    if (!store) return []
+    const rows = store.prepare('SELECT agent_id, count(*) AS n FROM run_memory GROUP BY agent_id').all()
+    return (rows as any[]).map(r => ({ agentId: r.agent_id, count: r.n }))
+  } catch {
+    return []
+  }
+}
+
+// Semantic search over the store (optionally scoped to one agent), returning
+// snippets ranked by vector distance. Null when the store/embedder is down.
+export async function searchMemories(query: string, agentId?: string, k = 10): Promise<StoredMemory[] | null> {
+  try {
+    const store = getDb()
+    if (!store) return null
+    const v = await embed(query)
+    if (!v) return null
+    const rows = store.prepare(
+      `SELECT rowid, agent_id, run_id, snippet, distance FROM run_memory
+       WHERE embedding MATCH ? AND k = ? ORDER BY distance`,
+    ).all(Buffer.from(v.buffer), Math.max(k, OVERFETCH)) as any[]
+    const scoped = agentId ? rows.filter(r => r.agent_id === agentId) : rows
+    return scoped.slice(0, k).map(r => ({
+      rowid: r.rowid, agentId: r.agent_id, runId: r.run_id, snippet: r.snippet, distance: r.distance,
+    }))
+  } catch (e: any) {
+    console.error(`vecmem search failed: ${e?.message}`)
+    return null
+  }
+}
+
+// Delete a single memory by rowid.
+export function forgetRow(rowid: number): boolean {
+  try {
+    const res = getDb()?.prepare('DELETE FROM run_memory WHERE rowid = ?').run(rowid)
+    return (res?.changes ?? 0) > 0
+  } catch {
+    return false
+  }
+}

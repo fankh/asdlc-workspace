@@ -4,6 +4,7 @@ import agentRoutes from './routes/agents.js'
 import { agentRunsRouter, runsRouter } from './routes/runs.js'
 import { pipelinesRouter, pipelineRunsRouter, hooksRouter } from './routes/pipelines.js'
 import logsRouter from './routes/logs.js'
+import memoryRouter from './routes/memory.js'
 import { Request, Response, NextFunction } from 'express'
 
 const app = express()
@@ -25,6 +26,7 @@ app.use('/api/pipelines', pipelinesRouter)
 app.use('/api/pipeline-runs', pipelineRunsRouter)
 app.use('/api/hooks', hooksRouter)
 app.use('/api/logs', logsRouter)
+app.use('/api/memory', memoryRouter)
 
 // Error middleware (must be last)
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
