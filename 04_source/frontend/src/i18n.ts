@@ -113,6 +113,12 @@ const en: Dict = {
   'memory.empty': 'No stored memories yet — enable Memory on an agent and run it.',
   'memory.nomatch': 'No memories match',
   'memory.unavailable': 'Vector memory store unavailable',
+  // manual chrome
+  'manual.subtitle': 'AI-automated development',
+  'manual.contents': 'Manual contents',
+  'manual.copybtn': 'copy',
+  'manual.copied': '✓ copied',
+  'manual.copy': 'Copy code',
 };
 
 const ko: Dict = {
@@ -205,6 +211,11 @@ const ko: Dict = {
   'memory.empty': '저장된 메모리가 없습니다 — 에이전트의 메모리를 켜고 실행하세요.',
   'memory.nomatch': '일치하는 메모리 없음',
   'memory.unavailable': '벡터 메모리 저장소를 사용할 수 없음',
+  'manual.subtitle': 'AI 자동화 개발',
+  'manual.contents': '매뉴얼 목차',
+  'manual.copybtn': '복사',
+  'manual.copied': '✓ 복사됨',
+  'manual.copy': '코드 복사',
 };
 
 const ja: Dict = {
@@ -297,6 +308,11 @@ const ja: Dict = {
   'memory.empty': '保存されたメモリはありません — エージェントのメモリを有効にして実行してください。',
   'memory.nomatch': '一致するメモリなし',
   'memory.unavailable': 'ベクトルメモリストアが利用できません',
+  'manual.subtitle': 'AI 自動化開発',
+  'manual.contents': 'マニュアル目次',
+  'manual.copybtn': 'コピー',
+  'manual.copied': '✓ コピー済み',
+  'manual.copy': 'コードをコピー',
 };
 
 const DICTS: Record<Lang, Dict> = { en, ko, ja };
