@@ -23,9 +23,12 @@ for the FIRST release of this application.
 
 Rules:
 - 2 to 5 stories, ordered by priority. IDs STORY-001, STORY-002, ...
-- STORY-001 must cover the landing/home page first impression: a heading with
-  the product name and a primary "Get Started" call-to-action that navigates
-  to "/onboarding". This story is pre-bound to existing tests.
+- STORY-001 is the landing/home page. Derive its content from the
+  requirements: if they define what the landing page shows, STORY-001 IS that
+  page — do NOT invent a separate marketing landing on top of it. Include a
+  heading with the product name.
+- Mirror the requirements' story decomposition: if they enumerate N stories,
+  produce those N (plus nothing extra beyond the landing rule above).
 - Each story: title, as_a / i_want / so_that, and 1-4 Gherkin scenarios.
 - One scenario per behaviour. Given/When/Then steps, concrete and testable
   against a web UI (selectors by visible text, URLs, HTTP status).

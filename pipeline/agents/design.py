@@ -15,9 +15,11 @@ PROMPT = """You are the Design agent in an automated software delivery pipeline.
 Project type and design system come from CODING_PATTERNS.md (Ant Design,
 8pt grid, WCAG AA). For the backlog you receive:
 
-1. Produce one UI spec per story: layout (regions, Ant components by name),
-   content hierarchy, empty/loading/error states, and the exact visible copy
-   for headings and buttons (copy must match the Gherkin steps verbatim).
+1. Produce one UI spec per story — ui_specs MUST contain an entry for EVERY
+   STORY-ID present in the backlog (a partial set is rejected): layout
+   (regions, Ant components by name), content hierarchy, empty/loading/error
+   states, and the exact visible copy for headings and buttons (copy must
+   match the Gherkin steps verbatim).
 2. Establish the design tokens for CODING_PATTERNS.md sections 2-4:
    - colors: Ant Design token names only (e.g. colorPrimary), no hex literals.
    - typography: families/sizes/weights, body >= 14px, max 2 families.
@@ -65,6 +67,7 @@ class DesignAgent(Agent):
             return AgentResult(ok=False, summary="02_specs/PRODUCT_BACKLOG.md missing")
         backlog = backlog_path.read_text(encoding="utf-8")
         maintenance = self.ctx.config.mode == "maintenance"
+        new_stories: list[str] = []
 
         user = f"Product backlog:\n\n{backlog}"
         if maintenance:
@@ -91,6 +94,16 @@ class DesignAgent(Agent):
             max_tokens=16000,
         )
         data = result.parsed
+
+        # completeness gate: a partial spec set must FAIL the stage loudly,
+        # not be accepted silently (found by the stage verifier on a live run)
+        expected = (set(new_stories) if maintenance
+                    else set(re.findall(r"## (STORY-\d+)", backlog)))
+        delivered = {spec["story_id"] for spec in data["ui_specs"]}
+        missing = sorted(expected - delivered)
+        if missing:
+            return AgentResult(ok=False, usage=result.usage,
+                               summary=f"UI specs missing for: {', '.join(missing)}")
 
         for spec in data["ui_specs"]:
             self.write_file(f"03_architecture/ui/{spec['story_id']}.md",
