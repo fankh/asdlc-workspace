@@ -5,6 +5,7 @@ import OnboardingPage from './pages/OnboardingPage';
 import AgentListPage from './pages/AgentListPage';
 import PipelinesPage from './pages/PipelinesPage';
 import PipelineCanvasPage from './pages/PipelineCanvasPage';
+import LogsPage from './pages/LogsPage';
 import { ThemeModeContext } from './theme';
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
           <Link to="/onboarding" className={cls('/onboarding')}>Register agent</Link>
           <Link to="/agents" className={cls('/agents')}>Agents</Link>
           <Link to="/pipelines" className={cls('/pipelines')}>Pipelines</Link>
+          <Link to="/logs" className={cls('/logs')}>Logs</Link>
         </nav>
         <button
           type="button"
@@ -39,6 +41,7 @@ export default function App() {
         <Route path="/pipelines" element={<PipelinesPage />} />
         <Route path="/pipelines/new" element={<PipelineCanvasPage />} />
         <Route path="/pipelines/:pipelineId" element={<PipelineCanvasPage />} />
+        <Route path="/logs" element={<LogsPage />} />
       </Routes>
     </>
   );

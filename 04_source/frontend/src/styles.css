@@ -37,6 +37,8 @@
   --st-succeeded: #37b24d;
   --st-failed: #f26663;
   --st-skipped: #57636f;
+  --kind-agent: #7ca9ff;   /* AA on dark panel */
+  --kind-pipeline: #c79bff;
 }
 
 [data-theme='light'] {
@@ -73,6 +75,8 @@
   --st-succeeded: #1e7e34;
   --st-failed: #b3261e;
   --st-skipped: #9aa7b4;
+  --kind-agent: #1d4ed8;   /* AA on white */
+  --kind-pipeline: #7c3aed;
 }
 
 html,
@@ -330,6 +334,19 @@ body::before {
   margin-bottom: 16px;
 }
 
+/* Logs page */
+.log-controls { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.log-cell {
+  display: inline-block; max-width: 520px; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap; vertical-align: bottom;
+}
+.log-kind {
+  font-family: var(--mono, ui-monospace, monospace); font-size: 12px;
+  border: 1px solid var(--border-2); border-radius: 4px; padding: 1px 7px;
+}
+.log-kind-agent { color: var(--kind-agent); }
+.log-kind-pipeline { color: var(--kind-pipeline); }
+
 /* ---- top navigation header ------------------------------------------ */
 .app-header {
   position: sticky;
@@ -380,6 +397,16 @@ body::before {
   .top-nav { margin-left: 0; flex: 1; }
   .top-nav .nav-item { padding: 7px 8px; }
 }
+
+/* Light-theme AA fix: antd's preset tag text colors sit ~3.4:1 on their tinted
+   backgrounds (below WCAG AA). Darken to the palette's -8/-9 shades app-wide. */
+:root[data-theme='light'] .ant-tag-green { color: #237804; }
+:root[data-theme='light'] .ant-tag-blue { color: #0958d9; }
+:root[data-theme='light'] .ant-tag-red { color: #a8071a; }
+:root[data-theme='light'] .ant-tag-gold { color: #ad6800; }
+:root[data-theme='light'] .ant-tag-volcano { color: #ad2102; }
+:root[data-theme='light'] .ant-tag-geekblue { color: #1d39c4; }
+:root[data-theme='light'] .ant-tag-purple { color: #531dab; }
 
 /* theme toggle (header) */
 .theme-toggle {

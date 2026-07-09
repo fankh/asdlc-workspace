@@ -24,6 +24,7 @@ app.use('/api/runs', runsRouter)
 app.use('/api/pipelines', pipelinesRouter)
 app.use('/api/pipeline-runs', pipelineRunsRouter)
 app.use('/api/hooks', hooksRouter)
+app.use('/api/logs', logsRouter)
 
 // Error middleware (must be last)
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

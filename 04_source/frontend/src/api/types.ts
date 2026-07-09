@@ -137,6 +137,27 @@ export interface PipelineRun {
   steps: PipelineStepRun[];
 }
 
+// -- unified activity log (agent runs + pipeline runs) --
+export interface LogEntry {
+  id: string;
+  kind: 'agent' | 'pipeline';
+  source: string;
+  task: string;
+  output: string;
+  status: string;
+  trigger: string;
+  model: string;
+  durationMs: number;
+  createdAt: string;
+}
+
+export interface LogQuery {
+  q?: string;
+  status?: 'running' | 'succeeded' | 'failed';
+  kind?: 'agent' | 'pipeline';
+  limit?: number;
+}
+
 export interface ErrorEnvelope {
   code: string;
   message: string;

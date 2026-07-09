@@ -1,4 +1,4 @@
-import { Agent, AgentInput, AgentRun, ErrorEnvelope, Pipeline, PipelineInput, PipelineRun } from './types';
+import { Agent, AgentInput, AgentRun, ErrorEnvelope, LogEntry, LogQuery, Pipeline, PipelineInput, PipelineRun } from './types';
 
 export class ApiError extends Error {
   constructor(public status: number, public code: string, message: string) {
@@ -80,4 +80,15 @@ export async function listPipelineRuns(pipelineId: string): Promise<PipelineRun[
 
 export async function getPipelineRun(runId: string): Promise<PipelineRun> {
   return fetchJson<PipelineRun>(`/api/pipeline-runs/${runId}`);
+}
+
+// -- unified activity log search --
+export async function searchLogs(query: LogQuery): Promise<LogEntry[]> {
+  const p = new URLSearchParams();
+  if (query.q) p.set('q', query.q);
+  if (query.status) p.set('status', query.status);
+  if (query.kind) p.set('kind', query.kind);
+  if (query.limit) p.set('limit', String(query.limit));
+  const qs = p.toString();
+  return fetchJson<LogEntry[]>(`/api/logs${qs ? `?${qs}` : ''}`);
 }
