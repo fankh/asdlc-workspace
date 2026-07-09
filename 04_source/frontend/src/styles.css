@@ -492,6 +492,15 @@ body::before {
 :root[data-theme='light'] .ant-tag-geekblue { color: #1d39c4; }
 :root[data-theme='light'] .ant-tag-purple { color: #531dab; }
 
+.lang-select {
+  background: transparent; color: var(--text-3);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; padding: 5px 8px; cursor: pointer;
+}
+.lang-select:hover { color: var(--text); background: var(--hover); }
+.lang-select option { color: #000; }
+@media (max-width: 640px) { .lang-select { padding: 5px 4px; } }
+
 /* theme toggle (header) */
 .theme-toggle {
   margin-left: 8px;

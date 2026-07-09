@@ -3,11 +3,13 @@ import { Card, Form, Input, Button, Alert } from 'antd';
 import { createAgent } from '../api/client';
 import { useNavigate } from 'react-router-dom';
 import AgentFormFields from '../components/AgentFormFields';
+import { useT } from '../i18n';
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useT();
 
   const handleSubmit = async (values: any) => {
     setLoading(true);
@@ -26,9 +28,9 @@ export default function OnboardingPage() {
 
   return (
     <main className="centered-page">
-      <span className="eyebrow">step 01 — register an agent</span>
+      <span className="eyebrow">{t('onboarding.eyebrow')}</span>
       <Card style={{ marginTop: 16 }}>
-        <h1>Welcome to onboarding</h1>
+        <h1>{t('onboarding.welcome')}</h1>
         {error && <Alert message={error} type="error" showIcon />}
         <Form
           layout="vertical"
@@ -38,18 +40,18 @@ export default function OnboardingPage() {
         >
           <Form.Item
             name="name"
-            label="Agent name *"
-            rules={[{ required: true, message: 'Agent name is required.' }]}
+            label={t('onboarding.namelabel')}
+            rules={[{ required: true, message: t('onboarding.namereq') }]}
           >
-            <Input placeholder="Enter agent name" />
+            <Input placeholder={t('onboarding.nameph')} />
           </Form.Item>
-          <Form.Item name="description" label="Description">
-            <Input.TextArea placeholder="Optional details about this agent" rows={4} />
+          <Form.Item name="description" label={t('onboarding.description')}>
+            <Input.TextArea placeholder={t('onboarding.descph')} rows={4} />
           </Form.Item>
           <AgentFormFields />
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading}>
-              Create Agent
+              {t('onboarding.submit')}
             </Button>
           </Form.Item>
         </Form>

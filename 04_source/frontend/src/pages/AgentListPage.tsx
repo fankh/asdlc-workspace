@@ -8,6 +8,7 @@ import { listAgents, deleteAgent, updateAgent } from '../api/client';
 import type { Agent, AgentInput } from '../api/types';
 import AgentFormFields from '../components/AgentFormFields';
 import RunAgentModal from '../components/RunAgentModal';
+import { useT } from '../i18n';
 
 const STATUS_COLOR: Record<string, string | undefined> = {
   active: 'green',
@@ -32,6 +33,7 @@ export default function AgentListPage() {
   const [running, setRunning] = useState<Agent | null>(null);
   const [saving, setSaving] = useState(false);
   const [form] = Form.useForm();
+  const { t } = useT();
 
   const fetchAgents = async () => {
     try {
@@ -77,35 +79,35 @@ export default function AgentListPage() {
   const filteredAgents = filterStatus === 'all' ? agents : agents.filter(a => a.status === filterStatus);
 
   const columns = [
-    { title: 'name', dataIndex: 'name', key: 'name' },
-    { title: 'description', dataIndex: 'description', key: 'description', render: (v: string | null) => v || '—' },
+    { title: t('agents.col.name'), dataIndex: 'name', key: 'name' },
+    { title: t('agents.col.description'), dataIndex: 'description', key: 'description', render: (v: string | null) => v || '—' },
     {
-      title: 'status', dataIndex: 'status', key: 'status',
+      title: t('agents.col.status'), dataIndex: 'status', key: 'status',
       render: (s: string) => <Tag color={STATUS_COLOR[s]} className="mono-cell">{s}</Tag>,
     },
     {
-      title: 'creation date', dataIndex: 'createdAt', key: 'createdAt',
+      title: t('agents.col.created'), dataIndex: 'createdAt', key: 'createdAt',
       render: (d: string) => <span className="mono-cell">{dateFormatter.format(new Date(d))}</span>,
     },
-    { title: 'role', dataIndex: 'role', key: 'role', render: (v: string) => v || '—' },
+    { title: t('agents.col.role'), dataIndex: 'role', key: 'role', render: (v: string) => v || '—' },
     {
-      title: 'importance', dataIndex: 'importance', key: 'importance',
+      title: t('agents.col.importance'), dataIndex: 'importance', key: 'importance',
       render: (v: string) => <Tag color={IMPORTANCE_COLOR[v]} className="mono-cell">{v}</Tag>,
     },
     {
       title: '', key: 'action', width: 220,
       render: (_: unknown, record: Agent) => (
         <Space onClick={(e) => e.stopPropagation()}>
-          <Button size="small" type="primary" onClick={() => setRunning(record)}>Run</Button>
-          <Button size="small" onClick={() => openEdit(record)}>Edit</Button>
-          <Button size="small" danger onClick={() => handleDelete(record.id)}>Delete</Button>
+          <Button size="small" type="primary" onClick={() => setRunning(record)}>{t('common.run')}</Button>
+          <Button size="small" onClick={() => openEdit(record)}>{t('common.edit')}</Button>
+          <Button size="small" danger onClick={() => handleDelete(record.id)}>{t('common.delete')}</Button>
         </Space>
       ),
     },
   ];
 
   const filterOptions = [
-    { label: 'All', value: 'all' },
+    { label: t('common.all'), value: 'all' },
     { label: 'idle', value: 'idle' },
     { label: 'active', value: 'active' },
     { label: 'paused', value: 'paused' },
@@ -114,10 +116,10 @@ export default function AgentListPage() {
   return (
     <main className="page-container">
       <div className="page-header">
-        <h1>Agents</h1>
-        <span className="count-chip">{loading ? '…' : `${agents.length} registered`}</span>
+        <h1>{t('agents.title')}</h1>
+        <span className="count-chip">{loading ? '…' : t('agents.count', { n: agents.length })}</span>
         <Link to="/onboarding" style={{ marginLeft: 'auto' }}>
-          <Button type="primary">Add agent</Button>
+          <Button type="primary">{t('agents.add')}</Button>
         </Link>
       </div>
 
@@ -126,7 +128,7 @@ export default function AgentListPage() {
       )}
 
       <div className="control-bar">
-        <Select value={filterStatus} onChange={setFilterStatus} options={filterOptions} style={{ width: 120 }} aria-label="Filter by status" />
+        <Select value={filterStatus} onChange={setFilterStatus} options={filterOptions} style={{ width: 120 }} aria-label={t('agents.filter')} />
       </div>
 
       {filteredAgents.length === 0 && !loading ? (

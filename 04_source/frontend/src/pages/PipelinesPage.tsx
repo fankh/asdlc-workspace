@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { listPipelines, deletePipeline, updatePipeline } from '../api/client';
 import type { Pipeline } from '../api/types';
 import RunPipelineModal from '../components/RunPipelineModal';
+import { useT } from '../i18n';
 
 function triggerTag(p: Pipeline) {
   if (p.triggerType === 'interval') {
@@ -25,6 +26,7 @@ const RUN_COLOR: Record<string, string | undefined> = {
 // next. Create a chain from registered agents, then run it against a task.
 export default function PipelinesPage() {
   const navigate = useNavigate();
+  const { t } = useT();
   const [pipelines, setPipelines] = useState<Pipeline[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -85,34 +87,34 @@ export default function PipelinesPage() {
   };
 
   const columns = [
-    { title: 'name', dataIndex: 'name', key: 'name' },
+    { title: t('agents.col.name'), dataIndex: 'name', key: 'name' },
     {
-      title: 'chain', key: 'chain',
+      title: t('pipes.col.chain'), key: 'chain',
       render: (_: unknown, p: Pipeline) => (
         <span className="pipe-chain">{p.steps.map(s => s.agentName).join(' → ') || '—'}</span>
       ),
     },
-    { title: 'trigger', key: 'trigger', render: (_: unknown, p: Pipeline) => triggerTag(p) },
+    { title: t('pipes.col.trigger'), key: 'trigger', render: (_: unknown, p: Pipeline) => triggerTag(p) },
     {
-      title: 'enabled', key: 'enabled',
+      title: t('pipes.col.enabled'), key: 'enabled',
       render: (_: unknown, p: Pipeline) => (
         <Switch size="small" checked={p.enabled} aria-label={`${p.name} enabled`}
                 onChange={v => toggleEnabled(p, v)} />
       ),
     },
     {
-      title: 'last run', key: 'lastRun',
+      title: t('pipes.col.lastrun'), key: 'lastRun',
       render: (_: unknown, p: Pipeline) => p.lastRun
         ? <Tag color={RUN_COLOR[p.lastRun.status]} className="mono-cell">{p.lastRun.status}</Tag>
-        : <span className="run-meta">never</span>,
+        : <span className="run-meta">{t('pipes.never')}</span>,
     },
     {
       title: '', key: 'action', width: 220,
       render: (_: unknown, p: Pipeline) => (
         <Space>
-          <Button size="small" type="primary" onClick={() => setRunning(p)}>Run</Button>
-          <Button size="small" onClick={() => openEdit(p)}>Edit</Button>
-          <Button size="small" danger onClick={() => handleDelete(p.id)}>Delete</Button>
+          <Button size="small" type="primary" onClick={() => setRunning(p)}>{t('common.run')}</Button>
+          <Button size="small" onClick={() => openEdit(p)}>{t('common.edit')}</Button>
+          <Button size="small" danger onClick={() => handleDelete(p.id)}>{t('common.delete')}</Button>
         </Space>
       ),
     },
@@ -121,9 +123,9 @@ export default function PipelinesPage() {
   return (
     <main className="page-container">
       <div className="page-header">
-        <h1>Pipelines</h1>
-        <span className="count-chip">{loading ? '…' : `${pipelines.length} defined`}</span>
-        <Button type="primary" style={{ marginLeft: 'auto' }} onClick={openCreate}>New pipeline</Button>
+        <h1>{t('pipes.title')}</h1>
+        <span className="count-chip">{loading ? '…' : t('pipes.count', { n: pipelines.length })}</span>
+        <Button type="primary" style={{ marginLeft: 'auto' }} onClick={openCreate}>{t('pipes.new')}</Button>
       </div>
 
       {error && (
@@ -131,8 +133,8 @@ export default function PipelinesPage() {
       )}
 
       {pipelines.length === 0 && !loading ? (
-        <Empty description="No pipelines yet">
-          <Button type="primary" onClick={openCreate}>Create your first pipeline</Button>
+        <Empty description={t('pipes.empty')}>
+          <Button type="primary" onClick={openCreate}>{t('pipes.createfirst')}</Button>
         </Empty>
       ) : (
         <Table

@@ -9,10 +9,12 @@ import LogsPage from './pages/LogsPage';
 import MemoryPage from './pages/MemoryPage';
 import ManualPage from './pages/ManualPage';
 import { ThemeModeContext } from './theme';
+import { LANGS, useT } from './i18n';
 
 export default function App() {
   const { pathname } = useLocation();
   const { mode, toggle } = useContext(ThemeModeContext);
+  const { lang, setLang, t } = useT();
   const cls = (p: string) =>
     'nav-item' + ((p === '/' ? pathname === '/' : pathname.startsWith(p)) ? ' active' : '');
   return (
@@ -20,14 +22,24 @@ export default function App() {
       <header className="app-header">
         <Link to="/" className="app-brand">My Local Agent App</Link>
         <nav className="top-nav" aria-label="Main navigation">
-          <Link to="/" className={cls('/')}>Home</Link>
-          <Link to="/onboarding" className={cls('/onboarding')}>Register agent</Link>
-          <Link to="/agents" className={cls('/agents')}>Agents</Link>
-          <Link to="/pipelines" className={cls('/pipelines')}>Pipelines</Link>
-          <Link to="/logs" className={cls('/logs')}>Logs</Link>
-          <Link to="/memory" className={cls('/memory')}>Memory</Link>
-          <Link to="/manual" className={cls('/manual')}>Manual</Link>
+          <Link to="/" className={cls('/')}>{t('nav.home')}</Link>
+          <Link to="/onboarding" className={cls('/onboarding')}>{t('nav.register')}</Link>
+          <Link to="/agents" className={cls('/agents')}>{t('nav.agents')}</Link>
+          <Link to="/pipelines" className={cls('/pipelines')}>{t('nav.pipelines')}</Link>
+          <Link to="/logs" className={cls('/logs')}>{t('nav.logs')}</Link>
+          <Link to="/memory" className={cls('/memory')}>{t('nav.memory')}</Link>
+          <Link to="/manual" className={cls('/manual')}>{t('nav.manual')}</Link>
         </nav>
+        {/* native select on purpose: keeps the header light and avoids
+            polluting antd's .ant-select selectors used elsewhere */}
+        <select
+          className="lang-select"
+          value={lang}
+          onChange={e => setLang(e.target.value as typeof lang)}
+          aria-label={t('lang.label')}
+        >
+          {LANGS.map(l => <option key={l.value} value={l.value}>{l.label}</option>)}
+        </select>
         <button
           type="button"
           className="theme-toggle"

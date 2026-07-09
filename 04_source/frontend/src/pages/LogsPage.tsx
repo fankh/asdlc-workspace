@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Table, Input, Select, Tag, Drawer, Alert, Space, Empty, Button } from 'antd';
 import { searchLogs } from '../api/client';
 import type { LogEntry, LogQuery } from '../api/types';
+import { useT } from '../i18n';
 
 const STATUS_COLOR: Record<string, string | undefined> = {
   running: 'blue',
@@ -28,6 +29,7 @@ export default function LogsPage() {
   const [viewing, setViewing] = useState<LogEntry | null>(null);
   const debounce = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const { t } = useT();
   const query = useMemo<LogQuery>(() => ({ q: q.trim() || undefined, status, kind, limit: 100 }),
     [q, status, kind]);
 
@@ -49,20 +51,20 @@ export default function LogsPage() {
 
   const columns = [
     {
-      title: 'when', dataIndex: 'createdAt', key: 'createdAt', width: 170,
+      title: t('logs.col.when'), dataIndex: 'createdAt', key: 'createdAt', width: 170,
       render: (d: string) => <span className="mono-cell">{new Date(d).toLocaleString()}</span>,
     },
     {
-      title: 'kind', dataIndex: 'kind', key: 'kind', width: 90,
+      title: t('logs.col.kind'), dataIndex: 'kind', key: 'kind', width: 90,
       render: (k: string) => <KindChip kind={k} />,
     },
-    { title: 'source', dataIndex: 'source', key: 'source', width: 180 },
+    { title: t('logs.col.source'), dataIndex: 'source', key: 'source', width: 180 },
     {
-      title: 'task', dataIndex: 'task', key: 'task',
-      render: (t: string) => <span className="log-cell">{t}</span>,
+      title: t('logs.col.task'), dataIndex: 'task', key: 'task',
+      render: (v: string) => <span className="log-cell">{v}</span>,
     },
     {
-      title: 'status', dataIndex: 'status', key: 'status', width: 100,
+      title: t('common.status'), dataIndex: 'status', key: 'status', width: 100,
       render: (s: string, r: LogEntry) => (
         <Space size={4}>
           <Tag color={STATUS_COLOR[s]} className="mono-cell">{s}</Tag>
@@ -71,7 +73,7 @@ export default function LogsPage() {
       ),
     },
     {
-      title: 'took', dataIndex: 'durationMs', key: 'durationMs', width: 80,
+      title: t('logs.col.took'), dataIndex: 'durationMs', key: 'durationMs', width: 80,
       render: (ms: number) => <span className="run-meta">{ms > 0 ? fmtDur(ms) : '—'}</span>,
     },
   ];
@@ -79,8 +81,8 @@ export default function LogsPage() {
   return (
     <main className="page-container">
       <div className="page-header">
-        <h1>Logs</h1>
-        <span className="count-chip">{loading ? '…' : `${rows.length} entries`}</span>
+        <h1>{t('logs.title')}</h1>
+        <span className="count-chip">{loading ? '…' : t('logs.count', { n: rows.length })}</span>
       </div>
 
       {error && <Alert type="error" showIcon message={error} style={{ marginBottom: 16 }} />}
@@ -88,20 +90,20 @@ export default function LogsPage() {
       <div className="log-controls">
         <Input.Search
           allowClear
-          placeholder="Search task or output text…"
+          placeholder={t('logs.search')}
           value={q}
           onChange={e => setQ(e.target.value)}
-          aria-label="Search logs"
+          aria-label={t('common.search')}
           style={{ maxWidth: 420 }}
         />
         <Select
-          allowClear placeholder="Kind" value={kind} onChange={setKind} style={{ width: 130 }}
-          aria-label="Filter by kind"
-          options={[{ label: 'Agent runs', value: 'agent' }, { label: 'Pipeline runs', value: 'pipeline' }]}
+          allowClear placeholder={t('logs.kind')} value={kind} onChange={setKind} style={{ width: 130 }}
+          aria-label={t('logs.kind')}
+          options={[{ label: t('logs.kind.agent'), value: 'agent' }, { label: t('logs.kind.pipeline'), value: 'pipeline' }]}
         />
         <Select
-          allowClear placeholder="Status" value={status} onChange={setStatus} style={{ width: 130 }}
-          aria-label="Filter by status"
+          allowClear placeholder={t('common.status')} value={status} onChange={setStatus} style={{ width: 130 }}
+          aria-label={t('common.status')}
           options={[
             { label: 'succeeded', value: 'succeeded' },
             { label: 'failed', value: 'failed' },
@@ -111,7 +113,7 @@ export default function LogsPage() {
       </div>
 
       {rows.length === 0 && !loading ? (
-        <Empty description={q || status || kind ? 'No matching activity' : 'No runs yet'} />
+        <Empty description={q || status || kind ? t('logs.nomatch') : t('logs.empty')} />
       ) : (
         <Table
           dataSource={rows}
@@ -141,11 +143,11 @@ export default function LogsPage() {
               {viewing.durationMs > 0 && <span className="run-meta">{fmtDur(viewing.durationMs)}</span>}
               <span className="run-meta">{new Date(viewing.createdAt).toLocaleString()}</span>
             </Space>
-            <h4 className="run-history-title">Task</h4>
+            <h4 className="run-history-title">{t('logs.col.task')}</h4>
             <pre className="run-output">{viewing.task}</pre>
             <h4 className="run-history-title">Output</h4>
             <pre className="run-output">{viewing.output || '(none)'}</pre>
-            <Button style={{ marginTop: 12 }} onClick={() => setViewing(null)}>Close</Button>
+            <Button style={{ marginTop: 12 }} onClick={() => setViewing(null)}>{t('common.close')}</Button>
           </>
         )}
       </Drawer>
