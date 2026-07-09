@@ -63,7 +63,7 @@
   --border-2: #d6dde5;
   --line: #9aa7b4;
   --accent: #2dd4a7;
-  --accent-text: #0e8f6d; /* teal darkened for AA text contrast on light */
+  --accent-text: #0a7a5c; /* teal darkened to clear AA (4.5:1) on white */
   --accent-soft: rgba(14, 143, 109, 0.12);
   --trig-fill: #e2f6ee;
   --ok-text: #1e7e34;
@@ -381,8 +381,26 @@ body::before {
   border-left: 3px solid var(--st-running); background: var(--surface);
   padding: 10px 14px; border-radius: 0 8px 8px 0;
 }
+.doc-tip {
+  border-left: 3px solid var(--accent); background: var(--surface);
+  padding: 10px 14px; border-radius: 0 8px 8px 0;
+}
 .doc-ok { color: var(--st-succeeded); font-weight: 600; }
 .doc-bad { color: var(--st-failed); font-weight: 600; }
+.doc-run { color: var(--st-running); font-weight: 600; }
+/* copyable code block */
+.doc-code { position: relative; }
+.doc-copy {
+  position: absolute; top: 8px; right: 8px; z-index: 1;
+  background: var(--surface); color: var(--text-3);
+  border: 1px solid var(--border); border-radius: 6px;
+  font-family: var(--mono); font-size: 11px; padding: 2px 8px; cursor: pointer;
+}
+.doc-copy:hover { color: var(--text); border-color: var(--accent); }
+.doc-code pre.run-output { padding-right: 64px; }
+/* FAQ */
+.doc-faq dt { color: var(--text); font-weight: 600; margin-top: 16px; }
+.doc-faq dd { color: var(--text-2); margin: 4px 0 0; padding-left: 0; }
 
 /* Memory page */
 .mem-summary { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
