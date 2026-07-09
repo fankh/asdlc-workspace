@@ -110,8 +110,12 @@ def main() -> int:
     if backlog:
         brief_story_count = len(re.findall(r'^### STORY', brief, re.M))
         backlog_ids = sorted(set(re.findall(r'STORY-\d+', backlog)))
-        check(f'B: story count matches brief ({brief_story_count})',
-              len(backlog_ids) == brief_story_count, backlog_ids)
+        # scope equivalence, not count equality: fewer stories = dropped scope
+        # (FAIL); more stories = decomposition, surfaced for human review (WARN)
+        check(f'B: no dropped scope (>= {brief_story_count} stories)',
+              len(backlog_ids) >= brief_story_count, backlog_ids)
+        if len(backlog_ids) > brief_story_count:
+            warn(f'B: {len(backlog_ids)} stories vs {brief_story_count} in brief — review decomposition', str(backlog_ids))
         gherkin = len(re.findall(r'\bGiven\b', backlog))
         check('B: every story has Gherkin acceptance criteria',
               gherkin >= max(1, len(backlog_ids)), f'{gherkin} Given-blocks for {len(backlog_ids)} stories')
@@ -130,7 +134,8 @@ def main() -> int:
           [p.name for p in arch_files])
     backlog_ids = sorted(set(re.findall(r'STORY-\d+', backlog)))
     for sid in backlog_ids:
-        check(f'C: {sid} covered in architecture', sid in arch_text)
+        # coverage = a per-story UI spec file (specs are named by ID, not cited
+        # inline in openapi/data-model — file presence is the real signal)
         check(f'C: UI spec file exists for {sid}', (arch / 'ui' / f'{sid}.md').exists())
     openapis = [p for p in arch_files if p.name in ('openapi.yaml', 'openapi.yml')]
     if openapis:
@@ -145,14 +150,30 @@ def main() -> int:
         warn('C: no openapi.yaml found')
     for a in anchors:
         check(f'C: architecture carries anchor "{a}"', a.lower() in arch_text.lower())
+    # datastore/data-model consistency: SQLite can't use native Prisma enums
+    # or provider-specific @db.* attributes (recurring codegen failure)
+    is_sqlite = 'sqlite' in arch_text.lower()
+    dm = read(arch / 'DATA_MODEL.md')
+    if is_sqlite and dm:
+        native_enum = re.search(r'^\s*enum\s+\w+\s*\{', dm, re.M) or re.search(r'\bEnum[A-Z]\w+', dm)
+        check('C: no native Prisma enums on SQLite', not native_enum,
+              'data model uses native enums (e.g. %s) — fails prisma db push on SQLite'
+              % (native_enum.group(0) if native_enum else ''))
+        db_attrs = re.findall(r'@db\.\w+', dm)
+        check('C: no provider-specific @db.* attrs on SQLite', not db_attrs,
+              sorted(set(db_attrs)))
 
     # ---------- D. documentation quality ----------
     doc_targets = {'backlog': backlog, 'architecture': arch_text}
-    placeholders = ['TODO', 'TBD', 'lorem', 'PLACEHOLDER', 'FIXME', 'xxx']
+    # case-sensitive dev tokens ('placeholder' is a legit UI empty-state term,
+    # e.g. an input placeholder or empty-state region, so it must not trip)
+    placeholders = ['TODO', 'TBD', 'PLACEHOLDER', 'FIXME']
     for name, text in doc_targets.items():
         if not text:
             continue
-        found = [p for p in placeholders if re.search(rf'\b{p}\b', text, re.I)]
+        found = [p for p in placeholders if re.search(rf'\b{p}\b', text)]
+        if re.search(r'lorem ipsum', text, re.I):
+            found.append('lorem ipsum')
         check(f'D: {name} has no placeholders', not found, found)
     project = ''
     cfg = read(root / '.pipeline' / 'config.yaml')

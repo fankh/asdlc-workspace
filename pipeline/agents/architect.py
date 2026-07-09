@@ -23,7 +23,13 @@ From the backlog and UI specs, produce:
    entity exposure). Include error response schema. Keep it minimal — only
    endpoints the stories require.
 2. `data_model`: markdown describing each Prisma model (fields, types,
-   defaults, relations).
+   defaults, relations). CRITICAL SQLite constraints — the datastore is
+   SQLite: do NOT use native Prisma `enum` types (unsupported on SQLite) —
+   model enumerated fields as `String` and list the allowed values in a
+   comment plus a Zod/validation enum at the API layer. Do NOT use
+   provider-specific `@db.*` native type attributes (`@db.VarChar`,
+   `@db.Text`, etc.) — they are Postgres/MySQL-only. Use plain `String`,
+   `Int`, `DateTime`, `Boolean`.
 3. `adrs`: architecture decision records. ADR-001 must document the stack
    choice. Add ADRs only for decisions a maintainer would question.
 4. `error_handling`: content for CODING_PATTERNS Section 6 — one concrete
