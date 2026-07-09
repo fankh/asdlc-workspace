@@ -184,7 +184,12 @@ body::before {
 .canvas-back:hover { color: #2dd4a7; }
 .canvas-msg-err { color: #F2B8B6; font-size: 13px; }
 .canvas-msg-ok { color: #37B24D; font-size: 13px; }
-.canvas-svg { width: 100%; height: 100%; display: block; background: #0B0F14; touch-action: none; }
+.canvas-svg {
+  width: 100%; height: 100%; display: block; background: #0B0F14; touch-action: none;
+  /* dragging must wire nodes, never select labels — a live selection turns the
+     next drag into a native text-drag that swallows pointer events entirely */
+  user-select: none; -webkit-user-select: none;
+}
 .pnode { fill: #141A21; }
 .pnode-title { fill: #E6EDF3; font-size: 14px; font-weight: 600; pointer-events: none; }
 .pnode-sub, .pnode-status {
@@ -193,9 +198,9 @@ body::before {
 }
 .pnode-sub { fill: #8A96A4; }
 .pnode-instr { fill: #6E7B89; font-size: 11px; font-style: italic; pointer-events: none; }
-.pport { fill: #1C2530; stroke: #3a4653; stroke-width: 1.5; }
-.pport-out { cursor: crosshair; }
-.pport-out:hover { fill: #2dd4a7; stroke: #2dd4a7; }
+.pport { fill: #1C2530; stroke: #3a4653; stroke-width: 1.5; pointer-events: none; }
+.pport-hit { fill: transparent; cursor: crosshair; }
+.pport-hit:hover + .pport { fill: #2dd4a7; stroke: #2dd4a7; }
 .pedge { fill: none; stroke: #3a4653; stroke-width: 2; pointer-events: none; }
 .pedge-temp { stroke: #2dd4a7; stroke-dasharray: 6 4; }
 .pedge-hit { fill: none; stroke: transparent; stroke-width: 14; cursor: pointer; pointer-events: stroke; }

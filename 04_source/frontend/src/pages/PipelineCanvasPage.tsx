@@ -81,7 +81,7 @@ export default function PipelineCanvasPage() {
   const [edges, setEdges] = useState<Edge[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
   const [t, setT] = useState({ x: 0, y: 0, k: 1 });
-  const [tempEdge, setTempEdge] = useState<{ from: string; x: number; y: number } | null>(null);
+  const [tempEdge, setTempEdge] = useState<{ from: string; x: number; y: number; reverse?: boolean } | null>(null);
   const [msg, setMsg] = useState<{ kind: 'error' | 'ok'; text: string } | null>(null);
   const [saving, setSaving] = useState(false);
   const [trig, setTrig] = useState<TriggerSettings>({ type: 'manual', intervalSec: 300, defaultTask: '', enabled: true });
@@ -95,7 +95,7 @@ export default function PipelineCanvasPage() {
   const drag = useRef<
     | { mode: 'node'; key: string; dx: number; dy: number; moved: number }
     | { mode: 'pan'; sx: number; sy: number; tx: number; ty: number }
-    | { mode: 'connect'; from: string }
+    | { mode: 'connect'; from: string; reverse?: boolean }
     | null
   >(null);
 
@@ -170,6 +170,15 @@ export default function PipelineCanvasPage() {
     setTempEdge({ from: key, x: w.x, y: w.y });
   };
 
+  // Wiring works from either end, n8n-style: dragging from an in-port connects
+  // backwards (drop on the upstream node).
+  const onInPortDown = (e: React.PointerEvent, key: string) => {
+    e.stopPropagation();
+    const w = toWorld(e.clientX, e.clientY);
+    drag.current = { mode: 'connect', from: key, reverse: true };
+    setTempEdge({ from: key, x: w.x, y: w.y, reverse: true });
+  };
+
   const onMove = (e: React.PointerEvent) => {
     const d = drag.current;
     if (!d) return;
@@ -181,7 +190,7 @@ export default function PipelineCanvasPage() {
       setNodes(prev => prev.map(n => (n.key === d.key ? { ...n, x: w.x - d.dx, y: w.y - d.dy } : n)));
     } else if (d.mode === 'connect') {
       const w = toWorld(e.clientX, e.clientY);
-      setTempEdge({ from: d.from, x: w.x, y: w.y });
+      setTempEdge({ from: d.from, x: w.x, y: w.y, reverse: d.reverse });
     }
   };
 
@@ -193,13 +202,18 @@ export default function PipelineCanvasPage() {
     if (d.mode === 'connect') {
       setTempEdge(null);
       const w = toWorld(e.clientX, e.clientY);
+      // Drop anywhere on the target node (padded to include its ports) — a
+      // 24px-of-the-port bullseye is too precise for a real mouse hand.
       const target = nodes.find(n =>
-        n.key !== d.from && Math.hypot(n.x - w.x, n.y + NODE_H / 2 - w.y) < 24);
+        n.key !== d.from &&
+        w.x >= n.x - 24 && w.x <= n.x + NODE_W + 24 &&
+        w.y >= n.y - 16 && w.y <= n.y + NODE_H + 16);
       if (target) {
-        setEdges(prev => [
-          ...prev.filter(x => x.from !== d.from && x.to !== target.key),
-          { from: d.from, to: target.key },
-        ]);
+        setEdges(prev => d.reverse
+          ? [...prev.filter(x => x.from !== target.key && x.to !== d.from),
+             { from: target.key, to: d.from }]
+          : [...prev.filter(x => x.from !== d.from && x.to !== target.key),
+             { from: d.from, to: target.key }]);
       }
     }
   };
@@ -374,8 +388,11 @@ export default function PipelineCanvasPage() {
           })}
           {tempEdge && (() => {
             const a = nodeByKey.get(tempEdge.from);
-            return a ? <path className="pedge pedge-temp"
-              d={edgePath(a.x + NODE_W, a.y + NODE_H / 2, tempEdge.x, tempEdge.y)} /> : null;
+            if (!a) return null;
+            const d = tempEdge.reverse
+              ? edgePath(tempEdge.x, tempEdge.y, a.x, a.y + NODE_H / 2)
+              : edgePath(a.x + NODE_W, a.y + NODE_H / 2, tempEdge.x, tempEdge.y);
+            return <path className="pedge pedge-temp" d={d} />;
           })()}
 
           {startNode && (() => {
@@ -419,11 +436,17 @@ export default function PipelineCanvasPage() {
                 {st
                   ? <text x={NODE_W - 2} y={-8} textAnchor="end" className="pnode-status" fill={STATUS_STROKE[st]}>{st}</text>
                   : <text x={NODE_W - 2} y={-8} textAnchor="end" className="pnode-sub">#{i + 1}</text>}
-                <circle cx={0} cy={NODE_H / 2} r={7} className="pport" data-port={`in-${n.key}`} />
-                <circle cx={NODE_W} cy={NODE_H / 2} r={7} className="pport pport-out" data-port={`out-${n.key}`}
-                        onPointerDown={e => onOutPortDown(e, n.key)}>
-                  <title>Drag to the next node's left port</title>
+                {/* ports: big invisible hit-targets over small visible circles */}
+                <circle cx={0} cy={NODE_H / 2} r={16} className="pport-hit" data-port={`in-${n.key}`}
+                        onPointerDown={e => onInPortDown(e, n.key)}>
+                  <title>Drag to the previous node to chain it before this one</title>
                 </circle>
+                <circle cx={0} cy={NODE_H / 2} r={7} className="pport" />
+                <circle cx={NODE_W} cy={NODE_H / 2} r={16} className="pport-hit" data-port={`out-${n.key}`}
+                        onPointerDown={e => onOutPortDown(e, n.key)}>
+                  <title>Drag onto the next node to chain it after this one</title>
+                </circle>
+                <circle cx={NODE_W} cy={NODE_H / 2} r={7} className="pport pport-out" />
               </g>
             );
           })}
