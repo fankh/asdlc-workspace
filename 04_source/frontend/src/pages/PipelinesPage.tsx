@@ -52,10 +52,11 @@ export default function PipelinesPage() {
   const openEdit = (p: Pipeline) => navigate(`/pipelines/${p.id}`);
 
   // Flip enabled without touching anything else (update is full-replace, so
-  // rebuild the payload from the DTO we already hold).
+  // rebuild the whole graph payload from the DTO we already hold).
   const toggleEnabled = async (p: Pipeline, enabled: boolean) => {
     setPipelines(prev => prev.map(x => (x.id === p.id ? { ...x, enabled } : x)));
     try {
+      const idxById = new Map(p.steps.map((s, i) => [s.id, i]));
       await updatePipeline(p.id, {
         name: p.name,
         description: p.description || undefined,
@@ -64,10 +65,17 @@ export default function PipelinesPage() {
         defaultTask: p.defaultTask || undefined,
         enabled,
         steps: p.steps.map(s => ({
-          agentId: s.agentId,
+          nodeType: s.nodeType,
+          agentId: s.agentId ?? undefined,
           instruction: s.instruction || undefined,
+          config: s.config,
           posX: s.posX,
           posY: s.posY,
+        })),
+        edges: p.edges.map(e => ({
+          from: idxById.get(e.fromId)!,
+          to: idxById.get(e.toId)!,
+          ...(e.branch ? { branch: e.branch } : {}),
         })),
       });
     } catch {

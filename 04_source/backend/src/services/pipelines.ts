@@ -7,12 +7,22 @@ const prisma = new PrismaClient()
 
 export type TriggerSource = 'manual' | 'interval' | 'webhook'
 export const MIN_INTERVAL_SEC = 10
+export const NODE_TYPES = ['agent', 'logic', 'skill', 'http'] as const
+export type NodeType = (typeof NODE_TYPES)[number]
 
 const StepDto = z.object({
-  agentId: z.string().uuid(),
+  nodeType: z.enum(NODE_TYPES).optional(), // defaults to agent
+  agentId: z.string().uuid().optional(),
   instruction: z.string().max(2000).optional(),
+  config: z.record(z.any()).optional(),
   posX: z.number().int().min(-100000).max(100000).optional(),
   posY: z.number().int().min(-100000).max(100000).optional(),
+})
+
+const EdgeDto = z.object({
+  from: z.number().int().min(0), // index into steps[]
+  to: z.number().int().min(0),
+  branch: z.enum(['true', 'false', '']).optional(), // set on edges leaving a logic node
 })
 
 export const CreatePipelineDto = z.object({
@@ -22,7 +32,8 @@ export const CreatePipelineDto = z.object({
   intervalSec: z.number().int().min(0).max(7 * 86400).optional(),
   defaultTask: z.string().max(4000).optional(),
   enabled: z.boolean().optional(),
-  steps: z.array(StepDto).min(1, 'A pipeline needs at least one step.').max(10),
+  steps: z.array(StepDto).min(1, 'A pipeline needs at least one step.').max(12),
+  edges: z.array(EdgeDto).max(24).optional(), // omitted => linear chain in steps order
 }).superRefine((data, ctx) => {
   if (data.triggerType === 'interval') {
     if ((data.intervalSec ?? 0) < MIN_INTERVAL_SEC) {
@@ -32,8 +43,25 @@ export const CreatePipelineDto = z.object({
       ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Interval trigger needs a default task for automated runs.' })
     }
   }
+  data.steps.forEach((s, i) => {
+    const type = s.nodeType ?? 'agent'
+    if (type === 'agent' && !s.agentId) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Step ${i + 1}: agent nodes need an agent.` })
+    }
+    if (type === 'logic' && !(s.config?.value ?? '').toString().trim()) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Step ${i + 1}: logic nodes need a condition value.` })
+    }
+    if (type === 'http' && !/^https?:\/\//.test(String(s.config?.url ?? ''))) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: `Step ${i + 1}: HTTP nodes need an http(s) URL.` })
+    }
+  })
+  for (const e of data.edges ?? []) {
+    if (e.from >= data.steps.length || e.to >= data.steps.length || e.from === e.to) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: 'Edges must connect two different existing steps.' })
+    }
+  }
 })
-// Updates use full-replace semantics: the editor always submits the whole chain.
+// Updates use full-replace semantics: the editor always submits the whole graph.
 export const UpdatePipelineDto = CreatePipelineDto
 
 export const CreatePipelineRunDto = z.object({
@@ -56,12 +84,105 @@ export function composeStepTask(instruction: string, input: string): string {
   return directive ? `${directive}\n\nInput:\n${input}` : input
 }
 
-const includeSteps = {
-  steps: { include: { agent: true }, orderBy: { order: 'asc' as const } },
+// -- node-type behaviors (pure helpers, unit tested) ---------------------------
+
+export interface LogicConfig { op?: string; value?: string }
+
+// Deterministic branch decision for logic (IF) nodes.
+export function evalLogic(config: LogicConfig, input: string): boolean {
+  const value = String(config.value ?? '')
+  switch (config.op ?? 'contains') {
+    case 'contains':
+      return input.toLowerCase().includes(value.toLowerCase())
+    case 'not_contains':
+      return !input.toLowerCase().includes(value.toLowerCase())
+    case 'matches_regex':
+      try { return new RegExp(value, 'i').test(input) }
+      catch { throw new Error(`Invalid regular expression: ${value}`) }
+    case 'longer_than':
+      return input.length > (parseInt(value, 10) || 0)
+    default:
+      throw new Error(`Unknown logic operator: ${config.op}`)
+  }
 }
 
-async function assertAgentsExist(steps: { agentId: string }[]) {
-  const ids = [...new Set(steps.map(s => s.agentId))]
+export interface SkillConfig { skill?: string; param?: string }
+
+// Reusable LLM transforms that need no agent persona.
+export function skillInstruction(config: SkillConfig): string {
+  switch (config.skill ?? 'summarize') {
+    case 'summarize':
+      return 'Summarize the input concisely, keeping its original language.'
+    case 'translate':
+      return `Translate the input into ${(config.param ?? '').trim() || 'English'}. Output only the translation.`
+    case 'extract_key_points':
+      return 'Extract the key points from the input as a terse bullet list.'
+    case 'classify_severity':
+      return 'Classify the severity of the input as one of: critical, high, medium, low. Reply with the label on the first line and a one-line justification.'
+    case 'custom':
+      return (config.param ?? '').trim() || 'Process the input.'
+    default:
+      throw new Error(`Unknown skill: ${config.skill}`)
+  }
+}
+
+const SKILL_RUNNER: llm.AgentLike = {
+  name: 'Skill runner', role: 'precise text-processing assistant',
+  persona: '', skills: [], goal: '', model: '',
+}
+
+export interface HttpConfig { method?: string; url?: string }
+
+async function execHttp(config: HttpConfig, input: string): Promise<string> {
+  const method = (config.method ?? 'GET').toUpperCase() === 'POST' ? 'POST' : 'GET'
+  const url = String(config.url ?? '')
+  const ctrl = new AbortController()
+  const timer = setTimeout(() => ctrl.abort(), 30_000)
+  try {
+    const res = await fetch(url, {
+      method,
+      signal: ctrl.signal,
+      ...(method === 'POST'
+        ? { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ input }) }
+        : {}),
+    })
+    const text = (await res.text()).slice(0, 8000)
+    if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}: ${text.slice(0, 200)}`)
+    return text
+  } catch (e: any) {
+    if (e?.name === 'AbortError') throw new Error(`HTTP request to ${url} timed out (30s).`)
+    throw e
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+function parseConfig(raw: unknown): Record<string, any> {
+  if (raw && typeof raw === 'object') return raw as Record<string, any>
+  try { return JSON.parse(String(raw || '{}')) } catch { return {} }
+}
+
+// Display label for non-agent nodes (also used in list "chain" column).
+export function nodeLabel(nodeType: string, config: Record<string, any>, agentName?: string | null): string {
+  switch (nodeType) {
+    case 'logic': return `IF ${config.op ?? 'contains'} "${String(config.value ?? '').slice(0, 20)}"`
+    case 'skill': return `Skill: ${config.skill === 'custom' ? 'custom' : (config.skill ?? 'summarize')}`
+    case 'http': return `HTTP ${(config.method ?? 'GET').toUpperCase()}`
+    default: return agentName ?? '(no agent)'
+  }
+}
+
+// -- crud ----------------------------------------------------------------------
+
+const includeGraph = {
+  steps: { include: { agent: true }, orderBy: { order: 'asc' as const } },
+  edges: true,
+}
+
+async function assertAgentsExist(steps: CreatePipelineInput['steps']) {
+  const ids = [...new Set(steps.filter(s => (s.nodeType ?? 'agent') === 'agent' && s.agentId)
+    .map(s => s.agentId as string))]
+  if (!ids.length) return
   const found = await prisma.agent.findMany({ where: { id: { in: ids } }, select: { id: true } })
   if (found.length !== ids.length) {
     const err = new Error('One or more selected agents no longer exist.') as any
@@ -70,9 +191,42 @@ async function assertAgentsExist(steps: { agentId: string }[]) {
   }
 }
 
+function toStepRecord(s: z.infer<typeof StepDto>, i: number) {
+  const nodeType = s.nodeType ?? 'agent'
+  return {
+    order: i,
+    nodeType,
+    agentId: nodeType === 'agent' ? s.agentId ?? null : null,
+    instruction: s.instruction ?? '',
+    config: JSON.stringify(s.config ?? {}),
+    posX: s.posX ?? 0,
+    posY: s.posY ?? 0,
+  }
+}
+
+// Edges reference steps by index in the payload; omitted edges = linear chain.
+function normalizeEdges(data: CreatePipelineInput): { from: number; to: number; branch: string }[] {
+  if (data.edges?.length) return data.edges.map(e => ({ from: e.from, to: e.to, branch: e.branch ?? '' }))
+  return data.steps.slice(1).map((_, i) => ({ from: i, to: i + 1, branch: '' }))
+}
+
+async function writeEdges(pipelineId: string, data: CreatePipelineInput) {
+  const steps = await prisma.pipelineStep.findMany({
+    where: { pipelineId }, orderBy: { order: 'asc' }, select: { id: true },
+  })
+  const edges = normalizeEdges(data)
+  if (edges.length) {
+    await prisma.pipelineEdge.createMany({
+      data: edges.map(e => ({
+        pipelineId, fromId: steps[e.from].id, toId: steps[e.to].id, branch: e.branch,
+      })),
+    })
+  }
+}
+
 export async function listPipelines() {
   const pipelines = await prisma.pipeline.findMany({
-    include: { ...includeSteps, runs: { orderBy: { createdAt: 'desc' }, take: 1 } },
+    include: { ...includeGraph, runs: { orderBy: { createdAt: 'desc' }, take: 1 } },
     orderBy: { createdAt: 'desc' },
   })
   return pipelines.map(toPipelineDto)
@@ -81,7 +235,7 @@ export async function listPipelines() {
 export async function createPipeline(data: CreatePipelineInput) {
   await assertAgentsExist(data.steps)
   try {
-    const p = await prisma.pipeline.create({
+    const created = await prisma.pipeline.create({
       data: {
         name: data.name,
         description: data.description ?? '',
@@ -92,8 +246,9 @@ export async function createPipeline(data: CreatePipelineInput) {
         webhookKey: randomUUID(),
         steps: { create: data.steps.map(toStepRecord) },
       },
-      include: includeSteps,
     })
+    await writeEdges(created.id, data)
+    const p = await prisma.pipeline.findUnique({ where: { id: created.id }, include: includeGraph })
     return toPipelineDto(p)
   } catch (e: any) {
     if (e?.code === 'P2002') {
@@ -105,15 +260,11 @@ export async function createPipeline(data: CreatePipelineInput) {
   }
 }
 
-function toStepRecord(s: z.infer<typeof StepDto>, i: number) {
-  return { order: i, agentId: s.agentId, instruction: s.instruction ?? '', posX: s.posX ?? 0, posY: s.posY ?? 0 }
-}
-
 export async function updatePipeline(pipelineId: string, data: CreatePipelineInput) {
   await assertAgentsExist(data.steps)
   try {
     const existing = await prisma.pipeline.findUnique({ where: { id: pipelineId }, select: { webhookKey: true } })
-    const p = await prisma.pipeline.update({
+    await prisma.pipeline.update({
       where: { id: pipelineId },
       data: {
         name: data.name,
@@ -124,13 +275,14 @@ export async function updatePipeline(pipelineId: string, data: CreatePipelineInp
         enabled: data.enabled ?? true,
         // backfill for rows created before webhooks existed
         ...(existing && !existing.webhookKey ? { webhookKey: randomUUID() } : {}),
-        steps: {
-          deleteMany: {},
-          create: data.steps.map(toStepRecord),
-        },
+        steps: { deleteMany: {} }, // cascades this pipeline's edges via step FKs
       },
-      include: includeSteps,
     })
+    await prisma.pipelineStep.createMany({
+      data: data.steps.map((s, i) => ({ ...toStepRecord(s, i), pipelineId })),
+    })
+    await writeEdges(pipelineId, data)
+    const p = await prisma.pipeline.findUnique({ where: { id: pipelineId }, include: includeGraph })
     return toPipelineDto(p)
   } catch (e: any) {
     if (e?.code === 'P2025') notFound('Pipeline')
@@ -151,31 +303,41 @@ export async function deletePipeline(pipelineId: string) {
 
 // -- execution ---------------------------------------------------------------
 
-// Create the run with every step snapshotted as `pending`, then execute the
-// chain in the background; the frontend polls getPipelineRun until terminal.
+// Create the run with every node snapshotted as `pending` plus the edge graph,
+// then walk it in the background; the frontend polls getPipelineRun.
 export async function startPipelineRun(pipelineId: string, data: CreatePipelineRunInput,
                                         trigger: TriggerSource = 'manual') {
-  const pipeline = await prisma.pipeline.findUnique({ where: { id: pipelineId }, include: includeSteps })
+  const pipeline = await prisma.pipeline.findUnique({ where: { id: pipelineId }, include: includeGraph })
   if (!pipeline) notFound('Pipeline')
   if (pipeline.steps.length === 0) {
     const err = new Error('This pipeline has no steps.') as any
     err.code = 'VALIDATION_FAILED'; err.statusCode = 400
     throw err
   }
+  const orderById = new Map(pipeline.steps.map(s => [s.id, s.order]))
+  const graph = pipeline.edges.map(e => ({
+    from: orderById.get(e.fromId), to: orderById.get(e.toId), branch: e.branch ?? '',
+  })).filter(e => e.from !== undefined && e.to !== undefined)
   await prisma.pipeline.update({ where: { id: pipelineId }, data: { lastTriggeredAt: new Date() } })
   const run = await prisma.pipelineRun.create({
     data: {
       pipelineId,
       task: data.task,
       trigger,
+      graph: JSON.stringify(graph),
       steps: {
-        create: pipeline.steps.map(s => ({
-          order: s.order,
-          agentId: s.agentId,
-          agentName: s.agent?.name ?? '(deleted agent)',
-          instruction: s.instruction ?? '',
-          model: s.agent ? llm.modelFor(llm.toAgentLike(s.agent)) : '',
-        })),
+        create: pipeline.steps.map(s => {
+          const config = parseConfig(s.config)
+          return {
+            order: s.order,
+            nodeType: s.nodeType ?? 'agent',
+            agentId: s.agentId ?? '',
+            agentName: nodeLabel(s.nodeType ?? 'agent', config, s.agent?.name),
+            instruction: s.instruction ?? '',
+            config: JSON.stringify(config),
+            model: s.agent ? llm.modelFor(llm.toAgentLike(s.agent)) : '',
+          }
+        }),
       },
     },
     include: { steps: { orderBy: { order: 'asc' } } },
@@ -184,8 +346,9 @@ export async function startPipelineRun(pipelineId: string, data: CreatePipelineR
   return toPipelineRunDto(run)
 }
 
-// Sequential chain: step N's output is step N+1's input. A failed step fails
-// the run; later steps stay `pending` so the UI shows where it stopped.
+// Walk the snapshot graph from its start node. Logic nodes pick the edge whose
+// branch matches their verdict; everything else follows its single edge. Nodes
+// on branches not taken end as `skipped`.
 export async function executePipelineRun(runId: string): Promise<void> {
   const run = await prisma.pipelineRun.findUnique({
     where: { id: runId },
@@ -193,26 +356,80 @@ export async function executePipelineRun(runId: string): Promise<void> {
   })
   if (!run) return
   const started = Date.now()
+  let graph: { from: number; to: number; branch: string }[] = []
+  try { graph = JSON.parse(run.graph || '[]') } catch { graph = [] }
+  if (!graph.length && run.steps.length > 1) { // legacy linear runs
+    graph = run.steps.slice(1).map((_, i) => ({ from: i, to: i + 1, branch: '' }))
+  }
+  const byOrder = new Map(run.steps.map(s => [s.order, s]))
+  const skipRest = () => prisma.pipelineStepRun.updateMany({
+    where: { pipelineRunId: runId, status: 'pending' }, data: { status: 'skipped' },
+  })
+
+  const withIncoming = new Set(graph.map(e => e.to))
+  const starts = run.steps.filter(s => !withIncoming.has(s.order))
+  if (starts.length !== 1) {
+    await skipRest()
+    await prisma.pipelineRun.update({
+      where: { id: runId },
+      data: { status: 'failed', error: 'The graph needs exactly one start node (no branches merging back).', durationMs: Date.now() - started },
+    })
+    return
+  }
+
+  let current: any = starts[0]
   let input = run.task
-  for (const step of run.steps) {
+  const visited = new Set<number>()
+  while (current && !visited.has(current.order)) {
+    visited.add(current.order)
+    const step: any = current
     const stepStarted = Date.now()
-    const agent = await prisma.agent.findUnique({ where: { id: step.agentId } })
-    const task = composeStepTask(step.instruction ?? '', input)
-    await prisma.pipelineStepRun.update({ where: { id: step.id }, data: { status: 'running', task } })
+    const config = parseConfig(step.config)
+    let branch = ''
     try {
-      if (!agent) throw new Error(`Agent "${step.agentName}" no longer exists.`)
-      const { output, model } = await llm.execute(llm.toAgentLike(agent), task)
-      await prisma.pipelineStepRun.update({
-        where: { id: step.id },
-        data: { output, model, status: 'succeeded', durationMs: Date.now() - stepStarted },
+      let task = input
+      let output = input
+      let model = ''
+      switch (step.nodeType) {
+        case 'logic': {
+          await mark(step.id, { status: 'running', task })
+          const verdict = evalLogic(config, input)
+          branch = String(verdict)
+          output = input // logic nodes pass the text through untouched
+          break
+        }
+        case 'skill': {
+          task = composeStepTask(skillInstruction(config), input)
+          await mark(step.id, { status: 'running', task })
+          const r = await llm.execute(SKILL_RUNNER, task)
+          output = r.output; model = r.model
+          break
+        }
+        case 'http': {
+          await mark(step.id, { status: 'running', task })
+          output = await execHttp(config, input)
+          break
+        }
+        default: { // agent
+          const agent = step.agentId
+            ? await prisma.agent.findUnique({ where: { id: step.agentId } }) : null
+          task = composeStepTask(step.instruction ?? '', input)
+          await mark(step.id, { status: 'running', task })
+          if (!agent) throw new Error(`Agent "${step.agentName}" no longer exists.`)
+          const r = await llm.execute(llm.toAgentLike(agent), task)
+          output = r.output; model = r.model
+        }
+      }
+      await mark(step.id, {
+        output, status: 'succeeded', durationMs: Date.now() - stepStarted,
+        ...(model ? { model } : {}),
+        ...(step.nodeType === 'logic' ? { output: `→ ${branch}` } : {}),
       })
-      input = output
+      if (step.nodeType !== 'logic') input = output
     } catch (e: any) {
       const message = e?.message || 'Step execution failed.'
-      await prisma.pipelineStepRun.update({
-        where: { id: step.id },
-        data: { status: 'failed', error: message, durationMs: Date.now() - stepStarted },
-      })
+      await mark(step.id, { status: 'failed', error: message, durationMs: Date.now() - stepStarted })
+      await skipRest()
       await prisma.pipelineRun.update({
         where: { id: runId },
         data: {
@@ -223,11 +440,19 @@ export async function executePipelineRun(runId: string): Promise<void> {
       })
       return
     }
+    const outs = graph.filter(e => e.from === step.order)
+    const next = step.nodeType === 'logic' ? outs.find(e => e.branch === branch) : outs[0]
+    current = next ? byOrder.get(next.to) : undefined
   }
+  await skipRest()
   await prisma.pipelineRun.update({
     where: { id: runId },
     data: { status: 'succeeded', output: input, durationMs: Date.now() - started },
   })
+}
+
+function mark(stepRunId: string, data: Record<string, any>) {
+  return prisma.pipelineStepRun.update({ where: { id: stepRunId }, data })
 }
 
 export async function listPipelineRuns(pipelineId: string) {
@@ -283,14 +508,22 @@ function toPipelineDto(p: any) {
     webhookPath: p.webhookKey ? `/api/hooks/${p.webhookKey}` : null,
     lastTriggeredAt: p.lastTriggeredAt ? p.lastTriggeredAt.toISOString() : null,
     createdAt: p.createdAt.toISOString(),
-    steps: p.steps.map((s: any) => ({
-      id: s.id,
-      order: s.order,
-      agentId: s.agentId,
-      agentName: s.agent?.name ?? '(deleted agent)',
-      instruction: s.instruction ?? '',
-      posX: s.posX ?? 0,
-      posY: s.posY ?? 0,
+    steps: p.steps.map((s: any) => {
+      const config = parseConfig(s.config)
+      return {
+        id: s.id,
+        order: s.order,
+        nodeType: s.nodeType ?? 'agent',
+        agentId: s.agentId ?? null,
+        agentName: nodeLabel(s.nodeType ?? 'agent', config, s.agent?.name),
+        instruction: s.instruction ?? '',
+        config,
+        posX: s.posX ?? 0,
+        posY: s.posY ?? 0,
+      }
+    }),
+    edges: (p.edges ?? []).map((e: any) => ({
+      fromId: e.fromId, toId: e.toId, branch: e.branch ?? '',
     })),
     lastRun: lastRun
       ? { id: lastRun.id, status: lastRun.status, createdAt: lastRun.createdAt.toISOString() }
@@ -312,13 +545,14 @@ function toPipelineRunDto(r: any) {
     steps: (r.steps ?? []).map((s: any) => ({
       id: s.id,
       order: s.order,
+      nodeType: s.nodeType ?? 'agent',
       agentId: s.agentId,
       agentName: s.agentName,
       instruction: s.instruction ?? '',
       model: s.model ?? '',
       task: s.task ?? '',
       output: s.output ?? '',
-      status: s.status as 'pending' | 'running' | 'succeeded' | 'failed',
+      status: s.status as 'pending' | 'running' | 'succeeded' | 'failed' | 'skipped',
       error: s.error ?? '',
       durationMs: s.durationMs ?? 0,
     })),

@@ -199,8 +199,11 @@ body::before {
 .pnode-sub { fill: #8A96A4; }
 .pnode-instr { fill: #6E7B89; font-size: 11px; font-style: italic; pointer-events: none; }
 .pport { fill: #1C2530; stroke: #3a4653; stroke-width: 1.5; pointer-events: none; }
+.pport-true { stroke: #37B24D; }
+.pport-false { stroke: #F26663; }
 .pport-hit { fill: transparent; cursor: crosshair; }
 .pport-hit:hover + .pport { fill: #2dd4a7; stroke: #2dd4a7; }
+.pedge-label { font-size: 12px; font-weight: 700; pointer-events: none; }
 .pedge { fill: none; stroke: #3a4653; stroke-width: 2; pointer-events: none; }
 .pedge-temp { stroke: #2dd4a7; stroke-dasharray: 6 4; }
 .pedge-hit { fill: none; stroke: transparent; stroke-width: 14; cursor: pointer; pointer-events: stroke; }

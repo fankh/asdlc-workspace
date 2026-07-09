@@ -44,6 +44,7 @@ model Pipeline {
   createdAt       DateTime  @default(now())
 
   steps PipelineStep[]
+  edges PipelineEdge[]
   runs  PipelineRun[]
 
   @@map("pipelines")
@@ -54,14 +55,35 @@ model PipelineStep {
   pipelineId  String
   pipeline    Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
   order       Int
-  agentId     String
-  agent       Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  nodeType    String   @default("agent") // agent | logic | skill | http
+  agentId     String? // only agent nodes; SetNull keeps the node when the agent goes
+  agent       Agent?   @relation(fields: [agentId], references: [id], onDelete: SetNull)
   instruction String   @default("") // optional per-step directive prepended to the input
+  config      String   @default("{}") // per-type settings (logic op/value, skill preset, http url)
   posX        Int      @default(0) // canvas layout (n8n-style editor)
   posY        Int      @default(0)
 
+  outgoing PipelineEdge[] @relation("edgeFrom")
+  incoming PipelineEdge[] @relation("edgeTo")
+
   @@index([pipelineId])
   @@map("pipeline_steps")
+}
+
+// Explicit connections between steps. `branch` is set on edges leaving a logic
+// node ("true"/"false"); plain edges use "".
+model PipelineEdge {
+  id         String       @id @default(uuid())
+  pipelineId String
+  pipeline   Pipeline     @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  fromId     String
+  from       PipelineStep @relation("edgeFrom", fields: [fromId], references: [id], onDelete: Cascade)
+  toId       String
+  to         PipelineStep @relation("edgeTo", fields: [toId], references: [id], onDelete: Cascade)
+  branch     String       @default("")
+
+  @@index([pipelineId])
+  @@map("pipeline_edges")
 }
 
 // One execution of a pipeline. Step runs snapshot agent name/instruction so the
@@ -72,7 +94,8 @@ model PipelineRun {
   pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
   task       String
   trigger    String   @default("manual") // what fired this run: manual | interval | webhook
-  output     String   @default("") // final output = last step's output
+  graph      String   @default("[]") // snapshot of edges as [{from,to,branch}] over step order
+  output     String   @default("") // final output = last executed step's output
   status     String   @default("running") // running | succeeded | failed
   error      String   @default("")
   durationMs Int      @default(0)
@@ -89,13 +112,15 @@ model PipelineStepRun {
   pipelineRunId String
   pipelineRun   PipelineRun @relation(fields: [pipelineRunId], references: [id], onDelete: Cascade)
   order         Int
-  agentId       String
-  agentName     String
+  nodeType      String      @default("agent")
+  agentId       String      @default("")
+  agentName     String // display label: agent name, or "IF …" / "Skill: …" / "HTTP …"
   instruction   String      @default("")
+  config        String      @default("{}")
   model         String      @default("")
   task          String      @default("") // composed input this step actually received
   output        String      @default("")
-  status        String      @default("pending") // pending | running | succeeded | failed
+  status        String      @default("pending") // pending | running | succeeded | failed | skipped
   error         String      @default("")
   durationMs    Int         @default(0)
 

@@ -45,17 +45,26 @@ export interface AgentRun {
   createdAt: string;
 }
 
-// -- pipelines: ordered agent chains --
-export type StepRunStatus = 'pending' | 'running' | 'succeeded' | 'failed';
+// -- pipelines: node graphs (agent / logic / skill / http) --
+export type StepRunStatus = 'pending' | 'running' | 'succeeded' | 'failed' | 'skipped';
+export type NodeType = 'agent' | 'logic' | 'skill' | 'http';
 
 export interface PipelineStep {
   id: string;
   order: number;
-  agentId: string;
-  agentName: string;
+  nodeType: NodeType;
+  agentId: string | null;
+  agentName: string; // display label (agent name, or "IF …" / "Skill: …" / "HTTP …")
   instruction: string;
+  config: Record<string, any>;
   posX: number;
   posY: number;
+}
+
+export interface PipelineEdgeDto {
+  fromId: string;
+  toId: string;
+  branch: string; // 'true' | 'false' on edges leaving a logic node, else ''
 }
 
 export type TriggerType = 'manual' | 'interval' | 'webhook';
@@ -72,7 +81,17 @@ export interface Pipeline {
   lastTriggeredAt: string | null;
   createdAt: string;
   steps: PipelineStep[];
+  edges: PipelineEdgeDto[];
   lastRun: { id: string; status: RunStatus; createdAt: string } | null;
+}
+
+export interface PipelineStepInput {
+  nodeType?: NodeType;
+  agentId?: string;
+  instruction?: string;
+  config?: Record<string, any>;
+  posX?: number;
+  posY?: number;
 }
 
 export interface PipelineInput {
@@ -82,12 +101,14 @@ export interface PipelineInput {
   intervalSec?: number;
   defaultTask?: string;
   enabled?: boolean;
-  steps: { agentId: string; instruction?: string; posX?: number; posY?: number }[];
+  steps: PipelineStepInput[];
+  edges?: { from: number; to: number; branch?: string }[]; // indexes into steps
 }
 
 export interface PipelineStepRun {
   id: string;
   order: number;
+  nodeType: NodeType;
   agentId: string;
   agentName: string;
   instruction: string;

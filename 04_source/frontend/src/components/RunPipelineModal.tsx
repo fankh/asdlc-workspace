@@ -8,6 +8,7 @@ const STATUS_COLOR: Record<string, string | undefined> = {
   running: 'blue',
   succeeded: 'green',
   failed: 'red',
+  skipped: undefined,
 };
 
 const fmtDur = (ms: number) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)}s` : `${ms}ms`);
