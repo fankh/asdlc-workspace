@@ -5,7 +5,7 @@ import * as llm from './llm.js'
 const prisma = new PrismaClient()
 
 export const CreateRunDto = z.object({
-  task: z.string().min(1, 'A task is required to run the agent.').max(4000),
+  task: z.string().min(1, 'A task is required to run the agent.').max(16000),
 })
 export type CreateRunInput = z.infer<typeof CreateRunDto>
 

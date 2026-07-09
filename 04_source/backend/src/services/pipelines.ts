@@ -30,7 +30,7 @@ export const CreatePipelineDto = z.object({
   description: z.string().max(500).optional(),
   triggerType: z.enum(['manual', 'interval', 'webhook']).optional(),
   intervalSec: z.number().int().min(0).max(7 * 86400).optional(),
-  defaultTask: z.string().max(4000).optional(),
+  defaultTask: z.string().max(16000).optional(),
   enabled: z.boolean().optional(),
   steps: z.array(StepDto).min(1, 'A pipeline needs at least one step.').max(12),
   edges: z.array(EdgeDto).max(24).optional(), // omitted => linear chain in steps order
@@ -65,7 +65,7 @@ export const CreatePipelineDto = z.object({
 export const UpdatePipelineDto = CreatePipelineDto
 
 export const CreatePipelineRunDto = z.object({
-  task: z.string().min(1, 'A task is required to run the pipeline.').max(4000),
+  task: z.string().min(1, 'A task is required to run the pipeline.').max(16000),
 })
 
 export type CreatePipelineInput = z.infer<typeof CreatePipelineDto>

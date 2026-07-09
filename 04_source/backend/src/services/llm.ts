@@ -7,6 +7,10 @@
 
 const OLLAMA_HOST = (process.env.OLLAMA_HOST || 'http://localhost:11434').replace(/\/$/, '')
 const DEFAULT_MODEL = process.env.OLLAMA_MODEL || 'qwen3.6:latest'
+// Ollama's default context window is only 4096 tokens and it TRUNCATES the
+// prompt head silently — long chained inputs lose their persona/instruction.
+// 16k fits every cap in this app with headroom; override via OLLAMA_NUM_CTX.
+const NUM_CTX = Number(process.env.OLLAMA_NUM_CTX || 16384)
 
 export interface AgentLike {
   name: string
@@ -62,7 +66,12 @@ export async function execute(agent: AgentLike, task: string): Promise<ExecResul
     res = await fetch(`${OLLAMA_HOST}/api/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model, prompt: buildPrompt(agent, task), stream: false }),
+      body: JSON.stringify({
+        model,
+        prompt: buildPrompt(agent, task),
+        stream: false,
+        options: { num_ctx: NUM_CTX },
+      }),
     })
   } catch {
     throw new Error(`Cannot reach the local model at ${OLLAMA_HOST}. Is Ollama running?`)
