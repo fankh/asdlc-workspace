@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import * as llm from './llm.js'
+import * as vecmem from './vecmem.js'
 
 const prisma = new PrismaClient()
 
@@ -57,12 +58,16 @@ export async function executeRun(runId: string): Promise<void> {
   if (!run) return
   const started = Date.now()
   try {
-    const recall = run.agent?.memory ? await recentActivity(run.agentId) : undefined
+    // semantic recall (most RELEVANT past runs) with recency fallback
+    const recall = run.agent?.memory
+      ? (await vecmem.semanticRecall(run.agentId, run.task)) ?? await recentActivity(run.agentId)
+      : undefined
     const { output, model } = await llm.execute(toAgentLike(run.agent), run.task, recall)
     await prisma.agentRun.update({
       where: { id: runId },
       data: { output, model, status: 'succeeded', durationMs: Date.now() - started },
     })
+    if (run.agent?.memory) void vecmem.remember(run.agentId, runId, run.task, output)
   } catch (e: any) {
     await prisma.agentRun.update({
       where: { id: runId },

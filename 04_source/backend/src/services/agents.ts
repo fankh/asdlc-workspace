@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
+import * as vecmem from './vecmem.js'
 
 const GENDERS = ['female', 'male', 'non-binary', 'unspecified'] as const
 const IMPORTANCE = ['low', 'medium', 'high', 'critical'] as const
@@ -61,6 +62,7 @@ export async function updateAgent(agentId: string, data: UpdateAgentInput) {
 
 export async function deleteAgent(agentId: string) {
   const records = await prisma.agent.deleteMany({ where: { id: agentId } })
+  if (records.count > 0) vecmem.forget(agentId)
   if (records.count === 0) {
     const err = new Error('Agent not found') as any
     err.code = 'NOT_FOUND'

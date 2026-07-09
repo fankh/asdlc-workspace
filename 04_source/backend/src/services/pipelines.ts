@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import * as llm from './llm.js'
 import { recentActivity } from './runs.js'
+import * as vecmem from './vecmem.js'
 
 const prisma = new PrismaClient()
 
@@ -443,9 +444,12 @@ export async function executePipelineRun(runId: string): Promise<void> {
           task = composeStepTaskWithTrail(step.instruction ?? '', run.task, input, trail)
           await mark(step.id, { status: 'running', task })
           if (!agent) throw new Error(`Agent "${step.agentName}" no longer exists.`)
-          const recall = agent.memory ? await recentActivity(agent.id) : undefined
+          const recall = agent.memory
+            ? (await vecmem.semanticRecall(agent.id, input)) ?? await recentActivity(agent.id)
+            : undefined
           const r = await llm.execute(llm.toAgentLike(agent), task, recall)
           output = r.output; model = r.model
+          if (agent.memory) void vecmem.remember(agent.id, step.id, task, r.output)
         }
       }
       await mark(step.id, {

@@ -1,0 +1,11 @@
+# Never ship host node_modules into image builds — native binaries (e.g.
+# better-sqlite3) are platform-specific; the image runs its own npm install.
+**/node_modules
+**/dist
+**/test-results
+**/playwright-report
+04_source/backend/prisma/dev.db
+04_source/backend/prisma/vec.db
+.venv
+.pipeline
+.git

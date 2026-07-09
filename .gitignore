@@ -21,3 +21,4 @@ test-results/
 .pipeline/dashboard.log
 .pipeline/job.log
 .pipeline/*.png
+04_source/backend/prisma/vec.db

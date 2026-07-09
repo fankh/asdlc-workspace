@@ -1,6 +1,12 @@
-FROM node:20-alpine
-# Prisma's engines need OpenSSL, which node:alpine no longer bundles
-RUN apk add --no-cache openssl
+# Debian-slim (not alpine): better-sqlite3 and sqlite-vec ship glibc prebuilt
+# binaries; musl would need a source build. openssl for Prisma's engines,
+# wget for the compose healthcheck.
+FROM node:20-slim
+# python3/make/g++: better-sqlite3 compiles from source when no prebuilt
+# binary matches the node build
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssl wget python3 make g++ \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY 04_source/backend/package.json 04_source/backend/package-lock.json* ./
 RUN npm install
