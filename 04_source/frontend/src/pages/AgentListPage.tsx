@@ -193,6 +193,8 @@ export default function AgentListPage() {
             <Descriptions.Item label="Gender">{viewing.gender}</Descriptions.Item>
             <Descriptions.Item label="Model"><span className="mono-cell">{viewing.model || '—'}</span></Descriptions.Item>
             <Descriptions.Item label="Goal">{viewing.goal || '—'}</Descriptions.Item>
+            <Descriptions.Item label="Context">{viewing.context || '—'}</Descriptions.Item>
+            <Descriptions.Item label="Memory">{viewing.memory ? 'remembers recent runs' : 'off'}</Descriptions.Item>
             <Descriptions.Item label="Description">{viewing.description || '—'}</Descriptions.Item>
           </Descriptions>
         )}

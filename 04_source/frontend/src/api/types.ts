@@ -14,6 +14,8 @@ export interface Agent {
   importance: Importance;
   model: string;
   goal: string;
+  context: string;
+  memory: boolean;
   createdAt: string;
 }
 
@@ -29,6 +31,8 @@ export interface AgentInput {
   importance?: Importance;
   model?: string;
   goal?: string;
+  context?: string;
+  memory?: boolean;
 }
 
 export type RunStatus = 'running' | 'succeeded' | 'failed';

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { composeStepTask, evalLogic, skillInstruction, nodeLabel } from './pipelines.js'
+import { composeStepTask, composeStepTaskWithTrail, evalLogic, skillInstruction, nodeLabel } from './pipelines.js'
 
 describe('composeStepTask', () => {
   it('passes the input straight through when there is no instruction', () => {
@@ -15,6 +15,44 @@ describe('composeStepTask', () => {
   it('trims the instruction but preserves the input verbatim', () => {
     expect(composeStepTask('  Summarize.  ', 'line1\nline2'))
       .toBe('Summarize.\n\nInput:\nline1\nline2')
+  })
+})
+
+describe('composeStepTaskWithTrail', () => {
+  it('first step with no instruction passes the input straight through', () => {
+    expect(composeStepTaskWithTrail('', 'the task', 'the task', [])).toBe('the task')
+  })
+
+  it('keeps the original task visible once the input has diverged', () => {
+    const out = composeStepTaskWithTrail('Summarize.', 'original ask', 'step1 output',
+      [{ label: 'HTTP GET', output: 'step1 output' }])
+    expect(out).toContain('Summarize.')
+    expect(out).toContain('Original task:\noriginal ask')
+    expect(out).toContain('Input:\nstep1 output')
+    // the only trail entry produced the current input — no "Earlier steps"
+    expect(out).not.toContain('Earlier steps:')
+  })
+
+  it('digests earlier steps but excludes the one that produced the input', () => {
+    const trail = [
+      { label: 'A', output: 'alpha result' },
+      { label: 'B', output: 'beta  result\nwith newline' },
+      { label: 'C', output: 'current input' },
+    ]
+    const out = composeStepTaskWithTrail('', 'orig', 'current input', trail)
+    expect(out).toContain('- A: alpha result')
+    expect(out).toContain('- B: beta result with newline') // whitespace collapsed
+    expect(out).not.toContain('- C:')
+  })
+
+  it('caps the trail at the 4 most recent earlier steps', () => {
+    const trail = Array.from({ length: 7 }, (_, i) => ({ label: `S${i}`, output: `o${i}` }))
+    const out = composeStepTaskWithTrail('', 'orig', 'x', trail)
+    expect(out).not.toContain('- S0:')
+    expect(out).not.toContain('- S1:')
+    expect(out).toContain('- S2:')
+    expect(out).toContain('- S5:')
+    expect(out).not.toContain('- S6:') // produced the current input
   })
 })
 

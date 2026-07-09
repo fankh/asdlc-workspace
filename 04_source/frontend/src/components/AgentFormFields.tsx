@@ -1,4 +1,4 @@
-import { Form, Input, Select } from 'antd';
+import { Form, Input, Select, Switch } from 'antd';
 
 // Shared AI-agent attribute inputs, rendered inside an antd <Form>.
 // Used by the create form (Onboarding) and the edit modal (Agents list).
@@ -57,6 +57,14 @@ export default function AgentFormFields({ includeStatus = false }: { includeStat
       </Form.Item>
       <Form.Item name="goal" label="Goal">
         <Input.TextArea rows={2} placeholder="What this agent is meant to achieve" />
+      </Form.Item>
+      <Form.Item name="context" label="Context"
+        tooltip="Standing knowledge injected into every run: system docs, formats, house rules">
+        <Input.TextArea rows={3} placeholder="Standing knowledge this agent should always have" />
+      </Form.Item>
+      <Form.Item name="memory" label="Memory" valuePropName="checked"
+        tooltip="Inject compact summaries of this agent's recent runs into new runs">
+        <Switch />
       </Form.Item>
       {includeStatus && (
         <Form.Item name="status" label="Status">

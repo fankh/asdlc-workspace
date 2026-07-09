@@ -26,6 +26,30 @@ export async function startRun(agentId: string, data: CreateRunInput) {
   return toRunDto(run)
 }
 
+const oneLine = (s: string) => s.replace(/\s+/g, ' ').trim()
+
+// Episodic memory: a compact, newest-first digest of the agent's recent
+// successful work (direct runs + pipeline steps). Injected only when the
+// agent has `memory` enabled — kept small to respect the context budget.
+export async function recentActivity(agentId: string): Promise<string> {
+  const [runs, stepRuns] = await Promise.all([
+    prisma.agentRun.findMany({
+      where: { agentId, status: 'succeeded' },
+      orderBy: { createdAt: 'desc' }, take: 3,
+    }),
+    prisma.pipelineStepRun.findMany({
+      where: { agentId, status: 'succeeded' },
+      orderBy: { createdAt: 'desc' }, take: 3,
+    }),
+  ])
+  const merged = [...runs, ...stepRuns]
+    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+    .slice(0, 3)
+  return merged
+    .map(r => `- asked: ${oneLine(r.task).slice(0, 120)} -> did: ${oneLine(r.output).slice(0, 200)}`)
+    .join('\n')
+}
+
 // Runs one agent step to completion, persisting the outcome. Exported so a
 // future pipeline (Phase 2) can drive chained steps through the same path.
 export async function executeRun(runId: string): Promise<void> {
@@ -33,7 +57,8 @@ export async function executeRun(runId: string): Promise<void> {
   if (!run) return
   const started = Date.now()
   try {
-    const { output, model } = await llm.execute(toAgentLike(run.agent), run.task)
+    const recall = run.agent?.memory ? await recentActivity(run.agentId) : undefined
+    const { output, model } = await llm.execute(toAgentLike(run.agent), run.task, recall)
     await prisma.agentRun.update({
       where: { id: runId },
       data: { output, model, status: 'succeeded', durationMs: Date.now() - started },

@@ -19,6 +19,7 @@ export interface AgentLike {
   skills: string[]
   goal: string
   model: string
+  context?: string // standing knowledge injected into every run
 }
 
 export interface ExecResult {
@@ -27,12 +28,16 @@ export interface ExecResult {
 }
 
 // Build the instruction the agent runs under from its registered attributes.
-export function buildPrompt(agent: AgentLike, task: string): string {
+// `recall` is an optional pre-formatted summary of the agent's recent runs
+// (episodic memory) supplied by the caller.
+export function buildPrompt(agent: AgentLike, task: string, recall?: string): string {
   const lines: string[] = []
   lines.push(`You are ${agent.name}${agent.role ? `, a ${agent.role}` : ''}.`)
   if (agent.persona) lines.push(`Persona: ${agent.persona}`)
   if (agent.skills.length) lines.push(`Your skills: ${agent.skills.join(', ')}.`)
   if (agent.goal) lines.push(`Your standing goal: ${agent.goal}`)
+  if (agent.context?.trim()) lines.push(`\nStanding context (always applies):\n${agent.context.trim()}`)
+  if (recall?.trim()) lines.push(`\nYour recent runs (newest first):\n${recall.trim()}`)
   lines.push('')
   lines.push(`Task:\n${task}`)
   return lines.join('\n')
@@ -47,13 +52,13 @@ export function toAgentLike(a: any): AgentLike {
   return {
     name: a.name, role: a.role ?? '', persona: a.persona ?? '',
     skills: a.skills ? String(a.skills).split(',').filter(Boolean) : [],
-    goal: a.goal ?? '', model: a.model ?? '',
+    goal: a.goal ?? '', model: a.model ?? '', context: a.context ?? '',
   }
 }
 
 // Execute against Ollama. Throws on unreachable daemon / model errors so the
 // caller can record a failed run with a useful message.
-export async function execute(agent: AgentLike, task: string): Promise<ExecResult> {
+export async function execute(agent: AgentLike, task: string, recall?: string): Promise<ExecResult> {
   const model = modelFor(agent)
   // This build runs agents locally via Ollama only. Cloud models (Claude/GPT)
   // have no key configured here — fail with an actionable message rather than a
@@ -68,7 +73,7 @@ export async function execute(agent: AgentLike, task: string): Promise<ExecResul
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model,
-        prompt: buildPrompt(agent, task),
+        prompt: buildPrompt(agent, task, recall),
         stream: false,
         options: { num_ctx: NUM_CTX },
       }),

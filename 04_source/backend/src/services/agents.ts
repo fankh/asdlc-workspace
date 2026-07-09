@@ -16,6 +16,8 @@ const attributeFields = {
   importance: z.enum(IMPORTANCE).optional(),
   model: z.string().max(120).optional(),
   goal: z.string().max(1000).optional(),
+  context: z.string().max(8000).optional(), // standing knowledge, every run
+  memory: z.boolean().optional(), // inject summaries of recent runs
 }
 
 export const CreateAgentDto = z.object({
@@ -90,6 +92,8 @@ function toAgentDto(r: any) {
     importance: (r.importance ?? 'medium') as (typeof IMPORTANCE)[number],
     model: r.model ?? '',
     goal: r.goal ?? '',
+    context: r.context ?? '',
+    memory: r.memory ?? false,
     createdAt: r.createdAt.toISOString(),
   }
 }

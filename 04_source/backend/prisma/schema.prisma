@@ -20,6 +20,8 @@ model Agent {
   importance  String   @default("medium")
   model       String   @default("")
   goal        String   @default("")
+  context     String   @default("") // standing knowledge injected into every run
+  memory      Boolean  @default(false) // inject summaries of recent runs
   createdAt   DateTime @default(now())
 
   runs          AgentRun[]
@@ -123,6 +125,7 @@ model PipelineStepRun {
   status        String      @default("pending") // pending | running | succeeded | failed | skipped
   error         String      @default("")
   durationMs    Int         @default(0)
+  createdAt     DateTime    @default(now())
 
   @@index([pipelineRunId])
   @@map("pipeline_step_runs")

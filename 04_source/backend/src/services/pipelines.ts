@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto'
 import { PrismaClient } from '@prisma/client'
 import { z } from 'zod'
 import * as llm from './llm.js'
+import { recentActivity } from './runs.js'
 
 const prisma = new PrismaClient()
 
@@ -82,6 +83,31 @@ function notFound(what: string): never {
 export function composeStepTask(instruction: string, input: string): string {
   const directive = instruction.trim()
   return directive ? `${directive}\n\nInput:\n${input}` : input
+}
+
+export interface TrailEntry { label: string; output: string }
+const oneLine = (s: string) => s.replace(/\s+/g, ' ').trim()
+
+// Trail-aware step input for LLM nodes: keeps the ORIGINAL task and a compact
+// digest of earlier steps visible, instead of only the previous output.
+// The last trail entry is excluded — its output IS the `input` section.
+// Pure — unit tested. Budgets: task 2000 chars, 4 earlier steps × 240 chars.
+export function composeStepTaskWithTrail(
+  instruction: string, originalTask: string, input: string, trail: TrailEntry[],
+): string {
+  const parts: string[] = []
+  const directive = instruction.trim()
+  if (directive) parts.push(directive)
+  if (originalTask.trim() && originalTask.trim() !== input.trim()) {
+    parts.push(`Original task:\n${originalTask.slice(0, 2000)}`)
+  }
+  const earlier = trail.slice(0, -1).slice(-4)
+  if (earlier.length) {
+    parts.push('Earlier steps:\n'
+      + earlier.map(t => `- ${t.label}: ${oneLine(t.output).slice(0, 240)}`).join('\n'))
+  }
+  if (!parts.length) return input
+  return parts.join('\n\n') + `\n\nInput:\n${input}`
 }
 
 // -- node-type behaviors (pure helpers, unit tested) ---------------------------
@@ -379,6 +405,7 @@ export async function executePipelineRun(runId: string): Promise<void> {
 
   let current: any = starts[0]
   let input = run.task
+  const trail: TrailEntry[] = [] // executed non-logic steps, for context
   const visited = new Set<number>()
   while (current && !visited.has(current.order)) {
     visited.add(current.order)
@@ -399,7 +426,7 @@ export async function executePipelineRun(runId: string): Promise<void> {
           break
         }
         case 'skill': {
-          task = composeStepTask(skillInstruction(config), input)
+          task = composeStepTaskWithTrail(skillInstruction(config), run.task, input, trail)
           await mark(step.id, { status: 'running', task })
           const r = await llm.execute(SKILL_RUNNER, task)
           output = r.output; model = r.model
@@ -413,10 +440,11 @@ export async function executePipelineRun(runId: string): Promise<void> {
         default: { // agent
           const agent = step.agentId
             ? await prisma.agent.findUnique({ where: { id: step.agentId } }) : null
-          task = composeStepTask(step.instruction ?? '', input)
+          task = composeStepTaskWithTrail(step.instruction ?? '', run.task, input, trail)
           await mark(step.id, { status: 'running', task })
           if (!agent) throw new Error(`Agent "${step.agentName}" no longer exists.`)
-          const r = await llm.execute(llm.toAgentLike(agent), task)
+          const recall = agent.memory ? await recentActivity(agent.id) : undefined
+          const r = await llm.execute(llm.toAgentLike(agent), task, recall)
           output = r.output; model = r.model
         }
       }
@@ -425,7 +453,10 @@ export async function executePipelineRun(runId: string): Promise<void> {
         ...(model ? { model } : {}),
         ...(step.nodeType === 'logic' ? { output: `→ ${branch}` } : {}),
       })
-      if (step.nodeType !== 'logic') input = output
+      if (step.nodeType !== 'logic') {
+        trail.push({ label: step.agentName, output })
+        input = output
+      }
     } catch (e: any) {
       const message = e?.message || 'Step execution failed.'
       await mark(step.id, { status: 'failed', error: message, durationMs: Date.now() - stepStarted })
